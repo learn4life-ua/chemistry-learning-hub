@@ -10,11 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1">
-  <link rel="stylesheet" href="css/home-v2.css?v=3">
+  <link rel="stylesheet" href="css/home-v2.css?v=4">
 </head>
 <body>
   <header class="site-header">
-    <div class="shell header-inner">
+    <div class="shell header-inner header-inner-clean">
       <a class="brand" href="#top" aria-label="Chemistry Learning Hub - на початок">
         <span class="brand-mark" aria-hidden="true">⚛</span>
         <span class="brand-copy">
@@ -22,10 +22,6 @@
           <small>Інтерактивний навчальний простір з хімії</small>
         </span>
       </a>
-
-      <nav class="main-nav" aria-label="Основна навігація">
-        <a class="is-active" href="#directions">Напрями</a>
-      </nav>
 
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false">
         <span class="theme-icon" aria-hidden="true">◐</span>
@@ -49,22 +45,23 @@
 
         <div class="hero-atom-panel">
           <div class="hero-atom-stage">
-            <canvas id="heroAtomCanvas" width="520" height="420" aria-label="Динамічна модель електронних оболонок"></canvas>
+            <canvas id="heroAtomCanvas" width="520" height="360" aria-label="Динамічна модель електронних оболонок"></canvas>
             <div class="atom-caption">
               <span id="heroAtomNumber">8</span>
               <strong id="heroAtomSymbol">O</strong>
               <small id="heroAtomName">Оксиген</small>
             </div>
-            <button id="atomPause" class="atom-pause" type="button" aria-pressed="false">Пауза</button>
           </div>
-          <div class="atom-switcher" aria-label="Приклади елементів">
-            <button type="button" data-atom="H">H</button>
-            <button type="button" data-atom="C">C</button>
-            <button class="is-active" type="button" data-atom="O">O</button>
-            <button type="button" data-atom="Na">Na</button>
-            <button type="button" data-atom="Cl">Cl</button>
+          <div class="atom-controls">
+            <div class="atom-switcher" aria-label="Приклади елементів">
+              <button type="button" data-atom="H">H</button>
+              <button type="button" data-atom="C">C</button>
+              <button class="is-active" type="button" data-atom="O">O</button>
+              <button type="button" data-atom="Na">Na</button>
+              <button type="button" data-atom="Cl">Cl</button>
+            </div>
+            <button id="atomPause" class="atom-pause" type="button" aria-pressed="false" title="Призупинити анімацію">Ⅱ</button>
           </div>
-          <p class="atom-hint">Оберіть елемент і подивіться, як змінюється модель електронних оболонок.</p>
         </div>
       </div>
     </section>
@@ -141,6 +138,6 @@
     </div>
   </footer>
 
-  <script src="js/app.js?v=2" defer></script>
+  <script src="js/app.js?v=3" defer></script>
 </body>
 </html>
