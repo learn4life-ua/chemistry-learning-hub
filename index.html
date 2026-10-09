@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chemistry Learning Hub - інтерактивний навчальний простір з хімії: Періодична система, тренажери, розрахунки, лабораторія та довідники.">
+  <meta name="color-scheme" content="light dark">
+  <title>Chemistry Learning Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Chemistry Learning Hub - на початок">
+        <span class="brand-mark" aria-hidden="true">⚛</span>
+        <span class="brand-copy">
+          <strong>Chemistry Learning Hub</strong>
+          <small>Інтерактивний навчальний простір з хімії</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Основна навігація">
+        <a class="is-active" href="#modules">Модулі</a>
+        <a href="#principles">Про хаб</a>
+        <a href="#roadmap">Розвиток</a>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">◐</span>
+        <span class="theme-label">Темна тема</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Chemistry Learning Hub</p>
+          <h1>Хімія в одному інтерактивному просторі</h1>
+          <p class="hero-lead">Періодична система, навчальні тренажери, хімічні розрахунки, довідники та віртуальна лабораторія - у спільному сучасному інтерфейсі.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#modules">Перейти до модулів</a>
+            <a class="secondary-button" href="https://learn4life-ua.github.io/periodic-table-trainer/">Відкрити Періодичну систему</a>
+          </div>
+          <div class="hero-points" aria-label="Переваги проєкту">
+            <span>Без реєстрації</span>
+            <span>Без збереження результатів</span>
+            <span>Адаптивний дизайн</span>
+            <span>Світла і темна тема</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="atom-card">
+            <span class="orbit orbit-one"><i></i></span>
+            <span class="orbit orbit-two"><i></i></span>
+            <span class="orbit orbit-three"><i></i></span>
+            <span class="atom-core">ClH</span>
+          </div>
+          <div class="hero-stat stat-one"><strong>118</strong><span>елементів</span></div>
+          <div class="hero-stat stat-two"><strong>6+</strong><span>напрямів</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="modules-section shell" id="modules">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Навчальні модулі</p>
+          <h2>Один хаб - різні напрями хімії</h2>
+        </div>
+        <p>Кожний модуль розвивається окремо, але використовує спільний дизайн, навігацію та принципи перевірки навчального контенту.</p>
+      </div>
+
+      <div class="module-grid">
+        <article class="module-card module-featured">
+          <div class="module-icon">▦</div>
+          <div class="module-status status-live">Працює</div>
+          <h3>Періодична система</h3>
+          <p>118 елементів, пошук і фільтри, групи, періоди, електронні блоки та картка вибраного елемента.</p>
+          <div class="module-tags"><span>Елементи</span><span>Пошук</span><span>Дослідження</span></div>
+          <a class="card-link" href="https://learn4life-ua.github.io/periodic-table-trainer/">Відкрити модуль <span>→</span></a>
+        </article>
+
+        <article class="module-card">
+          <div class="module-icon">⚗</div>
+          <div class="module-status status-build">Проєктуємо</div>
+          <h3>Віртуальна лабораторія</h3>
+          <p>Керовані безпечні симуляції: осадження, нейтралізація, pH, індикатори та спостереження за перебігом реакцій.</p>
+          <div class="module-tags"><span>Досліди</span><span>pH</span><span>Реакції</span></div>
+          <button class="card-link card-link-button" type="button" data-preview="lab">Що плануємо <span>→</span></button>
+        </article>
+
+        <article class="module-card">
+          <div class="module-icon">Σ</div>
+          <div class="module-status status-plan">Заплановано</div>
+          <h3>Хімічні розрахунки</h3>
+          <p>Молярна маса, кількість речовини, концентрації та задачі з покроковою перевіркою одиниць і формул.</p>
+          <div class="module-tags"><span>M</span><span>n</span><span>c</span></div>
+          <button class="card-link card-link-button" type="button" data-preview="calc">Переглянути напрям <span>→</span></button>
+        </article>
+
+        <article class="module-card">
+          <div class="module-icon">⇄</div>
+          <div class="module-status status-plan">Заплановано</div>
+          <h3>Розчинність і йонні реакції</h3>
+          <p>Інтерактивна таблиця розчинності та перехід від молекулярного рівняння до повного і скороченого йонного.</p>
+          <div class="module-tags"><span>Осади</span><span>Йони</span><span>Рівняння</span></div>
+          <button class="card-link card-link-button" type="button" data-preview="ionic">Переглянути напрям <span>→</span></button>
+        </article>
+
+        <article class="module-card">
+          <div class="module-icon">◆</div>
+          <div class="module-status status-plan">Заплановано</div>
+          <h3>Тренажери</h3>
+          <p>Короткі завдання з миттєвою перевіркою та поясненням відповіді. Без оцінок, рейтингу та збереження персональних результатів.</p>
+          <div class="module-tags"><span>Самоперевірка</span><span>Пояснення</span></div>
+          <button class="card-link card-link-button" type="button" data-preview="trainer">Переглянути напрям <span>→</span></button>
+        </article>
+
+        <article class="module-card">
+          <div class="module-icon">▤</div>
+          <div class="module-status status-build">Розвиваємо</div>
+          <h3>Довідник</h3>
+          <p>Короткі структуровані пояснення понять, закономірностей, електронної будови, ступенів окиснення та інших тем.</p>
+          <div class="module-tags"><span>Теорія</span><span>Приклади</span><span>Підказки</span></div>
+          <button class="card-link card-link-button" type="button" data-preview="guide">Переглянути напрям <span>→</span></button>
+        </article>
+      </div>
+    </section>
+
+    <section class="principles-section" id="principles">
+      <div class="shell principles-grid">
+        <div>
+          <p class="eyebrow">Підхід</p>
+          <h2>Не просто набір калькуляторів</h2>
+          <p class="section-lead">Хаб має пояснювати хімію, показувати причинно-наслідкові зв'язки та давати безпечне середовище для тренування перед реальною практичною роботою.</p>
+        </div>
+        <div class="principle-list">
+          <article><strong>01</strong><div><h3>Перевірені дані</h3><p>Навчальні значення та формулювання перевіряються перед публікацією. Спірні або залежні від умов твердження не подаються як універсальні правила.</p></div></article>
+          <article><strong>02</strong><div><h3>Миттєвий зворотний зв'язок</h3><p>Після дії користувач бачить не лише результат, а й коротке пояснення, чому він правильний.</p></div></article>
+          <article><strong>03</strong><div><h3>Безпечні симуляції</h3><p>Віртуальна лабораторія працюватиме на заздалегідь перевірених сценаріях, а не на довільному змішуванні будь-яких речовин.</p></div></article>
+          <article><strong>04</strong><div><h3>Доступність</h3><p>Інтерфейс розрахований на комп'ютер, планшет і телефон, підтримує клавіатуру, контраст і темну тему.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="roadmap-section shell" id="roadmap">
+      <div class="section-heading roadmap-heading">
+        <div>
+          <p class="eyebrow">Структура розвитку</p>
+          <h2>Що переносимо і що створюємо заново</h2>
+        </div>
+      </div>
+      <div class="roadmap-grid">
+        <article><span>1</span><h3>Періодична система</h3><p>Переносимо найкращу поточну версію, а дані елементів додатково аудіюємо.</p></article>
+        <article><span>2</span><h3>Навчальні інструменти</h3><p>Молярна маса, розчинність, йонні рівняння та pH будуть окремими модульними інструментами.</p></article>
+        <article><span>3</span><h3>Онлайн-лабораторія</h3><p>Будуємо як систему контрольованих експериментів із візуальним спостереженням і поясненням.</p></article>
+        <article><span>4</span><h3>Звіт і тренажери</h3><p>Звіт зможе отримувати дані з виконаного досліду, а тренажери працюватимуть без реєстрації.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="preview-dialog" id="previewDialog">
+    <button class="dialog-close" type="button" data-dialog-close aria-label="Закрити">×</button>
+    <div id="previewContent"></div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div><strong>Chemistry Learning Hub</strong><span>Навчальний проєкт learn4life-ua</span></div>
+      <p>Інтерактивний простір з хімії для навчання, дослідження і самоперевірки.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js?v=1" defer></script>
+</body>
+</html>
