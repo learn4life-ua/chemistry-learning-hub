@@ -70,6 +70,18 @@ function openPreview(key) {
 document.querySelectorAll('[data-preview]').forEach(button => {
   button.addEventListener('click', () => openPreview(button.dataset.preview));
 });
+
+document.querySelectorAll('[data-card-preview]').forEach(card => {
+  const activate = () => openPreview(card.dataset.cardPreview);
+  card.addEventListener('click', activate);
+  card.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      activate();
+    }
+  });
+});
+
 document.querySelector('[data-dialog-close]')?.addEventListener('click', () => previewDialog?.close());
 previewDialog?.addEventListener('click', event => {
   if (event.target === previewDialog) previewDialog.close();
@@ -98,8 +110,11 @@ let startTime = performance.now();
 
 function syncPauseButton() {
   if (!atomPause) return;
+  const label = paused ? 'Продовжити анімацію' : 'Призупинити анімацію';
   atomPause.setAttribute('aria-pressed', String(paused));
-  atomPause.textContent = paused ? 'Продовжити' : 'Пауза';
+  atomPause.setAttribute('aria-label', label);
+  atomPause.setAttribute('title', label);
+  atomPause.textContent = paused ? '▶' : 'Ⅱ';
 }
 
 function setAtom(symbol) {
@@ -130,25 +145,29 @@ function drawAtom(now) {
   ctx.translate(cx, cy);
 
   atom.shells.forEach((electronCount, shellIndex) => {
-    const radius = 74 + shellIndex * 58;
+    const radius = 52 + shellIndex * 38;
+    const rx = radius * 1.18;
+    const ry = radius * .58;
+    const rotations = [0.06, .58, -.66];
+    const rot = rotations[shellIndex] ?? shellIndex * .42;
+
     ctx.beginPath();
-    ctx.ellipse(0, 0, radius * 1.18, radius * .58, shellIndex * .42, 0, Math.PI * 2);
-    ctx.strokeStyle = isDark ? 'rgba(159,137,255,.34)' : 'rgba(104,78,238,.25)';
-    ctx.lineWidth = 2;
+    ctx.ellipse(0, 0, rx, ry, rot, 0, Math.PI * 2);
+    ctx.strokeStyle = isDark ? 'rgba(165,146,255,.28)' : 'rgba(104,78,238,.20)';
+    ctx.lineWidth = 1.25;
     ctx.stroke();
 
     for (let i = 0; i < electronCount; i += 1) {
       const angle = (Math.PI * 2 * i / electronCount) + (paused ? 0 : t * (.55 + shellIndex * .13)) + shellIndex * .45;
-      const x0 = Math.cos(angle) * radius * 1.18;
-      const y0 = Math.sin(angle) * radius * .58;
-      const rot = shellIndex * .42;
+      const x0 = Math.cos(angle) * rx;
+      const y0 = Math.sin(angle) * ry;
       const x = x0 * Math.cos(rot) - y0 * Math.sin(rot);
       const y = x0 * Math.sin(rot) + y0 * Math.cos(rot);
 
       ctx.beginPath();
-      ctx.arc(x, y, 6.5, 0, Math.PI * 2);
+      ctx.arc(x, y, 5.2, 0, Math.PI * 2);
       ctx.fillStyle = shellIndex % 2 ? '#7c5cff' : '#39bfe5';
-      ctx.shadowBlur = 14;
+      ctx.shadowBlur = 8;
       ctx.shadowColor = ctx.fillStyle;
       ctx.fill();
       ctx.shadowBlur = 0;
@@ -190,19 +209,3 @@ reducedMotion.addEventListener?.('change', event => {
 syncPauseButton();
 setAtom(currentAtom);
 restartAnimation();
-
-const sectionLinks = [...document.querySelectorAll('.main-nav a')];
-const observedSections = sectionLinks
-  .map(link => document.querySelector(link.getAttribute('href')))
-  .filter(Boolean);
-
-if ('IntersectionObserver' in window && observedSections.length) {
-  const observer = new IntersectionObserver(entries => {
-    const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (!visible) return;
-    sectionLinks.forEach(link => {
-      link.classList.toggle('is-active', link.getAttribute('href') === `#${visible.target.id}`);
-    });
-  }, { rootMargin: '-20% 0px -60% 0px', threshold: [0.05, 0.2, 0.5] });
-  observedSections.forEach(section => observer.observe(section));
-}
