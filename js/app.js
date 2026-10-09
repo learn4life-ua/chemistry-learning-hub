@@ -145,7 +145,7 @@ function drawAtom(now) {
   ctx.translate(cx, cy);
 
   atom.shells.forEach((electronCount, shellIndex) => {
-    const radius = 52 + shellIndex * 38;
+    const radius = 58 + shellIndex * 41;
     const rx = radius * 1.18;
     const ry = radius * .58;
     const rotations = [0.06, .58, -.66];
@@ -165,9 +165,9 @@ function drawAtom(now) {
       const y = x0 * Math.sin(rot) + y0 * Math.cos(rot);
 
       ctx.beginPath();
-      ctx.arc(x, y, 5.2, 0, Math.PI * 2);
+      ctx.arc(x, y, 4.9, 0, Math.PI * 2);
       ctx.fillStyle = shellIndex % 2 ? '#7c5cff' : '#39bfe5';
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = 7;
       ctx.shadowColor = ctx.fillStyle;
       ctx.fill();
       ctx.shadowBlur = 0;
