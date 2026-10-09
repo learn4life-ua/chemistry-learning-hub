@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=1">
-  <link rel="stylesheet" href="css/home-v2.css?v=4">
+  <link rel="stylesheet" href="css/home-v2.css?v=5">
 </head>
 <body>
   <header class="site-header">
@@ -23,9 +23,8 @@
         </span>
       </a>
 
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false">
+      <button class="theme-toggle theme-toggle-icon" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false" title="Змінити тему">
         <span class="theme-icon" aria-hidden="true">◐</span>
-        <span class="theme-label">Темна тема</span>
       </button>
     </div>
   </header>
@@ -66,62 +65,64 @@
       </div>
     </section>
 
-    <section class="modules-section shell" id="directions">
-      <div class="section-heading section-heading-simple">
-        <div>
-          <p class="eyebrow">Напрями роботи</p>
-          <h2>Досліджуйте хімію по-різному</h2>
+    <section class="directions-section" id="directions">
+      <div class="modules-section shell">
+        <div class="section-heading section-heading-simple">
+          <div>
+            <p class="eyebrow">Напрями роботи</p>
+            <h2>Досліджуйте хімію по-різному</h2>
+          </div>
         </div>
-      </div>
 
-      <div class="module-grid module-grid-v2">
-        <article class="module-card module-card-v2 module-purple module-featured">
-          <div class="module-top"><div class="module-icon">▦</div><div class="module-status status-live">Працює</div></div>
-          <h3>Періодична система</h3>
-          <p>Досліджуйте елементи, відкривайте закономірності та швидко знаходьте потрібну інформацію.</p>
-          <div class="module-tags"><span>Елементи</span><span>Пошук</span><span>Дослідження</span></div>
-          <a class="card-link" href="https://learn4life-ua.github.io/periodic-table-trainer/">Відкрити <span>→</span></a>
-        </article>
+        <div class="module-grid module-grid-v2">
+          <article class="module-card module-card-v2 module-purple module-featured">
+            <div class="module-top"><div class="module-icon">▦</div><div class="module-status status-live">Працює</div></div>
+            <h3>Періодична система</h3>
+            <p>Досліджуйте елементи, відкривайте закономірності та швидко знаходьте потрібну інформацію.</p>
+            <div class="module-tags"><span>Елементи</span><span>Пошук</span><span>Дослідження</span></div>
+            <a class="card-link" href="https://learn4life-ua.github.io/periodic-table-trainer/">Відкрити <span>→</span></a>
+          </article>
 
-        <article class="module-card module-card-v2 module-mint">
-          <div class="module-top"><div class="module-icon">⚗</div><div class="module-status status-build">Готуємо</div></div>
-          <h3>Віртуальна лабораторія</h3>
-          <p>Проводьте безпечні онлайн-досліди та спостерігайте ознаки хімічних реакцій.</p>
-          <div class="module-tags"><span>Досліди</span><span>pH</span><span>Реакції</span></div>
-          <button class="card-link card-link-button" type="button" data-preview="lab">Дослідити <span>→</span></button>
-        </article>
+          <article class="module-card module-card-v2 module-mint">
+            <div class="module-top"><div class="module-icon">⚗</div><div class="module-status status-build">Готуємо</div></div>
+            <h3>Віртуальна лабораторія</h3>
+            <p>Проводьте безпечні онлайн-досліди та спостерігайте ознаки хімічних реакцій.</p>
+            <div class="module-tags"><span>Досліди</span><span>pH</span><span>Реакції</span></div>
+            <button class="card-link card-link-button" type="button" data-preview="lab">Дослідити <span>→</span></button>
+          </article>
 
-        <article class="module-card module-card-v2 module-blue">
-          <div class="module-top"><div class="module-icon">Σ</div><div class="module-status status-plan">Заплановано</div></div>
-          <h3>Хімічні розрахунки</h3>
-          <p>Розв'язуйте задачі з формулами, одиницями та зрозумілими підказками.</p>
-          <div class="module-tags"><span>Молярна маса</span><span>n</span><span>c</span></div>
-          <button class="card-link card-link-button" type="button" data-preview="calc">Спробувати <span>→</span></button>
-        </article>
+          <article class="module-card module-card-v2 module-blue">
+            <div class="module-top"><div class="module-icon">Σ</div><div class="module-status status-plan">Заплановано</div></div>
+            <h3>Хімічні розрахунки</h3>
+            <p>Розв'язуйте задачі з формулами, одиницями та зрозумілими підказками.</p>
+            <div class="module-tags"><span>Молярна маса</span><span>n</span><span>c</span></div>
+            <button class="card-link card-link-button" type="button" data-preview="calc">Спробувати <span>→</span></button>
+          </article>
 
-        <article class="module-card module-card-v2 module-lime">
-          <div class="module-top"><div class="module-icon">⇄</div><div class="module-status status-plan">Заплановано</div></div>
-          <h3>Розчинність і йонні реакції</h3>
-          <p>Працюйте з розчинністю, осадами, йонами та різними формами запису реакцій.</p>
-          <div class="module-tags"><span>Осади</span><span>Йони</span><span>Рівняння</span></div>
-          <button class="card-link card-link-button" type="button" data-preview="ionic">Дослідити <span>→</span></button>
-        </article>
+          <article class="module-card module-card-v2 module-lime">
+            <div class="module-top"><div class="module-icon">⇄</div><div class="module-status status-plan">Заплановано</div></div>
+            <h3>Розчинність і йонні реакції</h3>
+            <p>Працюйте з розчинністю, осадами, йонами та різними формами запису реакцій.</p>
+            <div class="module-tags"><span>Осади</span><span>Йони</span><span>Рівняння</span></div>
+            <button class="card-link card-link-button" type="button" data-preview="ionic">Дослідити <span>→</span></button>
+          </article>
 
-        <article class="module-card module-card-v2 module-pink">
-          <div class="module-top"><div class="module-icon">◆</div><div class="module-status status-plan">Заплановано</div></div>
-          <h3>Тренажери</h3>
-          <p>Перевіряйте знання крок за кроком і відразу отримуйте пояснення відповіді.</p>
-          <div class="module-tags"><span>Самоперевірка</span><span>Пояснення</span></div>
-          <button class="card-link card-link-button" type="button" data-preview="trainer">Тренуватися <span>→</span></button>
-        </article>
+          <article class="module-card module-card-v2 module-pink">
+            <div class="module-top"><div class="module-icon">◆</div><div class="module-status status-plan">Заплановано</div></div>
+            <h3>Тренажери</h3>
+            <p>Перевіряйте знання крок за кроком і відразу отримуйте пояснення відповіді.</p>
+            <div class="module-tags"><span>Самоперевірка</span><span>Пояснення</span></div>
+            <button class="card-link card-link-button" type="button" data-preview="trainer">Тренуватися <span>→</span></button>
+          </article>
 
-        <article class="module-card module-card-v2 module-sand">
-          <div class="module-top"><div class="module-icon">▤</div><div class="module-status status-build">Розвиваємо</div></div>
-          <h3>Довідник</h3>
-          <p>Швидко знаходьте короткі пояснення, правила, приклади та підказки з основних тем.</p>
-          <div class="module-tags"><span>Теорія</span><span>Приклади</span><span>Підказки</span></div>
-          <button class="card-link card-link-button" type="button" data-preview="guide">Відкрити тему <span>→</span></button>
-        </article>
+          <article class="module-card module-card-v2 module-sand">
+            <div class="module-top"><div class="module-icon">▤</div><div class="module-status status-build">Розвиваємо</div></div>
+            <h3>Довідник</h3>
+            <p>Швидко знаходьте короткі пояснення, правила, приклади та підказки з основних тем.</p>
+            <div class="module-tags"><span>Теорія</span><span>Приклади</span><span>Підказки</span></div>
+            <button class="card-link card-link-button" type="button" data-preview="guide">Відкрити тему <span>→</span></button>
+          </article>
+        </div>
       </div>
     </section>
   </main>
