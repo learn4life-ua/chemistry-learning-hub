@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Хімічні розрахунки у Chemistry Learning Hub: інтерактивний калькулятор молярної маси з покроковим розкладом формули.">
+  <meta name="description" content="Хімічні розрахунки у Chemistry Learning Hub: молярна маса, кількість речовини, маса та число структурних частинок з покроковими поясненнями.">
   <meta name="color-scheme" content="light dark">
   <title>Хімічні розрахунки | Chemistry Learning Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=1">
-  <link rel="stylesheet" href="css/calculations.css?v=1">
+  <link rel="stylesheet" href="css/calculations.css?v=2">
 </head>
 <body>
   <header class="site-header">
@@ -36,17 +36,25 @@
       <div class="shell calc-hero-grid">
         <div>
           <p class="eyebrow">Хімічні розрахунки</p>
-          <h1>Калькулятор молярної маси</h1>
-          <p class="calc-lead">Введіть хімічну формулу - калькулятор визначить склад речовини, покаже внесок кожного елемента і обчислить молярну масу.</p>
+          <h1>Рахуйте з поясненням, а не лише з відповіддю</h1>
+          <p class="calc-lead">Молярна маса, кількість речовини, маса та число структурних частинок - із автоматичною перевіркою формули й покроковим розв'язанням.</p>
+          <nav class="calc-tool-nav" aria-label="Інструменти розрахунків">
+            <a href="#molar-mass">Молярна маса</a>
+            <a href="#substance-amount">Кількість речовини</a>
+          </nav>
         </div>
         <div class="formula-orb" aria-hidden="true">
-          <span>M</span>
-          <small>г/моль</small>
+          <span>M · n</span>
+          <small>хімічні розрахунки</small>
         </div>
       </div>
     </section>
 
-    <section class="calc-workspace-section">
+    <section class="calc-workspace-section" id="molar-mass">
+      <div class="shell tool-section-heading">
+        <p class="eyebrow">Інструмент 01</p>
+        <h2>Молярна маса</h2>
+      </div>
       <div class="shell calc-layout">
         <article class="calc-card">
           <div class="calc-card-head">
@@ -60,7 +68,7 @@
           <form id="molarForm" novalidate>
             <label class="formula-label" for="formulaInput">Хімічна формула</label>
             <div class="formula-row">
-              <input id="formulaInput" name="formula" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="Наприклад, Ca(OH)2" aria-describedby="formulaHelp formulaError">
+              <input class="formula-input" id="formulaInput" name="formula" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="Наприклад, Ca(OH)2" aria-describedby="formulaHelp formulaError">
               <button class="calc-button" type="submit">Обчислити</button>
             </div>
             <p id="formulaHelp" class="formula-help">Підтримуються дужки, вкладені групи та кристалогідрати, наприклад CuSO4·5H2O.</p>
@@ -122,6 +130,78 @@
       </div>
     </section>
 
+    <section class="amount-section" id="substance-amount">
+      <div class="shell tool-section-heading">
+        <p class="eyebrow">Інструмент 02</p>
+        <h2>Кількість речовини, маса і число частинок</h2>
+        <p>Оберіть, що потрібно знайти. Формула речовини використовується для автоматичного визначення молярної маси.</p>
+      </div>
+
+      <div class="shell calc-layout">
+        <article class="calc-card amount-card">
+          <div class="calc-card-head">
+            <div>
+              <p class="calc-kicker">Оберіть тип розрахунку</p>
+              <h2>Що потрібно знайти?</h2>
+            </div>
+            <span class="calc-badge">Покроково</span>
+          </div>
+
+          <div class="amount-mode-switcher" role="group" aria-label="Тип розрахунку">
+            <button class="is-active" type="button" data-amount-mode="n-from-m" aria-pressed="true">n за масою</button>
+            <button type="button" data-amount-mode="m-from-n" aria-pressed="false">m за кількістю</button>
+            <button type="button" data-amount-mode="N-from-n" aria-pressed="false">N частинок</button>
+          </div>
+
+          <form id="amountForm" novalidate>
+            <div class="amount-fields">
+              <div>
+                <label class="formula-label" for="amountFormulaInput">Хімічна формула</label>
+                <input class="formula-input" id="amountFormulaInput" type="text" autocomplete="off" spellcheck="false" placeholder="Наприклад, NaCl">
+              </div>
+              <div>
+                <label class="formula-label" id="amountValueLabel" for="amountValueInput">Маса речовини m</label>
+                <div class="value-unit-row">
+                  <input class="value-input" id="amountValueInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Наприклад, 11,7">
+                  <select id="amountUnit" aria-label="Одиниця вимірювання"></select>
+                </div>
+              </div>
+            </div>
+
+            <p class="formula-help" id="amountHelper"></p>
+            <p class="formula-error" id="amountError" role="alert" hidden></p>
+            <button class="calc-button amount-submit" type="submit">Розрахувати</button>
+          </form>
+
+          <div class="example-list" aria-label="Приклади розрахунків">
+            <span>Спробуйте:</span>
+            <button type="button" data-amount-example data-mode="n-from-m" data-formula="NaCl" data-value="11,7" data-unit="g">11,7 г NaCl → n</button>
+            <button type="button" data-amount-example data-mode="m-from-n" data-formula="H2O" data-value="2" data-unit="mol">2 моль H₂O → m</button>
+            <button type="button" data-amount-example data-mode="N-from-n" data-formula="CO2" data-value="0,5" data-unit="mol">0,5 моль CO₂ → N</button>
+          </div>
+        </article>
+
+        <aside class="result-card amount-result-card" aria-live="polite">
+          <div class="result-empty" id="amountResultEmpty">
+            <div class="result-icon">n</div>
+            <h2>Розв'язання з'явиться тут</h2>
+            <p>Введіть формулу та відоме значення або скористайтеся прикладом.</p>
+          </div>
+
+          <div class="result-content" id="amountResultContent" hidden>
+            <p class="calc-kicker">Відповідь</p>
+            <div class="result-formula" id="amountResultFormula"></div>
+            <div class="amount-final-value">
+              <strong id="amountResultValue">0</strong>
+              <span id="amountResultUnit"></span>
+            </div>
+            <div class="solution-steps" id="amountSteps"></div>
+            <p class="result-note" id="amountNote"></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <section class="next-tools-section">
       <div class="shell">
         <div class="next-tools-head">
@@ -129,9 +209,9 @@
           <h2>Наступні інструменти</h2>
         </div>
         <div class="next-tools-grid">
-          <article><strong>n</strong><h3>Кількість речовини</h3><p>Зв'язок між масою, молярною масою та кількістю речовини.</p></article>
           <article><strong>c</strong><h3>Молярна концентрація</h3><p>Розрахунки концентрації розчинів з контролем одиниць.</p></article>
           <article><strong>ω</strong><h3>Масова частка</h3><p>Розрахунок складу речовини та розчинів у відсотках.</p></article>
+          <article><strong>V</strong><h3>Газові розрахунки</h3><p>Робота з молярним об'ємом лише із зазначенням умов задачі.</p></article>
         </div>
       </div>
     </section>
@@ -145,6 +225,7 @@
   </footer>
 
   <script src="../js/theme.js?v=1" defer></script>
-  <script type="module" src="js/molar-mass.js?v=1"></script>
+  <script type="module" src="js/molar-mass.js?v=2"></script>
+  <script type="module" src="js/substance-amount.js?v=1"></script>
 </body>
 </html>
