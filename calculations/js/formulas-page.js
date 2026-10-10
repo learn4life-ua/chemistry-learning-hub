@@ -1,12 +1,13 @@
 import './empirical-formula.js?v=1';
 import { setupCalculationTabs } from './category-tabs.js?v=1';
+import { cleanCategoryCopy } from './category-copy.js?v=1';
 
 const fraction = (top, bottom) => `<span class="math-frac"><span>${top}</span><span>${bottom}</span></span>`;
 
 function applyFormulaNotation() {
   const note = document.querySelector('.empirical-note-box');
   if (note) {
-    note.innerHTML = `<strong>Метод:</strong> умовно беремо 100 г речовини, для кожного елемента обчислюємо n = ${fraction('m', 'A<sub>r</sub>')}, ділимо всі значення на найменше та, за потреби, множимо співвідношення на невелике ціле число.`;
+    note.innerHTML = `Умовно беремо 100 г речовини, для кожного елемента обчислюємо n = ${fraction('m', 'A<sub>r</sub>')}, ділимо всі значення на найменше та, за потреби, множимо співвідношення на невелике ціле число.`;
   }
 
   const stepItems = [...document.querySelectorAll('#empiricalSteps .solution-step')];
@@ -18,6 +19,7 @@ function applyFormulaNotation() {
   }
 }
 
+cleanCategoryCopy('Формула речовини');
 setupCalculationTabs();
 applyFormulaNotation();
 
