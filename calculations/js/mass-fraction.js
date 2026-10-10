@@ -1,5 +1,137 @@
 import { getFormulaData, formatNumber, formatFormula } from './formula-core.js';
 
+function ensureMassFractionUI() {
+  if (!document.querySelector('link[href^="css/mass-fraction.css"]')) {
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = 'css/mass-fraction.css?v=1';
+    document.head.append(stylesheet);
+  }
+
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta) {
+    meta.content = 'Хімічні розрахунки у Chemistry Learning Hub: молярна маса, кількість речовини, число частинок, молярна концентрація та масова частка з покроковими поясненнями.';
+  }
+
+  const nav = document.querySelector('.calc-tool-nav');
+  if (nav && !nav.querySelector('a[href="#mass-fraction"]')) {
+    const link = document.createElement('a');
+    link.href = '#mass-fraction';
+    link.textContent = 'Масова частка';
+    nav.append(link);
+  }
+
+  const lead = document.querySelector('.calc-lead');
+  if (lead && !lead.textContent.includes('масова частка')) {
+    lead.textContent = 'Молярна маса, кількість речовини, число структурних частинок, молярна концентрація та масова частка - із автоматичною перевіркою формули й покроковим розв\'язанням.';
+  }
+
+  const orb = document.querySelector('.formula-orb span');
+  if (orb) orb.textContent = 'M · n · c · ω';
+
+  if (!document.querySelector('#mass-fraction')) {
+    const nextTools = document.querySelector('.next-tools-section');
+    if (!nextTools) return;
+
+    const section = document.createElement('section');
+    section.className = 'fraction-section';
+    section.id = 'mass-fraction';
+    section.innerHTML = `
+      <div class="shell tool-section-heading">
+        <p class="eyebrow">Інструмент 04</p>
+        <h2>Масова частка</h2>
+        <p>Обчислюйте масову частку компонента в розчині, знаходьте масу розчиненої речовини та визначайте масову частку елемента у складі речовини.</p>
+      </div>
+
+      <div class="shell calc-layout">
+        <article class="calc-card">
+          <div class="calc-card-head">
+            <div>
+              <p class="calc-kicker">Оберіть тип розрахунку</p>
+              <h2>Робота з ω та складом речовини</h2>
+            </div>
+            <span class="calc-badge">Покроково</span>
+          </div>
+
+          <div class="fraction-mode-switcher" role="group" aria-label="Тип розрахунку масової частки">
+            <button class="is-active" type="button" data-fraction-mode="omega-solution" aria-pressed="true">ω у розчині</button>
+            <button type="button" data-fraction-mode="solute-from-omega" aria-pressed="false">m за ω</button>
+            <button type="button" data-fraction-mode="omega-element" aria-pressed="false">ω елемента</button>
+          </div>
+
+          <form id="massFractionForm" novalidate>
+            <div class="fraction-fields" id="fractionSolutionFields">
+              <div>
+                <label class="formula-label" id="fractionFirstLabel" for="fractionFirstInput">Маса розчиненої речовини</label>
+                <div class="fraction-value-row">
+                  <input class="value-input" id="fractionFirstInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Наприклад, 20">
+                  <select id="fractionFirstUnit" aria-label="Одиниця першого значення"></select>
+                </div>
+              </div>
+              <div>
+                <label class="formula-label" id="fractionSecondLabel" for="fractionSecondInput">Маса розчину</label>
+                <div class="fraction-value-row">
+                  <input class="value-input" id="fractionSecondInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Наприклад, 200">
+                  <select id="fractionSecondUnit" aria-label="Одиниця другого значення"></select>
+                </div>
+              </div>
+            </div>
+
+            <div class="fraction-compound-fields" id="fractionCompoundFields" hidden>
+              <div>
+                <label class="formula-label" for="fractionFormulaInput">Хімічна формула</label>
+                <input class="formula-input" id="fractionFormulaInput" type="text" autocomplete="off" spellcheck="false" placeholder="Наприклад, H2SO4">
+              </div>
+              <div>
+                <label class="formula-label" for="fractionElementInput">Символ елемента</label>
+                <input class="formula-input" id="fractionElementInput" type="text" autocomplete="off" spellcheck="false" maxlength="2" placeholder="Наприклад, O">
+              </div>
+            </div>
+
+            <p class="formula-help" id="fractionHelper"></p>
+            <p class="formula-error" id="fractionError" role="alert" hidden></p>
+            <button class="calc-button fraction-submit" type="submit">Розрахувати</button>
+          </form>
+
+          <div class="example-list" aria-label="Приклади розрахунку масової частки">
+            <span>Спробуйте:</span>
+            <button type="button" data-fraction-example data-mode="omega-solution" data-first="20" data-first-unit="g" data-second="200" data-second-unit="g">20 г у 200 г розчину</button>
+            <button type="button" data-fraction-example data-mode="solute-from-omega" data-first="5" data-first-unit="percent" data-second="250" data-second-unit="g">5% у 250 г розчину</button>
+            <button type="button" data-fraction-example data-mode="omega-element" data-formula="H2SO4" data-element="O">ω(O) у H₂SO₄</button>
+          </div>
+        </article>
+
+        <aside class="result-card fraction-result-card" aria-live="polite">
+          <div class="result-empty" id="fractionResultEmpty">
+            <div class="result-icon">ω</div>
+            <h2>Розв'язання з'явиться тут</h2>
+            <p>Введіть дані або скористайтеся готовим прикладом.</p>
+          </div>
+
+          <div class="result-content" id="fractionResultContent" hidden>
+            <p class="calc-kicker">Відповідь</p>
+            <div class="fraction-result-title" id="fractionResultTitle"></div>
+            <div class="amount-final-value">
+              <strong id="fractionResultValue">0</strong>
+              <span id="fractionResultUnit"></span>
+            </div>
+            <div class="solution-steps" id="fractionSteps"></div>
+            <p class="result-note" id="fractionNote"></p>
+          </div>
+        </aside>
+      </div>
+    `;
+    nextTools.before(section);
+  }
+
+  const firstNextCard = document.querySelector('.next-tools-grid article:first-child');
+  if (firstNextCard?.querySelector('h3')?.textContent === 'Масова частка') {
+    firstNextCard.innerHTML = '<strong>⇄</strong><h3>Розрахунки за рівняннями реакцій</h3><p>Стехіометричні співвідношення між реагентами та продуктами реакції.</p>';
+  }
+}
+
+ensureMassFractionUI();
+
 const form = document.querySelector('#massFractionForm');
 const modeButtons = [...document.querySelectorAll('[data-fraction-mode]')];
 const solutionFields = document.querySelector('#fractionSolutionFields');
@@ -103,11 +235,7 @@ function setMode(mode) {
   if (!isCompound) {
     firstLabel.textContent = modes[mode].firstLabel;
     secondLabel.textContent = modes[mode].secondLabel;
-    if (mode === 'omega-solution') {
-      firstUnit.innerHTML = massUnitOptions('g');
-    } else {
-      firstUnit.innerHTML = '<option value="percent">%</option>';
-    }
+    firstUnit.innerHTML = mode === 'omega-solution' ? massUnitOptions('g') : '<option value="percent">%</option>';
     secondUnit.innerHTML = massUnitOptions('g');
   }
 
@@ -120,9 +248,7 @@ function renderSolutionOmega() {
   const soluteMass = toGrams(firstRaw, firstUnit.value);
   const solutionMass = toGrams(secondRaw, secondUnit.value);
 
-  if (soluteMass > solutionMass) {
-    throw new Error('Маса розчиненої речовини не може перевищувати масу всього розчину.');
-  }
+  if (soluteMass > solutionMass) throw new Error('Маса розчиненої речовини не може перевищувати масу всього розчину.');
 
   const omega = soluteMass / solutionMass * 100;
   resultTitle.textContent = 'Масова частка у розчині';
