@@ -1,6 +1,6 @@
 /* Transparent PNG hero illustration. All layout rules live here. */
 .calc-catalog-page {
-  --catalog-heading: #1e1b4b;
+  --catalog-heading: var(--ink);
 }
 
 .calc-catalog-hero {
