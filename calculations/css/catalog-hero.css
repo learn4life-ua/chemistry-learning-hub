@@ -31,7 +31,7 @@ html[data-theme="dark"] .calc-catalog-hero {
   background: var(--hero-accent);
 }
 
-.calc-catalog-hero h1 { color: var(--hero-accent); }
+.calc-catalog-hero h1 { color: var(--ink); }
 
 .calc-hero-visual {
   width: 100%;
