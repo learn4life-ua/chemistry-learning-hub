@@ -1,0 +1,86 @@
+.concentration-section {
+  padding:62px 0 68px;
+  scroll-margin-top:92px;
+  background:
+    radial-gradient(circle at 12% 12%, color-mix(in srgb,#39bfe5 7%,transparent), transparent 24%),
+    var(--surface-muted);
+  border-top:1px solid var(--line);
+}
+
+.concentration-mode-switcher {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:24px;
+}
+
+.concentration-mode-switcher button {
+  min-height:44px;
+  padding:0 12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  color:var(--muted);
+  background:var(--surface-muted);
+  font-size:.76rem;
+  font-weight:800;
+}
+
+.concentration-mode-switcher button:hover {
+  border-color:color-mix(in srgb,var(--primary) 40%,var(--line));
+  color:var(--ink);
+}
+
+.concentration-mode-switcher button.is-active {
+  border-color:color-mix(in srgb,var(--primary) 55%,var(--line));
+  color:var(--primary);
+  background:var(--primary-soft);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 5px 15px color-mix(in srgb,var(--primary) 10%,transparent);
+}
+
+.concentration-fields {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:14px;
+  margin-top:14px;
+}
+
+.concentration-value-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 118px;
+  gap:8px;
+}
+
+#concentrationFirstUnit,
+#concentrationVolumeUnit {
+  width:100%;
+  min-height:58px;
+  padding:0 11px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  color:var(--ink);
+  background:var(--surface-muted);
+  outline:none;
+  font-size:.88rem;
+  font-weight:700;
+}
+
+#concentrationFirstUnit:focus,
+#concentrationVolumeUnit:focus {
+  border-color:color-mix(in srgb,var(--primary) 60%,var(--line));
+  background:var(--surface);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 14%,transparent);
+}
+
+.concentration-submit { margin-top:18px; }
+.concentration-result-card { align-items:start; }
+.concentration-result-card .result-content { width:100%; }
+
+@media (max-width:900px) {
+  .concentration-fields { grid-template-columns:1fr; }
+}
+
+@media (max-width:650px) {
+  .concentration-section { padding:46px 0 52px; }
+  .concentration-mode-switcher { grid-template-columns:1fr; }
+  .concentration-value-row { grid-template-columns:minmax(0,1fr) 104px; }
+}
