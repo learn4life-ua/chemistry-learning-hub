@@ -11,9 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=1">
   <link rel="stylesheet" href="css/calculations.css?v=2">
-  <link rel="stylesheet" href="css/catalog.css?v=1">
+  <link rel="stylesheet" href="css/catalog.css?v=2">
 </head>
-<body>
+<body class="calc-catalog-page">
   <header class="site-header">
     <div class="shell calc-header-inner">
       <a class="brand" href="../" aria-label="Chemistry Learning Hub - на головну">
@@ -34,17 +34,42 @@
 
   <main>
     <section class="calc-catalog-hero">
-      <div class="shell">
-        <div>
+      <div class="shell calc-catalog-hero-grid">
+        <div class="calc-catalog-copy">
           <p class="eyebrow">Хімічні розрахунки</p>
           <h1>Оберіть тип задачі</h1>
           <p class="calc-catalog-lead">Калькулятори допоможуть виконати розрахунок, перевірити одиниці та побачити послідовність розв'язання.</p>
         </div>
-        <div class="calc-catalog-orb" aria-hidden="true">
-          <div>
-            <strong>M · n · V</strong>
-            <span>хімічні розрахунки</span>
-          </div>
+
+        <div class="calc-hero-visual" aria-hidden="true">
+          <span class="formula-chip chip-m">M</span>
+          <span class="formula-chip chip-n">n</span>
+          <span class="formula-chip chip-v">V</span>
+          <span class="formula-chip chip-w">ω</span>
+          <span class="formula-chip chip-c">c</span>
+          <span class="formula-chip chip-rho">ρ</span>
+
+          <svg class="calc-hero-flask" viewBox="0 0 180 190" role="img" aria-label="">
+            <defs>
+              <linearGradient id="flaskGlass" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity=".88"/>
+                <stop offset="1" stop-color="#dce8ff" stop-opacity=".62"/>
+              </linearGradient>
+              <linearGradient id="flaskLiquid" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#8f6dff"/>
+                <stop offset="1" stop-color="#44b9f4"/>
+              </linearGradient>
+            </defs>
+            <path d="M69 18h42M77 18v46l-40 72c-10 19 3 38 25 38h56c22 0 35-19 25-38l-40-72V18" fill="url(#flaskGlass)" stroke="#8aa9e8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M52 126c21 7 49 7 76 0l16 29c5 10-2 19-14 19H50c-12 0-19-9-14-19l16-29Z" fill="url(#flaskLiquid)" opacity=".9"/>
+            <circle cx="74" cy="145" r="5" fill="#fff" opacity=".75"/>
+            <circle cx="105" cy="151" r="3.5" fill="#fff" opacity=".65"/>
+            <circle cx="116" cy="136" r="4" fill="#fff" opacity=".72"/>
+            <path d="M83 33h20" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+          </svg>
+
+          <span class="molecule molecule-a"><i></i><i></i><i></i></span>
+          <span class="molecule molecule-b"><i></i><i></i><i></i></span>
         </div>
       </div>
     </section>
@@ -52,69 +77,80 @@
     <section class="calc-catalog-section">
       <div class="shell">
         <div class="calc-catalog-heading">
-          <p class="eyebrow">Калькулятори</p>
           <h2>Основні типи розрахунків</h2>
         </div>
 
         <div class="calc-catalog-grid">
-          <a class="calc-category-card" href="molar-mass/">
-            <span class="calc-category-icon">M</span>
-            <div>
-              <h3>Молярна маса і склад речовини</h3>
-              <p>Обчислення молярної маси за формулою та внеску кожного елемента.</p>
-              <div class="calc-category-tags"><span>H₂O</span><span>Ca(OH)₂</span><span>M</span></div>
+          <a class="calc-category-card card-purple" href="molar-mass/">
+            <span class="calc-card-accent" aria-hidden="true"></span>
+            <div class="calc-card-top">
+              <span class="calc-category-icon">M</span>
+              <span class="calc-card-ghost" aria-hidden="true">H₂O</span>
             </div>
-            <span class="calc-category-arrow">→</span>
+            <h3>Молярна маса і склад речовини</h3>
+            <p>Обчислення молярної маси за формулою та внеску кожного елемента.</p>
+            <div class="calc-category-tags"><span>H₂O</span><span>Ca(OH)₂</span><span>M</span></div>
+            <span class="calc-card-action">Відкрити <b>→</b></span>
           </a>
 
-          <a class="calc-category-card" href="substance-amount/">
-            <span class="calc-category-icon">n</span>
-            <div>
-              <h3>Кількість речовини</h3>
-              <p>Розрахунки маси, кількості речовини та числа структурних частинок.</p>
-              <div class="calc-category-tags"><span>m</span><span>n</span><span>N</span></div>
+          <a class="calc-category-card card-blue" href="substance-amount/">
+            <span class="calc-card-accent" aria-hidden="true"></span>
+            <div class="calc-card-top">
+              <span class="calc-category-icon">n</span>
+              <span class="calc-card-ghost" aria-hidden="true">N</span>
             </div>
-            <span class="calc-category-arrow">→</span>
+            <h3>Кількість речовини</h3>
+            <p>Розрахунки маси, кількості речовини та числа структурних частинок.</p>
+            <div class="calc-category-tags"><span>m</span><span>n</span><span>N</span></div>
+            <span class="calc-card-action">Обчислити <b>→</b></span>
           </a>
 
-          <a class="calc-category-card" href="gases/">
-            <span class="calc-category-icon">V</span>
-            <div>
-              <h3>Газові розрахунки</h3>
-              <p>Молярний об'єм, кількість речовини, маса та відносна густина газів.</p>
-              <div class="calc-category-tags"><span>V<sub>m</sub></span><span>n</span><span>D</span></div>
+          <a class="calc-category-card card-green" href="gases/">
+            <span class="calc-card-accent" aria-hidden="true"></span>
+            <div class="calc-card-top">
+              <span class="calc-category-icon">V</span>
+              <span class="calc-card-ghost" aria-hidden="true">Vₘ</span>
             </div>
-            <span class="calc-category-arrow">→</span>
+            <h3>Газові розрахунки</h3>
+            <p>Молярний об'єм, кількість речовини, маса та відносна густина газів.</p>
+            <div class="calc-category-tags"><span>V<sub>m</sub></span><span>n</span><span>D</span></div>
+            <span class="calc-card-action">Перейти <b>→</b></span>
           </a>
 
-          <a class="calc-category-card" href="solutions/">
-            <span class="calc-category-icon">aq</span>
-            <div>
-              <h3>Розчини</h3>
-              <p>Молярна концентрація, масова частка, розведення, густина та масова концентрація.</p>
-              <div class="calc-category-tags"><span>c</span><span>ω</span><span>ρ</span><span>β</span></div>
+          <a class="calc-category-card card-amber" href="solutions/">
+            <span class="calc-card-accent" aria-hidden="true"></span>
+            <div class="calc-card-top">
+              <span class="calc-category-icon">aq</span>
+              <span class="calc-card-ghost" aria-hidden="true">ω</span>
             </div>
-            <span class="calc-category-arrow">→</span>
+            <h3>Розчини</h3>
+            <p>Молярна концентрація, масова частка, розведення, густина та масова концентрація.</p>
+            <div class="calc-category-tags"><span>c</span><span>ω</span><span>ρ</span></div>
+            <span class="calc-card-action">Розв'язати <b>→</b></span>
           </a>
 
-          <a class="calc-category-card" href="stoichiometry/">
-            <span class="calc-category-icon">→</span>
-            <div>
-              <h3>Розрахунки за рівняннями реакцій</h3>
-              <p>Стехіометричні співвідношення, лімітуючий реагент, вихід продукту та чистота речовини.</p>
-              <div class="calc-category-tags"><span>ν</span><span>lim</span><span>η</span></div>
+          <a class="calc-category-card card-pink" href="stoichiometry/">
+            <span class="calc-card-accent" aria-hidden="true"></span>
+            <div class="calc-card-top">
+              <span class="calc-category-icon">⇄</span>
+              <span class="calc-card-ghost calc-card-equation" aria-hidden="true">aA + bB → cC</span>
             </div>
-            <span class="calc-category-arrow">→</span>
+            <h3>Розрахунки за рівняннями реакцій</h3>
+            <p>Стехіометричні співвідношення, лімітуючий реагент, вихід продукту та чистота речовини.</p>
+            <div class="calc-category-tags"><span>ν</span><span>lim</span><span>η</span></div>
+            <span class="calc-card-action">Спробувати <b>→</b></span>
           </a>
 
-          <a class="calc-category-card" href="formulas/">
-            <span class="calc-category-icon">MF</span>
-            <div>
-              <h3>Визначення формули речовини</h3>
-              <p>Найпростіша формула за масовими частками елементів.</p>
-              <div class="calc-category-tags"><span>ω(E)</span><span>A<sub>r</sub></span><span>індекси</span></div>
+          <a class="calc-category-card card-violet" href="formulas/">
+            <span class="calc-card-accent" aria-hidden="true"></span>
+            <div class="calc-card-top">
+              <span class="calc-category-icon">MF</span>
+              <span class="calc-card-ghost" aria-hidden="true">CₓHᵧ</span>
             </div>
-            <span class="calc-category-arrow">→</span>
+            <h3>Визначення формули речовини</h3>
+            <p>Найпростіша формула за масовими частками елементів.</p>
+            <div class="calc-category-tags"><span>ω(E)</span><span>A<sub>r</sub></span><span>індекси</span></div>
+            <span class="calc-card-action">Відкрити тему <b>→</b></span>
           </a>
         </div>
       </div>
