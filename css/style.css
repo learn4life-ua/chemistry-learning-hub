@@ -411,7 +411,7 @@ h1, h2, h3, p { margin-top: 0; }
 :root {
   --page-hero-background:
     radial-gradient(circle at 85% 70%, rgba(72,155,255,.05), transparent 34%),
-    linear-gradient(110deg, #fafbff 0%, #f0edff 52%, #e6e0fa 100%);
+    linear-gradient(110deg, #fafbff 0%, #f4f2fc 52%, #efebfa 100%);
   --page-content-background: #fbfcff;
   --page-hero-border: rgba(66,78,136,.09);
   --page-content-shadow: inset 0 10px 28px rgba(53,62,112,.025);
