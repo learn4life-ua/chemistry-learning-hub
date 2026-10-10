@@ -1,12 +1,3 @@
-import './dilution.js?v=1';
-import './reaction-stoichiometry.js?v=1';
-import './product-yield.js?v=1';
-import './limiting-reagent.js?v=1';
-import './solution-stoichiometry.js?v=1';
-import './purity.js?v=1';
-import './density.js?v=1';
-import './mass-concentration.js?v=1';
-import './empirical-formula.js?v=1';
 import { getFormulaData, formatNumber, formatFormula } from './formula-core.js';
 
 const form = document.querySelector('#molarForm');
@@ -21,12 +12,14 @@ const breakdownSection = document.querySelector('#breakdownSection');
 const breakdownBody = document.querySelector('#breakdownBody');
 
 function clearError() {
+  if (!errorBox || !input) return;
   errorBox.hidden = true;
   errorBox.textContent = '';
   input.removeAttribute('aria-invalid');
 }
 
 function showError(message) {
+  if (!errorBox || !input || !resultContent || !resultEmpty || !breakdownSection) return;
   errorBox.textContent = message;
   errorBox.hidden = false;
   input.setAttribute('aria-invalid', 'true');
@@ -36,6 +29,7 @@ function showError(message) {
 }
 
 function renderResult(data) {
+  if (!resultFormula || !molarMass || !resultNote || !breakdownBody || !resultEmpty || !resultContent || !breakdownSection) return;
   resultFormula.innerHTML = formatFormula(data.formula);
   molarMass.textContent = formatNumber(data.totalMass, 3);
   resultNote.textContent = data.hasApproximateMass
@@ -56,12 +50,11 @@ function renderResult(data) {
   breakdownSection.hidden = false;
 }
 
-function calculate(value = input.value) {
+function calculate(value = input?.value || '') {
   clearError();
-
   try {
     const data = getFormulaData(value);
-    input.value = data.formula;
+    if (input) input.value = data.formula;
     renderResult(data);
   } catch (error) {
     showError(error instanceof Error ? error.message : 'Не вдалося обчислити молярну масу.');
@@ -77,11 +70,14 @@ input?.addEventListener('input', clearError);
 
 document.querySelectorAll('[data-formula]').forEach(button => {
   button.addEventListener('click', () => {
+    if (!input) return;
     input.value = button.dataset.formula || '';
     calculate(input.value);
     input.focus();
   });
 });
 
-input.value = 'Ca(OH)2';
-calculate(input.value);
+if (input) {
+  input.value = 'Ca(OH)2';
+  calculate(input.value);
+}
