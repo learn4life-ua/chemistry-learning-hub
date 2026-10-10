@@ -51,9 +51,9 @@
             <p class="life-situation">Після кількох кип’ятінь на нагрівальній поверхні з’являється світлий твердий наліт.</p>
             <form class="life-decision" data-scenario="scale">
               <fieldset><legend>Який висновок найкраще перевірити першим?</legend>
-                <label class="life-choice"><input type="radio" name="decision-scale" value="0" required><span>Вода містить багато кухонної солі, бо будь-який білий наліт утворює NaCl</span></label>
-                <label class="life-choice"><input type="radio" name="decision-scale" value="1" required><span>Наліт доводить, що вода забруднена й непридатна для використання</span></label>
-                <label class="life-choice"><input type="radio" name="decision-scale" value="2" required><span>Варто перевірити жорсткість води, пов’язану насамперед із Ca²⁺ і Mg²⁺</span></label>
+                <label class="life-choice"><input type="radio" name="decision-scale" value="0" required><span>Спочатку перевірити загальну мінералізацію: якщо солей у воді багато, цього достатньо, щоб пояснити накип</span></label>
+                <label class="life-choice"><input type="radio" name="decision-scale" value="1" required><span>Перевірити жорсткість води, пов’язану насамперед із Ca²⁺ і Mg²⁺</span></label>
+                <label class="life-choice"><input type="radio" name="decision-scale" value="2" required><span>Виміряти тільки pH: якщо вода близька до нейтральної, жорсткість уже можна не перевіряти</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
               <p class="life-feedback" role="status" aria-live="polite" hidden></p>
@@ -67,9 +67,9 @@
             <p class="life-situation">На етикетці очищувача є попередження не змішувати його з іншими засобами, але хочеться «посилити ефект».</p>
             <form class="life-decision" data-scenario="cleaners">
               <fieldset><legend>Яке рішення хімічно й безпеково обґрунтоване?</legend>
-                <label class="life-choice"><input type="radio" name="decision-cleaners" value="0" required><span>Додати зовсім трохи другого засобу: мала кількість не може змінити перебіг реакцій</span></label>
-                <label class="life-choice"><input type="radio" name="decision-cleaners" value="1" required><span>Не змішувати засоби й діяти за інструкцією конкретного продукту</span></label>
-                <label class="life-choice"><input type="radio" name="decision-cleaners" value="2" required><span>Змішувати можна, якщо обидва засоби окремо продаються для домашнього використання</span></label>
+                <label class="life-choice"><input type="radio" name="decision-cleaners" value="0" required><span>Не змішувати засоби й діяти за інструкцією конкретного продукту</span></label>
+                <label class="life-choice"><input type="radio" name="decision-cleaners" value="1" required><span>Нанести другий засіб після короткої паузи: якщо перший уже «попрацював», небажаної взаємодії не буде</span></label>
+                <label class="life-choice"><input type="radio" name="decision-cleaners" value="2" required><span>Сильно розвести обидва засоби водою й лише тоді поєднати: менша концентрація усуне ризик реакції</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
               <p class="life-feedback" role="status" aria-live="polite" hidden></p>
@@ -83,9 +83,9 @@
             <p class="life-situation">У ґрунт внесли поживний елемент, але рослина все одно має ознаки, схожі на його нестачу.</p>
             <form class="life-decision" data-scenario="nutrient">
               <fieldset><legend>З чого почати перевірку?</legend>
-                <label class="life-choice"><input type="radio" name="decision-nutrient" value="0" required><span>Перевірити pH, форму й доступність елемента та інші властивості ґрунту</span></label>
-                <label class="life-choice"><input type="radio" name="decision-nutrient" value="1" required><span>Одразу подвоїти дозу того самого добрива, бо причина вже очевидна</span></label>
-                <label class="life-choice"><input type="radio" name="decision-nutrient" value="2" required><span>Зробити висновок, що внесений елемент повністю зник із ґрунту</span></label>
+                <label class="life-choice"><input type="radio" name="decision-nutrient" value="0" required><span>Додати ще невелику дозу того самого добрива: якщо симптоми схожі на дефіцит, причина найімовірніше лише в недостатній кількості елемента</span></label>
+                <label class="life-choice"><input type="radio" name="decision-nutrient" value="1" required><span>Орієнтуватися на загальний вміст елемента в ґрунті: якщо його достатньо, pH і хімічна форма вже не мають суттєвого значення</span></label>
+                <label class="life-choice"><input type="radio" name="decision-nutrient" value="2" required><span>Перевірити pH, форму й доступність елемента та інші властивості ґрунту</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
               <p class="life-feedback" role="status" aria-live="polite" hidden></p>
@@ -99,8 +99,8 @@
             <p class="life-situation">Поруч є сільськогосподарські угіддя. Через кілька днів після сильного дощу вода стала інтенсивно зеленою.</p>
             <form class="life-decision" data-scenario="pond">
               <fieldset><legend>Яка перевірка найкраще пов’язує спостереження з можливою причиною?</legend>
-                <label class="life-choice"><input type="radio" name="decision-pond" value="0" required><span>Оцінити лише колір: зелена вода автоматично означає отруйну речовину</span></label>
-                <label class="life-choice"><input type="radio" name="decision-pond" value="1" required><span>Виміряти тільки температуру, бо поживні речовини не впливають на розвиток водоростей</span></label>
+                <label class="life-choice"><input type="radio" name="decision-pond" value="0" required><span>Оцінити кількість водоростей: якщо їх багато, цього достатньо, щоб встановити причину позеленіння</span></label>
+                <label class="life-choice"><input type="radio" name="decision-pond" value="1" required><span>Визначити концентрації сполук N і P; якщо вони підвищені, аналіз розчиненого кисню вже не потрібен</span></label>
                 <label class="life-choice"><input type="radio" name="decision-pond" value="2" required><span>Перевірити надходження сполук N і P, стан водоростей та вміст розчиненого кисню</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
@@ -115,9 +115,9 @@
             <p class="life-situation">Захисне покриття металевої деталі пошкодилося, а через певний час корозія стала помітною біля оголеної ділянки.</p>
             <form class="life-decision" data-scenario="rust">
               <fieldset><legend>Яке рішення відповідає принципу захисту?</legend>
-                <label class="life-choice"><input type="radio" name="decision-rust" value="0" required><span>Залишити ділянку відкритою: доступ повітря має «висушити» метал</span></label>
+                <label class="life-choice"><input type="radio" name="decision-rust" value="0" required><span>Зачистити видиму іржу й залишити метал без покриття, якщо деталь більшість часу суха</span></label>
                 <label class="life-choice"><input type="radio" name="decision-rust" value="1" required><span>Після належної підготовки поверхні відновити суцільне захисне покриття</span></label>
-                <label class="life-choice"><input type="radio" name="decision-rust" value="2" required><span>Орієнтуватися лише на колір іржі: якщо вона світла, захист не потрібен</span></label>
+                <label class="life-choice"><input type="radio" name="decision-rust" value="2" required><span>Нанести новий шар покриття без підготовки поверхні, щоб якнайшвидше ізолювати корозійну ділянку</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
               <p class="life-feedback" role="status" aria-live="polite" hidden></p>
@@ -132,8 +132,8 @@
             <form class="life-decision" data-scenario="battery">
               <fieldset><legend>Яке пояснення найкраще відповідає сучасній хімії акумуляторів?</legend>
                 <label class="life-choice"><input type="radio" name="decision-battery" value="0" required><span>З часом можуть змінюватися електродні матеріали та межа електрод-електроліт, зростає внутрішній опір і втрачається частина доступної ємності</span></label>
-                <label class="life-choice"><input type="radio" name="decision-battery" value="1" required><span>Ємність падає лише тому, що електрони «закінчуються» і їх треба додати ззовні</span></label>
-                <label class="life-choice"><input type="radio" name="decision-battery" value="2" required><span>Якщо корпус не змінився зовні, хімічних змін усередині бути не може</span></label>
+                <label class="life-choice"><input type="radio" name="decision-battery" value="1" required><span>Кілька повних циклів заряджання й розряджання мають повернути початкову ємність, якщо корпус батареї не пошкоджений</span></label>
+                <label class="life-choice"><input type="radio" name="decision-battery" value="2" required><span>Старіння визначається переважно кількістю циклів, а температура й стан матеріалів мають другорядне значення</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
               <p class="life-feedback" role="status" aria-live="polite" hidden></p>
@@ -147,9 +147,9 @@
             <p class="life-situation">Виникає спокуса вирішити, що таке пакування швидко розкладеться за будь-яких умов.</p>
             <form class="life-decision" data-scenario="bioplastic">
               <fieldset><legend>Який висновок коректніший?</legend>
-                <label class="life-choice"><input type="radio" name="decision-bioplastic" value="0" required><span>Будь-який біорозкладний пластик однаково швидко розкладається в ґрунті, воді й на звалищі</span></label>
-                <label class="life-choice"><input type="radio" name="decision-bioplastic" value="1" required><span>Якщо матеріал зроблено з рослинної сировини, він автоматично є компостованим</span></label>
-                <label class="life-choice"><input type="radio" name="decision-bioplastic" value="2" required><span>Потрібно з’ясувати, для яких умов підтверджено розкладання або компостування цього матеріалу</span></label>
+                <label class="life-choice"><input type="radio" name="decision-bioplastic" value="0" required><span>Позначення biodegradable означає, що матеріал придатний і для домашнього компосту, просто процес може тривати довше</span></label>
+                <label class="life-choice"><input type="radio" name="decision-bioplastic" value="1" required><span>Потрібно з’ясувати, для яких умов підтверджено розкладання або компостування цього матеріалу</span></label>
+                <label class="life-choice"><input type="radio" name="decision-bioplastic" value="2" required><span>Якщо полімер виготовлено з рослинної сировини, саме походження сировини достатньо, щоб передбачити його розкладання</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
               <p class="life-feedback" role="status" aria-live="polite" hidden></p>
@@ -163,9 +163,9 @@
             <p class="life-situation">В одній склянці вода була тепліша й її перемішували швидше. В іншій вода була холодніша й майже не перемішувалася.</p>
             <form class="life-decision" data-scenario="experiment">
               <fieldset><legend>Як перевірити саме вплив температури?</legend>
-                <label class="life-choice"><input type="radio" name="decision-experiment" value="0" required><span>Додати ще третю склянку й змінити одночасно температуру, кількість цукру та спосіб перемішування</span></label>
-                <label class="life-choice"><input type="radio" name="decision-experiment" value="1" required><span>Змінювати лише температуру, а кількість речовини, об’єм води, посуд і перемішування тримати однаковими</span></label>
-                <label class="life-choice"><input type="radio" name="decision-experiment" value="2" required><span>Просто повторити перший дослід без запису умов: результат сам покаже причину</span></label>
+                <label class="life-choice"><input type="radio" name="decision-experiment" value="0" required><span>Залишити однаковими кількість цукру й об’єм води, але теплу воду перемішувати інтенсивніше, щоб різниця проявилася чіткіше</span></label>
+                <label class="life-choice"><input type="radio" name="decision-experiment" value="1" required><span>Повторити початкові умови багато разів і усереднити час, не вирівнюючи перемішування: велика кількість повторів компенсує різницю умов</span></label>
+                <label class="life-choice"><input type="radio" name="decision-experiment" value="2" required><span>Змінювати лише температуру, а кількість речовини, об’єм води, посуд і перемішування тримати однаковими</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
               <p class="life-feedback" role="status" aria-live="polite" hidden></p>
@@ -180,8 +180,8 @@
             <form class="life-decision" data-scenario="wateranalysis">
               <fieldset><legend>Який крок дає найнадійнішу інформацію?</legend>
                 <label class="life-choice"><input type="radio" name="decision-wateranalysis" value="0" required><span>Визначити потрібні хімічні показники лабораторним аналізом відповідно до мети використання води</span></label>
-                <label class="life-choice"><input type="radio" name="decision-wateranalysis" value="1" required><span>Оцінити воду за прозорістю й запахом: розчинені йони завжди помітні органами чуття</span></label>
-                <label class="life-choice"><input type="radio" name="decision-wateranalysis" value="2" required><span>Порівняти лише колір двох проб на білому фоні й зробити висновок про весь склад</span></label>
+                <label class="life-choice"><input type="radio" name="decision-wateranalysis" value="1" required><span>Виміряти електропровідність: якщо вона прийнятна, можна зробити висновок про весь хімічний склад води</span></label>
+                <label class="life-choice"><input type="radio" name="decision-wateranalysis" value="2" required><span>Визначити pH і жорсткість; якщо ці два показники прийнятні, інші розчинені компоненти вже не потрібно перевіряти</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
               <p class="life-feedback" role="status" aria-live="polite" hidden></p>
@@ -195,8 +195,8 @@
             <p class="life-situation">Після аварійного забруднення частину нафтопродуктів механічно зібрали з поверхні водойми.</p>
             <form class="life-decision" data-scenario="oilspill">
               <fieldset><legend>Що потрібно зробити, перш ніж говорити про відновлення екосистеми?</legend>
-                <label class="life-choice"><input type="radio" name="decision-oilspill" value="0" required><span>Оцінити лише блиск поверхні: якщо плівки не видно, хімічного забруднення вже немає</span></label>
-                <label class="life-choice"><input type="radio" name="decision-oilspill" value="1" required><span>Перевірити тільки запах води, бо донні відклади й живі організми не накопичують інформацію про забруднення</span></label>
+                <label class="life-choice"><input type="radio" name="decision-oilspill" value="0" required><span>Якщо плівки вже не видно і поверхнева проба води стала чистішою, цього достатньо, щоб завершити спостереження</span></label>
+                <label class="life-choice"><input type="radio" name="decision-oilspill" value="1" required><span>Перевірити воду в кількох точках; якщо її показники покращилися, стан донних відкладів і гідробіонтів можна не враховувати</span></label>
                 <label class="life-choice"><input type="radio" name="decision-oilspill" value="2" required><span>Дослідити воду, донні відклади й стан гідробіонтів та оцінити залишкове забруднення</span></label>
               </fieldset>
               <div class="life-decision-actions"><button type="submit" class="life-decision-submit">Перевірити рішення</button><button type="reset" class="life-decision-reset">Спробувати ще</button></div>
@@ -223,6 +223,6 @@
 
   <footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Інтерактивний простір з хімії для навчання, дослідження і самоперевірки</p></div></footer>
   <script src="../../js/theme.js?v=2" defer></script>
-  <script src="../decisions.js?v=2" defer></script>
+  <script src="../decisions.js?v=3" defer></script>
 </body>
 </html>
