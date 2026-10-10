@@ -1,4 +1,8 @@
 /* Transparent PNG hero illustration. All layout rules live here. */
+.calc-catalog-hero {
+  padding: 24px 0 28px;
+}
+
 .calc-catalog-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 56fr) minmax(0, 44fr);
@@ -17,8 +21,9 @@
 
 .calc-hero-image {
   display: block;
-  width: 100%;
-  max-width: 650px;
+  width: 90%;
+  max-width: 560px;
+  max-height: 360px;
   height: auto;
   object-fit: contain;
 }
@@ -35,6 +40,8 @@ html[data-theme="dark"] .calc-hero-image {
 }
 
 @media (max-width: 680px) {
+  .calc-catalog-hero { padding: 24px 0; }
   .calc-catalog-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  .calc-hero-visual { width: min(460px, 100%); margin-inline: auto; }
+  .calc-hero-visual { width: min(360px, 100%); margin-inline: auto; }
+  .calc-hero-image { max-height: 250px; }
 }
