@@ -1,0 +1,128 @@
+.reaction-section {
+  padding:62px 0 68px;
+  scroll-margin-top:92px;
+  border-top:1px solid var(--line);
+  background:
+    radial-gradient(circle at 88% 14%, color-mix(in srgb,#3a83e5 7%,transparent), transparent 24%),
+    var(--bg);
+}
+
+.reaction-equation-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:end;
+}
+.reaction-equation-row .formula-label { grid-column:1 / -1; }
+.reaction-equation-input {
+  width:100%;
+  min-height:58px;
+  padding:0 17px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  color:var(--ink);
+  background:var(--surface-muted);
+  outline:none;
+  font-size:1.02rem;
+  font-weight:750;
+}
+.reaction-equation-input:focus {
+  border-color:color-mix(in srgb,#3a83e5 58%,var(--line));
+  background:var(--surface);
+  box-shadow:0 0 0 4px color-mix(in srgb,#3a83e5 14%,transparent);
+}
+
+.reaction-status {
+  margin:12px 0 0;
+  padding:11px 12px;
+  border:1px solid color-mix(in srgb,#1da58a 28%,var(--line));
+  border-radius:11px;
+  color:var(--muted);
+  background:color-mix(in srgb,#1da58a 7%,var(--surface));
+  font-size:.76rem;
+  line-height:1.5;
+}
+.reaction-status strong { color:#16836f; }
+html[data-theme="dark"] .reaction-status strong { color:#7ed8c6; }
+
+.reaction-fields {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:20px;
+}
+.reaction-field-block {
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:var(--surface-muted);
+}
+.reaction-field-block h3 {
+  margin:0 0 13px;
+  font-size:.95rem;
+  letter-spacing:-.02em;
+}
+.reaction-select,
+.reaction-unit-select {
+  width:100%;
+  min-height:48px;
+  padding:0 12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  color:var(--ink);
+  background:var(--surface);
+  outline:none;
+  font-size:.82rem;
+  font-weight:700;
+}
+.reaction-known-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 105px;
+  gap:8px;
+  margin-top:10px;
+}
+.reaction-target-row { margin-top:10px; }
+.reaction-select:focus,
+.reaction-unit-select:focus {
+  border-color:color-mix(in srgb,#3a83e5 58%,var(--line));
+  box-shadow:0 0 0 3px color-mix(in srgb,#3a83e5 12%,transparent);
+}
+.reaction-submit { margin-top:18px; }
+
+.reaction-equation-view {
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:7px;
+  color:var(--ink);
+  font-size:clamp(1.05rem,2vw,1.35rem);
+  font-weight:800;
+}
+.reaction-equation-view sub { font-size:.58em; vertical-align:-.28em; }
+.reaction-coeff { color:#3a83e5; }
+.reaction-arrow { color:var(--muted); padding:0 4px; }
+.reaction-side-sep { color:var(--muted); }
+
+.reaction-balance-note {
+  margin:14px 0 0;
+  padding:11px 12px;
+  border:1px solid color-mix(in srgb,#c88a2e 26%,var(--line));
+  border-radius:11px;
+  color:var(--muted);
+  background:color-mix(in srgb,#c88a2e 7%,var(--surface));
+  font-size:.74rem;
+  line-height:1.5;
+}
+
+@media (max-width:900px) {
+  .reaction-fields { grid-template-columns:1fr; }
+}
+
+@media (max-width:650px) {
+  .reaction-section { padding:46px 0 52px; }
+  .reaction-equation-row { grid-template-columns:1fr; }
+  .reaction-equation-row .formula-label { grid-column:auto; }
+  .reaction-known-row { grid-template-columns:minmax(0,1fr) 92px; }
+}
