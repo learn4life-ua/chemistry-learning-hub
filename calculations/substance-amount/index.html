@@ -20,18 +20,18 @@
         <div class="calc-card-head"><div><p class="calc-kicker">Оберіть тип розрахунку</p><h2>Що потрібно знайти?</h2></div><span class="calc-badge">n · m · N</span></div>
         <div class="amount-mode-switcher" role="group" aria-label="Тип розрахунку"><button class="is-active" type="button" data-amount-mode="n-from-m" aria-pressed="true">n за масою</button><button type="button" data-amount-mode="m-from-n" aria-pressed="false">m за кількістю</button><button type="button" data-amount-mode="N-from-n" aria-pressed="false">N частинок</button></div>
         <form id="amountForm" novalidate>
-          <div class="amount-fields">
-            <div><label class="formula-label" for="amountFormulaInput">Хімічна формула</label><input class="formula-input" id="amountFormulaInput" type="text" autocomplete="off" spellcheck="false" placeholder="Наприклад, NaCl"></div>
+          <div class="amount-fields" id="amountFields">
+            <div id="amountFormulaWrap"><label class="formula-label" for="amountFormulaInput">Хімічна формула</label><input class="formula-input" id="amountFormulaInput" type="text" autocomplete="off" spellcheck="false" placeholder="Наприклад, NaCl"></div>
             <div><label class="formula-label" id="amountValueLabel" for="amountValueInput">Маса речовини m</label><div class="value-unit-row"><input class="value-input" id="amountValueInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Наприклад, 11,7"><select id="amountUnit" aria-label="Одиниця вимірювання"></select></div></div>
           </div>
           <p class="formula-help" id="amountHelper"></p><p class="formula-error" id="amountError" role="alert" hidden></p><button class="calc-button amount-submit" type="submit">Розрахувати</button>
         </form>
-        <div class="example-list" aria-label="Приклади"><span>Спробуйте:</span><button type="button" data-amount-example data-mode="n-from-m" data-formula="NaCl" data-value="11,7" data-unit="g">11,7 г NaCl → n</button><button type="button" data-amount-example data-mode="m-from-n" data-formula="H2O" data-value="2" data-unit="mol">2 моль H₂O → m</button><button type="button" data-amount-example data-mode="N-from-n" data-formula="CO2" data-value="0,5" data-unit="mol">0,5 моль CO₂ → N</button></div>
+        <div class="example-list" aria-label="Приклади"><span>Спробуйте:</span><button type="button" data-amount-example data-mode="n-from-m" data-formula="NaCl" data-value="11,7" data-unit="g">11,7 г NaCl → n</button><button type="button" data-amount-example data-mode="m-from-n" data-formula="H2O" data-value="2" data-unit="mol">2 моль H₂O → m</button><button type="button" data-amount-example data-mode="N-from-n" data-value="0,5" data-unit="mol">0,5 моль → N</button></div>
       </article>
-      <aside class="result-card amount-result-card" aria-live="polite"><div class="result-empty" id="amountResultEmpty"><div class="result-icon">n</div><h2>Розв'язання з'явиться тут</h2><p>Введіть формулу та відоме значення.</p></div><div class="result-content" id="amountResultContent" hidden><p class="calc-kicker">Відповідь</p><div class="result-formula" id="amountResultFormula"></div><div class="amount-final-value"><strong id="amountResultValue">0</strong><span id="amountResultUnit"></span></div><div class="solution-steps" id="amountSteps"></div><p class="result-note" id="amountNote"></p></div></aside>
+      <aside class="result-card amount-result-card" aria-live="polite"><div class="result-empty" id="amountResultEmpty"><div class="result-icon">n</div><h2>Розв'язання з'явиться тут</h2><p>Оберіть режим і введіть відоме значення.</p></div><div class="result-content" id="amountResultContent" hidden><p class="calc-kicker">Відповідь</p><div class="result-formula" id="amountResultFormula"></div><div class="amount-final-value"><strong id="amountResultValue">0</strong><span id="amountResultUnit"></span></div><div class="solution-steps" id="amountSteps"></div><p class="result-note" id="amountNote"></p></div></aside>
     </div>
   </section>
 </main>
 <footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Інтерактивний простір з хімії для навчання, дослідження і самоперевірки</p></div></footer>
-<script src="../../js/theme.js?v=1" defer></script><script type="module" src="../js/substance-amount.js?v=1"></script>
+<script src="../../js/theme.js?v=1" defer></script><script type="module" src="../js/substance-amount.js?v=2"></script>
 </body></html>
