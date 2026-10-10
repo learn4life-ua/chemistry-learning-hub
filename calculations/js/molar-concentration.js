@@ -3,6 +3,7 @@ import { getFormulaData, formatNumber, formatFormula } from './formula-core.js';
 
 const form = document.querySelector('#concentrationForm');
 const modeButtons = [...document.querySelectorAll('[data-concentration-mode]')];
+const formulaWrap = document.querySelector('#concentrationFormulaWrap');
 const formulaInput = document.querySelector('#concentrationFormulaInput');
 const firstLabel = document.querySelector('#concentrationFirstLabel');
 const firstInput = document.querySelector('#concentrationFirstInput');
@@ -22,7 +23,8 @@ const note = document.querySelector('#concentrationNote');
 const modes = {
   'c-from-n': {
     label: 'Кількість речовини n',
-    helper: 'Введіть кількість розчиненої речовини та об’єм розчину. Використовується c = n / V.',
+    helper: 'Введіть кількість розчиненої речовини та об’єм розчину. Формула речовини для цього розрахунку не потрібна.',
+    requiresFormula: false,
     units: [
       { value: 'mol', label: 'моль' },
       { value: 'mmol', label: 'ммоль' }
@@ -30,7 +32,8 @@ const modes = {
   },
   'c-from-m': {
     label: 'Маса розчиненої речовини m',
-    helper: 'Калькулятор визначить молярну масу за формулою, обчислить n = m / M, а потім c = n / V.',
+    helper: 'Калькулятор визначить молярну масу за формулою, обчислить кількість речовини, а потім молярну концентрацію.',
+    requiresFormula: true,
     units: [
       { value: 'g', label: 'г' },
       { value: 'mg', label: 'мг' },
@@ -39,7 +42,8 @@ const modes = {
   },
   'n-from-c': {
     label: 'Молярна концентрація c',
-    helper: 'Введіть молярну концентрацію та об’єм розчину. Використовується n = cV.',
+    helper: 'Введіть молярну концентрацію та об’єм розчину. Формула речовини для цього розрахунку не потрібна.',
+    requiresFormula: false,
     units: [
       { value: 'mol-L', label: 'моль/л' },
       { value: 'mmol-L', label: 'ммоль/л' }
@@ -103,14 +107,15 @@ function setMode(mode) {
     button.setAttribute('aria-pressed', String(active));
   });
 
+  formulaWrap.hidden = !config.requiresFormula;
   firstLabel.textContent = config.label;
   helper.textContent = config.helper;
   firstUnit.innerHTML = config.units.map(unit => `<option value="${unit.value}">${unit.label}</option>`).join('');
   clearError();
 }
 
-function renderResult(data, firstRaw, firstBase, volumeLitres, firstUnitValue, volumeUnitValue) {
-  const formulaHTML = formatFormula(data.formula);
+function renderResult(data, firstBase, volumeLitres, firstUnitValue, volumeUnitValue) {
+  const formulaHTML = data ? formatFormula(data.formula) : activeMode === 'n-from-c' ? 'n' : 'c';
   resultFormula.innerHTML = formulaHTML;
 
   let finalValue;
@@ -152,12 +157,12 @@ function renderResult(data, firstRaw, firstBase, volumeLitres, firstUnitValue, v
   resultUnit.textContent = finalUnit;
   steps.innerHTML = solutionSteps.map(step => `<div class="solution-step">${step}</div>`).join('');
 
-  if (activeMode === 'c-from-m' && data.hasApproximateMass) {
+  if (activeMode === 'c-from-m' && data?.hasApproximateMass) {
     note.textContent = 'У формулі є елемент без стандартної атомної маси, тому результат є наближеним.';
   } else if (firstUnitValue.includes('mmol') || firstUnitValue === 'mg' || firstUnitValue === 'kg' || volumeUnitValue === 'mL') {
     note.textContent = 'Перед підстановкою значення автоматично переведено в молі, грами та літри.';
   } else {
-    note.textContent = 'Молярну концентрацію подано в моль/л. У проміжних обчисленнях використано повні числові значення.';
+    note.textContent = 'У проміжних обчисленнях використано повні числові значення.';
   }
 
   resultEmpty.hidden = true;
@@ -168,8 +173,9 @@ function calculate() {
   clearError();
 
   try {
-    const data = getFormulaData(formulaInput.value);
-    formulaInput.value = data.formula;
+    const config = modes[activeMode];
+    const data = config.requiresFormula ? getFormulaData(formulaInput.value) : null;
+    if (data) formulaInput.value = data.formula;
 
     const firstRaw = parsePositiveNumber(firstInput.value);
     const volumeRaw = parsePositiveNumber(volumeInput.value);
@@ -182,7 +188,7 @@ function calculate() {
     if (activeMode === 'c-from-m') firstBase = toGrams(firstRaw, firstUnitValue);
     if (activeMode === 'n-from-c') firstBase = toMolPerLitre(firstRaw, firstUnitValue);
 
-    renderResult(data, firstRaw, firstBase, volumeLitres, firstUnitValue, volumeUnitValue);
+    renderResult(data, firstBase, volumeLitres, firstUnitValue, volumeUnitValue);
   } catch (error) {
     showError(error instanceof Error ? error.message : 'Не вдалося виконати розрахунок концентрації.');
   }
@@ -219,7 +225,7 @@ document.querySelectorAll('[data-concentration-example]').forEach(button => {
 });
 
 setMode(activeMode);
-formulaInput.value = 'NaCl';
+formulaInput.value = '';
 firstInput.value = '0,5';
 volumeInput.value = '2';
 firstUnit.value = 'mol';
