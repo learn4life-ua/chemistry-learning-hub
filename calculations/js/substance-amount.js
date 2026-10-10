@@ -4,6 +4,8 @@ const AVOGADRO = 6.02214076e23;
 
 const form = document.querySelector('#amountForm');
 const modeButtons = [...document.querySelectorAll('[data-amount-mode]')];
+const fields = document.querySelector('#amountFields');
+const formulaWrap = document.querySelector('#amountFormulaWrap');
 const formulaInput = document.querySelector('#amountFormulaInput');
 const valueInput = document.querySelector('#amountValueInput');
 const unitSelect = document.querySelector('#amountUnit');
@@ -26,6 +28,7 @@ const modes = {
   'n-from-m': {
     label: 'Маса речовини m',
     helper: `n = ${frac('m', 'M')}.`,
+    requiresFormula: true,
     units: [
       { value: 'g', label: 'г' },
       { value: 'mg', label: 'мг' },
@@ -35,6 +38,7 @@ const modes = {
   'm-from-n': {
     label: 'Кількість речовини n',
     helper: 'm = nM.',
+    requiresFormula: true,
     units: [
       { value: 'mol', label: 'моль' },
       { value: 'mmol', label: 'ммоль' }
@@ -42,7 +46,8 @@ const modes = {
   },
   'N-from-n': {
     label: 'Кількість речовини n',
-    helper: 'N = nNₐ.',
+    helper: 'N = nNₐ. Формула речовини для цього розрахунку не потрібна.',
+    requiresFormula: false,
     units: [
       { value: 'mol', label: 'моль' },
       { value: 'mmol', label: 'ммоль' }
@@ -90,6 +95,8 @@ function setMode(mode) {
     button.setAttribute('aria-pressed', String(active));
   });
 
+  formulaWrap.hidden = !config.requiresFormula;
+  fields.style.gridTemplateColumns = config.requiresFormula ? '' : 'minmax(0,1fr)';
   valueLabel.textContent = config.label;
   helper.innerHTML = config.helper;
   unitSelect.innerHTML = config.units.map(unit => `<option value="${unit.value}">${unit.label}</option>`).join('');
@@ -110,8 +117,8 @@ function showError(message) {
   resultEmpty.hidden = false;
 }
 
-function renderResult(data, rawValue, baseValue, unit) {
-  const formulaHTML = formatFormula(data.formula);
+function renderResult(data, baseValue, unit) {
+  const formulaHTML = data ? formatFormula(data.formula) : 'N';
   resultFormula.innerHTML = formulaHTML;
 
   let finalHTML = '';
@@ -155,7 +162,7 @@ function renderResult(data, rawValue, baseValue, unit) {
   resultUnit.textContent = finalUnit;
   steps.innerHTML = solutionSteps.map(step => `<div class="solution-step">${step}</div>`).join('');
 
-  if (data.hasApproximateMass && activeMode !== 'N-from-n') {
+  if (data?.hasApproximateMass) {
     note.textContent = 'Для елемента без стандартної атомної маси використано масове число, тому результат є наближеним.';
   } else if (unit === 'mg' || unit === 'kg' || unit === 'mmol') {
     note.textContent = 'Перед розрахунком значення переведено у грами або молі.';
@@ -171,12 +178,14 @@ function calculate() {
   clearError();
 
   try {
-    const data = getFormulaData(formulaInput.value);
-    formulaInput.value = data.formula;
+    const config = modes[activeMode];
+    const data = config.requiresFormula ? getFormulaData(formulaInput.value) : null;
+    if (data) formulaInput.value = data.formula;
+
     const rawValue = parsePositiveNumber(valueInput.value);
     const unit = unitSelect.value;
     const baseValue = toBaseValue(rawValue, unit);
-    renderResult(data, rawValue, baseValue, unit);
+    renderResult(data, baseValue, unit);
   } catch (error) {
     showError(error instanceof Error ? error.message : 'Не вдалося виконати розрахунок.');
   }
