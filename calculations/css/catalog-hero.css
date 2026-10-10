@@ -23,11 +23,11 @@
   flex: 0 0 30px;
   height: 3px;
   border-radius: 2px;
-  background: var(--ink);
+  background: var(--primary-strong);
 }
 
 .calc-catalog-hero h1 { color: var(--ink); }
-.calc-hero-title-accent { color: var(--primary); }
+.calc-hero-title-accent { color: var(--primary-strong); }
 
 .calc-hero-visual {
   width: 100%;
