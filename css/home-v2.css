@@ -172,28 +172,45 @@ html[data-theme="dark"] .hero-atom-stage::before {
   min-width: 31px;
   height: 25px;
   padding: 0 7px;
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in srgb,var(--line) 88%,#fff);
   border-radius: 8px;
   color: var(--ink);
-  background: color-mix(in srgb,var(--surface) 88%,transparent);
+  background: linear-gradient(180deg,
+    color-mix(in srgb,var(--surface) 96%,#fff) 0%,
+    color-mix(in srgb,var(--surface) 88%,transparent) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.44),
+    0 2px 6px rgba(61,56,126,.065);
   font-size:.69rem;
   font-weight:750;
   line-height:1;
-  transition: background-color .16s ease, color .16s ease, border-color .16s ease, box-shadow .16s ease, transform .16s ease;
+  transition: background .16s ease, color .16s ease, border-color .16s ease, box-shadow .16s ease, transform .16s ease;
 }
 .atom-switcher button:hover {
-  border-color: color-mix(in srgb,#6f5cf5 40%,var(--line));
-  background: color-mix(in srgb,#7b66f5 10%,var(--surface));
+  border-color: color-mix(in srgb,#6f5cf5 42%,var(--line));
+  background: linear-gradient(180deg,
+    color-mix(in srgb,#8c79ff 8%,var(--surface)) 0%,
+    color-mix(in srgb,#6f5cf5 13%,var(--surface)) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.48),
+    0 4px 10px rgba(82,67,176,.10);
+  transform: translateY(-1px);
 }
 .atom-switcher button.is-active {
   color:#fff !important;
-  border-color:#6654df !important;
-  background:#6f5cf5 !important;
-  background-image:none !important;
+  border-color:rgba(91,75,212,.72) !important;
+  background:linear-gradient(135deg,#7b67f8 0%,#6471ee 54%,#547ddd 100%) !important;
+  background-image:linear-gradient(135deg,#7b67f8 0%,#6471ee 54%,#547ddd 100%) !important;
   box-shadow:
-    inset 0 0 0 999px #6f5cf5,
-    inset 0 1px 0 rgba(255,255,255,.20),
-    0 3px 9px rgba(91,77,210,.18) !important;
+    inset 0 1px 0 rgba(255,255,255,.26),
+    inset 0 -1px 0 rgba(52,43,150,.10),
+    0 4px 10px rgba(91,77,210,.16) !important;
+}
+.atom-switcher button.is-active:hover {
+  background:linear-gradient(135deg,#826dfb 0%,#6978f1 54%,#5a84e1 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.30),
+    0 5px 12px rgba(91,77,210,.20) !important;
 }
 .atom-switcher button:focus-visible,
 .atom-pause:focus-visible {
@@ -207,29 +224,41 @@ html[data-theme="dark"] .hero-atom-stage::before {
   min-height:0;
   padding:0;
   flex:0 0 25px;
-  border:1px solid var(--line);
+  border:1px solid color-mix(in srgb,var(--line) 88%,#fff);
   border-radius:8px;
   color:var(--muted);
-  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--surface) 96%,#fff) 0%,
+    color-mix(in srgb,var(--surface) 88%,transparent) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.44),
+    0 2px 6px rgba(61,56,126,.065);
   font-size:.63rem;
   font-weight:800;
   line-height:1;
   display:grid;
   place-items:center;
+  transition: background .16s ease, color .16s ease, border-color .16s ease, box-shadow .16s ease, transform .16s ease;
 }
 .atom-pause:hover {
-  border-color:color-mix(in srgb,#6f5cf5 40%,var(--line));
-  background:color-mix(in srgb,#7b66f5 10%,var(--surface));
+  border-color:color-mix(in srgb,#6f5cf5 42%,var(--line));
+  background:linear-gradient(180deg,
+    color-mix(in srgb,#8c79ff 8%,var(--surface)) 0%,
+    color-mix(in srgb,#6f5cf5 13%,var(--surface)) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.48),
+    0 4px 10px rgba(82,67,176,.10);
+  transform:translateY(-1px);
 }
 .atom-pause[aria-pressed="true"] {
   color:#fff !important;
-  border-color:#6654df !important;
-  background:#6f5cf5 !important;
-  background-image:none !important;
+  border-color:rgba(91,75,212,.72) !important;
+  background:linear-gradient(135deg,#7b67f8 0%,#6471ee 54%,#547ddd 100%) !important;
+  background-image:linear-gradient(135deg,#7b67f8 0%,#6471ee 54%,#547ddd 100%) !important;
   box-shadow:
-    inset 0 0 0 999px #6f5cf5,
-    inset 0 1px 0 rgba(255,255,255,.20),
-    0 3px 9px rgba(91,77,210,.18) !important;
+    inset 0 1px 0 rgba(255,255,255,.26),
+    inset 0 -1px 0 rgba(52,43,150,.10),
+    0 4px 10px rgba(91,77,210,.16) !important;
 }
 .atom-hint { display:none; }
 
