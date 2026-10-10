@@ -65,9 +65,67 @@ function applyMathNotation() {
   normalizeRenderedSteps();
 }
 
+const equilibriumTools = {
+  reactionParseButton: {
+    input: '#reactionEquationInput', error: '#reactionError', status: '#reactionStatus', fields: '#reactionFields', submit: '#reactionSubmit', result: '#reactionResultContent', empty: '#reactionResultEmpty'
+  },
+  limitingParseButton: {
+    input: '#limitingEquationInput', error: '#limitingError', status: '#limitingStatus', fields: '#limitingFields', submit: '#limitingSubmit', result: '#limitingResultContent', empty: '#limitingResultEmpty'
+  },
+  solutionParseButton: {
+    input: '#solutionEquationInput', error: '#solutionError', status: '#solutionStatus', fields: '#solutionFields', submit: '#solutionSubmit', result: '#solutionResultContent', empty: '#solutionResultEmpty'
+  }
+};
+
+const equilibriumForms = {
+  reactionForm: equilibriumTools.reactionParseButton,
+  limitingForm: equilibriumTools.limitingParseButton,
+  solutionStoichForm: equilibriumTools.solutionParseButton
+};
+
+function hasEquilibriumArrow(config) {
+  return /⇌|↔/.test(document.querySelector(config.input)?.value || '');
+}
+
+function showEquilibriumError(config) {
+  const error = document.querySelector(config.error);
+  if (error) {
+    error.textContent = 'Рівноважні рівняння зі стрілками ⇌ або ↔ цей калькулятор не опрацьовує. Для стехіометричного розрахунку введіть рівняння в потрібному напрямку зі стрілкою →.';
+    error.hidden = false;
+  }
+  const status = document.querySelector(config.status);
+  const fields = document.querySelector(config.fields);
+  const submit = document.querySelector(config.submit);
+  const result = document.querySelector(config.result);
+  const empty = document.querySelector(config.empty);
+  if (status) status.hidden = true;
+  if (fields) fields.hidden = true;
+  if (submit) submit.hidden = true;
+  if (result) result.hidden = true;
+  if (empty) empty.hidden = false;
+}
+
 cleanCategoryCopy('Рівняння реакцій');
 setupCalculationTabs();
 applyMathNotation();
+
+document.addEventListener('click', event => {
+  const trigger = event.target.closest('#reactionParseButton, #limitingParseButton, #solutionParseButton');
+  if (!trigger) return;
+  const config = equilibriumTools[trigger.id];
+  if (!config || !hasEquilibriumArrow(config)) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  showEquilibriumError(config);
+}, true);
+
+document.addEventListener('submit', event => {
+  const config = equilibriumForms[event.target.id];
+  if (!config || !hasEquilibriumArrow(config)) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  showEquilibriumError(config);
+}, true);
 
 document.addEventListener('click', event => {
   if (event.target.closest('[data-yield-mode], [data-purity-mode], [data-solution-mode], [data-reaction-example], [data-yield-example], [data-limiting-example], [data-solution-example], [data-purity-example], #reactionParseButton, #limitingParseButton, #solutionParseButton')) {
