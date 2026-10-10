@@ -10,6 +10,30 @@ function activeMode(selector, attribute) {
   return document.querySelector(`${selector}.is-active`)?.getAttribute(attribute) || '';
 }
 
+function normalizeRenderedSteps() {
+  const containers = [
+    '#concentrationSteps', '#fractionSteps', '#dilutionSteps', '#densitySteps', '#massConcentrationSteps'
+  ];
+  const replacements = [
+    ['c = n / V', `c = ${fraction('n', 'V')}`],
+    ['n = m / M', `n = ${fraction('m', 'M')}`],
+    ['ω = m(речовини) / m(розчину) × 100%', `ω = ${fraction('m(речовини)', 'm(розчину)')} · 100%`],
+    ['m(речовини) = ω · m(розчину) / 100%', `m(речовини) = ${fraction('ω · m(розчину)', '100%')}`],
+    ['ρ = m / V', `ρ = ${fraction('m', 'V')}`],
+    ['V = m / ρ', `V = ${fraction('m', 'ρ')}`],
+    ['β = m / V', `β = ${fraction('m', 'V')}`],
+    ['V = m / β', `V = ${fraction('m', 'β')}`]
+  ];
+
+  containers.forEach(selector => {
+    const node = document.querySelector(selector);
+    if (!node) return;
+    let html = node.innerHTML;
+    replacements.forEach(([from, to]) => { html = html.replaceAll(from, to); });
+    node.innerHTML = html;
+  });
+}
+
 function applyMathNotation() {
   const concentrationHelper = document.querySelector('#concentrationHelper');
   const concentrationMode = activeMode('[data-concentration-mode]', 'data-concentration-mode');
@@ -51,13 +75,19 @@ function applyMathNotation() {
 
   const massConcentrationBadge = document.querySelector('#mass-concentration .calc-badge');
   if (massConcentrationBadge) massConcentrationBadge.innerHTML = `β = ${fraction('m', 'V')}`;
+
+  normalizeRenderedSteps();
 }
 
 setupCalculationTabs();
 applyMathNotation();
 
 document.addEventListener('click', event => {
-  if (event.target.closest('[data-concentration-mode], [data-fraction-mode], [data-dilution-mode], [data-density-mode], [data-mass-concentration-mode]')) {
+  if (event.target.closest('[data-concentration-mode], [data-fraction-mode], [data-dilution-mode], [data-density-mode], [data-mass-concentration-mode], [data-concentration-example], [data-fraction-example], [data-dilution-example], [data-density-example], [data-mass-concentration-example]')) {
     queueMicrotask(applyMathNotation);
   }
+});
+
+document.querySelectorAll('#concentrationForm, #massFractionForm, #dilutionForm, #densityForm, #massConcentrationForm').forEach(form => {
+  form.addEventListener('submit', () => queueMicrotask(applyMathNotation));
 });
