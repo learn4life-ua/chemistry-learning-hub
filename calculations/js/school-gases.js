@@ -97,10 +97,10 @@ function setMode(mode) {
   primaryLabel.textContent = config.label;
   primaryUnit.innerHTML = config.units;
 
-  if (mode === 'n-from-v') helper.innerHTML = `За нормальних умов використовуємо V<sub>m</sub> = 22,4 л/моль і n = ${frac('V', 'V<sub>m</sub>')}.`;
-  if (mode === 'v-from-n') helper.innerHTML = 'За нормальних умов використовуємо V = nV<sub>m</sub>, де V<sub>m</sub> = 22,4 л/моль.';
+  if (mode === 'n-from-v') helper.innerHTML = `За нормальних умов V<sub>m</sub> = 22,4 л/моль, тому n = ${frac('V', 'V<sub>m</sub>')}.`;
+  if (mode === 'v-from-n') helper.innerHTML = 'За нормальних умов V = nV<sub>m</sub>, де V<sub>m</sub> = 22,4 л/моль.';
   if (mode === 'm-from-v') helper.innerHTML = `Спочатку n = ${frac('V', 'V<sub>m</sub>')}, потім m = nM.`;
-  if (mode === 'density') helper.innerHTML = `Відносна густина газу D = ${frac('M(газу)', 'M(еталона)')}.`;
+  if (mode === 'density') helper.innerHTML = `D = ${frac('M(газу)', 'M(еталона)')}.`;
 
   clearError();
   resultContent.hidden = true;
@@ -128,7 +128,7 @@ function calculate() {
         `<strong>1.</strong> V<sub>m</sub> = 22,4 л/моль`,
         `<strong>2.</strong> n = ${frac('V', 'V<sub>m</sub>')}`,
         `<strong>3.</strong> n = ${frac(`${formatNumber(volume, 6)} л`, '22,4 л/моль')} = ${formatNumber(amount, 6)} моль`
-      ], 'Нормальні умови: 0 °C і 101,325 кПа. Значення 22,4 л/моль є шкільним округленням.');
+      ], 'Нормальні умови: 0 °C і 101,325 кПа. Використано округлене значення молярного об\'єму 22,4 л/моль.');
     }
 
     if (activeMode === 'v-from-n') {
@@ -165,7 +165,7 @@ function calculate() {
         `<strong>1.</strong> M(${formatFormula(data.formula)}) = ${formatNumber(data.totalMass, 3)} г/моль`,
         `<strong>2.</strong> M(${referenceLabel}) ${reference === 'air' ? '≈' : '='} ${formatNumber(referenceMass, 3)} г/моль`,
         `<strong>3.</strong> D = ${frac(formatNumber(data.totalMass, 3), formatNumber(referenceMass, 3))} = ${formatNumber(density, 5)}`
-      ], reference === 'air' ? 'Для повітря використано шкільне наближення M(повітря) ≈ 29 г/моль.' : 'Відносна густина є безрозмірною величиною.');
+      ], reference === 'air' ? 'Для повітря використано наближене значення M(повітря) ≈ 29 г/моль.' : 'Відносна густина є безрозмірною величиною.');
     }
   } catch (error) {
     showError(error instanceof Error ? error.message : 'Не вдалося виконати газовий розрахунок.');
