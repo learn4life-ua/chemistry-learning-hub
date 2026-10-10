@@ -6,6 +6,7 @@ import './solution-stoichiometry.js?v=1';
 import './purity.js?v=1';
 import './density.js?v=1';
 import './mass-concentration.js?v=1';
+import './empirical-formula.js?v=1';
 import { getFormulaData, formatNumber, formatFormula } from './formula-core.js';
 
 const form = document.querySelector('#molarForm');
