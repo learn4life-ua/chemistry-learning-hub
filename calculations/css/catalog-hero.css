@@ -12,6 +12,7 @@ html[data-theme="dark"] .calc-catalog-page {
 }
 
 .calc-catalog-hero-grid {
+  min-height: 308px;
   display: grid;
   grid-template-columns: minmax(0, 56fr) minmax(0, 44fr);
   align-items: center;
@@ -49,7 +50,7 @@ html[data-theme="dark"] .calc-catalog-page {
   display: block;
   width: 83.7%;
   max-width: 520.8px;
-  max-height: 334.8px;
+  max-height: 308px;
   height: auto;
   object-fit: contain;
   filter: saturate(.85);
@@ -68,7 +69,7 @@ html[data-theme="dark"] .calc-hero-image {
 
 @media (max-width: 680px) {
   .calc-catalog-hero { padding: 24px 0; }
-  .calc-catalog-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .calc-catalog-hero-grid { min-height: 0; grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .calc-hero-visual { width: min(360px, 100%); margin-inline: auto; }
   .calc-hero-image { max-height: 232.5px; }
 }
