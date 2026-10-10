@@ -46,17 +46,40 @@ html[data-theme="dark"] .calc-hero {
   padding:46px 0 42px;
 }
 .calc-hero h1 {
-  max-width:760px;
+  max-width:820px;
   margin-bottom:14px;
   font-size:clamp(2.5rem,5vw,4.8rem);
   line-height:.98;
   letter-spacing:-.055em;
 }
 .calc-lead {
-  max-width:760px;
+  max-width:780px;
   margin:0;
   color:var(--muted);
   font-size:clamp(1rem,1.5vw,1.15rem);
+}
+.calc-tool-nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:22px;
+}
+.calc-tool-nav a {
+  min-height:36px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  color:var(--ink);
+  background:color-mix(in srgb,var(--surface) 86%,transparent);
+  text-decoration:none;
+  font-size:.76rem;
+  font-weight:750;
+}
+.calc-tool-nav a:hover {
+  border-color:color-mix(in srgb,var(--primary) 42%,var(--line));
+  background:var(--primary-soft);
 }
 .formula-orb {
   width:170px;
@@ -76,10 +99,22 @@ html[data-theme="dark"] .calc-hero {
     0 22px 55px rgba(77,61,190,.18),
     0 0 60px rgba(91,157,255,.12);
 }
-.formula-orb span { font-size:3rem; line-height:1; font-weight:800; }
-.formula-orb small { margin-top:7px; font-size:.76rem; opacity:.78; font-weight:700; }
+.formula-orb span { font-size:2.25rem; line-height:1; font-weight:800; }
+.formula-orb small { margin-top:9px; font-size:.68rem; opacity:.78; font-weight:700; text-align:center; }
 
-.calc-workspace-section { padding:56px 0 34px; }
+.calc-workspace-section { padding:56px 0 34px; scroll-margin-top:92px; }
+.tool-section-heading { margin-bottom:18px; }
+.tool-section-heading h2 {
+  margin:0;
+  font-size:clamp(1.8rem,3vw,2.7rem);
+  letter-spacing:-.04em;
+}
+.tool-section-heading > p:last-child:not(.eyebrow) {
+  max-width:720px;
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:.86rem;
+}
 .calc-layout {
   display:grid;
   grid-template-columns:minmax(0,1.15fr) minmax(310px,.55fr);
@@ -125,7 +160,9 @@ html[data-theme="dark"] .calc-hero {
 }
 .formula-label { display:block; margin-bottom:8px; font-size:.82rem; font-weight:750; }
 .formula-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; }
-#formulaInput {
+.formula-input,
+.value-input,
+#amountUnit {
   width:100%;
   min-height:58px;
   padding:0 17px;
@@ -134,12 +171,14 @@ html[data-theme="dark"] .calc-hero {
   color:var(--ink);
   background:var(--surface-muted);
   outline:none;
-  font-size:1.16rem;
+  font-size:1rem;
   font-weight:700;
-  letter-spacing:.01em;
   transition:border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
 }
-#formulaInput:focus {
+.formula-input { font-size:1.16rem; letter-spacing:.01em; }
+.formula-input:focus,
+.value-input:focus,
+#amountUnit:focus {
   border-color:color-mix(in srgb,var(--primary) 60%,var(--line));
   background:var(--surface);
   box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 14%,transparent);
@@ -228,7 +267,7 @@ html[data-theme="dark"] .formula-error { color:#ff9999; }
 }
 .molar-value strong { font-size:clamp(2.5rem,5vw,4.1rem); line-height:.92; letter-spacing:-.055em; color:var(--primary); }
 .molar-value span { padding-bottom:5px; color:var(--muted); font-size:.8rem; font-weight:700; }
-.result-note { margin:12px auto 0; max-width:330px; color:var(--muted); font-size:.75rem; }
+.result-note { margin:12px auto 0; max-width:380px; color:var(--muted); font-size:.75rem; }
 
 .breakdown-section { padding:10px 0 46px; }
 .breakdown-card { padding:28px; }
@@ -261,6 +300,90 @@ html[data-theme="dark"] .formula-error { color:#ff9999; }
   background:var(--primary-soft);
   font-weight:850;
 }
+
+.amount-section {
+  padding:62px 0 68px;
+  scroll-margin-top:92px;
+  background:
+    radial-gradient(circle at 88% 12%, color-mix(in srgb,var(--primary) 7%,transparent), transparent 24%),
+    var(--bg);
+  border-top:1px solid var(--line);
+}
+.amount-mode-switcher {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:24px;
+}
+.amount-mode-switcher button {
+  min-height:44px;
+  padding:0 12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  color:var(--muted);
+  background:var(--surface-muted);
+  font-size:.76rem;
+  font-weight:800;
+}
+.amount-mode-switcher button:hover {
+  border-color:color-mix(in srgb,var(--primary) 40%,var(--line));
+  color:var(--ink);
+}
+.amount-mode-switcher button.is-active {
+  border-color:color-mix(in srgb,var(--primary) 55%,var(--line));
+  color:var(--primary);
+  background:var(--primary-soft);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 5px 15px color-mix(in srgb,var(--primary) 10%,transparent);
+}
+.amount-fields {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);
+  gap:14px;
+}
+.value-unit-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 104px;
+  gap:8px;
+}
+#amountUnit { padding-right:10px; }
+.amount-submit { margin-top:18px; }
+.amount-result-card { align-items:start; }
+.amount-result-card .result-content { width:100%; }
+.amount-final-value {
+  margin:8px 0 18px;
+  display:grid;
+  justify-items:center;
+  gap:5px;
+}
+.amount-final-value strong {
+  color:var(--primary);
+  font-size:clamp(2.15rem,4vw,3.45rem);
+  line-height:1;
+  letter-spacing:-.045em;
+}
+.amount-final-value strong sup { font-size:.48em; }
+.amount-final-value span {
+  color:var(--muted);
+  font-size:.78rem;
+  font-weight:700;
+}
+.solution-steps {
+  display:grid;
+  gap:8px;
+  margin-top:14px;
+  text-align:left;
+}
+.solution-step {
+  padding:11px 12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  color:var(--muted);
+  background:var(--surface-muted);
+  font-size:.78rem;
+  line-height:1.5;
+}
+.solution-step strong { color:var(--primary); }
+.solution-step sup { font-size:.72em; }
 
 .next-tools-section {
   padding:56px 0 68px;
@@ -295,6 +418,7 @@ html[data-theme="dark"] .formula-error { color:#ff9999; }
   .formula-orb { display:none; }
   .calc-layout { grid-template-columns:1fr; }
   .breakdown-heading { grid-template-columns:1fr; gap:10px; }
+  .amount-fields { grid-template-columns:1fr; }
   .next-tools-grid { grid-template-columns:1fr; }
 }
 @media (max-width:650px) {
@@ -313,4 +437,7 @@ html[data-theme="dark"] .formula-error { color:#ff9999; }
   .breakdown-section { padding-bottom:34px; }
   .breakdown-table th,
   .breakdown-table td { padding:11px 9px; }
+  .amount-section { padding:46px 0 52px; }
+  .amount-mode-switcher { grid-template-columns:1fr; }
+  .value-unit-row { grid-template-columns:minmax(0,1fr) 92px; }
 }
