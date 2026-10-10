@@ -1,11 +1,11 @@
 /* Transparent PNG hero illustration. All layout rules live here. */
 .calc-catalog-hero {
-  --hero-accent: #2d2676;
+  --hero-accent: #51366b;
   padding: 24px 0 28px;
 }
 
 html[data-theme="dark"] .calc-catalog-hero {
-  --hero-accent: #b5afe8;
+  --hero-accent: #c4b1df;
 }
 
 .calc-catalog-hero-grid {
@@ -31,8 +31,7 @@ html[data-theme="dark"] .calc-catalog-hero {
   background: var(--hero-accent);
 }
 
-.calc-catalog-hero h1 { color: var(--ink); }
-.calc-hero-title-accent { color: var(--hero-accent); }
+.calc-catalog-hero h1 { color: var(--hero-accent); }
 
 .calc-hero-visual {
   width: 100%;
