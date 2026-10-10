@@ -1,3 +1,4 @@
+import './dilution.js?v=1';
 import { getFormulaData, formatNumber, formatFormula } from './formula-core.js';
 
 const form = document.querySelector('#molarForm');
