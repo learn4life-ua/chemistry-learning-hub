@@ -1,11 +1,14 @@
 /* Transparent PNG hero illustration. All layout rules live here. */
+.calc-catalog-page {
+  --catalog-heading: #1e1b4b;
+}
+
 .calc-catalog-hero {
-  --hero-accent: #493160;
   padding: 24px 0 28px;
 }
 
-html[data-theme="dark"] .calc-catalog-hero {
-  --hero-accent: #c4b1df;
+html[data-theme="dark"] .calc-catalog-page {
+  --catalog-heading: var(--ink);
 }
 
 .calc-catalog-hero-grid {
@@ -28,10 +31,12 @@ html[data-theme="dark"] .calc-catalog-hero {
   flex: 0 0 30px;
   height: 3px;
   border-radius: 2px;
-  background: var(--hero-accent);
+  background: var(--catalog-heading);
 }
 
-.calc-catalog-hero h1 { color: var(--hero-accent); }
+.calc-catalog-page .calc-catalog-hero h1,
+.calc-catalog-page .calc-catalog-heading h2,
+.calc-catalog-page .calc-category-card h3 { color: var(--catalog-heading); }
 
 .calc-hero-visual {
   width: 100%;
