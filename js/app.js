@@ -78,7 +78,7 @@ const atomName = document.querySelector('#heroAtomName');
 const atomPause = document.querySelector('#atomPause');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-let currentAtom = 'O';
+let currentAtom = 'Cl';
 let paused = reducedMotion.matches;
 let animationId = null;
 let animationTime = 0;
