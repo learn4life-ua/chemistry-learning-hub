@@ -52,6 +52,9 @@ function parseGroup(text, startIndex = 0, expectedClosing = null) {
 
     if (char === '(' || char === '[' || char === '{') {
       const nested = parseGroup(text, index + 1, closingFor[char]);
+      if (!nested.counts.size) {
+        throw new Error('Група в дужках не може бути порожньою.');
+      }
       const multiplier = readNumber(text, nested.next);
       mergeCounts(counts, nested.counts, multiplier.value);
       index = multiplier.next;
@@ -90,14 +93,17 @@ function parseGroup(text, startIndex = 0, expectedClosing = null) {
   return { counts, next: index };
 }
 
-function parseSegment(segment) {
+function parseSegment(segment, allowLeadingCoefficient = false) {
   if (!segment) throw new Error('Після крапки у формулі має бути ще одна частина речовини.');
 
   const leading = readNumber(segment, 0);
   const hasLeadingCoefficient = leading.next > 0;
+  if (hasLeadingCoefficient && !allowLeadingCoefficient) {
+    throw new Error('Коефіцієнт перед формулою не потрібен. Введіть формулу однієї речовини без коефіцієнта.');
+  }
+
   const bodyStart = hasLeadingCoefficient ? leading.next : 0;
   const coefficient = hasLeadingCoefficient ? leading.value : 1;
-
   if (bodyStart >= segment.length) throw new Error('Після коефіцієнта має бути хімічна формула.');
 
   const parsed = parseGroup(segment, bodyStart, null);
@@ -119,7 +125,7 @@ export function parseFormula(value) {
 
   const segments = formula.split(/[·.]/);
   const counts = new Map();
-  segments.forEach(segment => mergeCounts(counts, parseSegment(segment)));
+  segments.forEach((segment, index) => mergeCounts(counts, parseSegment(segment, index > 0)));
   return { formula, counts };
 }
 
