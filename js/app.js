@@ -144,17 +144,42 @@ function drawAtom(now) {
   ctx.save();
   ctx.translate(cx, cy);
 
+  const ambientGlow = ctx.createRadialGradient(0, 0, 14, 0, 0, 98);
+  if (isDark) {
+    ambientGlow.addColorStop(0, 'rgba(136, 118, 255, .15)');
+    ambientGlow.addColorStop(.38, 'rgba(71, 190, 255, .085)');
+    ambientGlow.addColorStop(1, 'rgba(71, 190, 255, 0)');
+  } else {
+    ambientGlow.addColorStop(0, 'rgba(116, 98, 255, .12)');
+    ambientGlow.addColorStop(.38, 'rgba(58, 191, 229, .065)');
+    ambientGlow.addColorStop(1, 'rgba(58, 191, 229, 0)');
+  }
+  ctx.beginPath();
+  ctx.arc(0, 0, 96, 0, Math.PI * 2);
+  ctx.fillStyle = ambientGlow;
+  ctx.fill();
+
   atom.shells.forEach((electronCount, shellIndex) => {
-    const radius = 58 + shellIndex * 41;
+    const radius = 60 + shellIndex * 43;
     const rx = radius * 1.18;
     const ry = radius * .58;
     const rotations = [0.06, .58, -.66];
     const rot = rotations[shellIndex] ?? shellIndex * .42;
 
+    ctx.save();
     ctx.beginPath();
     ctx.ellipse(0, 0, rx, ry, rot, 0, Math.PI * 2);
-    ctx.strokeStyle = isDark ? 'rgba(165,146,255,.28)' : 'rgba(104,78,238,.20)';
-    ctx.lineWidth = 1.25;
+    ctx.strokeStyle = isDark ? 'rgba(163, 147, 255, .10)' : 'rgba(94, 79, 205, .08)';
+    ctx.lineWidth = 3.4;
+    ctx.shadowBlur = 9;
+    ctx.shadowColor = isDark ? 'rgba(108, 193, 255, .13)' : 'rgba(107, 87, 238, .10)';
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.ellipse(0, 0, rx, ry, rot, 0, Math.PI * 2);
+    ctx.strokeStyle = isDark ? 'rgba(183, 171, 255, .30)' : 'rgba(102, 85, 220, .21)';
+    ctx.lineWidth = 1.05;
     ctx.stroke();
 
     for (let i = 0; i < electronCount; i += 1) {
@@ -164,11 +189,22 @@ function drawAtom(now) {
       const x = x0 * Math.cos(rot) - y0 * Math.sin(rot);
       const y = x0 * Math.sin(rot) + y0 * Math.cos(rot);
 
+      const electronGradient = ctx.createRadialGradient(x - 1.2, y - 1.4, .5, x, y, 5.2);
+      if (shellIndex % 2) {
+        electronGradient.addColorStop(0, '#b7a9ff');
+        electronGradient.addColorStop(.35, '#8e79ff');
+        electronGradient.addColorStop(1, '#654df0');
+      } else {
+        electronGradient.addColorStop(0, '#c5f6ff');
+        electronGradient.addColorStop(.35, '#67d8ef');
+        electronGradient.addColorStop(1, '#2fa9d3');
+      }
+
       ctx.beginPath();
-      ctx.arc(x, y, 4.9, 0, Math.PI * 2);
-      ctx.fillStyle = shellIndex % 2 ? '#7c5cff' : '#39bfe5';
-      ctx.shadowBlur = 7;
-      ctx.shadowColor = ctx.fillStyle;
+      ctx.arc(x, y, 4.7, 0, Math.PI * 2);
+      ctx.fillStyle = electronGradient;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = shellIndex % 2 ? 'rgba(124, 92, 255, .55)' : 'rgba(57, 191, 229, .55)';
       ctx.fill();
       ctx.shadowBlur = 0;
     }
