@@ -34,8 +34,9 @@
           </div>
 
           <div id="schoolGasReferenceWrap" hidden>
-            <label class="formula-label" for="schoolGasReference">Порівняти з</label>
-            <select id="schoolGasReference" class="formula-input"><option value="H2">H₂</option><option value="O2">O₂</option><option value="N2">N₂</option><option value="air">повітрям</option></select>
+            <label class="formula-label" for="schoolGasReference">Газ-еталон</label>
+            <input class="formula-input" id="schoolGasReference" type="text" autocomplete="off" spellcheck="false" list="schoolGasReferenceSuggestions" placeholder="Наприклад, H2 або повітря">
+            <datalist id="schoolGasReferenceSuggestions"><option value="H2"></option><option value="O2"></option><option value="N2"></option><option value="повітря"></option></datalist>
           </div>
 
           <p class="formula-help" id="schoolGasHelper"></p>
@@ -52,5 +53,5 @@
   </section>
 </main>
 <footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Інтерактивний простір з хімії для навчання, дослідження і самоперевірки</p></div></footer>
-<script src="../../js/theme.js?v=1" defer></script><script type="module" src="../js/school-gases.js?v=1"></script>
+<script src="../../js/theme.js?v=1" defer></script><script type="module" src="../js/school-gases.js?v=2"></script>
 </body></html>
