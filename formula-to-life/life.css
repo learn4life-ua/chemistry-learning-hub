@@ -6,7 +6,7 @@
 .life-back-link { display:inline-flex; align-items:center; min-height:38px; padding:0 14px; border:1px solid rgba(255,255,255,.16); border-radius:12px; background:rgba(255,255,255,.07); color:#fff; text-decoration:none; font-size:.78rem; font-weight:700; white-space:nowrap; }
 .life-back-link:hover { background:rgba(255,255,255,.12); }
 .life-theme-toggle { width:40px; min-width:40px; height:40px; min-height:40px; padding:0; justify-content:center; }
-.life-hero { padding:40px 0 36px; }
+.life-hero { padding:24px 0 28px; }
 .life-eyebrow { display:flex; align-items:center; gap:12px; }
 .life-eyebrow::before { content:""; width:30px; height:3px; border-radius:2px; background:var(--ink); }
 .life-hero h1 { margin:8px 0 16px; font-size:clamp(2.35rem,4.8vw,4.35rem); line-height:1.06; letter-spacing:-.05em; }
@@ -61,3 +61,17 @@
   .life-filters button { font-size:.78rem; padding:9px 12px; }
 }
 @media (prefers-reduced-motion:reduce) { .life-card,.life-filters button { transition:none; } .life-card:hover { transform:none; } }
+
+/* Match the calculations hero layout and illustration treatment. */
+.life-hero-grid { display:grid; grid-template-columns:minmax(0,56fr) minmax(0,44fr); align-items:center; gap:40px; }
+.life-hero-copy { min-width:0; }
+.life-hero-visual { width:100%; min-width:0; display:grid; place-items:center; }
+.life-hero-image { display:block; width:83.7%; max-width:520.8px; max-height:334.8px; height:auto; object-fit:contain; filter:saturate(.85); }
+html[data-theme="dark"] .life-hero-image { filter:saturate(.85) drop-shadow(0 0 16px rgba(115,96,235,.09)); }
+@media (max-width:1120px) { .life-hero-grid { grid-template-columns:minmax(0,58fr) minmax(0,42fr); gap:24px; } }
+@media (max-width:680px) {
+  .life-hero { padding:24px 0; }
+  .life-hero-grid { grid-template-columns:minmax(0,1fr); gap:20px; }
+  .life-hero-visual { width:min(360px,100%); margin-inline:auto; }
+  .life-hero-image { max-height:232.5px; }
+}
