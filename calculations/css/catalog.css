@@ -236,10 +236,8 @@
 /* Category pages */
 .calc-category-hero {
   padding:54px 0 34px;
-  border-bottom:1px solid var(--line);
-  background:
-    radial-gradient(circle at 86% 18%, color-mix(in srgb,#6f5cf5 8%,transparent), transparent 24%),
-    var(--bg);
+  border-bottom:1px solid var(--page-hero-border);
+  background:var(--page-hero-background);
 }
 
 .calc-category-crumbs {
@@ -384,3 +382,7 @@ html[data-theme="dark"] .calc-category-icon {
   .calc-catalog-page .back-link { display:none; }
   .calc-card-ghost { font-size:1.05rem; }
 }
+
+/* Calculator pages share the same separation as the hub and catalog. */
+.calc-category-page { background:var(--page-content-background); }
+.calc-category-page .calc-workspace-section { box-shadow:var(--page-content-shadow); }
