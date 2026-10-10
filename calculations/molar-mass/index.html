@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Молярна маса речовини з покроковим розбором складу формули.">
+  <meta name="color-scheme" content="light dark">
+  <title>Молярна маса | Chemistry Learning Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css?v=1">
+  <link rel="stylesheet" href="../css/calculations.css?v=2">
+  <link rel="stylesheet" href="../css/catalog.css?v=1">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell calc-header-inner">
+      <a class="brand" href="../../"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Хімічні розрахунки</small></span></a>
+      <div class="calc-header-actions"><a class="back-link" href="../">← До калькуляторів</a><button class="theme-toggle theme-toggle-icon" id="themeToggle" type="button" aria-label="Змінити тему"><span class="theme-icon" aria-hidden="true">◐</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="calc-category-hero">
+      <div class="shell">
+        <div class="calc-category-crumbs"><a href="../../">Хаб</a><span>›</span><a href="../">Хімічні розрахунки</a><span>›</span><span>Молярна маса</span></div>
+        <h1>Молярна маса і склад речовини</h1>
+        <p>Введіть хімічну формулу. Калькулятор визначить молярну масу та покаже внесок кожного елемента.</p>
+      </div>
+    </section>
+
+    <section class="calc-workspace-section" id="molar-mass">
+      <div class="shell calc-layout">
+        <article class="calc-card">
+          <div class="calc-card-head"><div><p class="calc-kicker">Хімічна формула</p><h2>Знайдіть молярну масу</h2></div><span class="calc-badge">M</span></div>
+          <form id="molarForm" novalidate>
+            <label class="formula-label" for="formulaInput">Формула речовини</label>
+            <div class="formula-row">
+              <input class="formula-input" id="formulaInput" type="text" autocomplete="off" spellcheck="false" placeholder="Наприклад, Ca(OH)2" aria-describedby="formulaHelp formulaError">
+              <button class="calc-button" type="submit">Обчислити</button>
+            </div>
+            <p id="formulaHelp" class="formula-help">Підтримуються дужки, вкладені групи та кристалогідрати, наприклад CuSO4·5H2O.</p>
+            <p id="formulaError" class="formula-error" role="alert" hidden></p>
+          </form>
+          <div class="example-list" aria-label="Приклади формул"><span>Спробуйте:</span><button type="button" data-formula="H2O">H₂O</button><button type="button" data-formula="Ca(OH)2">Ca(OH)₂</button><button type="button" data-formula="Al2(SO4)3">Al₂(SO₄)₃</button><button type="button" data-formula="CuSO4·5H2O">CuSO₄·5H₂O</button></div>
+        </article>
+
+        <aside class="result-card" aria-live="polite">
+          <div class="result-empty" id="resultEmpty"><div class="result-icon">Σ</div><h2>Результат з'явиться тут</h2><p>Введіть формулу або оберіть готовий приклад.</p></div>
+          <div class="result-content" id="resultContent" hidden><p class="calc-kicker">Результат</p><div class="result-formula" id="resultFormula"></div><div class="molar-value"><strong id="molarMass">0</strong><span>г/моль</span></div><p class="result-note" id="resultNote"></p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="breakdown-section" id="breakdownSection" hidden>
+      <div class="shell breakdown-card">
+        <div class="breakdown-heading"><div><p class="eyebrow">Як отримано результат</p><h2>Склад і внесок елементів</h2></div><p>Молярна маса дорівнює сумі внесків усіх атомів у формулі.</p></div>
+        <div class="breakdown-table-wrap"><table class="breakdown-table"><thead><tr><th>Елемент</th><th>A<sub>r</sub></th><th>Кількість атомів</th><th>Внесок</th></tr></thead><tbody id="breakdownBody"></tbody></table></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Шкільні хімічні розрахунки з поясненням.</p></div></footer>
+  <script src="../../js/theme.js?v=1" defer></script>
+  <script type="module" src="../js/molar-mass.js?v=3"></script>
+</body>
+</html>
