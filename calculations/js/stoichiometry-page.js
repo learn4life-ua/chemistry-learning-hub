@@ -4,6 +4,7 @@ import './limiting-reagent.js?v=1';
 import './solution-stoichiometry.js?v=1';
 import './purity.js?v=1';
 import { setupCalculationTabs } from './category-tabs.js?v=1';
+import { cleanCategoryCopy } from './category-copy.js?v=1';
 
 const fraction = (top, bottom) => `<span class="math-frac"><span>${top}</span><span>${bottom}</span></span>`;
 
@@ -36,7 +37,7 @@ function normalizeRenderedSteps() {
 
 function applyMathNotation() {
   const limitingNote = document.querySelector('.limiting-note-box');
-  if (limitingNote) limitingNote.innerHTML = `<strong>Метод:</strong> для кожного реагенту порівнюємо ${fraction('n', 'ν')}. Найменше значення відповідає лімітуючому реагенту.`;
+  if (limitingNote) limitingNote.innerHTML = `Для кожного реагенту порівнюємо ${fraction('n', 'ν')}. Найменше значення відповідає лімітуючому реагенту.`;
 
   const yieldHelper = document.querySelector('#yieldHelper');
   const yieldMode = activeMode('[data-yield-mode]', 'data-yield-mode');
@@ -57,13 +58,14 @@ function applyMathNotation() {
   const solutionHelper = document.querySelector('#solutionHelper');
   const solutionMode = activeMode('[data-solution-mode]', 'data-solution-mode');
   if (solutionHelper) {
-    if (solutionMode === 'product') solutionHelper.innerHTML = 'Спочатку n = cV, далі використовуйте коефіцієнти зрівняного рівняння.';
-    if (solutionMode === 'volume') solutionHelper.innerHTML = `Після стехіометричного переходу об'єм другого розчину: V₂ = ${fraction('n₂', 'c₂')}.`;
+    if (solutionMode === 'product') solutionHelper.innerHTML = 'Спочатку n = cV, потім використовуйте коефіцієнти зрівняного рівняння.';
+    if (solutionMode === 'volume') solutionHelper.innerHTML = `V₂ = ${fraction('n₂', 'c₂')}.`;
   }
 
   normalizeRenderedSteps();
 }
 
+cleanCategoryCopy('Рівняння реакцій');
 setupCalculationTabs();
 applyMathNotation();
 
