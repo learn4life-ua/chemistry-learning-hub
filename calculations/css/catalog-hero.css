@@ -1,169 +1,100 @@
 .calc-hero-visual {
   position:relative;
-  min-height:220px;
-  display:grid;
-  place-items:center;
-  isolation:isolate;
-  max-width:560px;
+  width:min(620px,100%);
+  min-height:230px;
   margin-inline:auto;
-}
-
-.calc-hero-visual::before,
-.calc-hero-visual::after {
-  content:"";
-  position:absolute;
-  left:50%;
-  top:51%;
-  width:420px;
-  height:132px;
-  border:1px dashed color-mix(in srgb,#7b86e8 18%,transparent);
-  border-radius:50%;
-  transform:translate(-50%,-50%) rotate(-6deg);
-  z-index:-2;
-}
-
-.calc-hero-visual::after {
-  width:340px;
-  height:104px;
-  transform:translate(-50%,-50%) rotate(17deg);
-  border-color:color-mix(in srgb,#7cc8ef 18%,transparent);
-}
-
-.calc-hero-flask {
-  width:122px;
-  height:auto;
-  z-index:2;
-  transform:translateY(7px);
-  filter:
-    drop-shadow(0 18px 20px color-mix(in srgb,#6c74dc 17%,transparent))
-    drop-shadow(0 0 26px color-mix(in srgb,#6cbdf0 10%,transparent));
-}
-
-.formula-chip {
-  position:absolute;
-  min-width:48px;
-  height:48px;
   display:grid;
   place-items:center;
-  padding:0 12px;
-  border:1px solid rgba(122,118,226,.12);
-  border-radius:14px;
-  color:#6650dc;
-  background:rgba(244,240,255,.72);
-  box-shadow:
-    0 8px 20px rgba(67,70,142,.08),
-    inset 0 1px 0 rgba(255,255,255,.78);
-  backdrop-filter:blur(8px);
-  font-size:1.12rem;
-  font-weight:850;
-  z-index:3;
 }
 
-.chip-m {
-  left:14%;
-  top:13%;
-  min-width:58px;
-  height:58px;
-  font-size:1.35rem;
-  background:rgba(239,232,255,.78);
+.hero-chem-illustration {
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:250px;
+  overflow:visible;
+  filter:drop-shadow(0 18px 28px color-mix(in srgb,#6872d8 11%,transparent));
 }
 
-.chip-n {
-  left:6%;
-  top:54%;
-  min-width:44px;
-  height:44px;
-  font-size:1rem;
-  background:rgba(238,239,255,.76);
+.hero-orbit {
+  fill:none;
+  stroke:#aebcf3;
+  stroke-width:1.2;
+  stroke-dasharray:5 7;
+  opacity:.34;
 }
 
-.chip-v {
-  right:24%;
-  top:7%;
-  color:#2467b8;
-  background:rgba(225,245,255,.76);
+.hero-molecule-line {
+  stroke:#aabbe9;
+  stroke-width:3;
+  stroke-linecap:round;
+  opacity:.55;
 }
 
-.chip-w {
-  right:19%;
-  top:43%;
-  min-width:43px;
-  height:43px;
-  color:#7447cc;
-  background:rgba(246,235,255,.78);
+.hero-molecule-dot {
+  fill:#aac2f5;
+  opacity:.72;
 }
 
-.chip-c {
-  right:9%;
-  bottom:14%;
-  min-width:52px;
-  height:52px;
-  color:#13886c;
-  background:rgba(218,249,237,.78);
+.hero-chip {
+  stroke-width:1;
 }
 
-.chip-ph {
-  right:0;
-  top:31%;
-  min-width:47px;
-  height:47px;
-  color:#5b58c8;
-  background:rgba(235,236,255,.78);
-  font-size:.95rem;
+.hero-chip-purple { fill:#f0ebff; stroke:#ddd2ff; }
+.hero-chip-blue { fill:#e5f4ff; stroke:#cae7fb; }
+.hero-chip-green { fill:#ddf8ef; stroke:#c1eadc; }
+.hero-chip-lilac { fill:#f5edff; stroke:#e8d9fb; }
+.hero-chip-soft { fill:#eef0ff; stroke:#dde0fb; }
+
+.hero-chip-text {
+  font-family:Inter,system-ui,sans-serif;
+  font-weight:800;
+  text-anchor:middle;
+  dominant-baseline:middle;
+  fill:#6650dc;
 }
 
-.molecule {
-  opacity:.20;
+.hero-chip-text.blue { fill:#2168bb; }
+.hero-chip-text.green { fill:#11846c; }
+.hero-chip-text.small { font-size:18px; }
+.hero-chip-text.medium { font-size:22px; }
+.hero-chip-text.large { font-size:27px; }
+
+.hero-flask-glass {
+  fill:url(#heroFlaskGlass);
+  stroke:#8ca9e8;
+  stroke-width:4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
-.molecule-a {
-  left:1%;
-  top:10%;
-  transform:scale(.68);
-}
+.hero-flask-liquid { fill:url(#heroFlaskLiquid); opacity:.92; }
+.hero-flask-shine { fill:#fff; opacity:.72; }
+.hero-flask-rim { stroke:#fff; stroke-width:4; stroke-linecap:round; opacity:.7; }
 
-.molecule-b {
-  right:1%;
-  bottom:2%;
-  transform:scale(.62) rotate(18deg);
-}
-
-.calc-hero-visual::selection,
-.calc-hero-visual *::selection {
-  background:transparent;
-}
-
-html[data-theme="dark"] .formula-chip {
-  border-color:rgba(155,145,255,.12);
-  background:rgba(30,36,66,.76);
-  box-shadow:0 8px 20px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.05);
-}
-
-html[data-theme="dark"] .chip-v { color:#79baff; background:rgba(22,47,75,.74); }
-html[data-theme="dark"] .chip-c { color:#67ddb9; background:rgba(19,58,49,.74); }
-html[data-theme="dark"] .chip-ph { color:#aaa4ff; background:rgba(38,39,77,.76); }
+html[data-theme="dark"] .hero-orbit { stroke:#6979b8; opacity:.32; }
+html[data-theme="dark"] .hero-molecule-line { stroke:#7285bd; opacity:.5; }
+html[data-theme="dark"] .hero-molecule-dot { fill:#7085bd; opacity:.7; }
+html[data-theme="dark"] .hero-chip-purple { fill:#2c2750; stroke:#433a73; }
+html[data-theme="dark"] .hero-chip-blue { fill:#1b344d; stroke:#285175; }
+html[data-theme="dark"] .hero-chip-green { fill:#173d34; stroke:#225f50; }
+html[data-theme="dark"] .hero-chip-lilac { fill:#30264b; stroke:#4a396c; }
+html[data-theme="dark"] .hero-chip-soft { fill:#252a4d; stroke:#3b426d; }
+html[data-theme="dark"] .hero-chip-text { fill:#a99cff; }
+html[data-theme="dark"] .hero-chip-text.blue { fill:#83bdff; }
+html[data-theme="dark"] .hero-chip-text.green { fill:#70d9bd; }
 
 @media (max-width:850px) {
-  .calc-hero-visual { min-height:205px; max-width:500px; }
+  .calc-hero-visual { width:min(560px,100%); min-height:210px; }
+  .hero-chem-illustration { max-height:225px; }
 }
 
 @media (max-width:680px) {
-  .calc-hero-visual { min-height:180px; max-width:420px; }
-  .calc-hero-flask { width:108px; }
-  .calc-hero-visual::before { width:340px; height:108px; }
-  .calc-hero-visual::after { width:280px; height:86px; }
-  .formula-chip { transform:scale(.92); }
+  .calc-hero-visual { width:min(500px,100%); min-height:180px; }
+  .hero-chem-illustration { max-height:195px; }
 }
 
 @media (max-width:430px) {
-  .calc-hero-visual { min-height:155px; }
-  .calc-hero-flask { width:92px; }
-  .calc-hero-visual::before { width:285px; height:94px; }
-  .calc-hero-visual::after { width:230px; height:72px; }
-  .chip-m { left:10%; }
-  .chip-n { left:0; }
-  .chip-v { right:22%; }
-  .chip-w { right:16%; }
-  .chip-c { right:7%; }
-  .chip-ph { right:-2%; }
+  .calc-hero-visual { min-height:150px; }
+  .hero-chem-illustration { max-height:165px; }
 }
