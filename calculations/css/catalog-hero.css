@@ -72,3 +72,12 @@ html[data-theme="dark"] .calc-hero-image {
   .calc-hero-visual { width: min(360px, 100%); margin-inline: auto; }
   .calc-hero-image { max-height: 232.5px; }
 }
+
+.calc-catalog-hero {
+  background: var(--page-hero-background);
+  border-bottom-color: var(--page-hero-border);
+}
+.calc-catalog-section {
+  background: var(--page-content-background);
+  box-shadow: var(--page-content-shadow);
+}
