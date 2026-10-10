@@ -11,7 +11,7 @@ const primaryLabel = document.querySelector('#schoolGasPrimaryLabel');
 const primaryInput = document.querySelector('#schoolGasPrimaryInput');
 const primaryUnit = document.querySelector('#schoolGasPrimaryUnit');
 const referenceWrap = document.querySelector('#schoolGasReferenceWrap');
-const referenceSelect = document.querySelector('#schoolGasReference');
+const referenceInput = document.querySelector('#schoolGasReference');
 const helper = document.querySelector('#schoolGasHelper');
 const errorBox = document.querySelector('#schoolGasError');
 const resultEmpty = document.querySelector('#schoolGasResultEmpty');
@@ -81,6 +81,27 @@ function showError(message) {
   resultEmpty.hidden = false;
 }
 
+function getReferenceGas(value) {
+  const raw = String(value ?? '').trim();
+  if (!raw) throw new Error('Введіть формулу газу-еталона або «повітря».');
+
+  const normalized = raw.toLowerCase();
+  if (['air', 'повітря', 'повітрям'].includes(normalized)) {
+    return {
+      mass: AIR_MOLAR_MASS,
+      label: 'повітря',
+      approximate: true
+    };
+  }
+
+  const data = getFormulaData(raw);
+  return {
+    mass: data.totalMass,
+    label: formatFormula(data.formula),
+    approximate: data.hasApproximateMass
+  };
+}
+
 function setMode(mode) {
   if (!modes[mode]) return;
   activeMode = mode;
@@ -100,7 +121,7 @@ function setMode(mode) {
   if (mode === 'n-from-v') helper.innerHTML = `За нормальних умов V<sub>m</sub> = 22,4 л/моль, тому n = ${frac('V', 'V<sub>m</sub>')}.`;
   if (mode === 'v-from-n') helper.innerHTML = 'За нормальних умов V = nV<sub>m</sub>, де V<sub>m</sub> = 22,4 л/моль.';
   if (mode === 'm-from-v') helper.innerHTML = `Спочатку n = ${frac('V', 'V<sub>m</sub>')}, потім m = nM.`;
-  if (mode === 'density') helper.innerHTML = `D = ${frac('M(газу)', 'M(еталона)')}.`;
+  if (mode === 'density') helper.innerHTML = `D = ${frac('M(газу)', 'M(еталона)')}. Еталоном може бути будь-який газ із коректною формулою або повітря.`;
 
   clearError();
   resultContent.hidden = true;
@@ -157,15 +178,17 @@ function calculate() {
 
     if (activeMode === 'density') {
       const data = getFormulaData(formulaInput.value);
-      const reference = referenceSelect.value;
-      const referenceMass = reference === 'air' ? AIR_MOLAR_MASS : getFormulaData(reference).totalMass;
-      const density = data.totalMass / referenceMass;
-      const referenceLabel = reference === 'air' ? 'повітря' : formatFormula(reference);
+      const reference = getReferenceGas(referenceInput.value);
+      const density = data.totalMass / reference.mass;
       render('Відносна густина', density, '', formatFormula(data.formula), [
         `<strong>1.</strong> M(${formatFormula(data.formula)}) = ${formatNumber(data.totalMass, 3)} г/моль`,
-        `<strong>2.</strong> M(${referenceLabel}) ${reference === 'air' ? '≈' : '='} ${formatNumber(referenceMass, 3)} г/моль`,
-        `<strong>3.</strong> D = ${frac(formatNumber(data.totalMass, 3), formatNumber(referenceMass, 3))} = ${formatNumber(density, 5)}`
-      ], reference === 'air' ? 'Для повітря використано наближене значення M(повітря) ≈ 29 г/моль.' : 'Відносна густина є безрозмірною величиною.');
+        `<strong>2.</strong> M(${reference.label}) ${reference.label === 'повітря' ? '≈' : '='} ${formatNumber(reference.mass, 3)} г/моль`,
+        `<strong>3.</strong> D = ${frac(formatNumber(data.totalMass, 3), formatNumber(reference.mass, 3))} = ${formatNumber(density, 5)}`
+      ], reference.label === 'повітря'
+        ? 'Для повітря використано наближене значення M(повітря) ≈ 29 г/моль.'
+        : reference.approximate
+          ? 'Для газу-еталона використано наближене значення молярної маси.'
+          : 'Відносна густина є безрозмірною величиною.');
     }
   } catch (error) {
     showError(error instanceof Error ? error.message : 'Не вдалося виконати газовий розрахунок.');
@@ -174,7 +197,7 @@ function calculate() {
 
 modeButtons.forEach(button => button.addEventListener('click', () => setMode(button.dataset.schoolGasMode)));
 form?.addEventListener('submit', event => { event.preventDefault(); calculate(); });
-[formulaInput, primaryInput].forEach(input => input?.addEventListener('input', clearError));
+[formulaInput, primaryInput, referenceInput].forEach(input => input?.addEventListener('input', clearError));
 
 document.querySelectorAll('[data-school-gas-example]').forEach(button => {
   button.addEventListener('click', () => {
@@ -182,11 +205,12 @@ document.querySelectorAll('[data-school-gas-example]').forEach(button => {
     formulaInput.value = button.dataset.formula || '';
     primaryInput.value = button.dataset.value || '';
     if (button.dataset.unit && [...primaryUnit.options].some(option => option.value === button.dataset.unit)) primaryUnit.value = button.dataset.unit;
-    if (button.dataset.reference) referenceSelect.value = button.dataset.reference;
+    if (button.dataset.reference) referenceInput.value = button.dataset.reference;
     calculate();
   });
 });
 
+referenceInput.value = 'H2';
 setMode(activeMode);
 primaryInput.value = '22,4';
 calculate();
