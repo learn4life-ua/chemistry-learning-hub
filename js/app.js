@@ -1,7 +1,4 @@
 const root = document.documentElement;
-const themeToggle = document.querySelector('#themeToggle');
-const themeLabel = themeToggle?.querySelector('.theme-label');
-const themeIcon = themeToggle?.querySelector('.theme-icon');
 const previewDialog = document.querySelector('#previewDialog');
 const previewContent = document.querySelector('#previewContent');
 
@@ -32,28 +29,6 @@ const previews = {
     items: ['Періодичний закон', 'електронна будова', 'ступені окиснення', 'класи сполук', 'розчини та pH']
   }
 };
-
-function resolveInitialTheme() {
-  const saved = localStorage.getItem('chemistry-hub-theme');
-  if (saved === 'light' || saved === 'dark') return saved;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-
-function applyTheme(theme) {
-  root.dataset.theme = theme;
-  const isDark = theme === 'dark';
-  themeToggle?.setAttribute('aria-pressed', String(isDark));
-  if (themeLabel) themeLabel.textContent = isDark ? 'Світла тема' : 'Темна тема';
-  if (themeIcon) themeIcon.textContent = isDark ? '☀' : '◐';
-}
-
-applyTheme(resolveInitialTheme());
-
-themeToggle?.addEventListener('click', () => {
-  const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('chemistry-hub-theme', next);
-  applyTheme(next);
-});
 
 function openPreview(key) {
   const preview = previews[key];

@@ -1,0 +1,75 @@
+/* Hub integration; category colours and the original table layout are preserved. */
+body { background: var(--bg); }
+.shell { width: min(1480px, calc(100% - 32px)); }
+.site-header {
+  background: radial-gradient(circle at 10% 15%, rgba(130,99,255,.38), transparent 24%),
+    radial-gradient(circle at 80% 0%, rgba(78,154,255,.18), transparent 25%),
+    linear-gradient(110deg, var(--header-1), var(--header-2) 48%, var(--header-3));
+}
+.header-inner { min-height: 82px; flex-direction: row; padding: 10px 0; gap: 16px; }
+.brand { justify-content: start; }
+.brand-mark {
+  width: 50px; height: 50px; flex: 0 0 50px; border-radius: 16px; font-size: 1.65rem; color: #fff;
+  background: linear-gradient(135deg, #8d6cff, #42b8ff);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.24), 0 8px 22px rgba(15,15,67,.25);
+}
+.brand-text strong { font-size: 1.12rem; letter-spacing: -.02em; }
+.brand-text small { font-size: .78rem; color: rgba(255,255,255,.70); margin-top: 5px; }
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.hub-back { color: #fff; text-decoration: none; font-size: .85rem; white-space: nowrap; }
+.hub-back:hover { text-decoration: underline; }
+.theme-toggle { width: 42px; height: 42px; padding: 0; border: 1px solid rgba(255,255,255,.16); border-radius: 12px; color: #fff; background: rgba(255,255,255,.08); }
+.theme-toggle:hover { background: rgba(255,255,255,.14); }
+.module-navigation { padding-bottom: 12px; }
+.mode-nav { display: flex; width: 100%; flex-wrap: wrap; gap: 8px; }
+.mode-button { min-height: 40px; font-size: .85rem; }
+.element-panel { top: 152px; max-height: calc(100vh - 168px); }
+.guide-side { top: 152px; }
+.guide-card { scroll-margin-top: 160px; }
+.periodic-scroll { overflow-x: auto; min-width: 0; }
+.periodic-table { max-width: none; }
+.control-bar { grid-template-columns: minmax(220px, 1fr) auto auto; }
+.filter-row { flex-wrap: wrap; }
+.dashboard-card, .guide-stat, .guide-card, .guide-side-card, .guide-nav a { background: var(--surface); border-color: var(--line); }
+.search-box input, .filter-button, .filter-select select, .reset-button { background: var(--surface-muted); color: var(--ink); border-color: var(--line); }
+.filter-button.is-active { background: linear-gradient(135deg, #7752f7, #5b3df5); color: #fff; }
+.group-label, .period-label, .series-label, .search-icon, .detail-row strong, .oxidation-value,
+.fact-title, .starter-picks button, .guide-hero h1, .guide-card summary, .guide-mini-card strong, .guide-side-card h2 { color: var(--ink); }
+.detail-alt, .atomic-mass, .detail-row-label, .detail-stack-label, .outer-electrons, .detail-muted,
+.fact-box p, .starter-hint, .starter-picks span, .empty-state-start p, .guide-hero p, .guide-stat span,
+.guide-nav a, .guide-card-body, .guide-mini-card span, .guide-side-card p, .atom-model-meta { color: var(--muted); }
+.category-badge, .shell-chip, .starter-picks button, .quick-actions button, .guide-mini-card, .fact-box { background: var(--surface-muted); border-color: var(--line); }
+.category-badge, .shell-chip { color: var(--ink); }
+.detail-head-rich, .detail-row, .detail-stack, .starter-hint { border-color: var(--line); }
+.electron-config, .guide-formula, .guide-note, .guide-card-icon { background: var(--primary-soft); color: var(--primary); border-color: var(--line); }
+.guide-kicker, .guide-stat strong, .guide-card summary::after, .guide-nav a:hover { color: var(--primary); }
+.guide-card[open] summary { background: var(--surface-muted); border-color: var(--line); }
+.guide-hero { background: radial-gradient(circle at 90% 18%, rgba(99,102,241,.12), transparent 28%), linear-gradient(135deg, var(--surface), var(--surface-soft)); border-color: var(--line); }
+.atom-model-wrap { background: radial-gradient(circle at 50% 45%, rgba(99,102,241,.08), transparent 48%), linear-gradient(180deg, var(--surface), var(--surface-soft)); border-color: var(--line); box-shadow: var(--shadow-soft); }
+.atom-toggle { background: var(--surface); color: var(--primary); border-color: var(--line); }
+.atom-toggle:hover, .starter-picks button:hover, .guide-nav a:hover { background: var(--primary-soft); }
+.element, .detail-symbol { color: #171a32; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.site-footer { border-top: 1px solid var(--line); margin-top: 16px; padding: 20px 0; font-size: .8rem; }
+.site-footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
+@media (max-width: 1250px) {
+  .control-bar { grid-template-columns: 1fr auto; }
+  .control-search { grid-column: 1 / -1; }
+}
+@media (max-width: 1050px) {
+  .element-panel { position: static; max-height: none; }
+  .control-bar { grid-template-columns: 1fr; }
+  .control-search { grid-column: auto; }
+}
+@media (max-width: 820px) {
+  .guide-side { position: static; }
+}
+@media (max-width: 600px) {
+  .shell { width: calc(100% - 24px); }
+  .header-inner { flex-wrap: wrap; }
+  .brand-text strong { font-size: .98rem; }
+  .brand-mark { width: 40px; height: 40px; flex-basis: 40px; }
+  .header-actions { width: 100%; justify-content: space-between; }
+  .mode-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; }
+  .periodic-scroll { margin-inline: 0; padding-inline: 4px; }
+}

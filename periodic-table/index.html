@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Інтерактивна періодична система хімічних елементів і тренажер для навчання.">
+  <title>Періодична система | Chemistry Learning Hub</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/refinements.css?v=7">
+  <link rel="stylesheet" href="css/panel-v8.css?v=9">
+  <link rel="stylesheet" href="css/guide-v10.css?v=10">
+  <link rel="stylesheet" href="../css/theme.css?v=1">
+  <link rel="stylesheet" href="css/hub.css?v=1">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../" aria-label="Chemistry Learning Hub - головна">
+        <span class="brand-mark">⚛</span>
+        <span class="brand-text">
+          <strong>Chemistry Learning Hub</strong>
+          <small>Періодична система</small>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <a class="hub-back" href="../">← До хабу</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false" title="Змінити тему"><span class="theme-icon" aria-hidden="true">◐</span></button>
+      </div>
+    </div>
+    <div class="shell module-navigation">
+      <nav class="mode-nav" aria-label="Режими роботи">
+        <button class="mode-button is-active" type="button" data-view="table">▦ <span>Таблиця</span></button>
+        <button class="mode-button" type="button" data-view="explore">⌕ <span>Досліджуй</span></button>
+        <button class="mode-button" type="button" data-view="trainer">◆ <span>Тренажер</span></button>
+        <button class="mode-button" type="button" data-view="guide">▤ <span>Довідник</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="app-shell shell" data-view-panel="table">
+      <div class="control-bar">
+        <label class="search-box control-search">
+          <span class="sr-only">Пошук елемента</span>
+          <span class="search-icon">⌕</span>
+          <input id="elementSearch" type="search" autocomplete="off" placeholder="Пошук елемента: назва, символ або номер...">
+        </label>
+
+        <div class="filter-row" aria-label="Фільтри таблиці">
+          <button class="filter-button is-active" type="button" data-kind="type" data-value="all">Усі елементи</button>
+          <button class="filter-button" type="button" data-kind="type" data-value="metals">Метали</button>
+          <button class="filter-button" type="button" data-kind="type" data-value="nonmetals">Неметали</button>
+
+          <label class="filter-select">
+            <span class="sr-only">Група</span>
+            <select id="groupFilter" autocomplete="off"><option value="">Групи</option></select>
+          </label>
+          <label class="filter-select">
+            <span class="sr-only">Період</span>
+            <select id="periodFilter" autocomplete="off">
+              <option value="">Періоди</option>
+              <option value="1">1 період</option><option value="2">2 період</option><option value="3">3 період</option>
+              <option value="4">4 період</option><option value="5">5 період</option><option value="6">6 період</option><option value="7">7 період</option>
+            </select>
+          </label>
+          <label class="filter-select">
+            <span class="sr-only">Електронний блок</span>
+            <select id="blockFilter" autocomplete="off">
+              <option value="">Електронні блоки</option>
+              <option value="s">s-блок</option><option value="p">p-блок</option><option value="d">d-блок</option><option value="f">f-блок</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="clearSelection" class="reset-button" type="button">↻ <span>Скинути</span></button>
+      </div>
+
+      <div class="table-layout table-layout-main">
+        <div class="periodic-scroll" tabindex="0" aria-label="Періодична система з горизонтальним прокручуванням на малих екранах">
+          <div id="periodicTable" class="periodic-table" aria-live="polite"></div>
+        </div>
+
+        <aside id="elementPanel" class="element-panel" aria-live="polite">
+          <div class="empty-state empty-state-start">
+            <div class="starter-atom" aria-hidden="true">
+              <span class="starter-orbit orbit-one"><i></i></span>
+              <span class="starter-orbit orbit-two"><i></i></span>
+              <span class="starter-orbit orbit-three"><i></i></span>
+              <span class="starter-core">⚛</span>
+            </div>
+            <p class="starter-kicker">Почніть дослідження</p>
+            <h3>Оберіть елемент</h3>
+            <p>Натисніть на клітинку таблиці або спробуйте один із прикладів.</p>
+            <div class="starter-picks" aria-hidden="true">
+              <button type="button"><strong>C</strong><span>Карбон</span></button>
+              <button type="button"><strong>O</strong><span>Оксиген</span></button>
+              <button type="button"><strong>Fe</strong><span>Ферум</span></button>
+            </div>
+            <small class="starter-hint">Електронна будова, ступені окиснення, цікавий факт і динамічна модель атома.</small>
+          </div>
+        </aside>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="dashboard-card categories-card">
+          <h2>Категорії елементів</h2>
+          <div class="legend legend-dashboard" id="legend" aria-label="Умовні позначення"></div>
+        </section>
+        <section class="dashboard-card quick-card">
+          <h2>Швидкі дії</h2>
+          <div class="quick-actions">
+            <button type="button" data-focus-search><strong>⌕</strong><span>Пошук</span></button>
+            <button type="button" data-jump-filter="group"><strong>◉</strong><span>Групи</span></button>
+            <button type="button" data-jump-filter="period"><strong>▰</strong><span>Періоди</span></button>
+            <button type="button" data-jump-filter="block"><strong>▦</strong><span>Електронні блоки</span></button>
+          </div>
+        </section>
+        <section class="dashboard-card modes-card">
+          <h2>Режими роботи</h2>
+          <div class="mode-cards">
+            <button type="button" data-open-view="explore"><strong>◉ Досліджуй</strong><span>Відкривай закономірності</span></button>
+            <button type="button" data-open-view="trainer"><strong>◆ Тренажер</strong><span>Перевіряй і закріплюй знання</span></button>
+            <button type="button" data-open-view="guide"><strong>▤ Довідник</strong><span>Короткі відомості про елементи</span></button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="workspace shell is-hidden" data-view-panel="explore">
+      <div class="section-heading"><div><p class="eyebrow">Режим дослідження</p><h1 class="table-title">Досліджуй Періодичну систему</h1></div></div>
+      <div class="explore-card"><p>Тут додамо підсвічування груп, періодів, родин елементів, електронних блоків і закономірностей зміни властивостей.</p></div>
+    </section>
+
+    <section class="workspace shell is-hidden" data-view-panel="trainer">
+      <div class="section-heading"><div><p class="eyebrow">Тренажер</p><h1 class="table-title">Тренуйтеся без оцінок і реєстрації</h1></div></div>
+      <div id="trainerApp" class="trainer-card"><p>Наступним етапом тут з’являться випадкові навчальні завдання з миттєвим поясненням відповіді.</p></div>
+    </section>
+
+    <section class="workspace shell guide-workspace is-hidden" data-view-panel="guide">
+      <div class="guide-hero">
+        <div>
+          <p class="guide-kicker">Коротко і по суті</p>
+          <h1>Довідник з Періодичної системи</h1>
+          <p>Ключові поняття для роботи з таблицею: закон, групи й періоди, електронні блоки, конфігурації, ступені окиснення та категорії елементів.</p>
+        </div>
+        <div class="guide-hero-badge" aria-label="Структура Періодичної системи">
+          <div class="guide-stat"><strong>118</strong><span>елементів</span></div>
+          <div class="guide-stat"><strong>18</strong><span>груп</span></div>
+          <div class="guide-stat"><strong>7</strong><span>періодів</span></div>
+        </div>
+      </div>
+
+      <nav class="guide-nav" aria-label="Навігація довідником">
+        <a href="#guide-law">Періодичний закон</a>
+        <a href="#guide-groups">Групи й періоди</a>
+        <a href="#guide-blocks">Електронні блоки</a>
+        <a href="#guide-config">Електронна конфігурація</a>
+        <a href="#guide-oxidation">Ступені окиснення</a>
+        <a href="#guide-categories">Категорії</a>
+      </nav>
+
+      <div class="guide-main-grid">
+        <div class="guide-accordion">
+          <details class="guide-card" id="guide-law" open>
+            <summary><span class="guide-card-icon">∿</span>Періодичний закон</summary>
+            <div class="guide-card-body">
+              <p><strong>Властивості хімічних елементів і утворених ними речовин закономірно змінюються зі зростанням атомного номера.</strong> Атомний номер дорівнює заряду ядра і кількості протонів.</p>
+              <div class="guide-note">У сучасній Періодичній системі елементи розташовані за зростанням атомного номера, а не атомної маси.</div>
+            </div>
+          </details>
+
+          <details class="guide-card" id="guide-groups">
+            <summary><span class="guide-card-icon">▦</span>Групи й періоди</summary>
+            <div class="guide-card-body">
+              <p><strong>Періоди</strong> - горизонтальні ряди. Номер періоду пов'язаний із найвищим зайнятим енергетичним рівнем атома в основному стані.</p>
+              <p><strong>Групи</strong> - вертикальні стовпці. Елементи однієї групи часто мають подібні хімічні властивості, особливо для s- і p-елементів.</p>
+              <div class="guide-mini-grid">
+                <div class="guide-mini-card"><strong>1 група</strong><span>Лужні метали, крім Гідрогену.</span></div>
+                <div class="guide-mini-card"><strong>2 група</strong><span>Лужноземельні метали.</span></div>
+                <div class="guide-mini-card"><strong>17 група</strong><span>Галогени.</span></div>
+                <div class="guide-mini-card"><strong>18 група</strong><span>Благородні гази.</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="guide-card" id="guide-blocks">
+            <summary><span class="guide-card-icon">◫</span>Електронні блоки s, p, d, f</summary>
+            <div class="guide-card-body">
+              <p>Блок визначають за типом підрівня, на якому розміщується диференціювальний електрон у прийнятій електронній конфігурації.</p>
+              <div class="guide-mini-grid">
+                <div class="guide-mini-card"><strong>s-блок</strong><span>Переважно групи 1-2; Гелій також належить до s-блоку.</span></div>
+                <div class="guide-mini-card"><strong>p-блок</strong><span>Переважно групи 13-18.</span></div>
+                <div class="guide-mini-card"><strong>d-блок</strong><span>Перехідні елементи, переважно групи 3-12.</span></div>
+                <div class="guide-mini-card"><strong>f-блок</strong><span>Лантаноїди та актиноїди.</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="guide-card" id="guide-config">
+            <summary><span class="guide-card-icon">e⁻</span>Електронна конфігурація</summary>
+            <div class="guide-card-body">
+              <p>Електронна конфігурація показує розподіл електронів за енергетичними рівнями та підрівнями.</p>
+              <p>Приклад для Карбону:</p>
+              <span class="guide-formula">1s² 2s² 2p²</span>
+              <p>Сума верхніх індексів дорівнює числу електронів нейтрального атома: 2 + 2 + 2 = 6.</p>
+              <div class="guide-note">Для перехідних і внутрішньоперехідних елементів будова електронних оболонок складніша, тому не варто визначати число валентних електронів лише за номером групи.</div>
+            </div>
+          </details>
+
+          <details class="guide-card" id="guide-oxidation">
+            <summary><span class="guide-card-icon">±</span>Ступінь окиснення</summary>
+            <div class="guide-card-body">
+              <p>Ступінь окиснення - умовний заряд атома в сполуці, визначений у припущенні, що спільні електронні пари повністю зміщені до більш електронегативного атома.</p>
+              <p>Для Карбону типовими є <span class="guide-formula">-4, +2, +4</span>, для Оксигену найпоширеніший <span class="guide-formula">-2</span>.</p>
+              <div class="guide-note">Ступінь окиснення не слід ототожнювати з реальним зарядом атома чи йона.</div>
+            </div>
+          </details>
+
+          <details class="guide-card" id="guide-categories">
+            <summary><span class="guide-card-icon">◉</span>Категорії елементів</summary>
+            <div class="guide-card-body">
+              <p>Кольори нашої таблиці допомагають швидко розрізняти лужні та лужноземельні метали, перехідні й інші метали, металоїди, неметали, галогени, благородні гази, лантаноїди й актиноїди.</p>
+              <p>Межа між окремими категоріями не завжди абсолютно однозначна, особливо для надважких елементів, властивості яких досліджені неповно.</p>
+            </div>
+          </details>
+        </div>
+
+        <aside class="guide-side">
+          <section class="guide-side-card">
+            <h2>Електронні блоки</h2>
+            <p>Швидка візуальна підказка.</p>
+            <div class="guide-blocks">
+              <div class="guide-block-chip s">s</div>
+              <div class="guide-block-chip p">p</div>
+              <div class="guide-block-chip d">d</div>
+              <div class="guide-block-chip f">f</div>
+            </div>
+          </section>
+          <section class="guide-side-card">
+            <h2>Перевірте на таблиці</h2>
+            <p>Після правила одразу відкрийте Періодичну систему і знайдіть приклади.</p>
+            <button class="guide-action" type="button" data-open-view="table">Відкрити таблицю</button>
+          </section>
+          <section class="guide-side-card">
+            <h2>Як користуватися</h2>
+            <p>Розкривайте лише потрібний пункт. Довідник задуманий як швидка підказка, а не як підручник.</p>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell"><a href="../">Chemistry Learning Hub</a><p>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</p></div></footer>
+  <script src="../js/theme.js?v=1" defer></script>
+  <script type="module" src="js/app.js?v=9"></script>
+</body>
+</html>
