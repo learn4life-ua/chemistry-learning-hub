@@ -94,3 +94,8 @@ html[data-theme="dark"] .life-hero-image { filter:saturate(.85) drop-shadow(0 0 
 .life-decision-actions .life-decision-submit { color:var(--primary-strong); background:var(--primary-soft); border-color:color-mix(in srgb,var(--primary) 40%,var(--line)); }
 .life-feedback { margin:0 0 16px; font-size:.87rem; color:var(--ink); border-left:3px solid var(--primary); padding-left:12px; }
 .life-feedback[hidden] { display:none; }
+
+/* Match the monochrome direction icons on the homepage. */
+.life-category-link h3 { display:flex; align-items:flex-start; gap:10px; }
+.life-category-link h3 > span { min-width:0; }
+.life-category-link .life-direction-icon { display:block; flex:0 0 22px; width:22px; height:22px; margin-top:2px; color:var(--muted); }
