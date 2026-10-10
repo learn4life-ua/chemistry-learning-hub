@@ -45,14 +45,6 @@
     linear-gradient(180deg,color-mix(in srgb,var(--surface-soft) 72%,var(--bg)),var(--bg));
 }
 
-.calc-catalog-hero-grid {
-  min-height:270px;
-  display:grid;
-  grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr);
-  gap:54px;
-  align-items:center;
-}
-
 .calc-catalog-copy {
   position:relative;
   z-index:2;
@@ -73,100 +65,6 @@
   font-size:clamp(1rem,1.45vw,1.12rem);
   line-height:1.68;
 }
-
-.calc-hero-visual {
-  position:relative;
-  min-height:250px;
-  display:grid;
-  place-items:center;
-  isolation:isolate;
-}
-
-.calc-hero-visual::before,
-.calc-hero-visual::after {
-  content:"";
-  position:absolute;
-  inset:50% auto auto 50%;
-  width:360px;
-  height:150px;
-  border:1px dashed color-mix(in srgb,#6f5cf5 22%,transparent);
-  border-radius:50%;
-  transform:translate(-50%,-50%) rotate(-8deg);
-  z-index:-2;
-}
-
-.calc-hero-visual::after {
-  width:300px;
-  height:110px;
-  transform:translate(-50%,-50%) rotate(18deg);
-  border-color:color-mix(in srgb,#52a9e9 18%,transparent);
-}
-
-.calc-hero-flask {
-  width:154px;
-  height:auto;
-  filter:drop-shadow(0 22px 22px color-mix(in srgb,#5e68db 20%,transparent));
-  z-index:2;
-}
-
-.formula-chip {
-  position:absolute;
-  min-width:54px;
-  height:54px;
-  display:grid;
-  place-items:center;
-  padding:0 13px;
-  border:1px solid color-mix(in srgb,#7663ee 16%,var(--line));
-  border-radius:17px;
-  color:#5f4bd6;
-  background:color-mix(in srgb,var(--surface) 90%,#eeeaff);
-  box-shadow:0 8px 22px color-mix(in srgb,#4f4aa8 9%,transparent),inset 0 1px 0 rgba(255,255,255,.65);
-  font-size:1.3rem;
-  font-weight:850;
-  z-index:3;
-}
-
-.chip-m { left:12%; top:15%; }
-.chip-n { left:4%; top:52%; min-width:49px; height:49px; font-size:1.12rem; }
-.chip-v { right:10%; top:8%; color:#256fbd; }
-.chip-w { right:2%; top:48%; min-width:49px; height:49px; }
-.chip-c { right:18%; bottom:8%; color:#13866f; }
-.chip-rho { left:18%; bottom:7%; min-width:47px; height:47px; color:#9c6a1a; }
-
-.molecule {
-  position:absolute;
-  width:74px;
-  height:54px;
-  opacity:.28;
-  z-index:1;
-}
-
-.molecule i {
-  position:absolute;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:linear-gradient(145deg,#bfd3ff,#7d92e4);
-  box-shadow:0 5px 14px rgba(80,101,184,.14);
-}
-
-.molecule i:nth-child(1) { left:0; top:20px; }
-.molecule i:nth-child(2) { left:28px; top:2px; width:22px; height:22px; }
-.molecule i:nth-child(3) { right:0; bottom:0; width:16px; height:16px; }
-
-.molecule::before,
-.molecule::after {
-  content:"";
-  position:absolute;
-  height:2px;
-  background:#8ba0dc;
-  transform-origin:left center;
-}
-
-.molecule::before { width:35px; left:13px; top:27px; transform:rotate(-28deg); }
-.molecule::after { width:36px; left:42px; top:21px; transform:rotate(42deg); }
-.molecule-a { left:4%; top:12%; transform:scale(.85); }
-.molecule-b { right:1%; bottom:6%; transform:scale(.72) rotate(18deg); }
 
 .calc-catalog-section {
   padding:46px 0 72px;
@@ -449,11 +347,6 @@
 
 [hidden] { display:none !important; }
 
-html[data-theme="dark"] .formula-chip {
-  background:color-mix(in srgb,var(--surface) 92%,#30265f);
-  box-shadow:0 8px 22px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.06);
-}
-
 html[data-theme="dark"] .calc-category-card {
   background:
     radial-gradient(circle at 92% 0%, color-mix(in srgb,var(--primary) 7%,transparent), transparent 34%),
@@ -467,12 +360,9 @@ html[data-theme="dark"] .calc-category-icon {
 
 @media (max-width:1120px) {
   .calc-catalog-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .calc-catalog-hero-grid { grid-template-columns:minmax(0,1fr) minmax(320px,.82fr); gap:30px; }
 }
 
 @media (max-width:850px) {
-  .calc-catalog-hero-grid { grid-template-columns:1fr; }
-  .calc-hero-visual { min-height:220px; margin-top:-4px; }
   .calc-tool-tabs { top:62px; }
 }
 
@@ -482,13 +372,9 @@ html[data-theme="dark"] .calc-category-icon {
   .calc-catalog-page .brand-mark { width:42px; height:42px; border-radius:13px; }
   .calc-catalog-page .back-link { padding:0 10px; font-size:.72rem; }
   .calc-catalog-hero { padding:38px 0 34px; }
-  .calc-catalog-hero-grid { min-height:0; }
   .calc-catalog-section { padding:38px 0 54px; }
   .calc-catalog-grid { grid-template-columns:1fr; gap:14px; }
   .calc-category-card { min-height:218px; padding:21px 19px 18px; }
-  .calc-hero-visual { min-height:185px; }
-  .formula-chip { min-width:47px; height:47px; border-radius:14px; font-size:1.08rem; }
-  .calc-hero-flask { width:124px; }
   .calc-tool-tabs { overflow-x:auto; }
   .calc-tool-nav { flex-wrap:nowrap; min-width:max-content; padding-bottom:2px; }
 }
@@ -496,12 +382,5 @@ html[data-theme="dark"] .calc-category-icon {
 @media (max-width:430px) {
   .calc-catalog-page .brand-copy strong { font-size:.98rem; }
   .calc-catalog-page .back-link { display:none; }
-  .calc-hero-visual { min-height:160px; margin-top:-8px; }
-  .calc-hero-visual::before { width:290px; height:120px; }
-  .calc-hero-visual::after { width:245px; height:88px; }
-  .chip-m { left:8%; }
-  .chip-n { left:0; }
-  .chip-v { right:6%; }
-  .chip-w { right:0; }
   .calc-card-ghost { font-size:1.05rem; }
 }
