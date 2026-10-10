@@ -18,10 +18,14 @@ const resultUnit = document.querySelector('#amountResultUnit');
 const steps = document.querySelector('#amountSteps');
 const note = document.querySelector('#amountNote');
 
+function frac(top, bottom) {
+  return `<span class="math-frac"><span>${top}</span><span>${bottom}</span></span>`;
+}
+
 const modes = {
   'n-from-m': {
     label: 'Маса речовини m',
-    helper: 'Введіть масу речовини. Калькулятор визначить M за формулою і використає n = m / M.',
+    helper: `n = ${frac('m', 'M')}.`,
     units: [
       { value: 'g', label: 'г' },
       { value: 'mg', label: 'мг' },
@@ -30,7 +34,7 @@ const modes = {
   },
   'm-from-n': {
     label: 'Кількість речовини n',
-    helper: 'Введіть кількість речовини. Калькулятор використає m = nM.',
+    helper: 'm = nM.',
     units: [
       { value: 'mol', label: 'моль' },
       { value: 'mmol', label: 'ммоль' }
@@ -38,7 +42,7 @@ const modes = {
   },
   'N-from-n': {
     label: 'Кількість речовини n',
-    helper: 'Введіть кількість речовини. Калькулятор використає N = nNₐ.',
+    helper: 'N = nNₐ.',
     units: [
       { value: 'mol', label: 'моль' },
       { value: 'mmol', label: 'ммоль' }
@@ -87,7 +91,7 @@ function setMode(mode) {
   });
 
   valueLabel.textContent = config.label;
-  helper.textContent = config.helper;
+  helper.innerHTML = config.helper;
   unitSelect.innerHTML = config.units.map(unit => `<option value="${unit.value}">${unit.label}</option>`).join('');
   clearError();
 }
@@ -120,8 +124,8 @@ function renderResult(data, rawValue, baseValue, unit) {
     finalUnit = 'моль';
     solutionSteps = [
       `<strong>1.</strong> M(${formulaHTML}) = ${formatNumber(data.totalMass, 3)} г/моль`,
-      '<strong>2.</strong> n = m / M',
-      `<strong>3.</strong> n = ${formatNumber(baseValue, 6)} г / ${formatNumber(data.totalMass, 3)} г/моль = ${formatNumber(amount, 4)} моль`
+      `<strong>2.</strong> n = ${frac('m', 'M')}`,
+      `<strong>3.</strong> n = ${frac(`${formatNumber(baseValue, 6)} г`, `${formatNumber(data.totalMass, 3)} г/моль`)} = ${formatNumber(amount, 4)} моль`
     ];
   }
 
@@ -132,7 +136,7 @@ function renderResult(data, rawValue, baseValue, unit) {
     solutionSteps = [
       `<strong>1.</strong> M(${formulaHTML}) = ${formatNumber(data.totalMass, 3)} г/моль`,
       '<strong>2.</strong> m = nM',
-      `<strong>3.</strong> m = ${formatNumber(baseValue, 6)} моль × ${formatNumber(data.totalMass, 3)} г/моль = ${formatNumber(mass, 4)} г`
+      `<strong>3.</strong> m = ${formatNumber(baseValue, 6)} моль · ${formatNumber(data.totalMass, 3)} г/моль = ${formatNumber(mass, 4)} г`
     ];
   }
 
@@ -143,7 +147,7 @@ function renderResult(data, rawValue, baseValue, unit) {
     solutionSteps = [
       '<strong>1.</strong> Nₐ = 6,02214076 × 10<sup>23</sup> моль<sup>−1</sup>',
       '<strong>2.</strong> N = nNₐ',
-      `<strong>3.</strong> N = ${formatNumber(baseValue, 6)} моль × 6,02214076 × 10<sup>23</sup> моль<sup>−1</sup> = ${formatScientificHTML(particles, 5)}`
+      `<strong>3.</strong> N = ${formatNumber(baseValue, 6)} моль · 6,02214076 × 10<sup>23</sup> моль<sup>−1</sup> = ${formatScientificHTML(particles, 5)}`
     ];
   }
 
@@ -152,11 +156,11 @@ function renderResult(data, rawValue, baseValue, unit) {
   steps.innerHTML = solutionSteps.map(step => `<div class="solution-step">${step}</div>`).join('');
 
   if (data.hasApproximateMass && activeMode !== 'N-from-n') {
-    note.textContent = 'У формулі є елемент без стандартної атомної маси, тому результат за молярною масою є наближеним.';
+    note.textContent = 'Для елемента без стандартної атомної маси використано масове число, тому результат є наближеним.';
   } else if (unit === 'mg' || unit === 'kg' || unit === 'mmol') {
-    note.textContent = 'Перед підстановкою значення автоматично переведено в базові одиниці: грами або молі.';
+    note.textContent = 'Перед розрахунком значення переведено у грами або молі.';
   } else {
-    note.textContent = 'Результат подано з навчальним округленням; у проміжних обчисленнях використано повні числові значення.';
+    note.textContent = 'Результат округлено до зручної кількості знаків.';
   }
 
   resultEmpty.hidden = true;
