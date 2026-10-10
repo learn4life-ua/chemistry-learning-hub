@@ -1,0 +1,172 @@
+.solution-stoich-section {
+  padding:62px 0 68px;
+  scroll-margin-top:92px;
+  border-top:1px solid var(--line);
+  background:
+    radial-gradient(circle at 84% 16%, color-mix(in srgb,#4f9bd8 8%,transparent), transparent 25%),
+    var(--bg);
+}
+
+.solution-stoich-mode-switcher {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:22px;
+}
+.solution-stoich-mode-switcher button {
+  min-height:44px;
+  padding:0 12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  color:var(--muted);
+  background:var(--surface-muted);
+  font-size:.77rem;
+  font-weight:800;
+}
+.solution-stoich-mode-switcher button:hover {
+  border-color:color-mix(in srgb,#4f9bd8 42%,var(--line));
+  color:var(--ink);
+}
+.solution-stoich-mode-switcher button.is-active {
+  border-color:color-mix(in srgb,#4f9bd8 62%,var(--line));
+  color:#2f77b1;
+  background:color-mix(in srgb,#4f9bd8 11%,var(--surface));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 5px 15px rgba(47,119,177,.10);
+}
+html[data-theme="dark"] .solution-stoich-mode-switcher button.is-active { color:#90c9f4; }
+
+.solution-stoich-equation-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:end;
+}
+.solution-stoich-equation-row .formula-label { grid-column:1 / -1; }
+.solution-stoich-equation-input {
+  width:100%;
+  min-height:58px;
+  padding:0 16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  color:var(--ink);
+  background:var(--surface-muted);
+  outline:none;
+  font:inherit;
+  font-weight:700;
+}
+.solution-stoich-equation-input:focus,
+.solution-stoich-select:focus,
+.solution-stoich-unit:focus {
+  border-color:color-mix(in srgb,var(--primary) 60%,var(--line));
+  background:var(--surface);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 14%,transparent);
+}
+
+.solution-stoich-status {
+  margin-top:12px;
+  padding:11px 13px;
+  border:1px solid color-mix(in srgb,#3ba66b 35%,var(--line));
+  border-radius:12px;
+  color:var(--ink);
+  background:color-mix(in srgb,#3ba66b 8%,var(--surface));
+  font-size:.84rem;
+  line-height:1.5;
+}
+
+.solution-stoich-fields {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:20px;
+}
+.solution-stoich-field-block {
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:var(--surface-muted);
+}
+.solution-stoich-field-block h3 {
+  margin:0 0 12px;
+  color:var(--ink);
+  font-size:1rem;
+}
+.solution-stoich-select,
+.solution-stoich-unit {
+  width:100%;
+  min-height:52px;
+  padding:0 11px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  color:var(--ink);
+  background:var(--surface);
+  outline:none;
+  font-size:.88rem;
+  font-weight:700;
+}
+.solution-stoich-value-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 112px;
+  gap:8px;
+  margin-top:10px;
+}
+.solution-stoich-target-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 112px;
+  gap:8px;
+  margin-top:10px;
+}
+.solution-stoich-secondary {
+  margin-top:14px;
+}
+.solution-stoich-secondary[hidden] { display:none; }
+.solution-stoich-note-box {
+  margin-top:14px;
+  padding:12px 14px;
+  border:1px solid color-mix(in srgb,#4f9bd8 26%,var(--line));
+  border-radius:13px;
+  color:var(--muted);
+  background:color-mix(in srgb,#4f9bd8 6%,var(--surface));
+  font-size:.82rem;
+  line-height:1.55;
+}
+.solution-stoich-submit { margin-top:18px; }
+.solution-stoich-result-card { align-items:start; }
+.solution-stoich-result-card .result-content { width:100%; }
+.solution-stoich-result-title {
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--ink);
+  text-align:center;
+  font-size:clamp(1.12rem,2vw,1.55rem);
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+.solution-stoich-equation-view {
+  margin:8px 0 14px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:var(--surface-muted);
+  color:var(--ink);
+  text-align:center;
+  line-height:1.65;
+  overflow-wrap:anywhere;
+}
+.solution-stoich-equation-view sub { font-size:.66em; vertical-align:-.28em; }
+.solution-stoich-coeff { font-weight:900; margin-right:2px; }
+.solution-stoich-arrow { padding:0 5px; color:var(--primary); font-weight:900; }
+.solution-stoich-sep { color:var(--muted); }
+
+@media (max-width:900px) {
+  .solution-stoich-fields { grid-template-columns:1fr; }
+}
+
+@media (max-width:650px) {
+  .solution-stoich-section { padding:46px 0 52px; }
+  .solution-stoich-mode-switcher { grid-template-columns:1fr; }
+  .solution-stoich-equation-row { grid-template-columns:1fr; }
+  .solution-stoich-equation-row .formula-label { grid-column:auto; }
+  .solution-stoich-value-row,
+  .solution-stoich-target-row { grid-template-columns:minmax(0,1fr) 96px; }
+}
