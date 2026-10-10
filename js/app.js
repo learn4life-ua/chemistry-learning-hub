@@ -106,7 +106,8 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let currentAtom = 'O';
 let paused = reducedMotion.matches;
 let animationId = null;
-let startTime = performance.now();
+let animationTime = 0;
+let lastAnimationTimestamp = performance.now();
 
 function syncPauseButton() {
   if (!atomPause) return;
@@ -114,7 +115,7 @@ function syncPauseButton() {
   atomPause.setAttribute('aria-pressed', String(paused));
   atomPause.setAttribute('aria-label', label);
   atomPause.setAttribute('title', label);
-  atomPause.textContent = paused ? '▶' : 'Ⅱ';
+  atomPause.textContent = paused ? '▶' : '⏸';
 }
 
 function setAtom(symbol) {
@@ -137,8 +138,13 @@ function drawAtom(now) {
   const h = canvas.height;
   const cx = w / 2;
   const cy = h / 2;
-  const t = (now - startTime) / 1000;
   const isDark = root.dataset.theme === 'dark';
+
+  if (!paused) {
+    animationTime += Math.max(0, now - lastAnimationTimestamp) / 1000;
+  }
+  lastAnimationTimestamp = now;
+  const t = animationTime;
 
   ctx.clearRect(0, 0, w, h);
   ctx.save();
@@ -183,7 +189,7 @@ function drawAtom(now) {
     ctx.stroke();
 
     for (let i = 0; i < electronCount; i += 1) {
-      const angle = (Math.PI * 2 * i / electronCount) + (paused ? 0 : t * (.55 + shellIndex * .13)) + shellIndex * .45;
+      const angle = (Math.PI * 2 * i / electronCount) + t * (.55 + shellIndex * .13) + shellIndex * .45;
       const x0 = Math.cos(angle) * rx;
       const y0 = Math.sin(angle) * ry;
       const x = x0 * Math.cos(rot) - y0 * Math.sin(rot);
@@ -221,7 +227,9 @@ function animate(now) {
 function restartAnimation() {
   if (animationId) cancelAnimationFrame(animationId);
   animationId = null;
-  drawAtom(performance.now());
+  const now = performance.now();
+  lastAnimationTimestamp = now;
+  drawAtom(now);
   if (!paused && !document.hidden) animationId = requestAnimationFrame(animate);
 }
 
@@ -230,14 +238,31 @@ document.querySelectorAll('[data-atom]').forEach(button => {
 });
 
 atomPause?.addEventListener('click', () => {
-  paused = !paused;
+  const now = performance.now();
+
+  if (!paused) {
+    drawAtom(now);
+    paused = true;
+  } else {
+    paused = false;
+    lastAnimationTimestamp = now;
+  }
+
   syncPauseButton();
   restartAnimation();
 });
 
-document.addEventListener('visibilitychange', restartAnimation);
+document.addEventListener('visibilitychange', () => {
+  lastAnimationTimestamp = performance.now();
+  restartAnimation();
+});
+
 reducedMotion.addEventListener?.('change', event => {
-  if (event.matches) paused = true;
+  if (event.matches && !paused) {
+    drawAtom(performance.now());
+    paused = true;
+  }
+  lastAnimationTimestamp = performance.now();
   syncPauseButton();
   restartAnimation();
 });
