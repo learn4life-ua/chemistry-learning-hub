@@ -330,6 +330,17 @@ html[data-theme="dark"] .hero-atom-stage::before {
 .module-pink { --module-accent:#c75aa9; }
 .module-sand { --module-accent:#c88a2e; }
 
+.module-life {
+  grid-column: 1 / -1;
+  min-width: 0;
+  min-height: 0;
+  background: linear-gradient(120deg, var(--surface), color-mix(in srgb, var(--primary) 12%, var(--surface)));
+}
+.module-card-v2.module-life p { max-width: 100%; }
+.module-life .module-life-directions { color: var(--ink); font-weight: 650; }
+.module-life p:last-child { margin-bottom: 0; }
+
+
 @media (max-width:1050px) {
   .hero-grid-v2 { grid-template-columns:1fr; gap:12px; min-height:0; }
   .hero-atom-panel { max-width:490px; width:100%; margin-inline:auto; min-height:225px; }
