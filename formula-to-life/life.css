@@ -99,3 +99,24 @@ html[data-theme="dark"] .life-hero-image { filter:saturate(.85) drop-shadow(0 0 
 .life-category-link h3 { display:flex; align-items:flex-start; gap:10px; }
 .life-category-link h3 > span { min-width:0; }
 .life-category-link .life-direction-icon { display:block; flex:0 0 22px; width:22px; height:22px; margin-top:2px; color:var(--muted); }
+
+/* Nature and environment page: verified real-world cases. */
+.life-nature-cases { margin-top:26px; }
+.life-card-wide { grid-column:1 / -1; }
+.life-local-badge { display:inline-flex; align-items:center; min-height:24px; padding:3px 8px; border:1px solid color-mix(in srgb,var(--green) 32%,var(--line)); border-radius:999px; background:color-mix(in srgb,var(--green) 8%,var(--surface)); color:var(--ink); font-weight:700; }
+.life-process-chain { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:18px 0 20px; }
+.life-process-chain span { display:inline-flex; align-items:center; min-height:36px; padding:8px 11px; border:1px solid var(--line); border-radius:11px; background:var(--surface); color:var(--ink); font-size:.78rem; font-weight:650; }
+.life-process-chain b { color:var(--green); font-size:1rem; }
+.life-research-block { margin-top:44px; padding-top:2px; }
+.life-method-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:22px; }
+.life-method-grid article { min-width:0; padding:17px 16px; border:1px solid var(--line); border-radius:16px; background:var(--surface); }
+.life-method-grid strong { display:block; margin-bottom:6px; color:var(--ink); font-size:.9rem; }
+.life-method-grid span { display:block; color:var(--muted); font-size:.8rem; line-height:1.5; }
+.life-science-nearby { border-color:color-mix(in srgb,var(--green) 30%,var(--line)); background:linear-gradient(120deg,var(--surface),color-mix(in srgb,var(--green) 8%,var(--surface))); }
+@media (max-width:900px) { .life-method-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:700px) {
+  .life-card-wide { grid-column:auto; }
+  .life-process-chain { gap:6px; }
+  .life-process-chain b { display:none; }
+  .life-method-grid { grid-template-columns:minmax(0,1fr); }
+}
