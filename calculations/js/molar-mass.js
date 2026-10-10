@@ -1,4 +1,5 @@
 import './dilution.js?v=1';
+import './reaction-stoichiometry.js?v=1';
 import { getFormulaData, formatNumber, formatFormula } from './formula-core.js';
 
 const form = document.querySelector('#molarForm');
