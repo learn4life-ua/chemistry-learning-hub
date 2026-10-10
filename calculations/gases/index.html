@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
+  <meta name="description" content="Газові розрахунки для шкільної хімії: кількість речовини, об'єм і маса газу.">
+  <title>Газові розрахунки | Chemistry Learning Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css?v=1"><link rel="stylesheet" href="../css/calculations.css?v=2"><link rel="stylesheet" href="../css/gas.css?v=1"><link rel="stylesheet" href="../css/catalog.css?v=1">
+</head>
+<body>
+<header class="site-header"><div class="shell calc-header-inner"><a class="brand" href="../../"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Хімічні розрахунки</small></span></a><div class="calc-header-actions"><a class="back-link" href="../">← До калькуляторів</a><button class="theme-toggle theme-toggle-icon" id="themeToggle" type="button" aria-label="Змінити тему"><span class="theme-icon" aria-hidden="true">◐</span></button></div></div></header>
+<main>
+  <section class="calc-category-hero"><div class="shell"><div class="calc-category-crumbs"><a href="../../">Хаб</a><span>›</span><a href="../">Хімічні розрахунки</a><span>›</span><span>Гази</span></div><h1>Газові розрахунки</h1><p>Обчислюйте кількість речовини, об'єм або масу газу з обов'язковим урахуванням температури й тиску.</p></div></section>
+  <section class="gas-section" id="gas-calculations">
+    <div class="shell calc-layout">
+      <article class="calc-card">
+        <div class="calc-card-head"><div><p class="calc-kicker">Оберіть тип розрахунку</p><h2>Робота з газами</h2></div><span class="calc-badge">p · V · T</span></div>
+        <div class="gas-mode-switcher" role="group" aria-label="Тип газового розрахунку"><button class="is-active" type="button" data-gas-mode="n-from-v" aria-pressed="true">n за V</button><button type="button" data-gas-mode="v-from-n" aria-pressed="false">V за n</button><button type="button" data-gas-mode="m-from-v" aria-pressed="false">m за V</button></div>
+        <form id="gasForm" novalidate>
+          <div class="gas-formula-wrap" id="gasFormulaWrap" hidden><label class="formula-label" for="gasFormulaInput">Формула газу</label><input class="formula-input" id="gasFormulaInput" type="text" autocomplete="off" spellcheck="false" placeholder="Наприклад, CO2"></div>
+          <div class="gas-fields">
+            <div><label class="formula-label" id="gasPrimaryLabel" for="gasPrimaryInput">Об'єм газу V</label><div class="gas-value-row"><input class="value-input" id="gasPrimaryInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Наприклад, 22,414"><select id="gasPrimaryUnit" aria-label="Одиниця основного значення"></select></div></div>
+            <div><label class="formula-label" for="gasTemperatureInput">Температура T</label><div class="gas-value-row"><input class="value-input" id="gasTemperatureInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Наприклад, 0"><select id="gasTemperatureUnit"><option value="C">°C</option><option value="K">K</option></select></div></div>
+            <div><label class="formula-label" for="gasPressureInput">Тиск p</label><div class="gas-value-row"><input class="value-input" id="gasPressureInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Наприклад, 101,325"><select id="gasPressureUnit"><option value="kPa">кПа</option><option value="atm">атм</option><option value="mmHg">мм рт. ст.</option></select></div></div>
+          </div>
+          <div class="gas-condition-presets"><button type="button" data-gas-preset="normal">Нормальні умови: 0 °C, 101,325 кПа</button><button type="button" data-gas-preset="room">25 °C, 101,325 кПа</button></div>
+          <p class="formula-help" id="gasHelper"></p><p class="gas-warning"><strong>Важливо:</strong> значення молярного об'єму залежить від температури й тиску. Калькулятор не використовує 22,4 л/моль як універсальну сталу.</p><p class="formula-error" id="gasError" role="alert" hidden></p><button class="calc-button gas-submit" type="submit">Розрахувати</button>
+        </form>
+        <div class="example-list"><span>Спробуйте:</span><button type="button" data-gas-example data-mode="n-from-v" data-value="22,414" data-unit="L" data-temperature="0" data-temperature-unit="C" data-pressure="101,325" data-pressure-unit="kPa">22,414 л за н.у. → n</button><button type="button" data-gas-example data-mode="v-from-n" data-value="1" data-unit="mol" data-temperature="25" data-temperature-unit="C" data-pressure="101,325" data-pressure-unit="kPa">1 моль, 25 °C → V</button><button type="button" data-gas-example data-mode="m-from-v" data-formula="CO2" data-value="5" data-unit="L" data-temperature="25" data-temperature-unit="C" data-pressure="101,325" data-pressure-unit="kPa">5 л CO₂, 25 °C → m</button></div>
+      </article>
+      <aside class="result-card gas-result-card" aria-live="polite"><div class="result-empty" id="gasResultEmpty"><div class="result-icon">V</div><h2>Розв'язання з'явиться тут</h2><p>Задайте відому величину, температуру та тиск.</p></div><div class="result-content" id="gasResultContent" hidden><p class="calc-kicker">Відповідь</p><div class="gas-result-title" id="gasResultTitle"></div><div class="amount-final-value"><strong id="gasResultValue">0</strong><span id="gasResultUnit"></span></div><div class="solution-steps" id="gasSteps"></div><p class="result-note" id="gasNote"></p></div></aside>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Шкільні хімічні розрахунки з поясненням.</p></div></footer>
+<script src="../../js/theme.js?v=1" defer></script><script type="module" src="../js/gas-calculations.js?v=1"></script>
+</body></html>
