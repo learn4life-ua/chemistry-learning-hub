@@ -1,3 +1,4 @@
+import './mass-fraction.js';
 import { getFormulaData, formatNumber, formatFormula } from './formula-core.js';
 
 const form = document.querySelector('#concentrationForm');
