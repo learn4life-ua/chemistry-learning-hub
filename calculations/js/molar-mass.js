@@ -4,6 +4,7 @@ import './product-yield.js?v=1';
 import './limiting-reagent.js?v=1';
 import './solution-stoichiometry.js?v=1';
 import './purity.js?v=1';
+import './density.js?v=1';
 import { getFormulaData, formatNumber, formatFormula } from './formula-core.js';
 
 const form = document.querySelector('#molarForm');
