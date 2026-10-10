@@ -360,3 +360,17 @@ html[data-theme="dark"] .hero-atom-stage::before {
   .directions-section { padding: 48px 0 54px; }
   .module-grid-v2 { grid-template-columns:1fr; }
 }
+
+/* Four compact direction links share the final accent section. */
+.module-life:hover { transform:none; box-shadow:var(--shadow-soft); border-color:var(--line); }
+.life-home-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:8px 0 18px; }
+.life-home-card { display:flex; flex-direction:column; min-width:0; padding:16px; border:1px solid var(--line); border-radius:14px; background:color-mix(in srgb,var(--surface) 78%,transparent); color:var(--ink); text-decoration:none; transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease; }
+.life-home-card:hover { transform:translateY(-3px); border-color:var(--primary); box-shadow:var(--shadow-soft); }
+.life-home-card:focus-visible,.life-overview-link:focus-visible { outline:3px solid var(--primary); outline-offset:3px; }
+.life-home-card h4 { margin:0 0 9px; font-size:1rem; line-height:1.3; letter-spacing:-.02em; }
+.module-card-v2 .life-home-card p { margin:0 0 14px; font-size:.82rem; }
+.life-home-card .card-link { margin-top:auto; font-size:.78rem; }
+.life-overview-link { align-self:flex-start; color:var(--primary-strong); text-underline-offset:3px; font-size:.82rem; font-weight:650; }
+@media (max-width:1050px) { .life-home-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:700px) { .life-home-grid { grid-template-columns:minmax(0,1fr); } }
+@media (prefers-reduced-motion:reduce) { .life-home-card { transition:none; } .life-home-card:hover { transform:none; } }

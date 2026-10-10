@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=4">
-  <link rel="stylesheet" href="life.css?v=3">
+  <link rel="stylesheet" href="life.css?v=4">
   <link rel="icon" href="../assets/favicon.ico?v=1" sizes="any">
   <link rel="icon" type="image/png" href="../assets/favicon.png?v=1" sizes="192x192">
 </head>
@@ -46,131 +46,20 @@
     <section class="page-content life-content" aria-labelledby="materialsTitle">
       <div class="shell">
         <div class="life-section-heading">
-          <h2 id="materialsTitle">Досліджуй те, що навколо</h2>
-          <p>Обери напрям. Прочитай ситуацію, поміркуй над запитанням і розгорни пояснення.</p>
+          <h2 id="materialsTitle">Чотири напрями для дослідження</h2>
+          <p>Обери тему й переходь до прикладів, пояснень та практичних ситуацій.</p>
         </div>
-        <div class="life-filters" id="lifeFilters" role="group" aria-label="Фільтр матеріалів за напрямом" hidden>
-          <button type="button" data-filter="all" aria-pressed="true">Усі матеріали</button>
-          <button type="button" data-filter="nature" aria-pressed="false">Природа та довкілля</button>
-          <button type="button" data-filter="materials" aria-pressed="false">Матеріали і технології</button>
-          <button type="button" data-filter="everyday" aria-pressed="false">Людина і побут</button>
-          <button type="button" data-filter="practice" aria-pressed="false">Практичні кейси</button>
+        <div class="life-grid life-category-grid">
+          <a class="life-card life-category-link life-nature" href="nature/"><h3>Природа та довкілля</h3><p>Біосфера, біогеохімія, вода, ґрунти, екологічні процеси та вплив хімічних речовин на довкілля.</p><span class="life-category-action">Дослідити напрям <span aria-hidden="true">→</span></span></a>
+<a class="life-card life-category-link life-materials" href="materials/"><h3>Матеріали і технології</h3><p>Полімери, композити, метали, сучасні матеріали, виробничі процеси та хімічні технології.</p><span class="life-category-action">Дослідити напрям <span aria-hidden="true">→</span></span></a>
+<a class="life-card life-category-link life-everyday" href="everyday/"><h3>Людина і побут</h3><p>Харчування, косметика, побутова хімія, медицина та безпечне використання речовин у повсякденному житті.</p><span class="life-category-action">Дослідити напрям <span aria-hidden="true">→</span></span></a>
+<a class="life-card life-category-link life-practice" href="practice/"><h3>Практичні кейси</h3><p>Ситуаційні задачі, досліди та розбір реальних життєвих сценаріїв із поясненням хімічних процесів.</p><span class="life-category-action">Дослідити напрям <span aria-hidden="true">→</span></span></a>
         </div>
-        <p class="life-count" id="lifeCount" role="status" aria-live="polite" aria-atomic="true">Матеріалів: 4</p>
-
-        <div class="life-grid" id="lifeGrid">
-          <article class="life-card life-nature" data-direction="nature" aria-labelledby="waterTitle">
-            <div class="life-card-meta"><span class="life-direction">Природа та довкілля</span><span>Розбір ситуації</span></div>
-            <h3 id="waterTitle">Чому вода буває жорсткою?</h3>
-            <p class="life-situation">У двох населених пунктах однакове мило піниться по-різному. В одному вода дає багато піни, в іншому з’являється мильний наліт.</p>
-            <p class="life-concepts">Йони • Вода • Розчинені речовини</p>
-            <p class="life-question"><strong>Поміркуй:</strong> чи завжди прозора вода має однаковий хімічний склад?</p>
-            <details class="life-details">
-              <summary>Хімічне пояснення</summary>
-              <div class="life-detail-body">
-                <p>Жорсткість води пов’язана насамперед із вмістом йонів кальцію Ca²⁺ і магнію Mg²⁺. Вода може отримувати їх, контактуючи з гірськими породами.</p>
-                <p>У жорсткій воді компоненти звичайного мила утворюють із цими йонами малорозчинні сполуки. Частина мила витрачається на утворення осаду, тому піни може бути менше.</p>
-                <p><strong>Висновок:</strong> прозорість не показує, скільки у воді розчинених йонів.</p>
-                <a class="life-source" href="https://www.usgs.gov/water-science-school/science/hardness-water" target="_blank" rel="noopener noreferrer">Джерело: USGS, Hardness of Water ↗</a>
-              </div>
-            </details>
-            <details class="life-details">
-              <summary>Запитання для обговорення</summary>
-              <div class="life-detail-body">
-                <p>Чи можна за кількістю піни точно визначити жорсткість води?</p>
-                <p><strong>Орієнтир:</strong> піна дає лише непряму підказку. Результат залежить також від складу й кількості мила та умов порівняння. Для вимірювання потрібен спеціальний тест.</p>
-              </div>
-            </details>
-          </article>
-
-          <article class="life-card life-materials" data-direction="materials" aria-labelledby="rustTitle">
-            <div class="life-card-meta"><span class="life-direction">Матеріали і технології</span><span>Практичне рішення</span></div>
-            <h3 id="rustTitle">Чому фарба захищає залізо?</h3>
-            <p class="life-situation">На металевій огорожі з’явилася подряпина. Згодом саме на цій ділянці утворилася іржа, хоча поруч покриття залишилося цілим.</p>
-            <p class="life-concepts">Корозія • Окиснення • Захисні покриття</p>
-            <p class="life-question"><strong>Поміркуй:</strong> що змінилося для поверхні металу після появи подряпини?</p>
-            <details class="life-details">
-              <summary>Хімічне пояснення</summary>
-              <div class="life-detail-body">
-                <p>Іржавіння заліза відбувається за участю кисню та води. Це хімічне перетворення: утворюються сполуки заліза, які входять до складу іржі.</p>
-                <p>Суцільне покриття фарби обмежує доступ води й кисню до металу. Подряпина порушує цей бар’єр, тому відкрита ділянка стає вразливою.</p>
-                <p><strong>Висновок:</strong> фарбування допомагає захистити залізо, доки покриття зберігає цілісність.</p>
-                <a class="life-source" href="https://edu.rsc.org/experiments/what-causes-iron-to-rust/434.article" target="_blank" rel="noopener noreferrer">Джерело: RSC Education, What causes iron to rust? ↗</a>
-              </div>
-            </details>
-            <details class="life-details">
-              <summary>Запитання для обговорення</summary>
-              <div class="life-detail-body">
-                <p>Чому дощова вода не спричиняє однакового іржавіння всіх матеріалів?</p>
-                <p><strong>Орієнтир:</strong> іржавіння стосується заліза та матеріалів, що його містять. Інші метали теж можуть зазнавати корозії, але продукти й перебіг процесу відрізняються.</p>
-              </div>
-            </details>
-          </article>
-
-          <article class="life-card life-everyday" data-direction="everyday" aria-labelledby="oilTitle">
-            <div class="life-card-meta"><span class="life-direction">Людина і побут</span><span>Знайома ситуація</span></div>
-            <h3 id="oilTitle">Як мийний засіб допомагає змити олію?</h3>
-            <p class="life-situation">На тарілці залишилася олія. Вода погано її змиває, а після додавання засобу для миття посуду очищення стає легшим.</p>
-            <p class="life-concepts">Суміші • Емульсії • Поверхнево-активні речовини</p>
-            <p class="life-question"><strong>Поміркуй:</strong> чи означає очищення, що олія перетворилася на воду?</p>
-            <details class="life-details">
-              <summary>Хімічне пояснення</summary>
-              <div class="life-detail-body">
-                <p>Олія і вода зазвичай утворюють окремі шари. Поверхнево-активні речовини в мийному засобі допомагають розподілити олію на дрібні краплі у воді.</p>
-                <p>Частини їхніх молекул по-різному взаємодіють із водою та олією. Це допомагає утримувати краплі в суміші й видаляти їх із поверхні під час миття.</p>
-                <p><strong>Висновок:</strong> олія не стає водою. Засіб допомагає відокремити її від поверхні та змити.</p>
-                <a class="life-source" href="https://www.acs.org/content/dam/acsorg/education/resources/k-8/science-activities/chemicalphysicalchange/dissolving/if-mixing-is-urgent-science-for-kids.pdf" target="_blank" rel="noopener noreferrer">Джерело: ACS, If Mixing Is Urgent, Try Detergent! (PDF) ↗</a>
-              </div>
-            </details>
-            <details class="life-details">
-              <summary>Запитання для обговорення</summary>
-              <div class="life-detail-body">
-                <p>Чому після струшування суміш води й олії без мийного засобу знову розділяється?</p>
-                <p><strong>Орієнтир:</strong> струшування тимчасово розподіляє олію на краплі, але без стабілізації вони зливаються, і шари відновлюються.</p>
-              </div>
-            </details>
-          </article>
-
-          <article class="life-card life-practice" data-direction="practice" aria-labelledby="sugarTitle">
-            <div class="life-card-meta"><span class="life-direction">Практичні кейси</span><span>Просте дослідження</span></div>
-            <h3 id="sugarTitle">Де цукор розчиниться швидше?</h3>
-            <p class="life-situation">У теплому напої цукор зникає з поля зору швидше, ніж у холодному. Перевір це спостереження, змінюючи лише одну умову.</p>
-            <p class="life-concepts">Розчинення • Температура • Умови досліду</p>
-            <p class="life-question"><strong>Поміркуй:</strong> які умови треба зберегти однаковими, щоб порівняння було чесним?</p>
-            <details class="life-details">
-              <summary>План дослідження</summary>
-              <div class="life-detail-body">
-                <ol>
-                  <li>Підготуй дві однакові прозорі склянки. Налий у кожну по 50 мл води: в одну прохолодної, в іншу теплої, не вище 40 °C.</li>
-                  <li>Відміряй дві однакові порції того самого цукру, наприклад по половині чайної ложки без гірки.</li>
-                  <li>Додай цукор, увімкни таймер і перемішуй обидві порції однаково. Зафіксуй час, коли видимі кристали зникнуть.</li>
-                  <li>Повтори порівняння. Запиши температуру води, час і свій висновок.</li>
-                </ol>
-                <p>Не використовуй окріп. Суміші після дослідження не куштуй.</p>
-              </div>
-            </details>
-            <details class="life-details">
-              <summary>Пояснення та висновок</summary>
-              <div class="life-detail-body">
-                <p>За однакових інших умов цукор зазвичай розчиняється швидше в теплій воді. Зі зростанням температури тепловий рух частинок стає інтенсивнішим.</p>
-                <p>Зберігай однаковими об’єм води, кількість і розмір кристалів цукру, посуд та спосіб перемішування.</p>
-                <p><strong>Важлива відмінність:</strong> час розчинення показує швидкість процесу. Він не визначає максимальну кількість цукру, яку можна розчинити, тобто розчинність.</p>
-                <a class="life-source" href="https://www.acs.org/middleschoolchemistry/lessonplans/chapter5/lesson6.html" target="_blank" rel="noopener noreferrer">Джерело: ACS, Does Temperature Affect Dissolving? ↗</a>
-              </div>
-            </details>
-          </article>
-        </div>
-
-        <aside class="life-next" aria-labelledby="nextTitle">
-          <h2 id="nextTitle">Більше зв’язків із реальним життям</h2>
-          <p>Далі тут з’являтимуться матеріали про ґрунти й довкілля, полімери та сучасні матеріали, харчування й побут, а також нові ситуаційні задачі та дослідження.</p>
-        </aside>
       </div>
     </section>
   </main>
 
   <footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Інтерактивний простір з хімії для навчання, дослідження і самоперевірки</p></div></footer>
   <script src="../js/theme.js?v=1" defer></script>
-  <script src="life.js?v=1" defer></script>
 </body>
 </html>

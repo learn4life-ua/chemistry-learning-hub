@@ -75,3 +75,22 @@ html[data-theme="dark"] .life-hero-image { filter:saturate(.85) drop-shadow(0 0 
   .life-hero-visual { width:min(360px,100%); margin-inline:auto; }
   .life-hero-image { max-height:232.5px; }
 }
+
+.life-category-grid { margin-top:24px; }
+.life-category-link { display:flex; flex-direction:column; align-self:stretch; color:var(--ink); text-decoration:none; }
+.life-category-link > p { margin:0 0 20px; font-size:.9rem; color:var(--muted); }
+.life-category-action { margin-top:auto; color:var(--primary-strong); font-size:.84rem; font-weight:700; }
+.life-topic-intro { max-width:1000px; margin:0 0 24px; color:var(--muted); }
+.life-topic-hero h1 { max-width:1100px; }
+.life-topic-nav { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+.life-topic-nav a { padding:10px 14px; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:var(--surface); text-decoration:none; font-size:.82rem; }
+.life-topic-nav a[aria-current="page"] { background:var(--primary-soft); color:var(--primary-strong); border-color:var(--primary); }
+.life-decision fieldset { min-width:0; padding:0; margin:0 0 16px; border:0; }
+.life-decision legend { padding:0; margin-bottom:12px; font-size:.9rem; font-weight:700; }
+.life-choice { display:flex; align-items:flex-start; gap:10px; padding:10px 0; font-size:.87rem; cursor:pointer; }
+.life-choice input { flex-shrink:0; margin:5px 0 0; accent-color:var(--primary); }
+.life-decision-actions { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+.life-decision-actions button { min-height:42px; max-width:100%; padding:10px 14px; border:1px solid var(--line); border-radius:12px; font-size:.8rem; font-weight:650; color:var(--ink); background:var(--surface-muted); }
+.life-decision-actions .life-decision-submit { color:var(--primary-strong); background:var(--primary-soft); border-color:color-mix(in srgb,var(--primary) 40%,var(--line)); }
+.life-feedback { margin:0 0 16px; font-size:.87rem; color:var(--ink); border-left:3px solid var(--primary); padding-left:12px; }
+.life-feedback[hidden] { display:none; }
