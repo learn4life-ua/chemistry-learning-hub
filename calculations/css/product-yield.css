@@ -1,0 +1,99 @@
+.yield-section {
+  padding:62px 0 68px;
+  scroll-margin-top:92px;
+  border-top:1px solid var(--line);
+  background:
+    radial-gradient(circle at 88% 14%, color-mix(in srgb,#d58a2f 8%,transparent), transparent 24%),
+    var(--bg);
+}
+
+.yield-mode-switcher {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:24px;
+}
+.yield-mode-switcher button {
+  min-height:44px;
+  padding:0 12px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  color:var(--muted);
+  background:var(--surface-muted);
+  font-size:.76rem;
+  font-weight:800;
+}
+.yield-mode-switcher button:hover {
+  border-color:color-mix(in srgb,#d58a2f 44%,var(--line));
+  color:var(--ink);
+}
+.yield-mode-switcher button.is-active {
+  border-color:color-mix(in srgb,#d58a2f 62%,var(--line));
+  color:#a86816;
+  background:color-mix(in srgb,#d58a2f 12%,var(--surface));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 5px 15px rgba(168,104,22,.10);
+}
+html[data-theme="dark"] .yield-mode-switcher button.is-active { color:#f1b761; }
+
+.yield-fields {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.yield-value-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 104px;
+  gap:8px;
+}
+.yield-unit-select {
+  width:100%;
+  min-height:58px;
+  padding:0 10px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  color:var(--ink);
+  background:var(--surface-muted);
+  outline:none;
+  font-size:.9rem;
+  font-weight:700;
+}
+.yield-unit-select:focus {
+  border-color:color-mix(in srgb,var(--primary) 60%,var(--line));
+  background:var(--surface);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--primary) 14%,transparent);
+}
+
+.yield-submit { margin-top:18px; }
+.yield-result-card { align-items:start; }
+.yield-result-card .result-content { width:100%; }
+.yield-result-title {
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--ink);
+  font-size:clamp(1.2rem,2.2vw,1.7rem);
+  font-weight:800;
+  letter-spacing:-.025em;
+}
+.yield-note-box {
+  margin-top:16px;
+  padding:13px 14px;
+  border:1px solid color-mix(in srgb,#d58a2f 26%,var(--line));
+  border-radius:12px;
+  color:var(--muted);
+  background:color-mix(in srgb,#d58a2f 7%,var(--surface));
+  font-size:.76rem;
+  line-height:1.5;
+}
+.yield-note-box strong { color:var(--ink); }
+
+@media (max-width:900px) {
+  .yield-fields { grid-template-columns:1fr; }
+}
+
+@media (max-width:650px) {
+  .yield-section { padding:46px 0 52px; }
+  .yield-mode-switcher { grid-template-columns:1fr; }
+  .yield-value-row { grid-template-columns:minmax(0,1fr) 92px; }
+}
