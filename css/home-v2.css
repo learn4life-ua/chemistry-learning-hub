@@ -69,6 +69,8 @@ html[data-theme="dark"] .hero-v2 {
   display: grid;
   place-items: center;
   overflow: hidden;
+  transform: translateY(-8px);
+  pointer-events: none;
 }
 .hero-atom-stage::before {
   content: "";
@@ -94,6 +96,7 @@ html[data-theme="dark"] .hero-atom-stage::before {
   height: auto;
   max-width: 100%;
   filter: drop-shadow(0 5px 12px rgba(78,69,170,.045));
+  pointer-events: none;
 }
 .atom-caption {
   position: absolute;
@@ -114,6 +117,7 @@ html[data-theme="dark"] .hero-atom-stage::before {
     inset -2px -2px 4px rgba(35,31,121,.16),
     0 2px 7px rgba(73,61,190,.11),
     0 0 14px rgba(102,88,255,.08);
+  pointer-events: none;
 }
 .atom-caption::before {
   content: "";
@@ -144,11 +148,14 @@ html[data-theme="dark"] .hero-atom-stage::before {
 }
 .atom-caption small { display:none; }
 .atom-controls {
+  position: relative;
+  z-index: 5;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:5px;
   margin-top:-15px;
+  pointer-events: auto;
 }
 .atom-switcher { display:flex; justify-content:center; gap:5px; margin:0; }
 .atom-switcher button,
@@ -156,8 +163,10 @@ html[data-theme="dark"] .hero-atom-stage::before {
   appearance: none;
   -webkit-appearance: none;
   position: relative;
+  z-index: 1;
   overflow: hidden;
   background-clip: border-box;
+  pointer-events: auto;
 }
 .atom-switcher button {
   min-width: 31px;
@@ -314,7 +323,7 @@ html[data-theme="dark"] .directions-section {
   .hero-grid-v2 { padding:28px 0 26px; gap:10px; }
   .hero-v2 h1 { font-size:clamp(2.05rem,10vw,3.25rem); }
   .hero-atom-panel { min-height:215px; }
-  .hero-atom-stage { min-height:170px; }
+  .hero-atom-stage { min-height:170px; transform: translateY(-6px); }
   #heroAtomCanvas { width:min(100%,290px); }
   .atom-caption { width:35px; min-height:35px; }
   .atom-caption span { top:5px; left:7px; font-size:.32rem; }
