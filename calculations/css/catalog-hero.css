@@ -12,6 +12,23 @@
 
 .calc-catalog-copy { min-width: 0; }
 
+.calc-catalog-copy .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calc-catalog-copy .eyebrow::before {
+  content: "";
+  flex: 0 0 30px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+.calc-catalog-hero h1 { color: var(--ink); }
+.calc-hero-title-accent { color: var(--primary); }
+
 .calc-hero-visual {
   width: 100%;
   min-width: 0;
