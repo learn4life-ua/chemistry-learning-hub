@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
+  <meta name="description" content="Балансовий розрахунок потреби в N, P2O5 і K2O за врожайністю, запасами ґрунту та коефіцієнтами використання.">
+  <title>Баланс елементів і норми добрив | Chemistry Learning Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../css/style.css?v=4"><link rel="stylesheet" href="../../css/calculations.css?v=2"><link rel="stylesheet" href="../../css/catalog.css?v=6"><link rel="stylesheet" href="../../css/agrochemistry.css?v=1">
+  <link rel="icon" href="../../../assets/favicon.ico?v=1" sizes="any"><link rel="icon" type="image/png" href="../../../assets/favicon.png?v=1" sizes="192x192">
+</head>
+<body class="calc-category-page agro-tool-page">
+<header class="site-header"><div class="shell calc-header-inner"><a class="brand" href="../../../"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Агрохімічні розрахунки</small></span></a><div class="calc-header-actions"><a class="back-link" href="../">← До агрохімії</a><button class="theme-toggle theme-toggle-icon" id="themeToggle" type="button" aria-label="Змінити тему"><span class="theme-icon" aria-hidden="true">◐</span></button></div></div></header>
+<main>
+  <section class="calc-category-hero"><div class="shell"><div class="calc-category-crumbs"><a href="../../../">Хаб</a><span>›</span><a href="../../">Хімічні розрахунки</a><span>›</span><a href="../">Агрохімія</a><span>›</span><span>Баланс елементів</span></div><h1>Баланс елементів і норми добрив</h1><p>Навчальна балансовa модель: винос елементів урожаєм мінус частина запасу ґрунту, що може бути використана рослинами, з поправкою на коефіцієнт використання з добрив.</p></div></section>
+  <section class="agro-tool-section"><div class="shell agro-layout">
+    <article class="agro-form-card"><div class="agro-card-head"><div><p class="agro-kicker">Живлення рослин</p><h2>Вихідні параметри</h2></div><span class="agro-badge">N · P₂O₅ · K₂O</span></div>
+      <form id="balanceForm" novalidate><div class="agro-fields">
+        <div class="agro-field agro-field-wide"><label for="cropSelect">Культура</label><select id="cropSelect" name="crop"></select><small id="cropHint"></small></div>
+        <div class="agro-field agro-field-wide"><label for="yield">Запланована врожайність, т/га</label><input id="yield" name="yield" type="text" inputmode="decimal" value="5,0"></div>
+        <div class="agro-field"><label for="soilN">Запас N у ґрунті, кг/га</label><input id="soilN" name="soilN" type="text" inputmode="decimal" value="60"></div>
+        <div class="agro-field"><label for="soilP">Запас P₂O₅ у ґрунті, кг/га</label><input id="soilP" name="soilP" type="text" inputmode="decimal" value="45"></div>
+        <div class="agro-field"><label for="soilK">Запас K₂O у ґрунті, кг/га</label><input id="soilK" name="soilK" type="text" inputmode="decimal" value="90"></div>
+        <div class="agro-field"><label for="kSoilN">Використання N з ґрунту, %</label><input id="kSoilN" name="kSoilN" type="text" inputmode="decimal" value="30"></div>
+        <div class="agro-field"><label for="kSoilP">Використання P₂O₅ з ґрунту, %</label><input id="kSoilP" name="kSoilP" type="text" inputmode="decimal" value="12"></div>
+        <div class="agro-field"><label for="kSoilK">Використання K₂O з ґрунту, %</label><input id="kSoilK" name="kSoilK" type="text" inputmode="decimal" value="20"></div>
+        <div class="agro-field"><label for="kFertN">Використання N з добрив, %</label><input id="kFertN" name="kFertN" type="text" inputmode="decimal" value="60"></div>
+        <div class="agro-field"><label for="kFertP">Використання P₂O₅ з добрив, %</label><input id="kFertP" name="kFertP" type="text" inputmode="decimal" value="20"></div>
+        <div class="agro-field"><label for="kFertK">Використання K₂O з добрив, %</label><input id="kFertK" name="kFertK" type="text" inputmode="decimal" value="60"></div>
+      </div><p class="agro-error" role="alert" hidden></p><div class="agro-actions"><button class="agro-button" type="submit">Розрахувати баланс</button></div></form>
+    </article>
+    <aside class="agro-result-card" aria-live="polite"><div class="agro-result-empty" id="balanceEmpty"><strong>Результат з'явиться тут</strong><span>Оберіть культуру та введіть параметри поля.</span></div><div id="balanceOutput" hidden><p class="agro-kicker">Сумарний винос урожаєм</p><div class="agro-result-grid"><div class="agro-metric"><span>N</span><strong id="removal-n"></strong></div><div class="agro-metric"><span>P₂O₅</span><strong id="removal-p"></strong></div><div class="agro-metric"><span>K₂O</span><strong id="removal-k"></strong></div></div><h3 class="agro-result-title" style="margin-top:18px">Потреба у діючій речовині</h3><div class="agro-result-grid"><div class="agro-metric"><span>N</span><strong id="dose-n"></strong></div><div class="agro-metric"><span>P₂O₅</span><strong id="dose-p"></strong></div><div class="agro-metric"><span>K₂O</span><strong id="dose-k"></strong></div></div><div class="agro-steps"><p id="balanceStep"></p></div></div></aside>
+  </div>
+  <div class="shell agro-context"><article class="agro-info-card"><h2>Що саме рахує модель</h2><p>Формула з «АгроХім-Хабу»: Д = [Винос − (Запас ґрунту × Кґрунту)] / Кдобрива. У вихідній версії були задані нормативи виносу для семи культур і фіксовані коефіцієнти використання. Тут ці коефіцієнти залишено редагованими, бо в реальному господарстві вони залежать від ґрунту, культури, форми добрива та технології.</p><div class="agro-note agro-warning"><strong>Важливо:</strong> це навчальна балансовa модель, а не готова виробнича рекомендація. Для польового рішення використовуйте актуальний агрохімічний аналіз і нормативи, прийняті для конкретних умов.</div></article></div>
+  </section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Інтерактивний простір з хімії для навчання, дослідження і самоперевірки</p></div></footer>
+<script src="../../../js/theme.js?v=2" defer></script><script src="../../js/agrochemistry.js?v=1" defer></script>
+</body></html>
