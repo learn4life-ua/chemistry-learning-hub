@@ -1,0 +1,477 @@
+.lab-experiment-page {
+  background: var(--page-bg, #f5f7fc);
+}
+
+.precip-hero {
+  padding: 48px 0 34px;
+  background: linear-gradient(135deg, rgba(109,77,246,.10), rgba(47,112,223,.05));
+  border-bottom: 1px solid var(--border, #dfe5f2);
+}
+
+.precip-hero-inner {
+  max-width: 860px;
+}
+
+.precip-hero h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(2.1rem, 5vw, 4rem);
+  line-height: 1.03;
+}
+
+.precip-hero p {
+  margin: 0;
+  max-width: 760px;
+  color: var(--muted, #69728d);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.precip-virtual-label {
+  display: inline-flex;
+  margin-top: 18px;
+  padding: 7px 11px;
+  border: 1px solid rgba(109,77,246,.18);
+  border-radius: 999px;
+  background: rgba(109,77,246,.06);
+  color: var(--muted, #69728d);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.precip-workspace {
+  padding: 34px 0 72px;
+}
+
+.precip-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.precip-steps span {
+  padding: 10px 12px;
+  border: 1px solid var(--border, #dfe5f2);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  color: var(--muted, #69728d);
+  font-size: .78rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.precip-steps .is-active {
+  border-color: rgba(109,77,246,.28);
+  background: rgba(109,77,246,.07);
+  color: #5b3fe3;
+}
+
+.precip-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.precip-panel,
+.precip-stage,
+.precip-result {
+  border: 1px solid var(--border, #dfe5f2);
+  border-radius: 22px;
+  background: var(--surface, #fff);
+  box-shadow: 0 14px 34px rgba(34,31,69,.06);
+}
+
+.precip-panel,
+.precip-stage {
+  padding: 26px;
+}
+
+.precip-panel-heading h2,
+.precip-stage-top h2,
+.precip-result-heading h2 {
+  margin: 6px 0 8px;
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+}
+
+.precip-panel-heading p,
+.precip-observation,
+.precip-result p {
+  color: var(--muted, #69728d);
+  line-height: 1.6;
+}
+
+.precip-pairs {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.precip-pair {
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid var(--border, #dfe5f2);
+  border-radius: 14px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+.precip-pair:hover {
+  transform: translateY(-1px);
+  border-color: rgba(109,77,246,.32);
+}
+
+.precip-pair.is-selected {
+  border-color: rgba(109,77,246,.48);
+  background: rgba(109,77,246,.055);
+}
+
+.precip-pair strong,
+.precip-pair span {
+  display: block;
+}
+
+.precip-pair strong {
+  margin-bottom: 4px;
+  font-size: .98rem;
+}
+
+.precip-pair span {
+  color: var(--muted, #69728d);
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.precip-prediction {
+  margin-top: 22px;
+}
+
+.precip-prediction label,
+.precip-reflection label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.precip-prediction select,
+.precip-reflection textarea {
+  width: 100%;
+  border: 1px solid var(--border, #dfe5f2);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  color: inherit;
+  font: inherit;
+}
+
+.precip-prediction select {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.precip-reflection textarea {
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.precip-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.precip-run,
+.precip-reset {
+  justify-content: center;
+  min-height: 44px;
+}
+
+.precip-run {
+  flex: 1;
+}
+
+.precip-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.precip-stage-top,
+.precip-result-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.precip-status,
+.precip-prediction-result {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(109,77,246,.07);
+  color: #5b3fe3;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.precip-lab-scene {
+  position: relative;
+  min-height: 390px;
+  margin: 18px 0;
+  border: 1px solid var(--border, #dfe5f2);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fff 0%, #f4f6fb 100%);
+  overflow: hidden;
+}
+
+.precip-dropper {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.precip-dropper-bulb {
+  width: 24px;
+  height: 34px;
+  border-radius: 12px 12px 7px 7px;
+  background: #b85d68;
+}
+
+.precip-dropper-tube {
+  position: relative;
+  width: 12px;
+  height: 78px;
+  border: 1px solid #aab3c5;
+  border-top: none;
+  background: rgba(255,255,255,.75);
+  overflow: hidden;
+}
+
+.precip-dropper-tube i {
+  position: absolute;
+  right: 1px;
+  bottom: 0;
+  left: 1px;
+  height: 46px;
+  background: rgba(203,213,225,.75);
+}
+
+.precip-drop {
+  position: absolute;
+  top: 112px;
+  width: 11px;
+  height: 14px;
+  border-radius: 50% 50% 55% 55%;
+  background: #cbd5e1;
+  opacity: 0;
+}
+
+.precip-drop.is-falling {
+  animation: precipDrop .8s ease-in forwards;
+}
+
+@keyframes precipDrop {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateY(122px); opacity: 0; }
+}
+
+.precip-test-tube {
+  position: absolute;
+  left: 50%;
+  bottom: 58px;
+  width: 104px;
+  height: 238px;
+  padding: 4px;
+  border: 4px solid rgba(109,77,246,.28);
+  border-top-width: 7px;
+  border-radius: 8px 8px 52px 52px;
+  background: linear-gradient(90deg, rgba(255,255,255,.85), rgba(232,238,250,.35));
+  transform: translateX(-50%);
+  box-shadow: inset -6px 0 12px rgba(0,0,0,.04), 0 16px 28px rgba(30,40,70,.10);
+}
+
+.precip-solution {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  height: 145px;
+  border-radius: 4px 4px 44px 44px;
+  background: rgba(241,245,249,.85);
+  overflow: hidden;
+  transition: background-color .45s ease;
+}
+
+.precip-meniscus {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.7);
+}
+
+.precip-cloud {
+  position: absolute;
+  inset: 20px 8px 28px;
+  border-radius: 22px;
+  opacity: 0;
+  transform: scale(.75);
+}
+
+.precip-cloud.is-visible {
+  animation: precipCloud .8s ease-out forwards;
+}
+
+@keyframes precipCloud {
+  0% { opacity: 0; transform: scale(.7); }
+  55% { opacity: .92; transform: scale(1.04); }
+  100% { opacity: .72; transform: scale(1); }
+}
+
+.precip-sediment {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  border-radius: 0 0 40px 40px;
+  transition: height .8s ease;
+}
+
+.precip-stand {
+  position: absolute;
+  left: 50%;
+  bottom: 48px;
+  width: 160px;
+  height: 14px;
+  border: 1px solid #aeb7c8;
+  border-radius: 7px;
+  background: #d5dbe6;
+  transform: translateX(-50%);
+}
+
+.precip-observation {
+  margin: auto 0 0;
+  padding: 13px 14px;
+  border-radius: 13px;
+  background: rgba(109,77,246,.045);
+}
+
+.precip-result {
+  margin-top: 20px;
+  padding: 26px;
+}
+
+.precip-result[hidden] {
+  display: none;
+}
+
+.precip-result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.precip-result-grid > div {
+  padding: 16px;
+  border: 1px solid var(--border, #dfe5f2);
+  border-radius: 14px;
+  background: rgba(109,77,246,.025);
+}
+
+.precip-result-grid > div:first-child {
+  grid-column: 1 / -1;
+}
+
+.precip-result-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted, #69728d);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.precip-equation {
+  margin: 0;
+  color: inherit !important;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.precip-reflection {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border, #dfe5f2);
+}
+
+.precip-reflection .secondary-button {
+  margin-top: 10px;
+}
+
+.precip-save-note {
+  display: inline-block;
+  margin-left: 10px;
+  color: #198754;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .precip-grid,
+  .precip-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .precip-result-grid > div:first-child {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .precip-hero {
+    padding: 38px 0 28px;
+  }
+
+  .precip-workspace {
+    padding-top: 24px;
+  }
+
+  .precip-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .precip-panel,
+  .precip-stage,
+  .precip-result {
+    padding: 20px;
+  }
+
+  .precip-stage-top,
+  .precip-result-heading {
+    flex-direction: column;
+  }
+
+  .precip-actions {
+    flex-direction: column;
+  }
+
+  .precip-lab-scene {
+    min-height: 360px;
+  }
+}
