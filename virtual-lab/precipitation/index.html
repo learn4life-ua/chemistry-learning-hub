@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css?v=4">
   <link rel="stylesheet" href="../lab.css?v=2">
-  <link rel="stylesheet" href="./precipitation.css?v=2">
+  <link rel="stylesheet" href="./precipitation.css?v=3">
   <link rel="icon" href="../../assets/favicon.ico?v=1" sizes="any">
   <link rel="icon" type="image/png" href="../../assets/favicon.png?v=1" sizes="192x192">
 </head>
@@ -53,7 +53,7 @@
             <div class="precip-panel-heading">
               <p class="eyebrow">Крок 1</p>
               <h2 id="choiceTitle">Оберіть дослідну пару</h2>
-              <p>Назви продуктів і колір осаду з'являться тільки після проведення досліду.</p>
+              <p>Назви продуктів і результат з'являться тільки після проведення досліду.</p>
             </div>
 
             <div class="precip-pairs" role="radiogroup" aria-label="Пари реактивів">
@@ -72,6 +72,10 @@
               <button class="precip-pair" type="button" data-exp="baso4" role="radio" aria-checked="false">
                 <strong>BaCl₂ + Na₂SO₄</strong>
                 <span>Барій хлорид + натрій сульфат</span>
+              </button>
+              <button class="precip-pair precip-pair-control" type="button" data-exp="nacl-kno3" role="radio" aria-checked="false">
+                <strong>NaCl + KNO₃</strong>
+                <span>Натрій хлорид + калій нітрат</span>
               </button>
             </div>
 
@@ -137,11 +141,11 @@
               <p id="resultObservation"></p>
             </div>
             <div>
-              <span class="precip-result-label">Молекулярне рівняння</span>
+              <span class="precip-result-label" id="molecularLabel">Молекулярне рівняння</span>
               <p class="precip-equation" id="molecularEquation"></p>
             </div>
             <div>
-              <span class="precip-result-label">Скорочене йонне рівняння</span>
+              <span class="precip-result-label" id="ionicLabel">Скорочене йонне рівняння</span>
               <p class="precip-equation" id="ionicEquation"></p>
             </div>
           </div>
@@ -163,6 +167,6 @@
   </footer>
 
   <script src="../../js/theme.js?v=2" defer></script>
-  <script src="./precipitation.js?v=2" defer></script>
+  <script src="./precipitation.js?v=3" defer></script>
 </body>
 </html>
