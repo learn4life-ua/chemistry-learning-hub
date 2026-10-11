@@ -1,6 +1,7 @@
 const experiments = {
   agcl: {
     correct: 'white',
+    formsPrecipitate: true,
     solution: 'rgba(241,245,249,.9)',
     drop: '#cbd5e1',
     cloud: 'rgba(255,255,255,.95)',
@@ -11,6 +12,7 @@ const experiments = {
   },
   cuoh2: {
     correct: 'blue',
+    formsPrecipitate: true,
     solution: 'rgba(186,230,253,.55)',
     drop: '#dbeafe',
     cloud: 'rgba(14,165,233,.75)',
@@ -21,6 +23,7 @@ const experiments = {
   },
   feoh3: {
     correct: 'brown',
+    formsPrecipitate: true,
     solution: 'rgba(254,240,138,.55)',
     drop: '#fde68a',
     cloud: 'rgba(180,83,9,.78)',
@@ -31,6 +34,7 @@ const experiments = {
   },
   baso4: {
     correct: 'white',
+    formsPrecipitate: true,
     solution: 'rgba(241,245,249,.88)',
     drop: '#e2e8f0',
     cloud: 'rgba(248,250,252,.98)',
@@ -38,6 +42,17 @@ const experiments = {
     observation: 'Утворився білий осад барій сульфату BaSO₄.',
     molecular: 'BaCl₂ + Na₂SO₄ → BaSO₄↓ + 2NaCl',
     ionic: 'Ba²⁺ + SO₄²⁻ → BaSO₄↓'
+  },
+  'nacl-kno3': {
+    correct: 'none',
+    formsPrecipitate: false,
+    solution: 'rgba(241,245,249,.9)',
+    drop: '#e2e8f0',
+    cloud: 'transparent',
+    sediment: 'transparent',
+    observation: 'Видимих змін немає: розчин залишається прозорим, осад не утворюється.',
+    molecular: 'NaCl(aq) + KNO₃(aq): усі йони залишаються у розчині.',
+    ionic: 'Скорочене йонне рівняння не складають, оскільки реакція з утворенням осаду не відбувається.'
   }
 };
 
@@ -59,6 +74,8 @@ const resultPanel = document.getElementById('resultPanel');
 const resultObservation = document.getElementById('resultObservation');
 const molecularEquation = document.getElementById('molecularEquation');
 const ionicEquation = document.getElementById('ionicEquation');
+const molecularLabel = document.getElementById('molecularLabel');
+const ionicLabel = document.getElementById('ionicLabel');
 const predictionResult = document.getElementById('predictionResult');
 const conclusion = document.getElementById('studentConclusion');
 
@@ -92,7 +109,10 @@ function resetExperiment(clearPrediction = true) {
   status.textContent = 'Готово до досліду';
   observation.textContent = 'У пробірці міститься вихідний розчин. Оберіть прогноз і запустіть дослід.';
   resultPanel.hidden = true;
+  molecularLabel.textContent = 'Молекулярне рівняння';
+  ionicLabel.textContent = 'Скорочене йонне рівняння';
   conclusion.value = '';
+  conclusion.placeholder = 'Наприклад: реакція відбулася, оскільки спостерігалося утворення осаду...';
   runButton.disabled = false;
   if (clearPrediction) predictionSelect.value = '';
   setActiveStep(predictionSelect.value ? 1 : 0);
@@ -113,6 +133,7 @@ function runExperiment() {
   resultPanel.hidden = true;
   cloud.classList.remove('is-visible');
   sediment.style.height = '0';
+  sediment.style.background = 'transparent';
   setActiveStep(2);
   status.textContent = 'Додаємо реактив...';
   observation.textContent = 'Реактив надходить у пробірку. Спостерігайте за змінами.';
@@ -122,18 +143,34 @@ function runExperiment() {
   drop.classList.add('is-falling');
 
   window.setTimeout(() => {
-    cloud.style.background = exp.cloud;
-    cloud.classList.add('is-visible');
-    status.textContent = 'Відбувається реакція';
-    observation.textContent = 'Розчин мутніє, з’являється тверда фаза.';
+    if (exp.formsPrecipitate) {
+      cloud.style.background = exp.cloud;
+      cloud.classList.add('is-visible');
+      status.textContent = 'Відбувається реакція';
+      observation.textContent = 'Розчин мутніє, з’являється тверда фаза.';
+    } else {
+      status.textContent = 'Спостерігаємо';
+      observation.textContent = 'Розчин залишається прозорим. Видимих змін не спостерігається.';
+    }
   }, 650);
 
   window.setTimeout(() => {
-    sediment.style.background = exp.sediment;
-    sediment.style.height = '40px';
-    status.textContent = 'Осад утворився';
-    observation.textContent = exp.observation;
+    if (exp.formsPrecipitate) {
+      sediment.style.background = exp.sediment;
+      sediment.style.height = '40px';
+      status.textContent = 'Осад утворився';
+      molecularLabel.textContent = 'Молекулярне рівняння';
+      ionicLabel.textContent = 'Скорочене йонне рівняння';
+      conclusion.placeholder = 'Наприклад: реакція відбулася, оскільки спостерігалося утворення осаду...';
+    } else {
+      sediment.style.height = '0';
+      status.textContent = 'Осад не утворився';
+      molecularLabel.textContent = 'Результат змішування';
+      ionicLabel.textContent = 'Скорочене йонне рівняння';
+      conclusion.placeholder = 'Наприклад: осад не утворився, оскільки всі йони залишилися у розчині...';
+    }
 
+    observation.textContent = exp.observation;
     resultObservation.textContent = exp.observation;
     molecularEquation.textContent = exp.molecular;
     ionicEquation.textContent = exp.ionic;
