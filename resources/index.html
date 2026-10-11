@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=4">
-  <link rel="stylesheet" href="resources.css?v=3">
+  <link rel="stylesheet" href="resources.css?v=4">
   <link rel="icon" href="../assets/favicon.ico?v=1" sizes="any">
   <link rel="icon" type="image/png" href="../assets/favicon.png?v=1" sizes="192x192">
 </head>
@@ -70,6 +70,7 @@
             <div class="resources-card-icon" aria-hidden="true">✓</div>
             <h3>Алгоритми та пам’ятки</h3>
             <p>Короткі послідовності дій для складання формул, рівнянь реакцій і типових хімічних розрахунків.</p>
+            <a class="resources-direction-action" href="#guides">До алгоритмів <span aria-hidden="true">↓</span></a>
           </article>
 
           <article class="resources-direction-card resources-safety">
@@ -225,6 +226,129 @@
           <a href="https://physics.nist.gov/cgi-bin/cuu/Value?r" target="_blank" rel="noopener noreferrer">NIST · CODATA</a>
           <a href="https://edu.rsc.org/download?ac=14875" target="_blank" rel="noopener noreferrer">RSC · pH indicators</a>
           <a href="https://iupac.org/recommendation/comprehensive-definition-of-oxidation-state/" target="_blank" rel="noopener noreferrer">IUPAC · oxidation state</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources-guides-section" id="guides" aria-labelledby="guidesTitle">
+      <div class="shell">
+        <div class="resources-section-heading resources-guides-heading">
+          <p class="eyebrow">Крок за кроком</p>
+          <h2 id="guidesTitle">Алгоритми та пам’ятки</h2>
+          <p>Короткі схеми для типових дій у хімії. Відкрий потрібну пам’ятку, пройди кроки й перевір себе на прикладі.</p>
+        </div>
+
+        <div class="resources-guide-grid">
+          <details class="resources-guide-card" open>
+            <summary>
+              <span class="resources-guide-number">01</span>
+              <span class="resources-guide-summary"><strong>Формула йонної сполуки</strong><small>Як скласти формулу за зарядами йонів</small></span>
+            </summary>
+            <div class="resources-guide-body">
+              <ol>
+                <li>Запиши формули катіона й аніона та їх заряди.</li>
+                <li>Добери найменші цілі індекси, за яких сумарний позитивний заряд дорівнює сумарному негативному.</li>
+                <li>Запиши індекси праворуч унизу. Індекс 1 не пишуть.</li>
+                <li>Якщо багатоатомний йон повторюється кілька разів, візьми його у дужки.</li>
+              </ol>
+              <div class="resources-guide-example"><span>Приклад</span><strong>Ca<sup>2+</sup> + Cl<sup>−</sup> → CaCl<sub>2</sub></strong><p>Один Ca<sup>2+</sup> урівноважують два Cl<sup>−</sup>.</p></div>
+              <p class="resources-guide-note">Цей алгоритм застосовують до йонних сполук. Для молекулярних речовин склад не визначають механічно лише за зарядами.</p>
+            </div>
+          </details>
+
+          <details class="resources-guide-card">
+            <summary>
+              <span class="resources-guide-number">02</span>
+              <span class="resources-guide-summary"><strong>Ступені окиснення</strong><small>Як знайти невідоме значення</small></span>
+            </summary>
+            <div class="resources-guide-body">
+              <ol>
+                <li>У простій речовині ступінь окиснення елемента дорівнює 0.</li>
+                <li>У нейтральній сполуці сума ступенів окиснення всіх атомів дорівнює 0; у багатоатомному йоні - заряду йона.</li>
+                <li>У більшості сполук H має +1, O -2; F завжди -1. Для H та O пам’ятай про винятки.</li>
+                <li>Підстав відомі значення й обчисли невідоме.</li>
+              </ol>
+              <div class="resources-guide-example"><span>Приклад</span><strong>H<sub>2</sub>SO<sub>4</sub>: 2(+1) + x + 4(−2) = 0</strong><p>x(S) = +6.</p></div>
+              <p class="resources-guide-note">Ступінь окиснення - формальна характеристика атома в сполуці; він не тотожний заряду атома в молекулі.</p>
+            </div>
+          </details>
+
+          <details class="resources-guide-card">
+            <summary>
+              <span class="resources-guide-number">03</span>
+              <span class="resources-guide-summary"><strong>Хімічне рівняння</strong><small>Як правильно розставити коефіцієнти</small></span>
+            </summary>
+            <div class="resources-guide-body">
+              <ol>
+                <li>Спочатку запиши правильні формули реагентів і продуктів.</li>
+                <li>Порахуй атоми кожного елемента ліворуч і праворуч.</li>
+                <li>Добирай коефіцієнти перед формулами. Індекси у формулах не змінюй.</li>
+                <li>Зведи коефіцієнти до найменших цілих чисел і ще раз перевір кількість атомів.</li>
+              </ol>
+              <div class="resources-guide-example"><span>Приклад</span><strong>4Fe + 3O<sub>2</sub> → 2Fe<sub>2</sub>O<sub>3</sub></strong><p>Ліворуч і праворуч: 4 атоми Fe та 6 атомів O.</p></div>
+              <p class="resources-guide-note"><strong>Не плутай:</strong> коефіцієнт стосується всієї формули, а індекс є частиною формули речовини.</p>
+            </div>
+          </details>
+
+          <details class="resources-guide-card">
+            <summary>
+              <span class="resources-guide-number">04</span>
+              <span class="resources-guide-summary"><strong>Електронний баланс</strong><small>Для окисно-відновних реакцій</small></span>
+            </summary>
+            <div class="resources-guide-body">
+              <ol>
+                <li>Визнач ступені окиснення елементів до і після реакції.</li>
+                <li>Знайди атоми, ступені окиснення яких змінилися.</li>
+                <li>Запиши віддавання й приєднання електронів.</li>
+                <li>Зрівняй кількість відданих і приєднаних електронів, а отримані множники використай для добору коефіцієнтів.</li>
+                <li>Перевір усі атоми в готовому рівнянні.</li>
+              </ol>
+              <div class="resources-guide-example"><span>Приклад</span><strong>Zn<sup>0</sup> − 2e<sup>−</sup> → Zn<sup>2+</sup><br>Cu<sup>2+</sup> + 2e<sup>−</sup> → Cu<sup>0</sup></strong><p>Zn + CuSO<sub>4</sub> → ZnSO<sub>4</sub> + Cu.</p></div>
+              <p class="resources-guide-note">Окисник приєднує електрони й відновлюється; відновник віддає електрони й окиснюється.</p>
+            </div>
+          </details>
+
+          <details class="resources-guide-card">
+            <summary>
+              <span class="resources-guide-number">05</span>
+              <span class="resources-guide-summary"><strong>Скорочене йонне рівняння</strong><small>Як перейти від молекулярного запису до суті реакції</small></span>
+            </summary>
+            <div class="resources-guide-body">
+              <ol>
+                <li>Запиши й урівняй молекулярне рівняння.</li>
+                <li>Сильні розчинні електроліти запиши у вигляді йонів.</li>
+                <li>Не розкладай на йони осади, гази, воду та слабкі електроліти.</li>
+                <li>Скороти однакові йони ліворуч і праворуч.</li>
+                <li>Перевір кількість атомів і сумарний заряд обох частин.</li>
+              </ol>
+              <div class="resources-guide-example"><span>Приклад</span><strong>H<sup>+</sup> + OH<sup>−</sup> → H<sub>2</sub>O</strong><p>Для реакції HCl + NaOH → NaCl + H<sub>2</sub>O йони Na<sup>+</sup> і Cl<sup>−</sup> є йонами-спостерігачами.</p></div>
+              <p class="resources-guide-note">Розчинність речовин і силу електролітів потрібно враховувати до скорочення йонів.</p>
+            </div>
+          </details>
+
+          <details class="resources-guide-card">
+            <summary>
+              <span class="resources-guide-number">06</span>
+              <span class="resources-guide-summary"><strong>Розрахункова задача</strong><small>Універсальна послідовність дій</small></span>
+            </summary>
+            <div class="resources-guide-body">
+              <ol>
+                <li>Запиши, що дано і що потрібно знайти.</li>
+                <li>Переведи величини в узгоджені одиниці.</li>
+                <li>Якщо задача пов’язана з реакцією, запиши й урівняй рівняння.</li>
+                <li>Визнач потрібне співвідношення: n = m/M; n = V/V<sub>m</sub>; N = nN<sub>A</sub>; c = n/V; ω = m(речовини)/m(розчину).</li>
+                <li>Виконай обчислення, запиши одиниці та перевір, чи реалістичний результат.</li>
+              </ol>
+              <div class="resources-guide-example"><span>Мініприклад</span><strong>m(H<sub>2</sub>O) = 36 г → n = 36/18 = 2 моль</strong><p>Спочатку знайдено молярну масу, потім використано n = m/M.</p></div>
+              <p class="resources-guide-note">У задачах за рівнянням реакції зв’язок між речовинами задають стехіометричні коефіцієнти.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="resources-guides-reminder">
+          <div><strong>Індекс</strong><span>частина формули речовини</span></div>
+          <div><strong>Коефіцієнт</strong><span>множить усю формулу в рівнянні</span></div>
+          <div><strong>Перевірка</strong><span>атоми, заряд, одиниці та зміст результату</span></div>
         </div>
       </div>
     </section>
