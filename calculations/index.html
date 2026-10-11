@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Хімічні калькулятори Chemistry Learning Hub: молярна маса, кількість речовини, гази, розчини, стехіометрія та визначення формули речовини.">
+  <meta name="description" content="Хімічні розрахунки Chemistry Learning Hub: основні навчальні калькулятори та окремий блок агрохімічних розрахунків.">
   <meta name="color-scheme" content="light dark">
   <title>Хімічні розрахунки | Chemistry Learning Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/calculations.css?v=2">
   <link rel="stylesheet" href="css/catalog.css?v=6">
   <link rel="stylesheet" href="css/catalog-hero.css?v=16">
+  <link rel="stylesheet" href="css/routes.css?v=1">
   <link rel="icon" href="../assets/favicon.ico?v=1" sizes="any">
   <link rel="icon" type="image/png" href="../assets/favicon.png?v=1" sizes="192x192">
 </head>
@@ -21,16 +22,11 @@
     <div class="shell calc-header-inner">
       <a class="brand" href="../" aria-label="Chemistry Learning Hub - на головну">
         <span class="brand-mark" aria-hidden="true">⚛</span>
-        <span class="brand-copy">
-          <strong>Chemistry Learning Hub</strong>
-          <small>Хімічні розрахунки</small>
-        </span>
+        <span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Хімічні розрахунки</small></span>
       </a>
       <div class="calc-header-actions">
         <a class="back-link" href="../">← До хабу</a>
-        <button class="theme-toggle theme-toggle-icon" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false" title="Змінити тему">
-          <span class="theme-icon" aria-hidden="true">◐</span>
-        </button>
+        <button class="theme-toggle theme-toggle-icon" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false" title="Змінити тему"><span class="theme-icon" aria-hidden="true">◐</span></button>
       </div>
     </div>
   </header>
@@ -40,10 +36,9 @@
       <div class="shell calc-catalog-hero-grid">
         <div class="calc-catalog-copy">
           <p class="eyebrow">Хімічні розрахунки</p>
-          <h1>Оберіть тип задачі</h1>
-          <p class="calc-catalog-lead">Калькулятори допоможуть виконати розрахунок, перевірити одиниці та побачити послідовність розв'язання.</p>
+          <h1>Оберіть напрям</h1>
+          <p class="calc-catalog-lead">Базові навчальні задачі та профільні агрохімічні розрахунки розділено на два окремі каталоги.</p>
         </div>
-
         <div class="calc-hero-visual" aria-hidden="true">
           <img class="calc-hero-image" src="assets/calculations-hero.png" width="1448" height="1086" alt="" decoding="async" fetchpriority="high">
         </div>
@@ -52,88 +47,31 @@
 
     <section class="calc-catalog-section">
       <div class="shell">
-        <div class="calc-catalog-heading">
-          <h2>Основні типи розрахунків</h2>
-        </div>
-
-        <div class="calc-catalog-grid">
-          <a class="calc-category-card card-purple" href="molar-mass/">
-            <div class="calc-card-top">
-              <span class="calc-category-icon">M</span>
-              <span class="calc-card-ghost" aria-hidden="true">H₂O</span>
-            </div>
-            <h3>Молярна маса і склад речовини</h3>
-            <p>Обчислення молярної маси за формулою та внеску кожного елемента.</p>
-            <div class="calc-category-tags"><span>H₂O</span><span>Ca(OH)₂</span><span>M</span></div>
-            <span class="calc-card-action">Відкрити <b>→</b></span>
+        <div class="calc-catalog-heading"><h2>Два напрями розрахунків</h2></div>
+        <div class="calc-catalog-grid calc-route-grid">
+          <a class="calc-category-card card-purple calc-route-card" href="basic/">
+            <div class="calc-route-label">Загальна хімія</div>
+            <div class="calc-card-top"><span class="calc-category-icon">Σ</span><span class="calc-card-ghost" aria-hidden="true">n · m · c</span></div>
+            <h3>Основні хімічні розрахунки</h3>
+            <p>Молярна маса, кількість речовини, гази, розчини, стехіометрія та визначення формули речовини.</p>
+            <div class="calc-category-tags"><span>M</span><span>n</span><span>c</span></div>
+            <span class="calc-card-action">Відкрити каталог <b>→</b></span>
           </a>
 
-          <a class="calc-category-card card-blue" href="substance-amount/">
-            <div class="calc-card-top">
-              <span class="calc-category-icon">n</span>
-              <span class="calc-card-ghost" aria-hidden="true">N</span>
-            </div>
-            <h3>Кількість речовини</h3>
-            <p>Розрахунки маси, кількості речовини та числа структурних частинок.</p>
-            <div class="calc-category-tags"><span>m</span><span>n</span><span>N</span></div>
-            <span class="calc-card-action">Відкрити <b>→</b></span>
-          </a>
-
-          <a class="calc-category-card card-green" href="gases/">
-            <div class="calc-card-top">
-              <span class="calc-category-icon">V</span>
-              <span class="calc-card-ghost" aria-hidden="true">Vₘ</span>
-            </div>
-            <h3>Газові розрахунки</h3>
-            <p>Молярний об'єм, кількість речовини, маса та відносна густина газів.</p>
-            <div class="calc-category-tags"><span>V<sub>m</sub></span><span>n</span><span>D</span></div>
-            <span class="calc-card-action">Відкрити <b>→</b></span>
-          </a>
-
-          <a class="calc-category-card card-amber" href="solutions/">
-            <div class="calc-card-top">
-              <span class="calc-category-icon">aq</span>
-              <span class="calc-card-ghost" aria-hidden="true">ω</span>
-            </div>
-            <h3>Розчини</h3>
-            <p>Молярна концентрація, масова частка, розведення, густина та масова концентрація.</p>
-            <div class="calc-category-tags"><span>c</span><span>ω</span><span>ρ</span></div>
-            <span class="calc-card-action">Відкрити <b>→</b></span>
-          </a>
-
-          <a class="calc-category-card card-pink" href="stoichiometry/">
-            <div class="calc-card-top">
-              <span class="calc-category-icon">⇄</span>
-              <span class="calc-card-ghost calc-card-equation" aria-hidden="true">aA + bB → cC</span>
-            </div>
-            <h3>Розрахунки за рівняннями реакцій</h3>
-            <p>Стехіометричні співвідношення, лімітуючий реагент, вихід продукту та чистота речовини.</p>
-            <div class="calc-category-tags"><span>ν</span><span>lim</span><span>η</span></div>
-            <span class="calc-card-action">Відкрити <b>→</b></span>
-          </a>
-
-          <a class="calc-category-card card-violet" href="formulas/">
-            <div class="calc-card-top">
-              <span class="calc-category-icon">MF</span>
-              <span class="calc-card-ghost" aria-hidden="true">CₓHᵧ</span>
-            </div>
-            <h3>Визначення формули речовини</h3>
-            <p>Найпростіша формула за масовими частками елементів.</p>
-            <div class="calc-category-tags"><span>ω(E)</span><span>A<sub>r</sub></span><span>індекси</span></div>
-            <span class="calc-card-action">Відкрити <b>→</b></span>
+          <a class="calc-category-card card-green calc-route-card" href="agrochemistry/">
+            <div class="calc-route-label">Агрохімія</div>
+            <div class="calc-card-top"><span class="calc-category-icon">NPK</span><span class="calc-card-ghost" aria-hidden="true">pH</span></div>
+            <h3>Агрохімічні розрахунки</h3>
+            <p>Кислотність ґрунту, вапнування, баланс елементів, перерахунок добрив і фертигація.</p>
+            <div class="calc-category-tags"><span>pH</span><span>NPK</span><span>CaCO₃</span></div>
+            <span class="calc-card-action">Відкрити каталог <b>→</b></span>
           </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="shell footer-inner">
-      <div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div>
-      <p>Інтерактивний простір з хімії для навчання, дослідження і самоперевірки</p>
-    </div>
-  </footer>
-
-  <script src="../js/theme.js?v=1" defer></script>
+  <footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Інтерактивний простір з хімії для навчання, дослідження і самоперевірки</p></div></footer>
+  <script src="../js/theme.js?v=2" defer></script>
 </body>
 </html>
