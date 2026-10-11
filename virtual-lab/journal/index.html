@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Лабораторний журнал Chemistry Learning Hub для ручного заповнення результатів віртуальних дослідів і друку.">
+  <meta name="description" content="Лабораторний журнал Chemistry Learning Hub для ручного заповнення результатів дослідів, копіювання та друку.">
   <meta name="color-scheme" content="light dark">
   <title>Лабораторний журнал | Віртуальна лабораторія</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css?v=4">
   <link rel="stylesheet" href="../lab.css?v=2">
-  <link rel="stylesheet" href="./journal.css?v=1">
+  <link rel="stylesheet" href="./journal.css?v=2">
   <link rel="icon" href="../../assets/favicon.ico?v=1" sizes="any">
 </head>
 <body class="section-page journal-page">
@@ -33,17 +33,18 @@
     <div class="shell journal-hero-inner">
       <p class="eyebrow">Віртуальна лабораторія</p>
       <h1>Лабораторний журнал</h1>
-      <p>Заповніть поля вручну після виконання досліду. Дані не зберігаються на сайті - готову сторінку можна одразу надрукувати або зберегти як PDF через меню друку браузера.</p>
+      <p>Фіксуйте виконані досліди вручну: тему, рівняння та спостереження. Готовий журнал можна скопіювати, надрукувати або зберегти як PDF через меню друку браузера.</p>
     </div>
   </section>
 
   <section class="journal-workspace">
     <div class="shell">
       <div class="journal-toolbar no-print">
-        <p>Заповніть потрібні поля, а потім натисніть «Друкувати».</p>
+        <p>Дані не надсилаються і не зберігаються на сайті. Заповніть журнал у поточній вкладці, а потім скопіюйте або надрукуйте його.</p>
         <div class="journal-toolbar-actions">
           <button class="secondary-button" id="clearJournal" type="button">Очистити</button>
-          <button class="primary-button" id="printJournal" type="button">Друкувати</button>
+          <button class="secondary-button" id="copyJournal" type="button">Копіювати текст</button>
+          <button class="primary-button" id="printJournal" type="button">Друк / PDF</button>
         </div>
       </div>
 
@@ -51,66 +52,56 @@
         <div class="journal-sheet-head">
           <div>
             <span class="journal-kicker">Chemistry Learning Hub</span>
-            <h2>Запис лабораторного досліду</h2>
+            <h2>Лабораторний журнал</h2>
           </div>
           <div class="journal-date-field">
-            <label for="journalDate">Дата</label>
+            <label for="journalDate">Дата виконання</label>
             <input id="journalDate" type="date">
           </div>
         </div>
 
         <div class="journal-meta-grid">
           <label class="journal-field">
-            <span>Прізвище та ім’я</span>
-            <input type="text" id="studentName" autocomplete="name">
+            <span>Здобувач освіти</span>
+            <input type="text" id="studentName" placeholder="Прізвище та ім’я" autocomplete="name">
           </label>
           <label class="journal-field">
             <span>Група / клас</span>
-            <input type="text" id="studentGroup">
+            <input type="text" id="studentGroup" placeholder="Наприклад: 11-А">
           </label>
         </div>
 
-        <label class="journal-field journal-field-wide">
-          <span>Тема досліду</span>
-          <input type="text" id="experimentTopic" placeholder="Наприклад: Утворення осаду">
-        </label>
-
-        <div class="journal-two-cols">
-          <label class="journal-field">
-            <span>Мета</span>
-            <textarea id="experimentGoal" rows="4"></textarea>
-          </label>
-          <label class="journal-field">
-            <span>Реактиви та обладнання</span>
-            <textarea id="reagents" rows="4"></textarea>
-          </label>
+        <div class="journal-records-head">
+          <div>
+            <span class="journal-kicker">Записи</span>
+            <h3>Журнал спостережень</h3>
+          </div>
+          <button class="secondary-button no-print" id="addJournalRow" type="button">+ Додати рядок</button>
         </div>
 
-        <label class="journal-field journal-field-wide">
-          <span>Хід роботи</span>
-          <textarea id="procedure" rows="5" placeholder="Коротко опишіть послідовність дій"></textarea>
-        </label>
-
-        <label class="journal-field journal-field-wide">
-          <span>Спостереження</span>
-          <textarea id="observations" rows="5" placeholder="Що змінилося: колір, осад, газ, температура тощо"></textarea>
-        </label>
-
-        <div class="journal-two-cols">
-          <label class="journal-field">
-            <span>Молекулярне рівняння</span>
-            <textarea id="molecularEquationJournal" rows="4" class="equation-input"></textarea>
-          </label>
-          <label class="journal-field">
-            <span>Скорочене йонне рівняння</span>
-            <textarea id="ionicEquationJournal" rows="4" class="equation-input"></textarea>
-          </label>
+        <div class="journal-table-wrap">
+          <table class="journal-table">
+            <thead>
+              <tr>
+                <th class="journal-col-number">№</th>
+                <th>Тема досліду</th>
+                <th>Хімізм / рівняння</th>
+                <th>Спостереження</th>
+                <th class="journal-col-remove no-print">×</th>
+              </tr>
+            </thead>
+            <tbody id="journalTableBody"></tbody>
+          </table>
         </div>
 
-        <label class="journal-field journal-field-wide">
-          <span>Висновок</span>
-          <textarea id="conclusionJournal" rows="5"></textarea>
+        <div class="journal-empty-note" id="journalEmptyNote">Додайте перший рядок і внесіть результати досліду.</div>
+
+        <label class="journal-field journal-conclusion">
+          <span>Підсумковий висновок</span>
+          <textarea id="conclusionJournal" rows="5" placeholder="Сформулюйте висновок за виконаними дослідами"></textarea>
         </label>
+
+        <p class="journal-copy-note no-print" id="copyNote" aria-live="polite"></p>
       </article>
     </div>
   </section>
@@ -124,6 +115,6 @@
 </footer>
 
 <script src="../../js/theme.js?v=2" defer></script>
-<script src="./journal.js?v=1" defer></script>
+<script src="./journal.js?v=2" defer></script>
 </body>
 </html>
