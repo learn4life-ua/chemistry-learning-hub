@@ -44,6 +44,7 @@ const experiments = {
 let currentExperiment = 'agcl';
 
 const pairButtons = [...document.querySelectorAll('.precip-pair')];
+const stepItems = [...document.querySelectorAll('.precip-steps span')];
 const predictionSelect = document.getElementById('predictionSelect');
 const runButton = document.getElementById('runExperiment');
 const resetButton = document.getElementById('resetExperiment');
@@ -60,8 +61,12 @@ const molecularEquation = document.getElementById('molecularEquation');
 const ionicEquation = document.getElementById('ionicEquation');
 const predictionResult = document.getElementById('predictionResult');
 const conclusion = document.getElementById('studentConclusion');
-const saveButton = document.getElementById('saveToJournal');
-const saveNote = document.getElementById('saveNote');
+
+function setActiveStep(index) {
+  stepItems.forEach((item, itemIndex) => {
+    item.classList.toggle('is-active', itemIndex === index);
+  });
+}
 
 function selectExperiment(id) {
   currentExperiment = id;
@@ -71,6 +76,7 @@ function selectExperiment(id) {
     button.setAttribute('aria-checked', String(selected));
   });
   resetExperiment(false);
+  setActiveStep(predictionSelect.value ? 1 : 0);
 }
 
 function resetExperiment(clearPrediction = true) {
@@ -86,9 +92,10 @@ function resetExperiment(clearPrediction = true) {
   status.textContent = 'Готово до досліду';
   observation.textContent = 'У пробірці міститься вихідний розчин. Оберіть прогноз і запустіть дослід.';
   resultPanel.hidden = true;
-  saveNote.textContent = '';
   conclusion.value = '';
+  runButton.disabled = false;
   if (clearPrediction) predictionSelect.value = '';
+  setActiveStep(predictionSelect.value ? 1 : 0);
 }
 
 function runExperiment() {
@@ -97,15 +104,16 @@ function runExperiment() {
 
   if (!prediction) {
     status.textContent = 'Спочатку зробіть прогноз';
+    setActiveStep(1);
     predictionSelect.focus();
     return;
   }
 
   runButton.disabled = true;
   resultPanel.hidden = true;
-  saveNote.textContent = '';
   cloud.classList.remove('is-visible');
   sediment.style.height = '0';
+  setActiveStep(2);
   status.textContent = 'Додаємо реактив...';
   observation.textContent = 'Реактив надходить у пробірку. Спостерігайте за змінами.';
 
@@ -135,46 +143,24 @@ function runExperiment() {
     predictionResult.dataset.state = correct ? 'correct' : 'review';
 
     resultPanel.hidden = false;
+    setActiveStep(3);
     resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     runButton.disabled = false;
   }, 1450);
-}
-
-function saveToJournal() {
-  if (resultPanel.hidden) return;
-
-  const exp = experiments[currentExperiment];
-  const record = {
-    type: 'precipitation',
-    title: 'Утворення осаду',
-    experiment: currentExperiment,
-    observation: exp.observation,
-    molecular: exp.molecular,
-    ionic: exp.ionic,
-    conclusion: conclusion.value.trim(),
-    savedAt: new Date().toISOString()
-  };
-
-  const key = 'chemHubLabJournal';
-  let journal = [];
-  try {
-    journal = JSON.parse(localStorage.getItem(key) || '[]');
-    if (!Array.isArray(journal)) journal = [];
-  } catch {
-    journal = [];
-  }
-
-  journal.push(record);
-  localStorage.setItem(key, JSON.stringify(journal));
-  saveNote.textContent = 'Збережено';
 }
 
 pairButtons.forEach(button => {
   button.addEventListener('click', () => selectExperiment(button.dataset.exp));
 });
 
+predictionSelect.addEventListener('change', () => {
+  if (!resultPanel.hidden) {
+    resetExperiment(false);
+  }
+  setActiveStep(predictionSelect.value ? 1 : 0);
+});
+
 runButton.addEventListener('click', runExperiment);
 resetButton.addEventListener('click', () => resetExperiment(true));
-saveButton.addEventListener('click', saveToJournal);
 
 resetExperiment(false);
