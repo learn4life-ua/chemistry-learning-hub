@@ -19,17 +19,17 @@
   const FERTILIZERS = [
     { name:'Карбамід (сечовина)', formula:'CO(NH₂)₂', n:46.2, p:0, k:0, mg:0, s:0, ca:0 },
     { name:'Аміачна селітра', formula:'NH₄NO₃', n:34.4, p:0, k:0, mg:0, s:0, ca:0 },
-    { name:'КАС-32', formula:'Суміш карбаміду та селітри', n:32, p:0, k:0, mg:0, s:0, ca:0 },
+    { name:'КАС-32', formula:'суміш карбаміду та амонійної селітри', n:32, p:0, k:0, mg:0, s:0, ca:0 },
     { name:'Сульфат амонію', formula:'(NH₄)₂SO₄', n:21, p:0, k:0, mg:0, s:24, ca:0 },
-    { name:'Кальцієва селітра', formula:'Ca(NO₃)₂ · 4H₂O', n:15.5, p:0, k:0, mg:0, s:0, ca:19 },
-    { name:'Амофос', formula:'NH₄H₂PO₄', n:12, p:52, k:0, mg:0, s:0, ca:0 },
-    { name:'Діамофос', formula:'(NH₄)₂HPO₄', n:18, p:46, k:0, mg:0, s:0, ca:0 },
-    { name:'Суперфосфат подвійний', formula:'Ca(H₂PO₄)₂ · H₂O', n:0, p:46, k:0, mg:0, s:0, ca:12 },
+    { name:'Кальцієва селітра', formula:'на основі Ca(NO₃)₂', n:15.5, p:0, k:0, mg:0, s:0, ca:19 },
+    { name:'Амофос', formula:'на основі NH₄H₂PO₄', n:12, p:52, k:0, mg:0, s:0, ca:0 },
+    { name:'Діамофос', formula:'на основі (NH₄)₂HPO₄', n:18, p:46, k:0, mg:0, s:0, ca:0 },
+    { name:'Суперфосфат подвійний', formula:'на основі Ca(H₂PO₄)₂', n:0, p:46, k:0, mg:0, s:0, ca:12 },
     { name:'Монокалійфосфат', formula:'KH₂PO₄', n:0, p:52, k:34, mg:0, s:0, ca:0 },
-    { name:'Калій хлористий', formula:'KCl', n:0, p:0, k:60, mg:0, s:0, ca:0 },
-    { name:'Сульфат калію', formula:'K₂SO₄', n:0, p:0, k:50, mg:0, s:18, ca:0 },
-    { name:'Калімагнезія', formula:'K₂SO₄ · MgSO₄', n:0, p:0, k:28, mg:9, s:15, ca:0 },
-    { name:'Нітроамофоска (16:16:16)', formula:'NPK комплексне', n:16, p:16, k:16, mg:0, s:0, ca:0 }
+    { name:'Калій хлористий', formula:'на основі KCl', n:0, p:0, k:60, mg:0, s:0, ca:0 },
+    { name:'Сульфат калію', formula:'на основі K₂SO₄', n:0, p:0, k:50, mg:0, s:18, ca:0 },
+    { name:'Калімагнезія', formula:'сульфати K і Mg', n:0, p:0, k:28, mg:9, s:15, ca:0 },
+    { name:'Нітроамофоска (16:16:16)', formula:'комплексне NPK-добриво', n:16, p:16, k:16, mg:0, s:0, ca:0 }
   ];
   const nutrientLabels = { n:'N', p:'P₂O₅', k:'K₂O', mg:'Mg', s:'S', ca:'Ca' };
 
@@ -64,9 +64,13 @@
       const [name, band] = classify(pH);
       label.textContent = name;
       range.textContent = `${band} · введено ${fmt(pH, 2)}`;
-      note.textContent = pH < 5.5
-        ? 'За FAO ґрунти з pH нижче 5,5 належать до кислих. Сам pH не визначає норму вапна: для розрахунку потрібні додаткові агрохімічні показники.'
-        : 'Це класифікація реакції ґрунтового середовища. Рішення щодо меліорації або живлення не слід робити лише за одним значенням pH.';
+      if (pH <= 6.5) {
+        note.textContent = 'За шкалою FAO це кисла реакція ґрунтового середовища. Сам pH не визначає норму вапна: для розрахунку потрібні додаткові агрохімічні показники.';
+      } else if (pH <= 7.3) {
+        note.textContent = 'За шкалою FAO це нейтральна реакція ґрунтового середовища. Рішення щодо живлення рослин усе одно потребують інших показників аналізу ґрунту.';
+      } else {
+        note.textContent = 'За шкалою FAO це лужна реакція ґрунтового середовища. Висновки щодо причин і корекції слід робити разом з іншими показниками аналізу ґрунту.';
+      }
       empty.hidden = true; result.hidden = false;
     });
     document.querySelectorAll('[data-ph-preset]').forEach(btn => btn.addEventListener('click', () => { input.value = btn.dataset.phPreset; form.requestSubmit(); }));
@@ -81,13 +85,14 @@
     form.addEventListener('submit', e => {
       e.preventDefault();
       const hg = parseNumber(form.hg.value);
-      const depth = parseNumber(form.depth.value);
+      const depthCm = parseNumber(form.depth.value);
       const density = parseNumber(form.density.value);
       const neutralizing = parseNumber(form.neutralizing.value);
-      if (![hg, depth, density, neutralizing].every(Number.isFinite) || hg < 0 || depth <= 0 || density <= 0 || neutralizing <= 0) {
+      if (![hg, depthCm, density, neutralizing].every(Number.isFinite) || hg < 0 || depthCm <= 0 || density <= 0 || neutralizing <= 0) {
         showError(error, 'Перевірте вихідні дані: усі значення мають бути додатними, а Нг не може бути від’ємною.'); return;
       }
       showError(error);
+      const depth = depthCm / 100;
       const soilMass = 10000 * depth * density;
       const pureRate = hg * 0.5 * soilMass / 1e6;
       const materialRate = pureRate / (neutralizing / 100);
@@ -95,7 +100,7 @@
       document.querySelector('#limingPure').textContent = `${fmt(pureRate, 2)} т/га`;
       document.querySelector('#limingMaterial').textContent = `${fmt(materialRate, 2)} т/га`;
       document.querySelector('#limingFactor').textContent = `${fmt(factor, 3)} × Нг`;
-      document.querySelector('#limingStep').textContent = `Маса орного шару: ${fmt(soilMass / 1e6, 2)} млн кг/га. Для заданої глибини й щільності еквівалентна норма CaCO₃ = ${fmt(factor, 3)} × Нг. З урахуванням нейтралізувальної здатності ${fmt(neutralizing,1)}% фізична норма матеріалу становить ${fmt(materialRate,2)} т/га.`;
+      document.querySelector('#limingStep').textContent = `Маса шару ${fmt(depthCm,1)} см: ${fmt(soilMass / 1e6, 2)} млн кг/га. Для заданої глибини й щільності еквівалентна норма CaCO₃ = ${fmt(factor, 3)} × Нг. З урахуванням нейтралізувальної здатності ${fmt(neutralizing,1)}% фізична норма матеріалу становить ${fmt(materialRate,2)} т/га.`;
       empty.hidden = true; output.hidden = false;
     });
     document.querySelectorAll('[data-hg-preset]').forEach(btn => btn.addEventListener('click', () => { form.hg.value = btn.dataset.hgPreset; form.requestSubmit(); }));
@@ -120,8 +125,10 @@
       const ks = { n:parseNumber(form.kSoilN.value)/100, p:parseNumber(form.kSoilP.value)/100, k:parseNumber(form.kSoilK.value)/100 };
       const kf = { n:parseNumber(form.kFertN.value)/100, p:parseNumber(form.kFertP.value)/100, k:parseNumber(form.kFertK.value)/100 };
       const vals = [y,...Object.values(soil),...Object.values(ks),...Object.values(kf)];
-      if (!crop || !vals.every(Number.isFinite) || y <= 0 || Object.values(kf).some(v => v <= 0) || [...Object.values(ks),...Object.values(kf)].some(v => v < 0 || v > 1)) {
-        showError(error, 'Перевірте врожайність, запаси та коефіцієнти. Коефіцієнти мають бути в межах 0–100%, а використання з добрив - більше 0%.'); return;
+      const invalidSoil = Object.values(soil).some(v => v < 0);
+      const invalidCoefficients = [...Object.values(ks),...Object.values(kf)].some(v => v < 0 || v > 1) || Object.values(kf).some(v => v <= 0);
+      if (!crop || !vals.every(Number.isFinite) || y <= 0 || invalidSoil || invalidCoefficients) {
+        showError(error, 'Перевірте врожайність, запаси та коефіцієнти. Запаси не можуть бути від’ємними; коефіцієнти мають бути в межах 0–100%, а використання з добрив - більше 0%.'); return;
       }
       showError(error);
       const total = { n:crop.n*y, p:crop.p*y, k:crop.k*y };
@@ -152,7 +159,7 @@
     renderTable();
     const updateFertilizer = () => {
       const f = FERTILIZERS[Number(select.value)] || FERTILIZERS[0];
-      formula.textContent = f.formula;
+      formula.textContent = `Основна хімічна форма: ${f.formula}`;
       targetSelect.innerHTML = '';
       Object.keys(nutrientLabels).forEach(key => { if (f[key] > 0) targetSelect.add(new Option(`${nutrientLabels[key]} (${fmt(f[key],1)}%)`, key)); });
       updateForward(); updateReverse();
@@ -194,7 +201,7 @@
       e.preventDefault();
       const stock = parseNumber(form.stock.value);
       const ratio = parseNumber(form.ratio.value);
-      if (!Number.isFinite(stock) || !Number.isFinite(ratio) || stock < 0 || ratio <= 0) { showError(error, 'Введіть невід’ємну концентрацію маточного розчину та коефіцієнт розведення більше нуля.'); return; }
+      if (!Number.isFinite(stock) || !Number.isFinite(ratio) || stock < 0 || ratio < 1) { showError(error, 'Введіть невід’ємну концентрацію маточного розчину та коефіцієнт розведення не менше 1.'); return; }
       showError(error);
       const stockGL = stock * 10;
       const irrigationGL = stockGL / ratio;
