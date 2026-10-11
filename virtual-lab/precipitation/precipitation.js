@@ -1,0 +1,180 @@
+const experiments = {
+  agcl: {
+    correct: 'white',
+    solution: 'rgba(241,245,249,.9)',
+    drop: '#cbd5e1',
+    cloud: 'rgba(255,255,255,.95)',
+    sediment: '#ffffff',
+    observation: 'Утворився білий осад аргентум(I) хлориду AgCl.',
+    molecular: 'AgNO₃ + NaCl → AgCl↓ + NaNO₃',
+    ionic: 'Ag⁺ + Cl⁻ → AgCl↓'
+  },
+  cuoh2: {
+    correct: 'blue',
+    solution: 'rgba(186,230,253,.55)',
+    drop: '#dbeafe',
+    cloud: 'rgba(14,165,233,.75)',
+    sediment: '#0284c7',
+    observation: 'Утворився блакитний осад купрум(II) гідроксиду Cu(OH)₂.',
+    molecular: 'CuSO₄ + 2NaOH → Cu(OH)₂↓ + Na₂SO₄',
+    ionic: 'Cu²⁺ + 2OH⁻ → Cu(OH)₂↓'
+  },
+  feoh3: {
+    correct: 'brown',
+    solution: 'rgba(254,240,138,.55)',
+    drop: '#fde68a',
+    cloud: 'rgba(180,83,9,.78)',
+    sediment: '#9a3412',
+    observation: 'Утворився бурий осад ферум(III) гідроксиду Fe(OH)₃.',
+    molecular: 'FeCl₃ + 3NaOH → Fe(OH)₃↓ + 3NaCl',
+    ionic: 'Fe³⁺ + 3OH⁻ → Fe(OH)₃↓'
+  },
+  baso4: {
+    correct: 'white',
+    solution: 'rgba(241,245,249,.88)',
+    drop: '#e2e8f0',
+    cloud: 'rgba(248,250,252,.98)',
+    sediment: '#f1f5f9',
+    observation: 'Утворився білий осад барій сульфату BaSO₄.',
+    molecular: 'BaCl₂ + Na₂SO₄ → BaSO₄↓ + 2NaCl',
+    ionic: 'Ba²⁺ + SO₄²⁻ → BaSO₄↓'
+  }
+};
+
+let currentExperiment = 'agcl';
+
+const pairButtons = [...document.querySelectorAll('.precip-pair')];
+const predictionSelect = document.getElementById('predictionSelect');
+const runButton = document.getElementById('runExperiment');
+const resetButton = document.getElementById('resetExperiment');
+const status = document.getElementById('experimentStatus');
+const observation = document.getElementById('observationText');
+const solution = document.getElementById('tubeSolution');
+const cloud = document.getElementById('precipCloud');
+const sediment = document.getElementById('precipSediment');
+const drop = document.getElementById('precipDrop');
+const dropperLiquid = document.getElementById('dropperLiquid');
+const resultPanel = document.getElementById('resultPanel');
+const resultObservation = document.getElementById('resultObservation');
+const molecularEquation = document.getElementById('molecularEquation');
+const ionicEquation = document.getElementById('ionicEquation');
+const predictionResult = document.getElementById('predictionResult');
+const conclusion = document.getElementById('studentConclusion');
+const saveButton = document.getElementById('saveToJournal');
+const saveNote = document.getElementById('saveNote');
+
+function selectExperiment(id) {
+  currentExperiment = id;
+  pairButtons.forEach(button => {
+    const selected = button.dataset.exp === id;
+    button.classList.toggle('is-selected', selected);
+    button.setAttribute('aria-checked', String(selected));
+  });
+  resetExperiment(false);
+}
+
+function resetExperiment(clearPrediction = true) {
+  const exp = experiments[currentExperiment];
+  cloud.classList.remove('is-visible');
+  cloud.style.background = 'transparent';
+  sediment.style.height = '0';
+  sediment.style.background = 'transparent';
+  solution.style.background = exp.solution;
+  drop.style.background = exp.drop;
+  dropperLiquid.style.background = exp.drop;
+  drop.classList.remove('is-falling');
+  status.textContent = 'Готово до досліду';
+  observation.textContent = 'У пробірці міститься вихідний розчин. Оберіть прогноз і запустіть дослід.';
+  resultPanel.hidden = true;
+  saveNote.textContent = '';
+  conclusion.value = '';
+  if (clearPrediction) predictionSelect.value = '';
+}
+
+function runExperiment() {
+  const exp = experiments[currentExperiment];
+  const prediction = predictionSelect.value;
+
+  if (!prediction) {
+    status.textContent = 'Спочатку зробіть прогноз';
+    predictionSelect.focus();
+    return;
+  }
+
+  runButton.disabled = true;
+  resultPanel.hidden = true;
+  saveNote.textContent = '';
+  cloud.classList.remove('is-visible');
+  sediment.style.height = '0';
+  status.textContent = 'Додаємо реактив...';
+  observation.textContent = 'Реактив надходить у пробірку. Спостерігайте за змінами.';
+
+  drop.classList.remove('is-falling');
+  void drop.offsetWidth;
+  drop.classList.add('is-falling');
+
+  window.setTimeout(() => {
+    cloud.style.background = exp.cloud;
+    cloud.classList.add('is-visible');
+    status.textContent = 'Відбувається реакція';
+    observation.textContent = 'Розчин мутніє, з’являється тверда фаза.';
+  }, 650);
+
+  window.setTimeout(() => {
+    sediment.style.background = exp.sediment;
+    sediment.style.height = '40px';
+    status.textContent = 'Осад утворився';
+    observation.textContent = exp.observation;
+
+    resultObservation.textContent = exp.observation;
+    molecularEquation.textContent = exp.molecular;
+    ionicEquation.textContent = exp.ionic;
+
+    const correct = prediction === exp.correct;
+    predictionResult.textContent = correct ? 'Прогноз правильний' : 'Порівняйте з результатом';
+    predictionResult.dataset.state = correct ? 'correct' : 'review';
+
+    resultPanel.hidden = false;
+    resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    runButton.disabled = false;
+  }, 1450);
+}
+
+function saveToJournal() {
+  if (resultPanel.hidden) return;
+
+  const exp = experiments[currentExperiment];
+  const record = {
+    type: 'precipitation',
+    title: 'Утворення осаду',
+    experiment: currentExperiment,
+    observation: exp.observation,
+    molecular: exp.molecular,
+    ionic: exp.ionic,
+    conclusion: conclusion.value.trim(),
+    savedAt: new Date().toISOString()
+  };
+
+  const key = 'chemHubLabJournal';
+  let journal = [];
+  try {
+    journal = JSON.parse(localStorage.getItem(key) || '[]');
+    if (!Array.isArray(journal)) journal = [];
+  } catch {
+    journal = [];
+  }
+
+  journal.push(record);
+  localStorage.setItem(key, JSON.stringify(journal));
+  saveNote.textContent = 'Збережено';
+}
+
+pairButtons.forEach(button => {
+  button.addEventListener('click', () => selectExperiment(button.dataset.exp));
+});
+
+runButton.addEventListener('click', runExperiment);
+resetButton.addEventListener('click', () => resetExperiment(true));
+saveButton.addEventListener('click', saveToJournal);
+
+resetExperiment(false);
