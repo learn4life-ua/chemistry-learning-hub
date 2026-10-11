@@ -1,0 +1,2 @@
+.safety-rule-icon{display:grid;place-items:center;width:44px;height:44px;margin-bottom:14px;border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line));border-radius:13px;background:var(--primary-soft);color:var(--primary-strong)}
+.safety-rule-icon svg{display:block;width:25px;height:25px}
