@@ -1,0 +1,21 @@
+
+.section-header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:82px}
+.section-header-actions{display:flex;align-items:center;gap:12px}
+.section-back-link{color:#fff;text-decoration:none;font-size:.84rem;font-weight:650}
+.section-hero{padding:24px 0 28px}
+.section-hero-grid{min-height:308px;display:grid;grid-template-columns:minmax(0,56fr) minmax(0,44fr);align-items:center;gap:40px}
+.section-hero-copy{min-width:0}
+.section-hero h1{margin:8px 0 16px;font-size:clamp(2.35rem,4.8vw,4.35rem);line-height:1.06;letter-spacing:-.05em}
+.section-lead{color:var(--muted);font-size:1.08rem;line-height:1.68}
+.section-status{display:inline-flex;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--surface);font-size:.8rem;font-weight:650}
+.section-hero-visual{display:grid;place-items:center;min-width:0}
+.section-hero-visual img{display:block;width:100%;max-width:521px;max-height:330px;height:auto;object-fit:contain}
+.section-content{padding:42px 0 64px}
+.section-intro{max-width:800px}
+.section-intro h2{margin-bottom:12px;font-size:clamp(1.75rem,2.7vw,2.55rem);letter-spacing:-.04em}
+.section-intro>p:last-child{color:var(--muted)}
+.section-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;list-style:none;padding:0;margin:26px 0}
+.section-topic-grid li{padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--surface);font-weight:650}
+.section-page :is(a,button):focus-visible{outline:3px solid var(--primary);outline-offset:4px}
+@media(max-width:1120px){.section-hero-grid{gap:24px}}
+@media(max-width:700px){.section-header-inner{min-height:72px;gap:12px}.section-header-inner .brand-copy small{display:none}.section-back-link{display:none}.section-hero-grid{min-height:0;grid-template-columns:minmax(0,1fr);gap:20px}.section-hero-visual{width:min(360px,100%);margin-inline:auto}.section-hero-visual img{max-height:260px}.section-topic-grid{grid-template-columns:minmax(0,1fr)}.section-content{padding:30px 0 46px}}

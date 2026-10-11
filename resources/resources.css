@@ -44,3 +44,11 @@
 .resources-sources .resources-card-icon{background:color-mix(in srgb,var(--primary) 8%,var(--surface));border-color:color-mix(in srgb,var(--primary) 18%,var(--line))}
 .resources-direction-wide{grid-column:1/-1;min-height:215px}
 @media(max-width:700px){.resources-header-inner{min-height:72px;gap:12px}.resources-header-inner .brand-copy small{display:none}.resources-back-link{display:none}.resources-hero-grid{min-height:0;padding:44px 0 46px}.resources-hero-copy h1{font-size:clamp(2.45rem,12vw,3.65rem)}.resources-lead{font-size:.98rem}.resources-hero-note{border-radius:16px;line-height:1.45}.resources-overview{padding:42px 0 56px}.resources-direction-grid{grid-template-columns:minmax(0,1fr)}.resources-direction-card{min-height:0;padding:21px}.resources-direction-wide{grid-column:auto}.resources-card-top{margin-bottom:14px}}
+
+/* Glossy transparent illustration beside the section introduction. */
+.resources-hero-grid{grid-template-columns:minmax(0,56fr) minmax(0,44fr);gap:40px}
+.resources-hero-copy{min-width:0}
+.resources-hero-visual{display:grid;place-items:center;min-width:0}
+.resources-hero-visual img{display:block;width:100%;max-width:521px;max-height:308px;height:auto;object-fit:contain}
+@media(max-width:1120px){.resources-hero-grid{gap:24px}}
+@media(max-width:700px){.resources-hero-grid{grid-template-columns:minmax(0,1fr);gap:20px}.resources-hero-visual{width:min(360px,100%);margin-inline:auto}.resources-hero-visual img{max-height:240px}}
