@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Віртуальний дослід з утворення осадів: оберіть пару розчинів, спрогнозуйте результат і перевірте спостереження та рівняння реакції.">
+  <meta name="color-scheme" content="light dark">
+  <title>Утворення осаду | Віртуальна лабораторія</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css?v=4">
+  <link rel="stylesheet" href="../lab.css?v=1">
+  <link rel="stylesheet" href="./precipitation.css?v=1">
+  <link rel="icon" href="../../assets/favicon.ico?v=1" sizes="any">
+  <link rel="icon" type="image/png" href="../../assets/favicon.png?v=1" sizes="192x192">
+</head>
+<body class="section-page lab-experiment-page">
+  <header class="site-header">
+    <div class="shell section-header-inner">
+      <a class="brand" href="../../" aria-label="Chemistry Learning Hub - на головну">
+        <span class="brand-mark" aria-hidden="true">⚛</span>
+        <span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Віртуальна лабораторія</small></span>
+      </a>
+      <div class="section-header-actions">
+        <a class="section-back-link" href="../">← До лабораторії</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false"><span class="theme-icon" aria-hidden="true">◐</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="precip-hero" aria-labelledby="experimentTitle">
+      <div class="shell precip-hero-inner">
+        <p class="eyebrow">Дослід 01 • Реакції обміну</p>
+        <h1 id="experimentTitle">Утворення осаду</h1>
+        <p>Оберіть пару розчинів, спрогнозуйте результат, проведіть віртуальний дослід і порівняйте спостереження з хімічним рівнянням.</p>
+        <span class="precip-virtual-label">Віртуальна симуляція</span>
+      </div>
+    </section>
+
+    <section class="precip-workspace">
+      <div class="shell">
+        <div class="precip-steps" aria-label="Етапи роботи">
+          <span class="is-active">1. Оберіть</span>
+          <span>2. Спрогнозуйте</span>
+          <span>3. Проведіть дослід</span>
+          <span>4. Поясніть</span>
+        </div>
+
+        <div class="precip-grid">
+          <section class="precip-panel" aria-labelledby="choiceTitle">
+            <div class="precip-panel-heading">
+              <p class="eyebrow">Крок 1</p>
+              <h2 id="choiceTitle">Оберіть дослідну пару</h2>
+              <p>Назви продуктів і колір осаду з'являться тільки після проведення досліду.</p>
+            </div>
+
+            <div class="precip-pairs" role="radiogroup" aria-label="Пари реактивів">
+              <button class="precip-pair is-selected" type="button" data-exp="agcl" role="radio" aria-checked="true">
+                <strong>AgNO₃ + NaCl</strong>
+                <span>Аргентум(I) нітрат + натрій хлорид</span>
+              </button>
+              <button class="precip-pair" type="button" data-exp="cuoh2" role="radio" aria-checked="false">
+                <strong>CuSO₄ + NaOH</strong>
+                <span>Купрум(II) сульфат + натрій гідроксид</span>
+              </button>
+              <button class="precip-pair" type="button" data-exp="feoh3" role="radio" aria-checked="false">
+                <strong>FeCl₃ + NaOH</strong>
+                <span>Ферум(III) хлорид + натрій гідроксид</span>
+              </button>
+              <button class="precip-pair" type="button" data-exp="baso4" role="radio" aria-checked="false">
+                <strong>BaCl₂ + Na₂SO₄</strong>
+                <span>Барій хлорид + натрій сульфат</span>
+              </button>
+            </div>
+
+            <div class="precip-prediction">
+              <label for="predictionSelect">Крок 2. Який результат ви очікуєте?</label>
+              <select id="predictionSelect">
+                <option value="">Оберіть прогноз</option>
+                <option value="white">Утвориться білий осад</option>
+                <option value="blue">Утвориться блакитний осад</option>
+                <option value="brown">Утвориться бурий осад</option>
+                <option value="none">Осад не утвориться</option>
+              </select>
+            </div>
+
+            <div class="precip-actions">
+              <button class="primary-button precip-run" id="runExperiment" type="button">Провести дослід</button>
+              <button class="secondary-button precip-reset" id="resetExperiment" type="button">Скинути</button>
+            </div>
+          </section>
+
+          <section class="precip-stage" aria-labelledby="stageTitle">
+            <div class="precip-stage-top">
+              <div>
+                <p class="eyebrow">Крок 3</p>
+                <h2 id="stageTitle">Спостереження</h2>
+              </div>
+              <span class="precip-status" id="experimentStatus">Готово до досліду</span>
+            </div>
+
+            <div class="precip-lab-scene" aria-live="polite">
+              <div class="precip-dropper" aria-hidden="true">
+                <span class="precip-dropper-bulb"></span>
+                <span class="precip-dropper-tube"><i id="dropperLiquid"></i></span>
+                <span class="precip-drop" id="precipDrop"></span>
+              </div>
+
+              <div class="precip-test-tube" aria-hidden="true">
+                <div class="precip-solution" id="tubeSolution">
+                  <span class="precip-meniscus"></span>
+                  <span class="precip-cloud" id="precipCloud"></span>
+                  <span class="precip-sediment" id="precipSediment"></span>
+                </div>
+              </div>
+              <div class="precip-stand" aria-hidden="true"></div>
+            </div>
+
+            <p class="precip-observation" id="observationText">У пробірці міститься вихідний розчин. Оберіть прогноз і запустіть дослід.</p>
+          </section>
+        </div>
+
+        <section class="precip-result" id="resultPanel" aria-labelledby="resultTitle" hidden>
+          <div class="precip-result-heading">
+            <div>
+              <p class="eyebrow">Крок 4</p>
+              <h2 id="resultTitle">Поясніть результат</h2>
+            </div>
+            <span class="precip-prediction-result" id="predictionResult"></span>
+          </div>
+
+          <div class="precip-result-grid">
+            <div>
+              <span class="precip-result-label">Спостереження</span>
+              <p id="resultObservation"></p>
+            </div>
+            <div>
+              <span class="precip-result-label">Молекулярне рівняння</span>
+              <p class="precip-equation" id="molecularEquation"></p>
+            </div>
+            <div>
+              <span class="precip-result-label">Скорочене йонне рівняння</span>
+              <p class="precip-equation" id="ionicEquation"></p>
+            </div>
+          </div>
+
+          <div class="precip-reflection">
+            <label for="studentConclusion">Ваш висновок</label>
+            <textarea id="studentConclusion" rows="3" placeholder="Наприклад: реакція відбулася, оскільки спостерігалося утворення осаду..."></textarea>
+            <button class="secondary-button" id="saveToJournal" type="button">Зберегти в лабораторний журнал</button>
+            <span class="precip-save-note" id="saveNote" aria-live="polite"></span>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div>
+      <p>Віртуальна лабораторія • Утворення осаду</p>
+    </div>
+  </footer>
+
+  <script src="../../js/theme.js?v=2" defer></script>
+  <script src="./precipitation.js?v=1" defer></script>
+</body>
+</html>
