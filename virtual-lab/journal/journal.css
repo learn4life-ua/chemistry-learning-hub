@@ -1,0 +1,42 @@
+.journal-page{background:var(--bg)}
+.journal-hero{background:linear-gradient(180deg,var(--surface-soft),var(--bg));border-bottom:1px solid color-mix(in srgb,var(--line) 72%,transparent)}
+.journal-hero-inner{padding:54px 0 44px}
+.journal-hero .eyebrow{margin:0 0 12px;color:var(--primary-strong);font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.journal-hero h1{margin:0 0 14px;font-size:clamp(2.35rem,4.5vw,4.25rem);line-height:1;letter-spacing:-.045em}
+.journal-hero p:not(.eyebrow){max-width:860px;margin:0;color:var(--muted);font-size:1rem;line-height:1.7}
+.journal-workspace{padding:38px 0 76px}
+.journal-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow-soft)}
+.journal-toolbar p{margin:0;color:var(--muted);font-size:.84rem;line-height:1.55}
+.journal-toolbar-actions{display:flex;gap:10px;flex:0 0 auto}
+.journal-sheet{padding:28px;border:1px solid var(--line);border-radius:22px;background:var(--surface);box-shadow:var(--shadow-soft)}
+.journal-sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.journal-kicker{display:block;margin-bottom:6px;color:var(--primary-strong);font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.journal-sheet h2{margin:0;font-size:clamp(1.45rem,2.4vw,2rem);letter-spacing:-.03em}
+.journal-date-field{min-width:190px}
+.journal-date-field label,.journal-field>span{display:block;margin-bottom:7px;color:var(--ink);font-size:.78rem;font-weight:750}
+.journal-meta-grid,.journal-two-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.journal-meta-grid{margin-top:20px}
+.journal-two-cols{margin-top:16px}
+.journal-field-wide{display:block;margin-top:16px}
+.journal-field input,.journal-field textarea,.journal-date-field input{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--surface-muted);color:var(--ink);font:inherit;transition:border-color .15s ease,box-shadow .15s ease,background-color .15s ease}
+.journal-field input,.journal-date-field input{min-height:44px;padding:0 12px}
+.journal-field textarea{padding:12px 13px;resize:vertical;line-height:1.55}
+.journal-field input:focus,.journal-field textarea:focus,.journal-date-field input:focus{outline:none;border-color:color-mix(in srgb,var(--primary) 48%,var(--line));box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 12%,transparent);background:var(--surface)}
+.equation-input{font-family:"JetBrains Mono","SFMono-Regular",Consolas,"Liberation Mono",monospace}
+@media(max-width:760px){.journal-hero-inner{padding:42px 0 36px}.journal-workspace{padding:28px 0 58px}.journal-toolbar{align-items:flex-start;flex-direction:column}.journal-toolbar-actions{width:100%}.journal-toolbar-actions .primary-button,.journal-toolbar-actions .secondary-button{flex:1;justify-content:center}.journal-sheet{padding:18px}.journal-sheet-head{flex-direction:column}.journal-date-field{width:100%;min-width:0}.journal-meta-grid,.journal-two-cols{grid-template-columns:minmax(0,1fr)}}
+@media print{
+  :root{color-scheme:light}
+  body{background:#fff!important;color:#111!important}
+  .no-print,.site-header{display:none!important}
+  .journal-hero{display:none!important}
+  .journal-workspace{padding:0!important}
+  .shell{width:100%!important;max-width:none!important;padding:0!important}
+  .journal-sheet{border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important;background:#fff!important}
+  .journal-sheet-head{padding-bottom:12px;border-color:#bbb}
+  .journal-kicker{color:#555!important}
+  .journal-field input,.journal-field textarea,.journal-date-field input{border:1px solid #bbb!important;background:#fff!important;color:#111!important;box-shadow:none!important}
+  .journal-field textarea{resize:none;overflow:hidden}
+  .journal-meta-grid,.journal-two-cols{gap:12px}
+  .journal-field-wide,.journal-two-cols{margin-top:12px}
+  @page{size:A4;margin:12mm}
+}
