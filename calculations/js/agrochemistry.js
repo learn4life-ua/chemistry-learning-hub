@@ -7,13 +7,13 @@
   const showError = (el, message = '') => { if (!el) return; el.textContent = message; el.hidden = !message; };
 
   const CROP_REMOVAL = [
-    { id:'wheat', name:'Пшениця озима', n:30, p:12, k:22, hint:'Навчальний норматив виносу з АгроХім-Хабу: N 30, P₂O₅ 12, K₂O 22 кг/т.' },
-    { id:'corn', name:'Кукурудза на зерно', n:26, p:11, k:27, hint:'Навчальний норматив виносу: N 26, P₂O₅ 11, K₂O 27 кг/т.' },
-    { id:'sunflower', name:'Соняшник', n:55, p:27, k:110, hint:'Навчальний норматив виносу: N 55, P₂O₅ 27, K₂O 110 кг/т.' },
-    { id:'soybean', name:'Соя', n:65, p:16, k:24, hint:'Навчальний норматив виносу: N 65, P₂O₅ 16, K₂O 24 кг/т.' },
-    { id:'rapeseed', name:'Ріпак озимий', n:55, p:28, k:52, hint:'Навчальний норматив виносу: N 55, P₂O₅ 28, K₂O 52 кг/т.' },
-    { id:'sugarbeet', name:'Цукровий буряк', n:5, p:1.8, k:6.8, hint:'Навчальний норматив виносу: N 5, P₂O₅ 1,8, K₂O 6,8 кг/т.' },
-    { id:'tomato', name:'Томати (відкритий ґрунт)', n:3, p:1, k:5, hint:'Навчальний норматив виносу: N 3, P₂O₅ 1, K₂O 5 кг/т.' }
+    { id:'wheat', name:'Пшениця озима', n:30, p:12, k:22, hint:'Довідковий винос на 1 т основної продукції: N 30 кг; P₂O₅ 12 кг; K₂O 22 кг.' },
+    { id:'corn', name:'Кукурудза на зерно', n:26, p:11, k:27, hint:'Довідковий винос на 1 т основної продукції: N 26 кг; P₂O₅ 11 кг; K₂O 27 кг.' },
+    { id:'sunflower', name:'Соняшник', n:55, p:27, k:110, hint:'Довідковий винос на 1 т основної продукції: N 55 кг; P₂O₅ 27 кг; K₂O 110 кг.' },
+    { id:'soybean', name:'Соя', n:65, p:16, k:24, hint:'Довідковий винос на 1 т основної продукції: N 65 кг; P₂O₅ 16 кг; K₂O 24 кг.' },
+    { id:'rapeseed', name:'Ріпак озимий', n:55, p:28, k:52, hint:'Довідковий винос на 1 т основної продукції: N 55 кг; P₂O₅ 28 кг; K₂O 52 кг.' },
+    { id:'sugarbeet', name:'Цукровий буряк', n:5, p:1.8, k:6.8, hint:'Довідковий винос на 1 т основної продукції: N 5 кг; P₂O₅ 1,8 кг; K₂O 6,8 кг.' },
+    { id:'tomato', name:'Томати (відкритий ґрунт)', n:3, p:1, k:5, hint:'Довідковий винос на 1 т основної продукції: N 3 кг; P₂O₅ 1 кг; K₂O 5 кг.' }
   ];
 
   const FERTILIZERS = [
@@ -65,11 +65,11 @@
       label.textContent = name;
       range.textContent = `${band} · введено ${fmt(pH, 2)}`;
       if (pH <= 6.5) {
-        note.textContent = 'За шкалою FAO це кисла реакція ґрунтового середовища. Сам pH не визначає норму вапна: для розрахунку потрібні додаткові агрохімічні показники.';
+        note.textContent = 'Кисла реакція ґрунтового середовища може впливати на доступність поживних елементів. Для визначення потреби у вапнуванні одного значення pH недостатньо.';
       } else if (pH <= 7.3) {
-        note.textContent = 'За шкалою FAO це нейтральна реакція ґрунтового середовища. Рішення щодо живлення рослин усе одно потребують інших показників аналізу ґрунту.';
+        note.textContent = 'Нейтральна реакція ґрунтового середовища. Оцінювання живлення рослин потребує й інших показників агрохімічного аналізу.';
       } else {
-        note.textContent = 'За шкалою FAO це лужна реакція ґрунтового середовища. Висновки щодо причин і корекції слід робити разом з іншими показниками аналізу ґрунту.';
+        note.textContent = 'Лужна реакція ґрунтового середовища. Причини та способи коригування оцінюють разом з іншими показниками агрохімічного аналізу.';
       }
       empty.hidden = true; result.hidden = false;
     });
@@ -100,7 +100,7 @@
       document.querySelector('#limingPure').textContent = `${fmt(pureRate, 2)} т/га`;
       document.querySelector('#limingMaterial').textContent = `${fmt(materialRate, 2)} т/га`;
       document.querySelector('#limingFactor').textContent = `${fmt(factor, 3)} × Нг`;
-      document.querySelector('#limingStep').textContent = `Маса шару ${fmt(depthCm,1)} см: ${fmt(soilMass / 1e6, 2)} млн кг/га. Для заданої глибини й щільності еквівалентна норма CaCO₃ = ${fmt(factor, 3)} × Нг. З урахуванням нейтралізувальної здатності ${fmt(neutralizing,1)}% фізична норма матеріалу становить ${fmt(materialRate,2)} т/га.`;
+      document.querySelector('#limingStep').textContent = `Маса шару ґрунту завтовшки ${fmt(depthCm,1)} см становить ${fmt(soilMass / 1e6, 2)} млн кг/га. Еквівалентна норма CaCO₃ для заданих умов дорівнює ${fmt(factor, 3)} × Нг. За нейтралізувальної здатності матеріалу ${fmt(neutralizing,1)}% його фізична норма становить ${fmt(materialRate,2)} т/га.`;
       empty.hidden = true; output.hidden = false;
     });
     document.querySelectorAll('[data-hg-preset]').forEach(btn => btn.addEventListener('click', () => { form.hg.value = btn.dataset.hgPreset; form.requestSubmit(); }));
@@ -128,7 +128,7 @@
       const invalidSoil = Object.values(soil).some(v => v < 0);
       const invalidCoefficients = [...Object.values(ks),...Object.values(kf)].some(v => v < 0 || v > 1) || Object.values(kf).some(v => v <= 0);
       if (!crop || !vals.every(Number.isFinite) || y <= 0 || invalidSoil || invalidCoefficients) {
-        showError(error, 'Перевірте врожайність, запаси та коефіцієнти. Запаси не можуть бути від’ємними; коефіцієнти мають бути в межах 0–100%, а використання з добрив - більше 0%.'); return;
+        showError(error, 'Перевірте врожайність, запаси та коефіцієнти. Запаси не можуть бути від’ємними; коефіцієнти мають бути в межах 0–100%, а коефіцієнти використання з добрив - понад 0%.'); return;
       }
       showError(error);
       const total = { n:crop.n*y, p:crop.p*y, k:crop.k*y };
@@ -141,7 +141,7 @@
         document.querySelector(`#removal-${key}`).textContent = `${fmt(total[key],1)} кг/га`;
         document.querySelector(`#dose-${key}`).textContent = `${fmt(dose[key],1)} кг/га`;
       });
-      document.querySelector('#balanceStep').textContent = `Д = [Винос − (запас у ґрунті × Кґрунту)] / Кдобрива. Для ${crop.name.toLowerCase()} за врожайності ${fmt(y,1)} т/га розрахунок виконано з введеними Вами коефіцієнтами.`;
+      document.querySelector('#balanceStep').textContent = `Для кожного компонента визначено винос урожаєм, віднято частину запасу ґрунту, що може бути використана рослинами, а залишок скориговано на коефіцієнт використання з добрив. Розрахунок виконано для ${crop.name.toLowerCase()} за врожайності ${fmt(y,1)} т/га.`;
       empty.hidden = true; output.hidden = false;
     });
   }
@@ -179,10 +179,10 @@
       const f = FERTILIZERS[Number(select.value)] || FERTILIZERS[0];
       const key = targetSelect.value;
       const need = parseNumber(targetAmount.value);
-      if (!key || !Number.isFinite(need) || need < 0) { reverseResult.textContent = 'Введіть потрібну кількість діючої речовини.'; return; }
+      if (!key || !Number.isFinite(need) || need < 0) { reverseResult.textContent = 'Введіть потрібну кількість поживного компонента.'; return; }
       const pct = f[key];
       const mass = pct > 0 ? need/(pct/100) : NaN;
-      reverseResult.innerHTML = `<div class="agro-result-main"><span>Потрібна фізична маса ${f.name}</span><strong>${fmt(mass,2)} кг</strong></div><div class="agro-steps"><p>${nutrientLabels[key]} у добриві: ${fmt(pct,1)}%.</p><p>m(добрива) = ${fmt(need,2)} / ${fmt(pct/100,3)} = ${fmt(mass,2)} кг.</p></div>`;
+      reverseResult.innerHTML = `<div class="agro-result-main"><span>Потрібна фізична маса ${f.name}</span><strong>${fmt(mass,2)} кг</strong></div><div class="agro-steps"><p>Уміст ${nutrientLabels[key]} у добриві: ${fmt(pct,1)}%.</p><p>Маса добрива = ${fmt(need,2)} / ${fmt(pct/100,3)} = ${fmt(mass,2)} кг.</p></div>`;
     }
     select.addEventListener('change', updateFertilizer);
     forwardMass.addEventListener('input', updateForward);
@@ -211,7 +211,7 @@
       document.querySelector('#fertFinal').textContent = `${fmt(irrigationGL,3)} г/л`;
       document.querySelector('#fertMg').textContent = `${fmt(mgL,0)} мг/л`;
       document.querySelector('#fertEc').textContent = `~ ${fmt(ecEstimate,2)} мСм/см`;
-      document.querySelector('#fertigationStep').textContent = `Маточний розчин ${fmt(stock,2)} кг/100 л = ${fmt(stockGL,2)} г/л. За розведення 1:${fmt(ratio,0)} концентрація у поливній воді становить ${fmt(irrigationGL,3)} г/л.`;
+      document.querySelector('#fertigationStep').textContent = `Маточний розчин ${fmt(stock,2)} кг/100 л = ${fmt(stockGL,2)} г/л. За розведення 1:${fmt(ratio,0)} концентрація солей у поливному розчині становить ${fmt(irrigationGL,3)} г/л.`;
       empty.hidden = true; output.hidden = false;
     });
   }
