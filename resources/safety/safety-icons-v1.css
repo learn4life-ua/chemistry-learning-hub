@@ -1,20 +1,20 @@
 .safety-rule-icon{display:grid;place-items:center;width:44px;height:44px;margin-bottom:14px;border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line));border-radius:13px;background:var(--primary-soft);color:var(--primary-strong);background-repeat:no-repeat;background-position:center;background-size:27px 27px}
 .safety-rule-icon svg{display:none}
 
-/* 1. Перед роботою - інструкція / чек-лист */
-.resource-safety-card:nth-child(1) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='4' width='14' height='17' rx='2'/%3E%3Cpath d='M9 4V2h6v2'/%3E%3Cpath d='m8 10 1.5 1.5L12 9'/%3E%3Cpath d='M14 10h2M8 15h8M8 18h5'/%3E%3C/svg%3E")}
+/* 1. Перед роботою - проста інструкція */
+.resource-safety-card:nth-child(1) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6' y='5' width='12' height='16' rx='2'/%3E%3Cpath d='M9 5V3h6v2M9 10h6M9 14h6M9 18h4'/%3E%3C/svg%3E")}
 
-/* 2. Захист - лабораторні окуляри */
-.resource-safety-card:nth-child(2) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 10h3l1-3h10l1 3h3'/%3E%3Cpath d='M5 10v3a4 4 0 0 0 8 0v-2M19 10v3a4 4 0 0 1-8 0v-2'/%3E%3Cpath d='M9 11h6'/%3E%3C/svg%3E")}
+/* 2. Захист - щит */
+.resource-safety-card:nth-child(2) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z'/%3E%3Cpath d='m8 12 3 3 5-6'/%3E%3C/svg%3E")}
 
-/* 3. Не куштуй і не вдихай - обличчя та знак заборони */
-.resource-safety-card:nth-child(3) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M9 10h.01M15 10h.01M9 15c2 1 4 1 6 0'/%3E%3Cpath d='M5.5 5.5 18.5 18.5'/%3E%3C/svg%3E")}
+/* 3. Не куштуй і не вдихай - заборона */
+.resource-safety-card:nth-child(3) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='m6 6 12 12M8 13c2 3 6 3 8 0'/%3E%3C/svg%3E")}
 
-/* 4. Кислота й вода - рідину додають у посудину */
-.resource-safety-card:nth-child(4) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 3h5v5l-3 5'/%3E%3Cpath d='M5 17h14l-2 4H7z'/%3E%3Cpath d='M12 8c3 1 4 3 4 5'/%3E%3Cpath d='m13.5 12 2.5 1 1-2.5'/%3E%3Cpath d='M15 16c0-1 1-2 1-3 1 1 2 2 2 3'/%3E%3C/svg%3E")}
+/* 4. Кислота й вода - колба та крапля */
+.resource-safety-card:nth-child(4) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 3h4M8 3v8l-4 8a1.3 1.3 0 0 0 1 2h10a1.3 1.3 0 0 0 1-2l-4-8V3M6 16h8M18 5c-3 4-3 5-3 6a3 3 0 0 0 6 0c0-1 0-2-3-6Z'/%3E%3C/svg%3E")}
 
-/* 5. Нагрівання - пробірка над полум'ям */
-.resource-safety-card:nth-child(5) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 4h7'/%3E%3Cpath d='M8 4v8.5a4 4 0 0 0 8 0V4'/%3E%3Cpath d='M9 10h6'/%3E%3Cpath d='M18 20c2-2 2-4 0-6-2 2-3 4-1 6'/%3E%3C/svg%3E")}
+/* 5. Нагрівання - полум'я */
+.resource-safety-card:nth-child(5) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 3c2 5-1 6 1 9l3-4c3 4 4 8 1 11s-9 3-12-1c-3-4 1-8 4-10 0 3 1 4 2 5-1-4 2-6 1-10Z'/%3E%3C/svg%3E")}
 
-/* 6. Після роботи - миття рук */
-.resource-safety-card:nth-child(6) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h8V5h5v3h3'/%3E%3Cpath d='M17 8v3'/%3E%3Cpath d='M16 13c-1 1-1 2 0 3M19 13c-1 1-1 2 0 3'/%3E%3Cpath d='M5 16c2-2 5-2 7 0l2 2c1 1 0 3-2 3H8c-3 0-4-2-3-5Z'/%3E%3C/svg%3E")}
+/* 6. Після роботи - миття рук / кран */
+.resource-safety-card:nth-child(6) .safety-rule-icon{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23563BEA' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 17h16M7 17v-3c0-2 2-3 5-3s5 1 5 3v3M6 21h12M7 6h6v3M7 6V3h9M18 7c-2 3-2 4 0 5 2-1 2-2 0-5Z'/%3E%3C/svg%3E")}
