@@ -41,7 +41,7 @@
       </nav>
       <p class="eyebrow">Дослід 02 • Кислотно-основні властивості</p>
       <h1 id="experimentTitle">Індикатори та pH</h1>
-      <p>Оберіть розчин, спрогнозуйте характер середовища, проведіть вимірювання та порівняйте показ pH-метра із забарвленням індикаторів.</p>
+      <p>Оберіть розчин, спрогнозуйте середовище, виміряйте pH та порівняйте показ pH-метра із забарвленням кислотно-основних індикаторів.</p>
       <span class="ph-virtual-label">Віртуальна симуляція</span>
     </div>
   </section>
@@ -60,7 +60,7 @@
           <div class="ph-panel-heading">
             <p class="eyebrow">Крок 1</p>
             <h2 id="choiceTitle">Оберіть досліджуваний розчин</h2>
-            <p>Значення pH та кольори індикаторів відкриються після запуску досліду.</p>
+            <p>Значення pH та забарвлення індикаторів з’являться після проведення досліду.</p>
           </div>
 
           <div class="ph-samples" role="radiogroup" aria-label="Досліджувані розчини">
@@ -70,19 +70,19 @@
             </button>
             <button class="ph-sample" type="button" data-sample="vinegar" role="radio" aria-checked="false">
               <strong>Оцет</strong>
-              <span>Водний розчин оцтової кислоти</span>
+              <span>Водний розчин етанової (оцтової) кислоти</span>
             </button>
             <button class="ph-sample" type="button" data-sample="coffee" role="radio" aria-checked="false">
               <strong>Чорна кава</strong>
               <span>Побутовий слабкокислий зразок</span>
             </button>
             <button class="ph-sample" type="button" data-sample="water" role="radio" aria-checked="false">
-              <strong>Дистильована вода</strong>
-              <span>Нейтральний контрольний зразок</span>
+              <strong>Чиста вода</strong>
+              <span>Модельний нейтральний зразок за 25 °C</span>
             </button>
             <button class="ph-sample" type="button" data-sample="soda" role="radio" aria-checked="false">
               <strong>Розчин NaHCO₃</strong>
-              <span>Слабколужний розчин гідрогенкарбонату натрію</span>
+              <span>0,1 моль/л натрій гідрогенкарбонату</span>
             </button>
             <button class="ph-sample" type="button" data-sample="naoh" role="radio" aria-checked="false">
               <strong>Розчин NaOH</strong>
@@ -91,7 +91,7 @@
           </div>
 
           <div class="ph-prediction">
-            <label for="predictionSelect">Крок 2. Яким буде середовище?</label>
+            <label for="predictionSelect">Крок 2. Яке середовище має розчин?</label>
             <select id="predictionSelect">
               <option value="">Оберіть прогноз</option>
               <option value="acidic">Кисле</option>
@@ -119,7 +119,7 @@
             <div class="ph-meter">
               <span>DIGITAL pH METER</span>
               <strong id="phDisplay">--.--</strong>
-              <small>ATC 25 °C</small>
+              <small>25 °C</small>
             </div>
             <div class="ph-cable" aria-hidden="true"></div>
             <div class="ph-beaker" aria-hidden="true">
@@ -135,14 +135,14 @@
         <div class="ph-result-heading">
           <div>
             <p class="eyebrow">Крок 4</p>
-            <h2 id="resultTitle">Порівняйте покази індикаторів</h2>
+            <h2 id="resultTitle">Порівняйте результати</h2>
           </div>
           <span class="ph-prediction-result" id="predictionResult"></span>
         </div>
 
         <div class="ph-summary-grid">
           <div class="ph-summary-card">
-            <span>Виміряне значення</span>
+            <span>Значення pH</span>
             <strong id="resultPh">pH = —</strong>
             <p id="resultMedium"></p>
           </div>
@@ -153,7 +153,7 @@
           </div>
         </div>
 
-        <div class="ph-indicators" aria-label="Результати для індикаторів">
+        <div class="ph-indicators" aria-label="Забарвлення індикаторів">
           <article class="ph-indicator-card">
             <div><h3>Універсальний індикатор</h3><p id="universalText"></p></div>
             <span class="ph-color-patch" id="universalPatch" aria-hidden="true"></span>
@@ -163,7 +163,7 @@
             <span class="ph-color-patch" id="litmusPatch" aria-hidden="true"></span>
           </article>
           <article class="ph-indicator-card">
-            <div><h3>Метиловий оранжевий</h3><p id="methylText"></p></div>
+            <div><h3>Метилоранж</h3><p id="methylText"></p></div>
             <span class="ph-color-patch" id="methylPatch" aria-hidden="true"></span>
           </article>
           <article class="ph-indicator-card">
@@ -173,7 +173,7 @@
         </div>
 
         <div class="ph-note">
-          <strong>Пам’ятайте:</strong> забарвлення індикатора змінюється в певному інтервалі pH, а не в одній точці. Для побутових зразків наведені значення pH є орієнтовними.
+          <strong>Зверніть увагу:</strong> у шкільному курсі pH використовують для характеристики середовища водних розчинів: pH &lt; 7 - кисле, pH = 7 - нейтральне, pH &gt; 7 - лужне. Забарвлення індикаторів змінюється в певних інтервалах pH. Значення для побутових зразків є орієнтовними.
         </div>
       </section>
     </div>
@@ -188,6 +188,6 @@
 </footer>
 
 <script src="../../js/theme.js?v=2" defer></script>
-<script src="./ph.js?v=1" defer></script>
+<script src="./ph.js?v=2" defer></script>
 </body>
 </html>
