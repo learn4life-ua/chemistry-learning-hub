@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Віртуальний дослід з визначення pH та дії кислотно-основних індикаторів.">
+  <meta name="color-scheme" content="light dark">
+  <title>Індикатори та pH | Віртуальна лабораторія</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css?v=4">
+  <link rel="stylesheet" href="../../css/section-hero.css?v=1">
+  <link rel="stylesheet" href="../lab.css?v=2">
+  <link rel="stylesheet" href="./ph.css?v=1">
+  <link rel="icon" href="../../assets/favicon.ico?v=1" sizes="any">
+  <link rel="icon" type="image/png" href="../../assets/favicon.png?v=1" sizes="192x192">
+</head>
+<body class="section-page ph-page">
+<header class="site-header">
+  <div class="shell section-header-inner">
+    <a class="brand" href="../../" aria-label="Chemistry Learning Hub - на головну">
+      <span class="brand-mark" aria-hidden="true">⚛</span>
+      <span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Віртуальна лабораторія</small></span>
+    </a>
+    <div class="section-header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false"><span class="theme-icon" aria-hidden="true">◐</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="ph-hero" aria-labelledby="experimentTitle">
+    <div class="shell ph-hero-inner">
+      <nav class="ph-breadcrumbs" aria-label="Навігаційні крихти">
+        <a href="../../">Головна</a>
+        <span aria-hidden="true">›</span>
+        <a href="../">Віртуальна лабораторія</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Індикатори та pH</span>
+      </nav>
+      <p class="eyebrow">Дослід 02 • Кислотно-основні властивості</p>
+      <h1 id="experimentTitle">Індикатори та pH</h1>
+      <p>Оберіть розчин, спрогнозуйте характер середовища, проведіть вимірювання та порівняйте показ pH-метра із забарвленням індикаторів.</p>
+      <span class="ph-virtual-label">Віртуальна симуляція</span>
+    </div>
+  </section>
+
+  <section class="ph-workspace">
+    <div class="shell">
+      <div class="ph-steps" aria-label="Етапи роботи">
+        <span class="is-active">1. Оберіть</span>
+        <span>2. Спрогнозуйте</span>
+        <span>3. Виміряйте</span>
+        <span>4. Порівняйте</span>
+      </div>
+
+      <div class="ph-grid">
+        <section class="ph-panel" aria-labelledby="choiceTitle">
+          <div class="ph-panel-heading">
+            <p class="eyebrow">Крок 1</p>
+            <h2 id="choiceTitle">Оберіть досліджуваний розчин</h2>
+            <p>Значення pH та кольори індикаторів відкриються після запуску досліду.</p>
+          </div>
+
+          <div class="ph-samples" role="radiogroup" aria-label="Досліджувані розчини">
+            <button class="ph-sample is-selected" type="button" data-sample="hcl" role="radio" aria-checked="true">
+              <strong>Розчин HCl</strong>
+              <span>0,03 моль/л хлоридної кислоти</span>
+            </button>
+            <button class="ph-sample" type="button" data-sample="vinegar" role="radio" aria-checked="false">
+              <strong>Оцет</strong>
+              <span>Водний розчин оцтової кислоти</span>
+            </button>
+            <button class="ph-sample" type="button" data-sample="coffee" role="radio" aria-checked="false">
+              <strong>Чорна кава</strong>
+              <span>Побутовий слабкокислий зразок</span>
+            </button>
+            <button class="ph-sample" type="button" data-sample="water" role="radio" aria-checked="false">
+              <strong>Дистильована вода</strong>
+              <span>Нейтральний контрольний зразок</span>
+            </button>
+            <button class="ph-sample" type="button" data-sample="soda" role="radio" aria-checked="false">
+              <strong>Розчин NaHCO₃</strong>
+              <span>Слабколужний розчин гідрогенкарбонату натрію</span>
+            </button>
+            <button class="ph-sample" type="button" data-sample="naoh" role="radio" aria-checked="false">
+              <strong>Розчин NaOH</strong>
+              <span>0,1 моль/л натрій гідроксиду</span>
+            </button>
+          </div>
+
+          <div class="ph-prediction">
+            <label for="predictionSelect">Крок 2. Яким буде середовище?</label>
+            <select id="predictionSelect">
+              <option value="">Оберіть прогноз</option>
+              <option value="acidic">Кисле</option>
+              <option value="neutral">Нейтральне</option>
+              <option value="basic">Лужне</option>
+            </select>
+          </div>
+
+          <div class="ph-actions">
+            <button class="primary-button ph-run" id="runExperiment" type="button">Виміряти pH</button>
+            <button class="secondary-button ph-reset" id="resetExperiment" type="button">Скинути</button>
+          </div>
+        </section>
+
+        <section class="ph-stage" aria-labelledby="stageTitle">
+          <div class="ph-stage-top">
+            <div>
+              <p class="eyebrow">Крок 3</p>
+              <h2 id="stageTitle">Вимірювання</h2>
+            </div>
+            <span class="ph-status" id="experimentStatus">Готово до досліду</span>
+          </div>
+
+          <div class="ph-lab-scene" aria-live="polite">
+            <div class="ph-meter">
+              <span>DIGITAL pH METER</span>
+              <strong id="phDisplay">--.--</strong>
+              <small>ATC 25 °C</small>
+            </div>
+            <div class="ph-cable" aria-hidden="true"></div>
+            <div class="ph-beaker" aria-hidden="true">
+              <div class="ph-electrode"></div>
+              <div class="ph-liquid" id="beakerLiquid"><span></span></div>
+            </div>
+            <div class="ph-sample-badge" id="sampleBadge">Оберіть прогноз і запустіть вимірювання</div>
+          </div>
+        </section>
+      </div>
+
+      <section class="ph-result" id="resultPanel" aria-labelledby="resultTitle" hidden>
+        <div class="ph-result-heading">
+          <div>
+            <p class="eyebrow">Крок 4</p>
+            <h2 id="resultTitle">Порівняйте покази індикаторів</h2>
+          </div>
+          <span class="ph-prediction-result" id="predictionResult"></span>
+        </div>
+
+        <div class="ph-summary-grid">
+          <div class="ph-summary-card">
+            <span>Виміряне значення</span>
+            <strong id="resultPh">pH = —</strong>
+            <p id="resultMedium"></p>
+          </div>
+          <div class="ph-summary-card">
+            <span>Зразок</span>
+            <strong id="resultSample"></strong>
+            <p id="resultNote"></p>
+          </div>
+        </div>
+
+        <div class="ph-indicators" aria-label="Результати для індикаторів">
+          <article class="ph-indicator-card">
+            <div><h3>Універсальний індикатор</h3><p id="universalText"></p></div>
+            <span class="ph-color-patch" id="universalPatch" aria-hidden="true"></span>
+          </article>
+          <article class="ph-indicator-card">
+            <div><h3>Лакмус</h3><p id="litmusText"></p></div>
+            <span class="ph-color-patch" id="litmusPatch" aria-hidden="true"></span>
+          </article>
+          <article class="ph-indicator-card">
+            <div><h3>Метиловий оранжевий</h3><p id="methylText"></p></div>
+            <span class="ph-color-patch" id="methylPatch" aria-hidden="true"></span>
+          </article>
+          <article class="ph-indicator-card">
+            <div><h3>Фенолфталеїн</h3><p id="phenolText"></p></div>
+            <span class="ph-color-patch" id="phenolPatch" aria-hidden="true"></span>
+          </article>
+        </div>
+
+        <div class="ph-note">
+          <strong>Пам’ятайте:</strong> забарвлення індикатора змінюється в певному інтервалі pH, а не в одній точці. Для побутових зразків наведені значення pH є орієнтовними.
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div>
+    <p>Віртуальна лабораторія • Індикатори та pH</p>
+  </div>
+</footer>
+
+<script src="../../js/theme.js?v=2" defer></script>
+<script src="./ph.js?v=1" defer></script>
+</body>
+</html>
