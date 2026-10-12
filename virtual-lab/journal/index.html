@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../../css/style.css?v=4">
   <link rel="stylesheet" href="../../css/section-hero.css?v=1">
   <link rel="stylesheet" href="../lab.css?v=2">
-  <link rel="stylesheet" href="./journal.css?v=4">
+  <link rel="stylesheet" href="./journal.css?v=5">
   <link rel="icon" href="../../assets/favicon.ico?v=1" sizes="any">
 </head>
 <body class="section-page journal-page">
@@ -39,7 +39,7 @@
         <span aria-current="page">Лабораторний журнал</span>
       </nav>
       <h1>Лабораторний журнал</h1>
-      <p>Фіксуйте виконані досліди вручну: тему, рівняння та спостереження. Готовий журнал можна скопіювати, надрукувати або зберегти як PDF через меню друку браузера.</p>
+      <p>Фіксуйте виконані досліди вручну: тему, рівняння, спостереження та висновок до кожного досліду. Готовий журнал можна скопіювати, надрукувати або зберегти як PDF через меню друку браузера.</p>
     </div>
   </section>
 
@@ -85,6 +85,8 @@
           <button class="secondary-button no-print" id="addJournalRow" type="button">+ Додати рядок</button>
         </div>
 
+        <p class="journal-swipe-note no-print">На вузькому екрані проведіть пальцем по таблиці, щоб переглянути всі поля.</p>
+
         <div class="journal-table-wrap">
           <table class="journal-table">
             <thead>
@@ -93,6 +95,7 @@
                 <th>Тема досліду</th>
                 <th>Хімізм / рівняння</th>
                 <th>Спостереження</th>
+                <th>Висновок</th>
                 <th class="journal-col-remove no-print">×</th>
               </tr>
             </thead>
@@ -103,8 +106,8 @@
         <div class="journal-empty-note" id="journalEmptyNote">Додайте перший рядок і внесіть результати досліду.</div>
 
         <label class="journal-field journal-conclusion">
-          <span>Підсумковий висновок</span>
-          <textarea id="conclusionJournal" rows="5" placeholder="Сформулюйте висновок за виконаними дослідами"></textarea>
+          <span>Загальний висновок за роботою</span>
+          <textarea id="conclusionJournal" rows="5" placeholder="Сформулюйте загальний висновок за виконаними дослідами"></textarea>
         </label>
 
         <p class="journal-copy-note no-print" id="copyNote" aria-live="polite"></p>
@@ -121,6 +124,6 @@
 </footer>
 
 <script src="../../js/theme.js?v=2" defer></script>
-<script src="./journal.js?v=2" defer></script>
+<script src="./journal.js?v=3" defer></script>
 </body>
 </html>
