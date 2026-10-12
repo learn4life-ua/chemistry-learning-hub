@@ -153,7 +153,7 @@ function runExperiment() {
 
   window.setTimeout(() => {
     phDisplay.textContent = sample.ph.toFixed(2);
-    sampleBadge.textContent = `${sample.name}: pH ≈ ${sample.ph.toFixed(1)}`;
+    sampleBadge.textContent = `${sample.name} • pH ≈ ${sample.ph.toFixed(1)} • ${sample.mediumLabel.toLowerCase()}`;
     status.textContent = 'Вимірювання завершено';
 
     resultPh.textContent = `pH ≈ ${sample.ph.toFixed(1)}`;
