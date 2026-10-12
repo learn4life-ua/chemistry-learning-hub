@@ -14,8 +14,10 @@ const scaleMarker = document.getElementById('scaleMarker');
 const neutralLiquid = document.getElementById('neutralLiquid');
 const indicatorText = document.getElementById('indicatorText');
 const observationText = document.getElementById('observationText');
+const chemistryExplanation = document.getElementById('chemistryExplanation');
 const experimentStatus = document.getElementById('experimentStatus');
 const predictionResult = document.getElementById('predictionResult');
+const predictionFeedback = document.getElementById('predictionFeedback');
 const summaryState = document.getElementById('summaryState');
 const summaryPh = document.getElementById('summaryPh');
 const summaryRatio = document.getElementById('summaryRatio');
@@ -64,14 +66,30 @@ function getRatioText() {
 }
 
 function getObservation(ph) {
+  if (acidVolume === 0) {
+    return 'Початковий розчин лужний: pH високий, фенолфталеїн має малинове забарвлення.';
+  }
   if (acidVolume < initialBaseVolume) {
-    if (ph >= 10) return 'У розчині ще є надлишок гідроксид-іонів OH⁻. pH зменшується в міру додавання кислоти.';
-    return 'Наближаємося до нейтралізації: забарвлення фенолфталеїну слабшає, pH швидко зменшується.';
+    if (ph >= 10) return 'Після додавання HCl pH зменшується, але NaOH ще перебуває в надлишку, тому середовище залишається лужним.';
+    return 'Наближаємося до нейтралізації: pH різко зменшується, а забарвлення фенолфталеїну слабшає.';
   }
   if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) {
-    return 'Кількості речовини H⁺ і OH⁻ рівні. У цій моделі сильна кислота і сильний луг нейтралізували один одного.';
+    return 'Додано 25,0 мл HCl. Кількості речовини H⁺ і OH⁻ стали рівними, тому в цій моделі pH ≈ 7.';
   }
-  return 'Після нейтралізації додана кислота вже перебуває в надлишку, тому середовище стало кислим.';
+  return 'Після точки нейтралізації HCl перебуває в надлишку, тому pH стає меншим за 7 і середовище є кислим.';
+}
+
+function getChemistryExplanation(ph) {
+  if (acidVolume === 0) {
+    return 'У вихідному розчині NaOH дисоціює з утворенням йонів Na⁺ і OH⁻. Саме надлишок OH⁻ зумовлює лужне середовище та малинове забарвлення фенолфталеїну.';
+  }
+  if (acidVolume < initialBaseVolume) {
+    return 'Додані йони H⁺ взаємодіють з йонами OH⁻: H⁺ + OH⁻ → H₂O. Кількість OH⁻ поступово зменшується, тому зменшується і pH. Поки OH⁻ залишаються в надлишку, середовище все ще лужне.';
+  }
+  if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) {
+    return 'Оскільки концентрації HCl і NaOH однакові, 25,0 мл HCl нейтралізують 25,0 мл NaOH. У моделі сильної кислоти та сильного лугу за 25 °C це відповідає нейтральному середовищу з pH ≈ 7.';
+  }
+  return 'Після нейтралізації всі доступні йони OH⁻ вже прореагували. Подальше додавання HCl створює надлишок H⁺, тому розчин стає кислим і pH знижується нижче 7.';
 }
 
 function animateDrop() {
@@ -81,14 +99,31 @@ function animateDrop() {
 }
 
 function updatePrediction() {
-  if (!predictionSelect.value) {
+  const value = predictionSelect.value;
+
+  if (!value) {
     predictionResult.textContent = 'Зробіть прогноз';
     predictionResult.removeAttribute('data-state');
+    predictionFeedback.removeAttribute('data-state');
+    predictionFeedback.innerHTML = '<strong>Спочатку оберіть прогноз.</strong><span>Після додавання HCl тут з’явиться перевірка вашого припущення.</span>';
     return;
   }
-  const correct = predictionSelect.value === 'decrease';
-  predictionResult.textContent = correct ? 'Прогноз правильний' : 'Перевірте прогноз за спостереженням';
+
+  if (acidVolume === 0) {
+    predictionResult.textContent = 'Прогноз зафіксовано';
+    predictionResult.removeAttribute('data-state');
+    predictionFeedback.removeAttribute('data-state');
+    predictionFeedback.innerHTML = '<strong>Прогноз зафіксовано.</strong><span>Додайте HCl і порівняйте своє припущення зі зміною pH та забарвлення фенолфталеїну.</span>';
+    return;
+  }
+
+  const correct = value === 'decrease';
+  predictionResult.textContent = correct ? '✓ Прогноз правильний' : '✕ Прогноз не підтвердився';
   predictionResult.dataset.state = correct ? 'correct' : 'review';
+  predictionFeedback.dataset.state = correct ? 'correct' : 'review';
+  predictionFeedback.innerHTML = correct
+    ? '<strong>✓ Прогноз правильний.</strong><span>Під час додавання HCl pH справді зменшується, а фенолфталеїн у міру зменшення лужності знебарвлюється.</span>'
+    : '<strong>✕ Прогноз не підтвердився.</strong><span>Спостереження показує протилежне: додавання HCl зменшує надлишок OH⁻, тому pH падає. Фенолфталеїн поступово втрачає малинове забарвлення.</span>';
 }
 
 function render() {
@@ -101,9 +136,10 @@ function render() {
   mediumDisplay.textContent = medium.label;
   scaleMarker.style.left = `${Math.max(0, Math.min(100, (ph / 14) * 100))}%`;
   neutralLiquid.style.background = indicator.color;
-  neutralLiquid.style.height = `${Math.min(155, 118 + acidVolume * 0.7)}px`;
+  neutralLiquid.style.height = `${Math.min(142, 96 + acidVolume * 0.65)}px`;
   indicatorText.textContent = indicator.text;
   observationText.textContent = getObservation(ph);
+  chemistryExplanation.textContent = getChemistryExplanation(ph);
 
   summaryState.textContent = medium.label.charAt(0).toUpperCase() + medium.label.slice(1);
   summaryPh.textContent = `pH = ${ph.toFixed(2).replace('.', ',')}`;
