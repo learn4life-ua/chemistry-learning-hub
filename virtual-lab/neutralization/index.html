@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Віртуальний дослід з нейтралізації: додавання хлоридної кислоти до розчину натрій гідроксиду зі зміною pH та забарвлення фенолфталеїну.">
+  <meta name="color-scheme" content="light dark">
+  <title>Кислота + луг | Віртуальна лабораторія</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css?v=4">
+  <link rel="stylesheet" href="../../css/section-hero.css?v=1">
+  <link rel="stylesheet" href="../lab.css?v=2">
+  <link rel="stylesheet" href="./neutralization.css?v=1">
+  <link rel="icon" href="../../assets/favicon.ico?v=1" sizes="any">
+  <link rel="icon" type="image/png" href="../../assets/favicon.png?v=1" sizes="192x192">
+</head>
+<body class="section-page neutral-page">
+<header class="site-header">
+  <div class="shell section-header-inner">
+    <a class="brand" href="../../" aria-label="Chemistry Learning Hub - на головну">
+      <span class="brand-mark" aria-hidden="true">⚛</span>
+      <span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Віртуальна лабораторія</small></span>
+    </a>
+    <div class="section-header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false"><span class="theme-icon" aria-hidden="true">◐</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="neutral-hero" aria-labelledby="experimentTitle">
+    <div class="shell neutral-hero-inner">
+      <nav class="neutral-breadcrumbs" aria-label="Навігаційні крихти">
+        <a href="../../">Головна</a><span aria-hidden="true">›</span>
+        <a href="../">Віртуальна лабораторія</a><span aria-hidden="true">›</span>
+        <span aria-current="page">Кислота + луг</span>
+      </nav>
+      <p class="eyebrow">Дослід 03 • Нейтралізація</p>
+      <h1 id="experimentTitle">Кислота + луг</h1>
+      <p>Додавайте хлоридну кислоту до розчину натрій гідроксиду, стежте за зміною pH і забарвлення фенолфталеїну та визначте момент нейтралізації.</p>
+      <span class="neutral-virtual-label">Віртуальна симуляція</span>
+    </div>
+  </section>
+
+  <section class="neutral-workspace">
+    <div class="shell">
+      <div class="neutral-steps" aria-label="Етапи роботи">
+        <span class="is-active">1. Спрогнозуйте</span>
+        <span>2. Додавайте кислоту</span>
+        <span>3. Спостерігайте</span>
+        <span>4. Поясніть</span>
+      </div>
+
+      <div class="neutral-grid">
+        <section class="neutral-panel" aria-labelledby="controlTitle">
+          <div class="neutral-panel-heading">
+            <p class="eyebrow">Умови досліду</p>
+            <h2 id="controlTitle">25 мл NaOH + HCl</h2>
+            <p>У колбі міститься 25 мл розчину NaOH з концентрацією 0,1 моль/л і кілька крапель фенолфталеїну. Додаємо розчин HCl тієї самої концентрації.</p>
+          </div>
+
+          <div class="neutral-facts">
+            <div><span>NaOH</span><strong>0,1 моль/л</strong></div>
+            <div><span>HCl</span><strong>0,1 моль/л</strong></div>
+            <div><span>Початковий об’єм NaOH</span><strong>25,0 мл</strong></div>
+          </div>
+
+          <div class="neutral-prediction">
+            <label for="predictionSelect">Що відбуватиметься під час додавання кислоти?</label>
+            <select id="predictionSelect">
+              <option value="">Оберіть прогноз</option>
+              <option value="decrease">pH зменшуватиметься, фенолфталеїн знебарвиться</option>
+              <option value="increase">pH збільшуватиметься</option>
+              <option value="same">pH майже не зміниться</option>
+            </select>
+          </div>
+
+          <div class="neutral-dose">
+            <span>Додано HCl</span>
+            <strong id="acidVolume">0,0 мл</strong>
+          </div>
+
+          <div class="neutral-actions">
+            <button class="secondary-button" id="addOne" type="button">+ 1 мл HCl</button>
+            <button class="primary-button" id="addFive" type="button">+ 5 мл HCl</button>
+            <button class="secondary-button" id="resetExperiment" type="button">Скинути</button>
+          </div>
+        </section>
+
+        <section class="neutral-stage" aria-labelledby="stageTitle">
+          <div class="neutral-stage-top">
+            <div><p class="eyebrow">Спостереження</p><h2 id="stageTitle">Як змінюється розчин</h2></div>
+            <span class="neutral-status" id="experimentStatus">Початковий стан</span>
+          </div>
+
+          <div class="neutral-scene" aria-live="polite">
+            <div class="neutral-dropper" aria-hidden="true"><span></span><i id="acidDrop"></i></div>
+            <div class="neutral-flask" aria-hidden="true">
+              <div class="neutral-liquid" id="neutralLiquid"></div>
+            </div>
+            <div class="neutral-reading">
+              <span>pH</span><strong id="phDisplay">13,00</strong>
+              <small id="mediumDisplay">лужне середовище</small>
+            </div>
+            <div class="neutral-scale" aria-label="Характер середовища">
+              <span>кисле</span><span>нейтральне</span><span>лужне</span>
+              <i id="scaleMarker"></i>
+            </div>
+          </div>
+
+          <div class="neutral-observation">
+            <strong id="indicatorText">Фенолфталеїн: малинове забарвлення</strong>
+            <span id="observationText">У вихідному розчині є надлишок гідроксид-іонів OH⁻.</span>
+          </div>
+        </section>
+      </div>
+
+      <section class="neutral-result" id="resultPanel" aria-labelledby="resultTitle">
+        <div class="neutral-result-heading">
+          <div><p class="eyebrow">Підсумок</p><h2 id="resultTitle">Реакція нейтралізації</h2></div>
+          <span class="neutral-prediction-result" id="predictionResult">Зробіть прогноз</span>
+        </div>
+
+        <div class="neutral-summary-grid">
+          <div><span>Поточний стан</span><strong id="summaryState">Лужне середовище</strong><p id="summaryPh">pH = 13,00</p></div>
+          <div><span>Кількісне співвідношення</span><strong id="summaryRatio">NaOH у надлишку</strong><p id="summaryVolume">Додано HCl: 0,0 мл</p></div>
+        </div>
+
+        <div class="neutral-equations">
+          <div><span>Молекулярне рівняння</span><p>HCl + NaOH → NaCl + H₂O</p></div>
+          <div><span>Скорочене йонне рівняння</span><p>H⁺ + OH⁻ → H₂O</p></div>
+        </div>
+
+        <div class="neutral-note">
+          <strong>Для цієї моделі:</strong> використано сильну одноосновну кислоту HCl і сильний однокислотний луг NaOH однакової концентрації. За 25,0 мл HCl кількості речовини H⁺ і OH⁻ рівні, тому в моделі за 25 °C pH ≈ 7. Поблизу цього співвідношення pH змінюється дуже різко, а не лінійно.
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Віртуальна лабораторія • Кислота + луг</p></div>
+</footer>
+<script src="../../js/theme.js?v=2" defer></script>
+<script src="./neutralization.js?v=1" defer></script>
+</body>
+</html>
