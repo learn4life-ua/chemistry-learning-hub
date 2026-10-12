@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../../css/style.css?v=4">
   <link rel="stylesheet" href="../../css/section-hero.css?v=1">
   <link rel="stylesheet" href="../lab.css?v=2">
-  <link rel="stylesheet" href="./neutralization.css?v=4">
+  <link rel="stylesheet" href="./neutralization.css?v=5">
   <link rel="icon" href="../../assets/favicon.ico?v=1" sizes="any">
   <link rel="icon" type="image/png" href="../../assets/favicon.png?v=1" sizes="192x192">
 </head>
@@ -79,9 +79,8 @@
             <select id="predictionSelect" disabled>
               <option value="">Оберіть прогноз</option>
               <option value="basic-colored">Лужне середовище; фенолфталеїн залишиться рожево-малиновим</option>
-              <option value="basic-colorless">Лужне середовище; фенолфталеїн стане безбарвним</option>
-              <option value="neutral-colorless">Нейтральне середовище; фенолфталеїн безбарвний</option>
-              <option value="acidic-colorless">Кисле середовище; фенолфталеїн безбарвний</option>
+              <option value="neutral-colorless">Нейтральне середовище; фенолфталеїн буде безбарвним</option>
+              <option value="acidic-colorless">Кисле середовище; фенолфталеїн буде безбарвним</option>
             </select>
             <div class="neutral-prediction-feedback" id="predictionFeedback" aria-live="polite">
               <strong>Спочатку оберіть порцію HCl.</strong>
@@ -143,13 +142,14 @@
 
         <div class="neutral-equations">
           <div><span>Молекулярне рівняння</span><p>HCl + NaOH → NaCl + H₂O</p></div>
+          <div><span>Повне йонне рівняння</span><p>H⁺ + Cl⁻ + Na⁺ + OH⁻ → Na⁺ + Cl⁻ + H₂O</p></div>
           <div><span>Скорочене йонне рівняння</span><p>H⁺ + OH⁻ → H₂O</p></div>
         </div>
 
         <div class="neutral-explanation-grid">
           <div>
             <span>Що відбувається?</span>
-            <p>Під час додавання HCl йони H⁺ реагують з йонами OH⁻. Їхній надлишок зменшується, тому pH падає. Фенолфталеїн забарвлений лише в достатньо лужному середовищі, тому поблизу нейтралізації він стає безбарвним.</p>
+            <p>Під час додавання HCl йони H⁺ реагують з йонами OH⁻. Їхній надлишок зменшується, тому pH падає. Фенолфталеїн має забарвлення лише в достатньо лужному середовищі.</p>
           </div>
           <div>
             <span>Навіщо різні порції?</span>
@@ -158,7 +158,7 @@
         </div>
 
         <div class="neutral-note">
-          <strong>Для цієї моделі:</strong> HCl і NaOH мають однакову концентрацію 0,1 моль/л. Тому 25,0 мл HCl містять стільки ж H⁺, скільки 25,0 мл NaOH містять OH⁻. За 25 °C для цієї пари сильної кислоти та сильного лугу це відповідає pH ≈ 7. Після подальшого додавання HCl кислота опиняється в надлишку і середовище стає кислим.
+          <strong>Важливо:</strong> знебарвлення фенолфталеїну означає, що середовище вже недостатньо лужне, але саме по собі не доводить, що pH = 7. У цій моделі HCl і NaOH мають однакову концентрацію 0,1 моль/л, тому 25,0 мл HCl і 25,0 мл NaOH відповідають стехіометричному співвідношенню 1 : 1. Для сильної кислоти HCl і лугу NaOH за 25 °C у цей момент pH ≈ 7. Після подальшого додавання HCl середовище стає кислим.
         </div>
       </section>
     </div>
@@ -169,6 +169,6 @@
   <div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Віртуальна лабораторія • Кислота + луг</p></div>
 </footer>
 <script src="../../js/theme.js?v=2" defer></script>
-<script src="./neutralization.js?v=4" defer></script>
+<script src="./neutralization.js?v=5" defer></script>
 </body>
 </html>
