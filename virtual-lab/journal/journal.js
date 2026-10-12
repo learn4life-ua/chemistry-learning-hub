@@ -24,6 +24,7 @@ function createJournalRow() {
     <td><textarea class="journal-cell-input journal-topic" rows="3" aria-label="Тема досліду" placeholder="Назва або тема"></textarea></td>
     <td><textarea class="journal-cell-input equation-input journal-equation" rows="3" aria-label="Хімізм або рівняння" placeholder="Рівняння реакції"></textarea></td>
     <td><textarea class="journal-cell-input journal-observation" rows="3" aria-label="Спостереження" placeholder="Колір, осад, газ, зміна температури тощо"></textarea></td>
+    <td><textarea class="journal-cell-input journal-row-conclusion" rows="3" aria-label="Висновок до досліду" placeholder="Короткий висновок за результатами досліду"></textarea></td>
     <td class="no-print"><button class="journal-remove-row" type="button" aria-label="Видалити рядок" title="Видалити рядок">×</button></td>
   `;
   row.querySelector('.journal-remove-row').addEventListener('click', () => {
@@ -66,13 +67,15 @@ function buildJournalText() {
       const topic = row.querySelector('.journal-topic').value.trim() || 'Без назви';
       const equation = row.querySelector('.journal-equation').value.trim() || '—';
       const observation = row.querySelector('.journal-observation').value.trim() || '—';
+      const rowConclusion = row.querySelector('.journal-row-conclusion').value.trim() || '—';
       lines.push(`${index + 1}. ${topic}`);
       lines.push(`   Хімізм / рівняння: ${equation}`);
       lines.push(`   Спостереження: ${observation}`);
+      lines.push(`   Висновок: ${rowConclusion}`);
     });
   }
 
-  lines.push('', 'ПІДСУМКОВИЙ ВИСНОВОК:', conclusion.value.trim() || '—');
+  lines.push('', 'ЗАГАЛЬНИЙ ВИСНОВОК ЗА РОБОТОЮ:', conclusion.value.trim() || '—');
   return lines.join('\n');
 }
 
