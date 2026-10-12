@@ -53,9 +53,9 @@ function calculatePh(vAcidMl) {
 }
 
 function getMedium(ph) {
-  if (ph < 6.95) return { key: 'acidic', label: 'кисле середовище' };
-  if (ph > 7.05) return { key: 'basic', label: 'лужне середовище' };
-  return { key: 'neutral', label: 'нейтральне середовище' };
+  if (Math.abs(ph - 7) < 1e-9) return { key: 'neutral', label: 'нейтральне середовище' };
+  if (ph < 7) return { key: 'acidic', label: 'кисле середовище' };
+  return { key: 'basic', label: 'лужне середовище' };
 }
 
 function getIndicator(ph) {
@@ -68,35 +68,34 @@ function getPredictionCode(ph) {
   const medium = getMedium(ph);
   const indicator = getIndicator(ph);
   if (medium.key === 'basic' && indicator.key === 'colored') return 'basic-colored';
-  if (medium.key === 'basic' && indicator.key === 'colorless') return 'basic-colorless';
   if (medium.key === 'neutral') return 'neutral-colorless';
   return 'acidic-colorless';
 }
 
 function getRatioText() {
   if (acidVolume < initialBaseVolume - 1e-9) return 'NaOH у надлишку';
-  if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) return 'Кількості HCl і NaOH еквівалентні';
+  if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) return 'HCl і NaOH у співвідношенні 1 : 1';
   return 'HCl у надлишку';
 }
 
-function getObservation(ph) {
-  if (acidVolume === 0) return 'Початковий розчин лужний, фенолфталеїн забарвлений.';
+function getObservation() {
+  if (acidVolume === 0) return 'Початковий розчин лужний, фенолфталеїн має малинове забарвлення.';
   if (acidVolume < initialBaseVolume) return 'HCl нейтралізує частину OH⁻, тому pH зменшується, але NaOH ще залишається в надлишку.';
-  if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) return 'Додано 25,0 мл HCl: кількості H⁺ і OH⁻ еквівалентні, pH ≈ 7, фенолфталеїн безбарвний.';
+  if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) return 'Додано 25,0 мл HCl: кількості речовини HCl і NaOH рівні, pH ≈ 7, фенолфталеїн безбарвний.';
   return 'HCl уже в надлишку, тому середовище кисле, а фенолфталеїн безбарвний.';
 }
 
-function getChemistryExplanation(ph) {
+function getChemistryExplanation() {
   if (acidVolume === 0) {
-    return 'У вихідному розчині NaOH є надлишок йонів OH⁻. Вони зумовлюють лужне середовище та забарвлення фенолфталеїну.';
+    return 'У вихідному розчині NaOH є надлишок йонів OH⁻. Вони зумовлюють лужне середовище та малинове забарвлення фенолфталеїну.';
   }
   if (acidVolume < initialBaseVolume) {
     return 'Йони H⁺, що надходять із HCl, реагують з OH⁻ за рівнянням H⁺ + OH⁻ → H₂O. Через зменшення концентрації OH⁻ pH падає. Поки OH⁻ у надлишку, середовище залишається лужним.';
   }
   if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) {
-    return 'За однакової концентрації розчинів 25,0 мл HCl нейтралізують 25,0 мл NaOH. Для сильної кислоти та сильного лугу за 25 °C це відповідає нейтральному середовищу з pH ≈ 7.';
+    return 'За однакової концентрації розчинів 25,0 мл HCl нейтралізують 25,0 мл NaOH. Для сильної кислоти HCl і лугу NaOH за 25 °C це відповідає нейтральному середовищу з pH ≈ 7.';
   }
-  return 'Після нейтралізації весь надлишок OH⁻ уже витрачений. Додаткові йони H⁺ залишаються в розчині, тому pH стає меншим за 7.';
+  return 'Після нейтралізації надлишок OH⁻ уже витрачений. Додаткові йони H⁺ залишаються в розчині, тому pH стає меншим за 7 і середовище стає кислим.';
 }
 
 function animateDrop() {
@@ -117,7 +116,7 @@ function selectDose(amount) {
   setActiveStep(1);
 }
 
-function explainPrediction(actualCode, targetPh) {
+function explainPrediction(targetPh) {
   const medium = getMedium(targetPh);
   const indicator = getIndicator(targetPh);
   return `Після цього кроку pH ≈ ${targetPh.toFixed(2).replace('.', ',')}, ${medium.label}; ${indicator.text.toLowerCase()}.`;
@@ -125,7 +124,7 @@ function explainPrediction(actualCode, targetPh) {
 
 function checkPrediction(prediction, actualCode, targetPh) {
   const correct = prediction === actualCode;
-  const explanation = explainPrediction(actualCode, targetPh);
+  const explanation = explainPrediction(targetPh);
   lastPrediction = { correct, explanation };
 
   predictionResult.textContent = correct ? '✓ Прогноз правильний' : '✕ Прогноз не підтвердився';
@@ -148,8 +147,8 @@ function render() {
   neutralLiquid.style.background = indicator.color;
   neutralLiquid.style.height = `${Math.min(142, 96 + acidVolume * 0.65)}px`;
   indicatorText.textContent = indicator.text;
-  observationText.textContent = getObservation(ph);
-  chemistryExplanation.textContent = getChemistryExplanation(ph);
+  observationText.textContent = getObservation();
+  chemistryExplanation.textContent = getChemistryExplanation();
 
   summaryState.textContent = medium.label.charAt(0).toUpperCase() + medium.label.slice(1);
   summaryPh.textContent = `pH = ${ph.toFixed(2).replace('.', ',')}`;
@@ -157,9 +156,15 @@ function render() {
   summaryVolume.textContent = `Додано HCl: ${acidVolume.toFixed(1).replace('.', ',')} мл`;
 
   const remaining = initialBaseVolume - acidVolume;
-  if (remaining > 0) remainingVolume.textContent = `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl`;
-  else if (Math.abs(remaining) < 1e-9) remainingVolume.textContent = 'Досягнуто нейтралізації для цієї моделі';
-  else remainingVolume.textContent = `Надлишок HCl: ${Math.abs(remaining).toFixed(1).replace('.', ',')} мл`;
+  if (remaining > 0) {
+    remainingVolume.textContent = remaining <= 5
+      ? `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl. Спробуйте порцію 1 мл для точнішого спостереження.`
+      : `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl`;
+  } else if (Math.abs(remaining) < 1e-9) {
+    remainingVolume.textContent = 'Досягнуто нейтралізації для цієї моделі';
+  } else {
+    remainingVolume.textContent = `Надлишок HCl: ${Math.abs(remaining).toFixed(1).replace('.', ',')} мл`;
+  }
 
   if (acidVolume === 0) {
     experimentStatus.textContent = 'Початковий стан';
