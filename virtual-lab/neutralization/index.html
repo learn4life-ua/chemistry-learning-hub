@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../../css/style.css?v=4">
   <link rel="stylesheet" href="../../css/section-hero.css?v=1">
   <link rel="stylesheet" href="../lab.css?v=2">
-  <link rel="stylesheet" href="./neutralization.css?v=3">
+  <link rel="stylesheet" href="./neutralization.css?v=4">
   <link rel="icon" href="../../assets/favicon.ico?v=1" sizes="any">
   <link rel="icon" type="image/png" href="../../assets/favicon.png?v=1" sizes="192x192">
 </head>
@@ -39,7 +39,7 @@
       </nav>
       <p class="eyebrow">Дослід 03 • Нейтралізація</p>
       <h1 id="experimentTitle">Кислота + луг</h1>
-      <p>Додавайте хлоридну кислоту до розчину натрій гідроксиду, стежте за зміною pH і забарвлення фенолфталеїну та визначте момент нейтралізації.</p>
+      <p>Оберіть порцію хлоридної кислоти, спрогнозуйте стан розчину після її додавання, а потім перевірте прогноз за pH і забарвленням фенолфталеїну.</p>
       <span class="neutral-virtual-label">Віртуальна симуляція</span>
     </div>
   </section>
@@ -47,9 +47,9 @@
   <section class="neutral-workspace">
     <div class="shell">
       <div class="neutral-steps" aria-label="Етапи роботи">
-        <span class="is-active">1. Спрогнозуйте</span>
-        <span>2. Додавайте кислоту</span>
-        <span>3. Спостерігайте</span>
+        <span class="is-active">1. Оберіть порцію</span>
+        <span>2. Спрогнозуйте</span>
+        <span>3. Додайте й спостерігайте</span>
         <span>4. Поясніть</span>
       </div>
 
@@ -68,27 +68,35 @@
           </div>
 
           <div class="neutral-prediction">
-            <label for="predictionSelect">Що відбуватиметься під час додавання кислоти?</label>
-            <select id="predictionSelect">
+            <label>1. Оберіть, скільки HCl додати наступним кроком</label>
+            <div class="neutral-dose-choice" role="group" aria-label="Порція HCl">
+              <button class="secondary-button" id="doseOne" type="button" data-dose="1">+ 1 мл HCl</button>
+              <button class="secondary-button" id="doseFive" type="button" data-dose="5">+ 5 мл HCl</button>
+            </div>
+            <p class="neutral-choice-hint" id="doseChoiceText">Порцію ще не обрано.</p>
+
+            <label for="predictionSelect">2. Яким стане розчин після додавання цієї порції?</label>
+            <select id="predictionSelect" disabled>
               <option value="">Оберіть прогноз</option>
-              <option value="decrease">pH зменшуватиметься, фенолфталеїн знебарвиться</option>
-              <option value="increase">pH збільшуватиметься</option>
-              <option value="same">pH майже не зміниться</option>
+              <option value="basic-colored">Лужне середовище; фенолфталеїн залишиться рожево-малиновим</option>
+              <option value="basic-colorless">Лужне середовище; фенолфталеїн стане безбарвним</option>
+              <option value="neutral-colorless">Нейтральне середовище; фенолфталеїн безбарвний</option>
+              <option value="acidic-colorless">Кисле середовище; фенолфталеїн безбарвний</option>
             </select>
             <div class="neutral-prediction-feedback" id="predictionFeedback" aria-live="polite">
-              <strong>Спочатку оберіть прогноз.</strong>
-              <span>Після додавання HCl тут з’явиться перевірка вашого припущення.</span>
+              <strong>Спочатку оберіть порцію HCl.</strong>
+              <span>Після цього спрогнозуйте середовище та забарвлення фенолфталеїну.</span>
             </div>
           </div>
 
           <div class="neutral-dose">
             <span>Додано HCl</span>
             <strong id="acidVolume">0,0 мл</strong>
+            <small id="remainingVolume">До нейтралізації: 25,0 мл</small>
           </div>
 
-          <div class="neutral-actions">
-            <button class="secondary-button" id="addOne" type="button">+ 1 мл HCl</button>
-            <button class="primary-button" id="addFive" type="button">+ 5 мл HCl</button>
+          <div class="neutral-actions neutral-actions-two">
+            <button class="primary-button" id="addSelected" type="button">Додати обрану порцію</button>
             <button class="secondary-button" id="resetExperiment" type="button">Скинути</button>
           </div>
         </section>
@@ -116,8 +124,8 @@
 
           <div class="neutral-observation">
             <strong id="indicatorText">Фенолфталеїн: малинове забарвлення</strong>
-            <span id="observationText">У вихідному розчині є надлишок гідроксид-іонів OH⁻.</span>
-            <p id="chemistryExplanation">Початковий розчин є лужним, тому фенолфталеїн має малинове забарвлення. Під час додавання HCl йони H⁺ реагують з йонами OH⁻ з утворенням води.</p>
+            <span id="observationText">Початковий розчин має лужне середовище.</span>
+            <p id="chemistryExplanation">У вихідному розчині NaOH є надлишок йонів OH⁻, тому pH високий, а фенолфталеїн забарвлений.</p>
           </div>
         </section>
       </div>
@@ -125,7 +133,7 @@
       <section class="neutral-result" id="resultPanel" aria-labelledby="resultTitle">
         <div class="neutral-result-heading">
           <div><p class="eyebrow">Підсумок</p><h2 id="resultTitle">Реакція нейтралізації</h2></div>
-          <span class="neutral-prediction-result" id="predictionResult">Зробіть прогноз</span>
+          <span class="neutral-prediction-result" id="predictionResult">Прогноз ще не перевірено</span>
         </div>
 
         <div class="neutral-summary-grid">
@@ -141,16 +149,16 @@
         <div class="neutral-explanation-grid">
           <div>
             <span>Що відбувається?</span>
-            <p>Під час додавання HCl кількість йонів OH⁻ у розчині зменшується, тому pH падає. Фенолфталеїн поступово втрачає малинове забарвлення і стає безбарвним, коли середовище вже недостатньо лужне.</p>
+            <p>Під час додавання HCl йони H⁺ реагують з йонами OH⁻. Їхній надлишок зменшується, тому pH падає. Фенолфталеїн забарвлений лише в достатньо лужному середовищі, тому поблизу нейтралізації він стає безбарвним.</p>
           </div>
           <div>
-            <span>Коли настає нейтралізація?</span>
-            <p>За однакових концентрацій 0,1 моль/л 25,0 мл HCl містять стільки ж речовини H⁺, скільки 25,0 мл NaOH містять OH⁻. У цей момент у моделі сильна кислота і сильний луг взаємно нейтралізуються.</p>
+            <span>Навіщо різні порції?</span>
+            <p>Порція 5 мл швидше наближає до нейтралізації, а порція 1 мл дає змогу точніше простежити зміну pH біля 25,0 мл HCl. Тому результат наступного кроку залежить і від уже доданого об’єму, і від обраної порції.</p>
           </div>
         </div>
 
         <div class="neutral-note">
-          <strong>Для цієї моделі:</strong> використано сильну одноосновну кислоту HCl і сильний однокислотний луг NaOH однакової концентрації. За 25,0 мл HCl кількості речовини H⁺ і OH⁻ рівні, тому в моделі за 25 °C pH ≈ 7. Поблизу цього співвідношення pH змінюється дуже різко, а не лінійно. Якщо додавати HCl далі, кислота стає в надлишку і середовище переходить у кисле.
+          <strong>Для цієї моделі:</strong> HCl і NaOH мають однакову концентрацію 0,1 моль/л. Тому 25,0 мл HCl містять стільки ж H⁺, скільки 25,0 мл NaOH містять OH⁻. За 25 °C для цієї пари сильної кислоти та сильного лугу це відповідає pH ≈ 7. Після подальшого додавання HCl кислота опиняється в надлишку і середовище стає кислим.
         </div>
       </section>
     </div>
@@ -161,6 +169,6 @@
   <div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Віртуальна лабораторія • Кислота + луг</p></div>
 </footer>
 <script src="../../js/theme.js?v=2" defer></script>
-<script src="./neutralization.js?v=3" defer></script>
+<script src="./neutralization.js?v=4" defer></script>
 </body>
 </html>
