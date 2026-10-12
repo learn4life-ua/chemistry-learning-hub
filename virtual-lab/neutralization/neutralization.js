@@ -2,12 +2,17 @@ const initialBaseVolume = 25.0;
 const concentration = 0.1;
 const maxAcidVolume = 50.0;
 let acidVolume = 0;
+let selectedDose = 0;
+let lastPrediction = null;
 
 const predictionSelect = document.getElementById('predictionSelect');
-const addOne = document.getElementById('addOne');
-const addFive = document.getElementById('addFive');
+const doseOne = document.getElementById('doseOne');
+const doseFive = document.getElementById('doseFive');
+const addSelected = document.getElementById('addSelected');
 const resetButton = document.getElementById('resetExperiment');
 const acidVolumeEl = document.getElementById('acidVolume');
+const remainingVolume = document.getElementById('remainingVolume');
+const doseChoiceText = document.getElementById('doseChoiceText');
 const phDisplay = document.getElementById('phDisplay');
 const mediumDisplay = document.getElementById('mediumDisplay');
 const scaleMarker = document.getElementById('scaleMarker');
@@ -54,9 +59,18 @@ function getMedium(ph) {
 }
 
 function getIndicator(ph) {
-  if (ph >= 10) return { text: 'Фенолфталеїн: малинове забарвлення', color: 'rgba(225,29,72,.35)' };
-  if (ph >= 8.2) return { text: 'Фенолфталеїн: блідо-рожеве забарвлення', color: 'rgba(244,114,182,.18)' };
-  return { text: 'Фенолфталеїн: безбарвний', color: 'rgba(148,163,184,.10)' };
+  if (ph >= 10) return { key: 'colored', text: 'Фенолфталеїн: малинове забарвлення', color: 'rgba(225,29,72,.35)' };
+  if (ph >= 8.2) return { key: 'colored', text: 'Фенолфталеїн: рожеве забарвлення', color: 'rgba(244,114,182,.22)' };
+  return { key: 'colorless', text: 'Фенолфталеїн: безбарвний', color: 'rgba(148,163,184,.10)' };
+}
+
+function getPredictionCode(ph) {
+  const medium = getMedium(ph);
+  const indicator = getIndicator(ph);
+  if (medium.key === 'basic' && indicator.key === 'colored') return 'basic-colored';
+  if (medium.key === 'basic' && indicator.key === 'colorless') return 'basic-colorless';
+  if (medium.key === 'neutral') return 'neutral-colorless';
+  return 'acidic-colorless';
 }
 
 function getRatioText() {
@@ -66,30 +80,23 @@ function getRatioText() {
 }
 
 function getObservation(ph) {
-  if (acidVolume === 0) {
-    return 'Початковий розчин лужний: pH високий, фенолфталеїн має малинове забарвлення.';
-  }
-  if (acidVolume < initialBaseVolume) {
-    if (ph >= 10) return 'Після додавання HCl pH зменшується, але NaOH ще перебуває в надлишку, тому середовище залишається лужним.';
-    return 'Наближаємося до нейтралізації: pH різко зменшується, а забарвлення фенолфталеїну слабшає.';
-  }
-  if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) {
-    return 'Додано 25,0 мл HCl. Кількості речовини H⁺ і OH⁻ стали рівними, тому в цій моделі pH ≈ 7.';
-  }
-  return 'Після точки нейтралізації HCl перебуває в надлишку, тому pH стає меншим за 7 і середовище є кислим.';
+  if (acidVolume === 0) return 'Початковий розчин лужний, фенолфталеїн забарвлений.';
+  if (acidVolume < initialBaseVolume) return 'HCl нейтралізує частину OH⁻, тому pH зменшується, але NaOH ще залишається в надлишку.';
+  if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) return 'Додано 25,0 мл HCl: кількості H⁺ і OH⁻ еквівалентні, pH ≈ 7, фенолфталеїн безбарвний.';
+  return 'HCl уже в надлишку, тому середовище кисле, а фенолфталеїн безбарвний.';
 }
 
 function getChemistryExplanation(ph) {
   if (acidVolume === 0) {
-    return 'У вихідному розчині NaOH дисоціює з утворенням йонів Na⁺ і OH⁻. Саме надлишок OH⁻ зумовлює лужне середовище та малинове забарвлення фенолфталеїну.';
+    return 'У вихідному розчині NaOH є надлишок йонів OH⁻. Вони зумовлюють лужне середовище та забарвлення фенолфталеїну.';
   }
   if (acidVolume < initialBaseVolume) {
-    return 'Додані йони H⁺ взаємодіють з йонами OH⁻: H⁺ + OH⁻ → H₂O. Кількість OH⁻ поступово зменшується, тому зменшується і pH. Поки OH⁻ залишаються в надлишку, середовище все ще лужне.';
+    return 'Йони H⁺, що надходять із HCl, реагують з OH⁻ за рівнянням H⁺ + OH⁻ → H₂O. Через зменшення концентрації OH⁻ pH падає. Поки OH⁻ у надлишку, середовище залишається лужним.';
   }
   if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) {
-    return 'Оскільки концентрації HCl і NaOH однакові, 25,0 мл HCl нейтралізують 25,0 мл NaOH. У моделі сильної кислоти та сильного лугу за 25 °C це відповідає нейтральному середовищу з pH ≈ 7.';
+    return 'За однакової концентрації розчинів 25,0 мл HCl нейтралізують 25,0 мл NaOH. Для сильної кислоти та сильного лугу за 25 °C це відповідає нейтральному середовищу з pH ≈ 7.';
   }
-  return 'Після нейтралізації всі доступні йони OH⁻ вже прореагували. Подальше додавання HCl створює надлишок H⁺, тому розчин стає кислим і pH знижується нижче 7.';
+  return 'Після нейтралізації весь надлишок OH⁻ уже витрачений. Додаткові йони H⁺ залишаються в розчині, тому pH стає меншим за 7.';
 }
 
 function animateDrop() {
@@ -98,32 +105,35 @@ function animateDrop() {
   acidDrop.classList.add('is-falling');
 }
 
-function updatePrediction() {
-  const value = predictionSelect.value;
+function selectDose(amount) {
+  selectedDose = amount;
+  doseOne.classList.toggle('is-selected', amount === 1);
+  doseFive.classList.toggle('is-selected', amount === 5);
+  predictionSelect.disabled = false;
+  predictionSelect.value = '';
+  doseChoiceText.textContent = `Обрано порцію: + ${amount.toFixed(1).replace('.0', '')} мл HCl.`;
+  predictionFeedback.removeAttribute('data-state');
+  predictionFeedback.innerHTML = '<strong>Тепер зробіть прогноз.</strong><span>Оцініть, яким буде середовище і що станеться з фенолфталеїном після додавання саме цієї порції.</span>';
+  setActiveStep(1);
+}
 
-  if (!value) {
-    predictionResult.textContent = 'Зробіть прогноз';
-    predictionResult.removeAttribute('data-state');
-    predictionFeedback.removeAttribute('data-state');
-    predictionFeedback.innerHTML = '<strong>Спочатку оберіть прогноз.</strong><span>Після додавання HCl тут з’явиться перевірка вашого припущення.</span>';
-    return;
-  }
+function explainPrediction(actualCode, targetPh) {
+  const medium = getMedium(targetPh);
+  const indicator = getIndicator(targetPh);
+  return `Після цього кроку pH ≈ ${targetPh.toFixed(2).replace('.', ',')}, ${medium.label}; ${indicator.text.toLowerCase()}.`;
+}
 
-  if (acidVolume === 0) {
-    predictionResult.textContent = 'Прогноз зафіксовано';
-    predictionResult.removeAttribute('data-state');
-    predictionFeedback.removeAttribute('data-state');
-    predictionFeedback.innerHTML = '<strong>Прогноз зафіксовано.</strong><span>Додайте HCl і порівняйте своє припущення зі зміною pH та забарвлення фенолфталеїну.</span>';
-    return;
-  }
+function checkPrediction(prediction, actualCode, targetPh) {
+  const correct = prediction === actualCode;
+  const explanation = explainPrediction(actualCode, targetPh);
+  lastPrediction = { correct, explanation };
 
-  const correct = value === 'decrease';
   predictionResult.textContent = correct ? '✓ Прогноз правильний' : '✕ Прогноз не підтвердився';
   predictionResult.dataset.state = correct ? 'correct' : 'review';
   predictionFeedback.dataset.state = correct ? 'correct' : 'review';
   predictionFeedback.innerHTML = correct
-    ? '<strong>✓ Прогноз правильний.</strong><span>Під час додавання HCl pH справді зменшується, а фенолфталеїн у міру зменшення лужності знебарвлюється.</span>'
-    : '<strong>✕ Прогноз не підтвердився.</strong><span>Спостереження показує протилежне: додавання HCl зменшує надлишок OH⁻, тому pH падає. Фенолфталеїн поступово втрачає малинове забарвлення.</span>';
+    ? `<strong>✓ Прогноз правильний.</strong><span>${explanation}</span>`
+    : `<strong>✕ Прогноз не підтвердився.</strong><span>${explanation}</span>`;
 }
 
 function render() {
@@ -146,42 +156,81 @@ function render() {
   summaryRatio.textContent = getRatioText();
   summaryVolume.textContent = `Додано HCl: ${acidVolume.toFixed(1).replace('.', ',')} мл`;
 
+  const remaining = initialBaseVolume - acidVolume;
+  if (remaining > 0) remainingVolume.textContent = `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl`;
+  else if (Math.abs(remaining) < 1e-9) remainingVolume.textContent = 'Досягнуто нейтралізації для цієї моделі';
+  else remainingVolume.textContent = `Надлишок HCl: ${Math.abs(remaining).toFixed(1).replace('.', ',')} мл`;
+
   if (acidVolume === 0) {
     experimentStatus.textContent = 'Початковий стан';
-    setActiveStep(predictionSelect.value ? 1 : 0);
   } else if (Math.abs(acidVolume - initialBaseVolume) < 1e-9) {
     experimentStatus.textContent = 'Нейтралізація';
-    setActiveStep(3);
   } else {
-    experimentStatus.textContent = acidVolume < initialBaseVolume ? 'Додаємо кислоту' : 'Кислота в надлишку';
-    setActiveStep(2);
+    experimentStatus.textContent = acidVolume < initialBaseVolume ? 'NaOH у надлишку' : 'HCl у надлишку';
   }
-
-  updatePrediction();
 }
 
-function addAcid(amount) {
-  if (!predictionSelect.value) {
-    experimentStatus.textContent = 'Спочатку зробіть прогноз';
+function addDose() {
+  if (!selectedDose) {
+    predictionFeedback.removeAttribute('data-state');
+    predictionFeedback.innerHTML = '<strong>Оберіть порцію HCl.</strong><span>Спочатку натисніть +1 мл або +5 мл.</span>';
     setActiveStep(0);
-    predictionSelect.focus();
     return;
   }
-  acidVolume = Math.min(maxAcidVolume, acidVolume + amount);
+  if (!predictionSelect.value) {
+    predictionFeedback.removeAttribute('data-state');
+    predictionFeedback.innerHTML = '<strong>Оберіть прогноз.</strong><span>Перед додаванням кислоти спрогнозуйте середовище і забарвлення фенолфталеїну.</span>';
+    predictionSelect.focus();
+    setActiveStep(1);
+    return;
+  }
+
+  const targetVolume = Math.min(maxAcidVolume, acidVolume + selectedDose);
+  const targetPh = calculatePh(targetVolume);
+  const actualCode = getPredictionCode(targetPh);
+  const prediction = predictionSelect.value;
+
+  acidVolume = targetVolume;
   animateDrop();
   render();
+  checkPrediction(prediction, actualCode, targetPh);
+  setActiveStep(2);
+
+  selectedDose = 0;
+  doseOne.classList.remove('is-selected');
+  doseFive.classList.remove('is-selected');
+  predictionSelect.value = '';
+  predictionSelect.disabled = true;
+  doseChoiceText.textContent = 'Оберіть порцію для наступного кроку.';
+
+  window.setTimeout(() => setActiveStep(3), 500);
 }
 
-addOne.addEventListener('click', () => addAcid(1));
-addFive.addEventListener('click', () => addAcid(5));
+doseOne.addEventListener('click', () => selectDose(1));
+doseFive.addEventListener('click', () => selectDose(5));
+addSelected.addEventListener('click', addDose);
 resetButton.addEventListener('click', () => {
   acidVolume = 0;
+  selectedDose = 0;
+  lastPrediction = null;
+  doseOne.classList.remove('is-selected');
+  doseFive.classList.remove('is-selected');
   predictionSelect.value = '';
+  predictionSelect.disabled = true;
+  predictionResult.textContent = 'Прогноз ще не перевірено';
+  predictionResult.removeAttribute('data-state');
+  predictionFeedback.removeAttribute('data-state');
+  predictionFeedback.innerHTML = '<strong>Спочатку оберіть порцію HCl.</strong><span>Після цього спрогнозуйте середовище та забарвлення фенолфталеїну.</span>';
+  doseChoiceText.textContent = 'Порцію ще не обрано.';
   render();
+  setActiveStep(0);
 });
 predictionSelect.addEventListener('change', () => {
-  updatePrediction();
-  setActiveStep(predictionSelect.value ? 1 : 0);
+  if (predictionSelect.value) {
+    predictionFeedback.removeAttribute('data-state');
+    predictionFeedback.innerHTML = '<strong>Прогноз зафіксовано.</strong><span>Тепер натисніть «Додати обрану порцію» і перевірте результат.</span>';
+    setActiveStep(2);
+  }
 });
 
 render();
