@@ -8,6 +8,7 @@ let lastPrediction = null;
 const predictionSelect = document.getElementById('predictionSelect');
 const doseOne = document.getElementById('doseOne');
 const doseFive = document.getElementById('doseFive');
+const doseTen = document.getElementById('doseTen');
 const addSelected = document.getElementById('addSelected');
 const resetButton = document.getElementById('resetExperiment');
 const acidVolumeEl = document.getElementById('acidVolume');
@@ -108,6 +109,7 @@ function selectDose(amount) {
   selectedDose = amount;
   doseOne.classList.toggle('is-selected', amount === 1);
   doseFive.classList.toggle('is-selected', amount === 5);
+  doseTen.classList.toggle('is-selected', amount === 10);
   predictionSelect.disabled = false;
   predictionSelect.value = '';
   doseChoiceText.textContent = `Обрано порцію: + ${amount.toFixed(1).replace('.0', '')} мл HCl.`;
@@ -157,9 +159,13 @@ function render() {
 
   const remaining = initialBaseVolume - acidVolume;
   if (remaining > 0) {
-    remainingVolume.textContent = remaining <= 5
-      ? `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl. Спробуйте порцію 1 мл для точнішого спостереження.`
-      : `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl`;
+    if (remaining <= 5) {
+      remainingVolume.textContent = `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl. Краще обрати порцію 1 мл для точнішого спостереження.`;
+    } else if (remaining <= 10) {
+      remainingVolume.textContent = `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl. Доцільно перейти на 5 мл або 1 мл.`;
+    } else {
+      remainingVolume.textContent = `До нейтралізації: ${remaining.toFixed(1).replace('.', ',')} мл HCl. Порція 10 мл дає змогу швидше пройти початкову ділянку.`;
+    }
   } else if (Math.abs(remaining) < 1e-9) {
     remainingVolume.textContent = 'Досягнуто нейтралізації для цієї моделі';
   } else {
@@ -178,7 +184,7 @@ function render() {
 function addDose() {
   if (!selectedDose) {
     predictionFeedback.removeAttribute('data-state');
-    predictionFeedback.innerHTML = '<strong>Оберіть порцію HCl.</strong><span>Спочатку натисніть +1 мл або +5 мл.</span>';
+    predictionFeedback.innerHTML = '<strong>Оберіть порцію HCl.</strong><span>Спочатку натисніть +1 мл, +5 мл або +10 мл.</span>';
     setActiveStep(0);
     return;
   }
@@ -204,6 +210,7 @@ function addDose() {
   selectedDose = 0;
   doseOne.classList.remove('is-selected');
   doseFive.classList.remove('is-selected');
+  doseTen.classList.remove('is-selected');
   predictionSelect.value = '';
   predictionSelect.disabled = true;
   doseChoiceText.textContent = 'Оберіть порцію для наступного кроку.';
@@ -213,6 +220,7 @@ function addDose() {
 
 doseOne.addEventListener('click', () => selectDose(1));
 doseFive.addEventListener('click', () => selectDose(5));
+doseTen.addEventListener('click', () => selectDose(10));
 addSelected.addEventListener('click', addDose);
 resetButton.addEventListener('click', () => {
   acidVolume = 0;
@@ -220,6 +228,7 @@ resetButton.addEventListener('click', () => {
   lastPrediction = null;
   doseOne.classList.remove('is-selected');
   doseFive.classList.remove('is-selected');
+  doseTen.classList.remove('is-selected');
   predictionSelect.value = '';
   predictionSelect.disabled = true;
   predictionResult.textContent = 'Прогноз ще не перевірено';
