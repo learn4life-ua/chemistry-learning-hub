@@ -12,3 +12,7 @@ html[data-theme=dark] .hub-breadcrumbs a:hover{background:#aa8eff18;color:#d6caf
 html[data-theme=dark] .hub-breadcrumbs [aria-current=page]{color:#eef1ff}
 @media(max-width:600px){.hub-breadcrumbs{font-size:.75rem;margin:1.25rem 0 0;padding-top:.7rem}.hub-breadcrumbs ol{gap:.15rem .2rem}.hub-breadcrumbs a,.hub-breadcrumbs [aria-current=page]{padding:.35rem .3rem}}
 @media(prefers-reduced-motion:reduce){.hub-breadcrumbs a{transition:none}}
+/* Keep navigation close to the learning content. */
+main > section:has(.hub-breadcrumbs){padding-bottom:1rem}
+main > section:has(.hub-breadcrumbs) + section{padding-top:1.5rem}
+@media(max-width:600px){main > section:has(.hub-breadcrumbs){padding-bottom:.75rem}main > section:has(.hub-breadcrumbs) + section{padding-top:1.1rem}}
