@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Тренажер йонних рівнянь: визначайте, що розписувати на йони, знаходьте йони-спостерігачі та складайте скорочені йонні рівняння.">
+<meta name="color-scheme" content="light dark">
+<title>Йонні рівняння | Тренажери</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css?v=4">
+<link rel="stylesheet" href="../../css/section-hero.css?v=1">
+<link rel="stylesheet" href="./trainer.css?v=1">
+<link rel="icon" href="../../assets/favicon.ico?v=20261014-atom" sizes="any">
+<link rel="icon" type="image/png" href="../../assets/favicon.png?v=20261014-atom" sizes="192x192">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=20261014-atom">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png?v=20261014-atom">
+<link rel="stylesheet" href="../../css/footer.css?v=20261014-minimal2">
+</head>
+<body class="section-page ionic-trainer-page">
+<header class="site-header"><div class="shell section-header-inner">
+<a class="brand" href="../../" aria-label="Chemistry Learning Hub - на головну"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Тренажери</small></span></a>
+<div class="section-header-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false"><span class="theme-icon" aria-hidden="true">◐</span></button></div>
+</div></header>
+
+<main>
+<section class="trainer-hero"><div class="shell trainer-hero-inner">
+<nav class="trainer-breadcrumbs" aria-label="Навігаційні крихти"><a href="../../">Головна</a><span aria-hidden="true">›</span><a href="../">Тренажери</a><span aria-hidden="true">›</span><span aria-current="page">Йонні рівняння</span></nav>
+<p class="eyebrow">Тренажер 05</p><h1>Йонні рівняння</h1>
+<p>Відпрацьовуйте перехід від молекулярного рівняння до повного йонного та скороченого йонного запису.</p>
+<span class="trainer-label">Йони · спостерігачі · скорочення</span>
+</div></section>
+
+<section class="trainer-content"><div class="shell">
+<div class="trainer-layout">
+<section class="trainer-panel" aria-labelledby="taskTitle">
+<div class="trainer-panel-head"><div><p class="eyebrow">Завдання</p><h2 id="taskTitle">Оберіть правильну відповідь</h2></div><div class="trainer-progress"><span id="taskCounter">1 / 10</span><strong id="scoreCounter">0 правильних</strong></div></div>
+
+<div class="mode-switch" role="group" aria-label="Режим тренування">
+<button class="mode-button is-active" type="button" data-mode="net">Скорочене рівняння</button>
+<button class="mode-button" type="button" data-mode="spectator">Йони-спостерігачі</button>
+<button class="mode-button" type="button" data-mode="dissociation">Що розписувати на йони</button>
+<button class="mode-button" type="button" data-mode="mixed">Змішано</button>
+</div>
+
+<div class="task-card">
+<span class="task-kicker" id="taskKicker">Оберіть скорочене йонне рівняння</span>
+<div class="task-prompt formula-display" id="taskPrompt">AgNO₃ + NaCl → AgCl↓ + NaNO₃</div>
+<div class="answer-grid" id="answerGrid" aria-label="Варіанти відповіді"></div>
+</div>
+
+<div class="feedback" id="feedback" aria-live="polite"><strong>Оберіть відповідь.</strong><span>Після вибору тут з’явиться пояснення.</span></div>
+
+<div class="trainer-actions">
+<button class="secondary-button" id="restartButton" type="button">Почати спочатку</button>
+<button class="primary-button" id="nextButton" type="button" disabled>Наступне завдання</button>
+</div>
+</section>
+
+<aside class="trainer-help" aria-labelledby="helpTitle">
+<p class="eyebrow">Підказка</p><h2 id="helpTitle">Алгоритм</h2>
+<div class="help-list">
+<article><strong>1. Зрівняйте молекулярне рівняння</strong><p>До йонного запису переходьте лише після перевірки формул і коефіцієнтів.</p></article>
+<article><strong>2. Розпишіть сильні електроліти</strong><p>Розчинні солі, сильні кислоти й сильні основи у водному розчині записуйте як йони.</p></article>
+<article><strong>3. Не розписуйте осад, газ і воду</strong><p>AgCl↓, CO₂↑, H₂O та слабкі електроліти залишають у молекулярному вигляді.</p></article>
+<article><strong>4. Скоротіть йони-спостерігачі</strong><p>Скорочуйте лише однакові частинки з однаковими коефіцієнтами по обидва боки.</p></article>
+</div>
+<div class="help-note"><strong>Перевірка:</strong> у скороченому йонному рівнянні мають зберігатися і кількість атомів, і сумарний заряд.</div>
+</aside>
+</div>
+</div></section>
+</main>
+
+<footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><a href="../../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div></footer>
+<script src="../../js/theme.js?v=20261014-menu3" defer></script>
+<script src="./trainer.js?v=1" defer></script>
+</body></html>
