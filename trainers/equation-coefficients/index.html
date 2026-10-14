@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Тренажер коефіцієнтів у рівняннях реакцій: добирайте найменші цілі коефіцієнти та перевіряйте збереження кількості атомів.">
+<meta name="color-scheme" content="light dark">
+<title>Коефіцієнти в рівняннях реакцій | Тренажери</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css?v=4">
+<link rel="stylesheet" href="../../css/section-hero.css?v=1">
+<link rel="stylesheet" href="./trainer.css?v=1">
+<link rel="icon" href="../../assets/favicon.ico?v=20261014-atom" sizes="any">
+<link rel="icon" type="image/png" href="../../assets/favicon.png?v=20261014-atom" sizes="192x192">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=20261014-atom">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png?v=20261014-atom">
+<link rel="stylesheet" href="../../css/footer.css?v=20261014-minimal2">
+</head>
+<body class="section-page coefficient-trainer-page">
+<header class="site-header"><div class="shell section-header-inner">
+<a class="brand" href="../../" aria-label="Chemistry Learning Hub - на головну"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Тренажери</small></span></a>
+<div class="section-header-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false"><span class="theme-icon" aria-hidden="true">◐</span></button></div>
+</div></header>
+
+<main>
+<section class="trainer-hero"><div class="shell trainer-hero-inner">
+<nav class="trainer-breadcrumbs" aria-label="Навігаційні крихти"><a href="../../">Головна</a><span aria-hidden="true">›</span><a href="../">Тренажери</a><span aria-hidden="true">›</span><span aria-current="page">Коефіцієнти в рівняннях реакцій</span></nav>
+<p class="eyebrow">Тренажер 04</p><h1>Коефіцієнти в рівняннях реакцій</h1>
+<p>Добирайте найменші цілі коефіцієнти так, щоб кількість атомів кожного елемента зліва і справа була однаковою.</p>
+<span class="trainer-label">Закон збереження атомів</span>
+</div></section>
+
+<section class="trainer-content"><div class="shell">
+<div class="trainer-layout">
+<section class="trainer-panel" aria-labelledby="taskTitle">
+<div class="trainer-panel-head"><div><p class="eyebrow">Завдання</p><h2 id="taskTitle">Зрівняйте рівняння</h2></div><div class="trainer-progress"><span id="taskCounter">1 / 10</span><strong id="scoreCounter">0 правильних</strong></div></div>
+
+<div class="mode-switch" role="group" aria-label="Режим тренування">
+<button class="mode-button is-active" type="button" data-mode="full">Усі коефіцієнти</button>
+<button class="mode-button" type="button" data-mode="missing">Пропущений коефіцієнт</button>
+<button class="mode-button" type="button" data-mode="mixed">Змішано</button>
+</div>
+
+<div class="task-card">
+<span class="task-kicker" id="taskKicker">Оберіть правильний запис</span>
+<div class="task-prompt formula-display" id="taskPrompt">H₂ + O₂ → H₂O</div>
+<div class="answer-grid" id="answerGrid" aria-label="Варіанти відповіді"></div>
+</div>
+
+<div class="feedback" id="feedback" aria-live="polite"><strong>Оберіть відповідь.</strong><span>Після вибору тут з’явиться пояснення.</span></div>
+
+<div class="trainer-actions">
+<button class="secondary-button" id="restartButton" type="button">Почати спочатку</button>
+<button class="primary-button" id="nextButton" type="button" disabled>Наступне завдання</button>
+</div>
+</section>
+
+<aside class="trainer-help" aria-labelledby="helpTitle">
+<p class="eyebrow">Підказка</p><h2 id="helpTitle">Як зрівнювати рівняння</h2>
+<div class="help-list">
+<article><strong>1. Не змінюйте індекси</strong><p>Індекси є частиною формули речовини. Для зрівнювання змінюють лише коефіцієнти перед формулами.</p></article>
+<article><strong>2. Рахуйте атоми</strong><p>Порівнюйте кількість атомів кожного елемента в лівій і правій частинах рівняння.</p></article>
+<article><strong>3. Скоротіть коефіцієнти</strong><p>Після зрівнювання використовуйте найменше можливе співвідношення цілих чисел.</p></article>
+</div>
+<div class="help-note"><strong>Пам’ятайте:</strong> коефіцієнт 1 у хімічному рівнянні не записують. Тому 1H₂O записуємо просто H₂O.</div>
+</aside>
+</div>
+</div></section>
+</main>
+
+<footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><a href="../../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div></footer>
+<script src="../../js/theme.js?v=20261014-menu3" defer></script>
+<script src="./trainer.js?v=1" defer></script>
+</body></html>
