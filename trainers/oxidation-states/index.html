@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Тренажер ступенів окиснення: визначайте ступені окиснення елементів у простих і складних речовинах та перевіряйте суму значень.">
+<meta name="color-scheme" content="light dark">
+<title>Ступені окиснення | Тренажери</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css?v=4">
+<link rel="stylesheet" href="../../css/section-hero.css?v=1">
+<link rel="stylesheet" href="./trainer.css?v=1">
+<link rel="icon" href="../../assets/favicon.ico?v=20261014-atom" sizes="any">
+<link rel="icon" type="image/png" href="../../assets/favicon.png?v=20261014-atom" sizes="192x192">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=20261014-atom">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png?v=20261014-atom">
+</head>
+<body class="section-page oxidation-trainer-page">
+<header class="site-header"><div class="shell section-header-inner">
+<a class="brand" href="../../" aria-label="Chemistry Learning Hub - на головну"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Тренажери</small></span></a>
+<div class="section-header-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false"><span class="theme-icon" aria-hidden="true">◐</span></button></div>
+</div></header>
+
+<main>
+<section class="trainer-hero"><div class="shell trainer-hero-inner">
+<nav class="trainer-breadcrumbs" aria-label="Навігаційні крихти"><a href="../../">Головна</a><span aria-hidden="true">›</span><a href="../">Тренажери</a><span aria-hidden="true">›</span><span aria-current="page">Ступені окиснення</span></nav>
+<p class="eyebrow">Тренажер 03</p><h1>Ступені окиснення</h1>
+<p>Визначайте ступінь окиснення заданого елемента, використовуючи відомі значення та правило суми ступенів окиснення.</p>
+<span class="trainer-label">Визначення · перевірка</span>
+</div></section>
+
+<section class="trainer-content"><div class="shell">
+<div class="trainer-layout">
+<section class="trainer-panel" aria-labelledby="taskTitle">
+<div class="trainer-panel-head"><div><p class="eyebrow">Завдання</p><h2 id="taskTitle">Визначте ступінь окиснення</h2></div><div class="trainer-progress"><span id="taskCounter">1 / 10</span><strong id="scoreCounter">0 правильних</strong></div></div>
+
+<div class="mode-switch" role="group" aria-label="Режим тренування">
+<button class="mode-button is-active" type="button" data-mode="find">Знайти значення</button>
+<button class="mode-button" type="button" data-mode="rule">Правила</button>
+<button class="mode-button" type="button" data-mode="mixed">Змішано</button>
+</div>
+
+<div class="task-card">
+<span class="task-kicker" id="taskKicker">Знайдіть ступінь окиснення</span>
+<div class="task-prompt" id="taskPrompt">S у H₂SO₄</div>
+<div class="answer-grid" id="answerGrid" aria-label="Варіанти відповіді"></div>
+</div>
+
+<div class="feedback" id="feedback" aria-live="polite"><strong>Оберіть відповідь.</strong><span>Після вибору тут з’явиться пояснення.</span></div>
+
+<div class="trainer-actions">
+<button class="secondary-button" id="restartButton" type="button">Почати спочатку</button>
+<button class="primary-button" id="nextButton" type="button" disabled>Наступне завдання</button>
+</div>
+</section>
+
+<aside class="trainer-help" aria-labelledby="helpTitle">
+<p class="eyebrow">Підказка</p><h2 id="helpTitle">Базові правила</h2>
+<div class="help-list">
+<article><strong>Проста речовина</strong><p>Ступінь окиснення елемента у простій речовині дорівнює 0: H₂, O₂, Fe.</p></article>
+<article><strong>Типові значення</strong><p>H у більшості сполук має +1, O -2, F -1. Лужні метали зазвичай мають +1, лужноземельні - +2.</p></article>
+<article><strong>Сума значень</strong><p>У нейтральній сполуці сума ступенів окиснення з урахуванням індексів дорівнює 0; у багатоатомному йоні - заряду йона.</p></article>
+</div>
+<div class="help-note"><strong>Важливо:</strong> у цьому тренажері використані базові шкільні приклади без пероксидів, надпероксидів і гідридів металів, де діють винятки з типових значень H та O.</div>
+</aside>
+</div>
+</div></section>
+</main>
+
+<footer class="site-footer"><div class="shell footer-inner"><div><strong>Chemistry Learning Hub</strong><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><p>Тренажери • Ступені окиснення</p></div></footer>
+<script src="../../js/theme.js?v=20261014-menu3" defer></script>
+<script src="./trainer.js?v=1" defer></script>
+</body></html>
