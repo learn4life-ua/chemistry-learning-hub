@@ -41,3 +41,11 @@
     });
   });
 })();
+
+// Shared navigation for every hub page.
+(() => {
+  const url = new URL("offcanvas-menu.js?v=2", document.currentScript.src);
+  const script = document.createElement("script");
+  script.src = url.href;
+  document.head.append(script);
+})();
