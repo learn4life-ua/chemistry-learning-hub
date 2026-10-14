@@ -40,18 +40,22 @@ let mode='net', round=[], index=0, score=0, locked=false;
 
 function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
 function sourceForMode(){
-  if(mode==='mixed') return [...tasks.net,...tasks.spectator,...tasks.dissociation].map(t=>({...t,source:t.prompt.includes('Що')||t.prompt.includes('Який')?'dissociation':'mixed'}));
+  if(mode==='mixed') return [
+    ...tasks.net.map(t=>({...t,source:'net'})),
+    ...tasks.spectator.map(t=>({...t,source:'spectator'})),
+    ...tasks.dissociation.map(t=>({...t,source:'dissociation'}))
+  ];
   return tasks[mode].map(t=>({...t,source:mode}));
 }
 function startRound(){
-  round=shuffle(sourceForMode()).slice(0,Math.min(10,sourceForMode().length));
+  const source=sourceForMode();
+  round=shuffle(source).slice(0,Math.min(10,source.length));
   index=0; score=0; locked=false; renderTask();
 }
 function kickerFor(t){
-  const type=mode==='mixed'?(t.source||'mixed'):mode;
+  const type=mode==='mixed'?(t.source||'net'):mode;
   if(type==='spectator') return 'Знайдіть йони-спостерігачі';
   if(type==='dissociation') return 'Проаналізуйте повний йонний запис';
-  if(mode==='mixed' && (t.prompt.startsWith('Що')||t.prompt.startsWith('Який'))) return 'Проаналізуйте повний йонний запис';
   return 'Оберіть скорочене йонне рівняння';
 }
 function renderTask(){
