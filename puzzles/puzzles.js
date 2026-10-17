@@ -380,4 +380,12 @@
   });
   renderCrossword();
   renderPicture();
+  // Preserve direct links to each game from the home-page card.
+  const requestedMode = new URLSearchParams(window.location.search).get("mode");
+  if (requestedMode === "picture") {
+    const tab = document.querySelector('button.puzzle-mode[data-mode="picture"]');
+    if (tab) {
+      tab.click();
+    }
+  }
 })();
