@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=4">
-  <link rel="stylesheet" href="css/home-v2.css?v=21">
+  <link rel="stylesheet" href="css/home-v2.css?v=22">
   <link rel="icon" href="assets/favicon.ico?v=20261014-atom" sizes="any">
   <link rel="icon" type="image/png" href="assets/favicon.png?v=20261014-atom" sizes="192x192">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20261014-atom">
@@ -162,25 +162,31 @@
           </section>
 
           <section class="module-card module-card-v2 module-purple module-puzzles" aria-labelledby="modulePuzzlesTitle">
-            <div class="puzzles-home-copy">
-              <p class="puzzles-home-eyebrow">Вивчай хімію граючись</p>
-              <h3 id="modulePuzzlesTitle">Хімічні головоломки</h3>
-              <p class="puzzles-home-lead">Розгадуй, досліджуй, відкривай хімію!</p>
-              <p class="puzzles-home-description">Закріплюй знання через кросворди та завдання за малюнками. Перевіряй відповіді й дізнавайся більше про хімічні поняття.</p>
-              <a class="puzzles-home-overview" href="puzzles/">Усі головоломки <span aria-hidden="true">→</span></a>
-            </div>
-            <div class="puzzles-home-games" aria-label="Оберіть головоломку">
-              <a class="puzzles-home-game" href="puzzles/?mode=crossword">
-                <span class="puzzles-game-index">01</span>
-                <span class="puzzles-game-text"><strong>Хімічні кросворди</strong><small>Розгадуй слова за визначеннями</small></span>
-                <span class="puzzles-game-arrow" aria-hidden="true">↗</span>
+            <h3 id="modulePuzzlesTitle">Хімічні головоломки</h3>
+            <p>Розгадуй, досліджуй, відкривай хімію! Перевіряй знання в інтерактивних завданнях, знаходь закономірності та дізнавайся нове.</p>
+            <div class="puzzles-home-grid">
+              <a class="puzzles-home-card" href="puzzles/crosswords/">
+                <h4><svg class="puzzles-direction-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/><path d="M9 9h6v6H9z" fill="currentColor" opacity=".15"/></svg><span>Хімічні кросворди</span></h4>
+                <p>Розгадуйте назви речовин, приладів та понять за визначеннями.</p>
+                <span class="card-link">Розгадувати <span aria-hidden="true">→</span></span>
               </a>
-              <a class="puzzles-home-game" href="puzzles/?mode=picture">
-                <span class="puzzles-game-index">02</span>
-                <span class="puzzles-game-text"><strong>Відгадай за малюнком</strong><small>Розпізнавай речовини, обладнання та явища</small></span>
-                <span class="puzzles-game-arrow" aria-hidden="true">↗</span>
+              <a class="puzzles-home-card" href="puzzles/pictures/">
+                <h4><svg class="puzzles-direction-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="2"/><path d="m4 18 5-5 3 3 3-4 5 6"/></svg><span>Відгадай за малюнком</span></h4>
+                <p>Розпізнавайте речовини, явища та лабораторне обладнання.</p>
+                <span class="card-link">Розгадувати <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="puzzles-home-card" href="puzzles/four-pictures/">
+                <h4><svg class="puzzles-direction-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg><span>4 зображення - 1 слово</span></h4>
+                <p>Знаходьте спільне хімічне поняття за чотирма підказками.</p>
+                <span class="card-link">Розгадувати <span aria-hidden="true">→</span></span>
+              </a>
+              <a class="puzzles-home-card" href="puzzles/rebuses/">
+                <h4><svg class="puzzles-direction-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11a4 4 0 1 1 8 0c0 2.5-4 4-4 6m0 3h.01"/><path d="M17 4v6m-3-3h6M15 15l5 5m0-5-5 5"/></svg><span>Хімічні ребуси</span></h4>
+                <p>Розшифровуйте загадки з малюнків, літер і символів.</p>
+                <span class="card-link">Розгадувати <span aria-hidden="true">→</span></span>
               </a>
             </div>
+            <a class="life-overview-link" href="puzzles/">Переглянути весь розділ <span aria-hidden="true">→</span></a>
           </section>
         </div>
       </div>
