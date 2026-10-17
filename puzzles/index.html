@@ -1,138 +1,27 @@
 <!doctype html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Хімічні головоломки: інтерактивні кросворди та завдання за малюнками з перевіркою і поясненнями.">
-  <meta name="color-scheme" content="light dark">
-  <title>Хімічні головоломки | Chemistry Learning Hub</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=4">
-  <link rel="stylesheet" href="../css/section-hero.css?v=1">
-  <link rel="stylesheet" href="../css/footer.css?v=20261015-arrow4">
-  <link rel="stylesheet" href="./puzzles.css?v=1">
-  <link rel="icon" href="../assets/favicon.ico?v=20261014-atom" sizes="any">
-  <link rel="icon" type="image/png" href="../assets/favicon.png?v=20261014-atom" sizes="192x192">
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20261014-atom">
-  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261014-atom">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
+<title>Хімічні головоломки | Chemistry Learning Hub</title>
+<meta name="description" content="Інтерактивні кросворди, слова за малюнками, чотири зображення та ребуси з хімії.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css?v=4">
+<link rel="stylesheet" href="../css/section-hero.css?v=1">
+<link rel="stylesheet" href="../css/footer.css?v=20261015-arrow4">
+<link rel="stylesheet" href="./puzzles.css?v=2">
+<link rel="stylesheet" href="./sections.css?v=1">
+<link rel="icon" href="../assets/favicon.ico?v=20261014-atom" sizes="any">
+<link rel="icon" type="image/png" href="../assets/favicon.png?v=20261014-atom" sizes="192x192">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20261014-atom">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=20261014-atom">
 </head>
-<body class="section-page puzzles-page">
-<header class="site-header"><div class="shell section-header-inner">
-  <a class="brand" href="../" aria-label="Chemistry Learning Hub - на головну">
-    <span class="brand-mark" aria-hidden="true">⚛</span>
-    <span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Хімічні головоломки</small></span>
-  </a>
-  <div class="section-header-actions"><a class="section-back-link" href="../">← До хабу</a>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Змінити тему" aria-pressed="false"><span class="theme-icon" aria-hidden="true">◐</span></button>
-  </div>
+<body class="section-page puzzles-page" id="top"><header class="site-header"><div class="shell section-header-inner">
+<a class="brand" href="../" aria-label="Chemistry Learning Hub - на головну"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Хімічні головоломки</small></span></a>
+<div class="section-header-actions"><a class="section-back-link" href="../">← До хабу</a><button id="themeToggle" class="theme-toggle" aria-label="Змінити тему" aria-pressed="false" type="button"><span class="theme-icon" aria-hidden="true">◐</span></button></div>
 </div></header>
-<main id="top">
-  <section class="page-hero puzzle-hero" aria-labelledby="pageTitle">
-    <div class="shell puzzle-hero-grid">
-      <div>
-        <p class="eyebrow">Chemistry Learning Hub / Інтерактивна практика</p>
-        <h1 id="pageTitle">Хімічні головоломки</h1>
-        <p class="puzzle-tagline">Розгадуй, досліджуй, відкривай хімію!</p>
-        <p class="puzzle-lead">Закріплюйте терміни, впізнавайте речовини й обладнання, встановлюйте зв’язки та відразу перевіряйте свої відповіді.</p>
-        <a class="primary-button" href="#gameChooser">Обрати головоломку <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-puzzle-art" aria-hidden="true">
-        <div class="mini-grid">
-          <span class="lit">Х</span><span>І</span><span class="lit">М</span><span>І</span><span class="lit">Я</span>
-          <span></span><span>О</span><span></span><span>О</span><span></span>
-          <span class="lit">А</span><span>Т</span><span class="lit">О</span><span>М</span><span></span>
-          <span></span><span>О</span><span></span><span></span><span></span>
-        </div>
-        <div class="hero-art-note">Знайди відповідь. Зрозумій явище.</div>
-      </div>
-    </div>
-  </section>
-  <section class="puzzle-content" id="gameChooser">
-    <div class="shell">
-      <div class="puzzle-intro">
-        <p class="eyebrow">Обирайте формат</p>
-        <h2>Тренуйте знання у грі</h2>
-        <p>Два режими вже доступні. Ще два заплановано для розширення розділу.</p>
-      </div>
-      <div class="puzzle-modes" aria-label="Формати головоломок">
-        <button class="puzzle-mode is-active" type="button" data-mode="crossword" aria-pressed="true">
-          <span class="mode-number">01 / Кросворди</span><strong>Хімічні кросворди</strong><span>Запитання, перетини, підказки та самоперевірка</span><small>Грати →</small>
-        </button>
-        <button class="puzzle-mode" type="button" data-mode="picture" aria-pressed="false">
-          <span class="mode-number">02 / Зображення</span><strong>Відгадай за малюнком</strong><span>Визначайте терміни за ілюстраціями</span><small>Грати →</small>
-        </button>
-        <article class="puzzle-mode is-planned">
-          <span class="mode-number">03 / У планах</span><strong>4 зображення - 1 слово</strong><span>Знайдіть спільну хімічну ідею</span><small>Готуємо</small>
-        </article>
-        <article class="puzzle-mode is-planned">
-          <span class="mode-number">04 / У планах</span><strong>Хімічні ребуси</strong><span>Розшифровуйте умовні зображення та символи</span><small>Готуємо</small>
-        </article>
-      </div>
-
-      <section class="game-panel" id="crosswordPanel" aria-labelledby="crosswordTitle">
-        <div class="game-top">
-          <div><p class="eyebrow">Режим 01</p><h2 id="crosswordTitle">Хімічний кросворд</h2><p>Оберіть запитання або клітинку й впишіть відповідь. Перетини заповнюються автоматично.</p></div>
-          <div class="game-stats"><span id="cwProgress">0 із 8 слів</span><span id="cwHints">Підказок: 0</span></div>
-        </div>
-        <div class="crossword-toolbar">
-          <label for="crosswordSelect">Тема кросворда</label>
-          <select id="crosswordSelect">
-            <option value="basics">Речовини та хімічні явища</option>
-            <option value="lab">Лабораторне обладнання</option>
-          </select>
-          <button class="puzzle-button secondary" id="cwReset" type="button">Почати заново</button>
-        </div>
-        <div class="crossword-layout">
-          <div class="crossword-board-wrap">
-            <div class="crossword-scroll"><div id="crosswordGrid" class="crossword-grid" aria-label="Поле кросворда"></div></div>
-            <p class="puzzle-note">Порада: натисніть клітинку двічі, щоб змінити напрям на перетині. Стрілки та Backspace працюють із клавіатури.</p>
-          </div>
-          <div class="crossword-clues">
-            <div class="selected-clue" id="cwSelected" aria-live="polite">Оберіть слово</div>
-            <div class="crossword-clue-columns">
-              <div><h3>По горизонталі</h3><div id="cluesAcross" class="clue-list"></div></div>
-              <div><h3>По вертикалі</h3><div id="cluesDown" class="clue-list"></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="game-actions">
-          <button class="puzzle-button primary" id="cwCheckWord" type="button">Перевірити слово</button>
-          <button class="puzzle-button secondary" id="cwCheckAll" type="button">Перевірити кросворд</button>
-          <button class="puzzle-button secondary" id="cwHint" type="button">Відкрити літеру</button>
-        </div>
-        <div class="game-feedback" id="cwFeedback" role="status" aria-live="polite">Оберіть запитання і почніть розгадування.</div>
-      </section>
-
-      <section class="game-panel" id="picturePanel" aria-labelledby="pictureTitle" hidden>
-        <div class="game-top">
-          <div><p class="eyebrow">Режим 02</p><h2 id="pictureTitle">Відгадай за малюнком</h2><p>Розгляньте ілюстрацію, складіть слово з літер або введіть його з клавіатури.</p></div>
-          <div class="game-stats"><span id="picProgress">Завдання 1 із 7</span><span id="picScore">Розгадано: 0</span></div>
-        </div>
-        <div class="picture-layout">
-          <div class="picture-art-frame" id="pictureArt" aria-label="Ілюстрація-підказка"></div>
-          <div class="picture-workspace">
-            <p class="picture-prompt" id="picturePrompt">Яке поняття зображено?</p>
-            <div id="pictureSlots" class="picture-slots" aria-hidden="true"></div>
-            <label class="answer-label" for="pictureAnswer">Ваша відповідь</label>
-            <input id="pictureAnswer" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Введіть слово">
-            <div id="pictureLetters" class="letter-bank" aria-label="Оберіть літери"></div>
-            <div class="game-actions">
-              <button class="puzzle-button primary" id="picCheck" type="button">Перевірити</button>
-              <button class="puzzle-button secondary" id="picHint" type="button">Підказка</button>
-              <button class="puzzle-button secondary" id="picErase" type="button">Стерти</button>
-              <button class="puzzle-button secondary" id="picNext" type="button" hidden>Наступне →</button>
-            </div>
-            <div class="game-feedback" id="picFeedback" role="status" aria-live="polite">Визначте поняття за ілюстрацією.</div>
-          </div>
-        </div>
-      </section>
-      <p class="puzzles-outro">Головоломки призначені для самостійного тренування: бали не передаються викладачу, реєстрація не потрібна.</p>
-    </div>
-  </section>
-</main>
-<footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><div class="hub-footer-identity"><a href="../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><a class="hub-footer-up" href="#top" aria-label="Повернутися вгору сторінки" title="Вгору"><span aria-hidden="true">↑</span></a></div></footer>
-<script src="../js/theme.js?v=20261017-menu4" defer></script>
-<script src="./puzzles.js?v=2" defer></script>
-</body></html>
+<main><section class="page-hero puzzle-hero catalog-hero"><div class="shell"><p class="eyebrow">Інтерактивна практика</p><h1>Хімічні головоломки</h1><p class="puzzle-tagline">Розгадуй, досліджуй, відкривай хімію!</p><p class="puzzle-lead">Обирайте формат, тренуйте терміни та вивчайте хімічні явища через завдання з поясненнями.</p></div></section>
+<section class="puzzle-content"><div class="shell"><div class="puzzle-intro"><p class="eyebrow">Чотири формати</p><h2>Оберіть головоломку</h2><p>Кожен формат має власну сторінку та працює без реєстрації.</p></div><div class="puzzle-catalog-grid"><a class="puzzle-catalog-card" href="crosswords/" ><span class="puzzle-catalog-number">01</span><h3>Хімічні кросворди</h3><p>Розгадуй терміни за визначеннями.</p><span class="card-link">Розгадувати <span aria-hidden="true">→</span></span></a>
+<a class="puzzle-catalog-card" href="pictures/" ><span class="puzzle-catalog-number">02</span><h3>Відгадай за малюнком</h3><p>Знайди поняття за ілюстрацією.</p><span class="card-link">Розгадувати <span aria-hidden="true">→</span></span></a>
+<a class="puzzle-catalog-card" href="four-pictures/" ><span class="puzzle-catalog-number">03</span><h3>4 зображення - 1 слово</h3><p>Знайди спільну хімічну ознаку.</p><span class="card-link">Розгадувати <span aria-hidden="true">→</span></span></a>
+<a class="puzzle-catalog-card" href="rebuses/" ><span class="puzzle-catalog-number">04</span><h3>Хімічні ребуси</h3><p>Розшифруй слово за підказками.</p><span class="card-link">Розгадувати <span aria-hidden="true">→</span></span></a></div><p class="puzzles-outro">Кросворди й завдання з ілюстраціями працюють безпосередньо у браузері. Результати не надсилаються викладачеві.</p></div></section></main><footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><div class="hub-footer-identity"><a href="../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><a class="hub-footer-up" href="#top" aria-label="Повернутися вгору" title="Вгору">↑</a></div></footer><script src="../js/theme.js?v=20261017-menu4" defer></script></body></html>
