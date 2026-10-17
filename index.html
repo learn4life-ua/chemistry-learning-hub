@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=4">
-  <link rel="stylesheet" href="css/home-v2.css?v=20">
+  <link rel="stylesheet" href="css/home-v2.css?v=21">
   <link rel="icon" href="assets/favicon.ico?v=20261014-atom" sizes="any">
   <link rel="icon" type="image/png" href="assets/favicon.png?v=20261014-atom" sizes="192x192">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20261014-atom">
@@ -161,24 +161,27 @@
             <a class="life-overview-link" href="formula-to-life/">Переглянути весь розділ <span aria-hidden="true">→</span></a>
           </section>
 
-          <a class="module-card module-card-v2 module-purple module-puzzles module-card-clickable" href="puzzles/" aria-label="Відкрити розділ Хімічні головоломки">
+          <section class="module-card module-card-v2 module-purple module-puzzles" aria-labelledby="modulePuzzlesTitle">
             <div class="puzzles-home-copy">
-              <div class="puzzles-home-kicker"><span>Інтерактивна практика</span><span class="module-status status-live">Працює</span></div>
-              <h3>Хімічні головоломки</h3>
-              <p class="puzzles-home-slogan">Розгадуй, досліджуй, відкривай хімію!</p>
-              <p>Кросворди, загадки за малюнками та самоперевірка з поясненнями. Грайте зі словами, щоб краще запам’ятовувати поняття, речовини й хімічні явища.</p>
-              <div class="puzzles-home-details"><span>Кросворди</span><span>Слова за малюнками</span><span>Підказки</span></div>
-              <span class="puzzles-home-action">Перейти до головоломок <span aria-hidden="true">→</span></span>
+              <p class="puzzles-home-eyebrow">Вивчай хімію граючись</p>
+              <h3 id="modulePuzzlesTitle">Хімічні головоломки</h3>
+              <p class="puzzles-home-lead">Розгадуй, досліджуй, відкривай хімію!</p>
+              <p class="puzzles-home-description">Закріплюй знання через кросворди та завдання за малюнками. Перевіряй відповіді й дізнавайся більше про хімічні поняття.</p>
+              <a class="puzzles-home-overview" href="puzzles/">Усі головоломки <span aria-hidden="true">→</span></a>
             </div>
-            <div class="puzzles-home-art" aria-hidden="true">
-              <div class="puzzles-home-tiles">
-                <span class="filled">Х</span><span class="filled">І</span><span class="cross">М</span><span class="filled">І</span><span class="filled">Я</span>
-                <span class="blank"></span><span class="blank"></span><span class="cross">О</span><span class="blank"></span><span class="blank"></span>
-                <span class="blank"></span><span class="blank"></span><span class="cross">Л</span><span class="blank"></span><span class="blank"></span>
-                <span class="blank"></span><span class="blank"></span><span class="cross">Ь</span><span class="blank"></span><span class="blank"></span>
-              </div>
+            <div class="puzzles-home-games" aria-label="Оберіть головоломку">
+              <a class="puzzles-home-game" href="puzzles/?mode=crossword">
+                <span class="puzzles-game-index">01</span>
+                <span class="puzzles-game-text"><strong>Хімічні кросворди</strong><small>Розгадуй слова за визначеннями</small></span>
+                <span class="puzzles-game-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="puzzles-home-game" href="puzzles/?mode=picture">
+                <span class="puzzles-game-index">02</span>
+                <span class="puzzles-game-text"><strong>Відгадай за малюнком</strong><small>Розпізнавай речовини, обладнання та явища</small></span>
+                <span class="puzzles-game-arrow" aria-hidden="true">↗</span>
+              </a>
             </div>
-          </a>
+          </section>
         </div>
       </div>
     </section>
