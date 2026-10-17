@@ -379,3 +379,11 @@ html[data-theme="dark"] .hero-atom-stage::before {
 .life-home-card h4 { display:flex; align-items:flex-start; gap:9px; }
 .life-home-card h4 > span { min-width:0; }
 .life-home-card .life-direction-icon { display:block; flex:0 0 22px; width:22px; height:22px; color:var(--muted); }
+
+/* Extra full-width learning-game card. The six existing module cards retain their layout. */
+.module-card-v2.module-puzzles{grid-column:1/-1;min-height:178px;padding:22px 24px}
+.module-puzzles .module-top{margin-bottom:8px}
+.module-puzzles .module-puzzles-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;color:var(--module-accent);font-weight:800}
+.module-card-v2.module-puzzles p{max-width:860px;margin-bottom:0}
+.module-puzzles .module-tags{margin-top:12px;margin-bottom:11px}
+@media(max-width:700px){.module-card-v2.module-puzzles{min-height:0;padding:22px}.module-puzzles .module-top{gap:10px}}
