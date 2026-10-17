@@ -381,7 +381,8 @@ html[data-theme="dark"] .hero-atom-stage::before {
 .life-home-card .life-direction-icon { display:block; flex:0 0 22px; width:22px; height:22px; color:var(--muted); }
 
 /* The same visual system as the four 'Від формули до життя' directions. */
-.module-card-v2.module-puzzles {
+ .module-card-v2.module-puzzles {
+  --module-accent:#168d92;
   grid-column:1/-1;
   display:flex;
   flex-direction:column;
@@ -389,7 +390,7 @@ html[data-theme="dark"] .hero-atom-stage::before {
   min-height:0;
   padding:22px;
   gap:0;
-  background:linear-gradient(120deg,var(--surface),color-mix(in srgb,var(--primary) 12%,var(--surface)));
+  background:linear-gradient(120deg,var(--surface),color-mix(in srgb,var(--module-accent) 8%,var(--surface)));
 }
 .module-card-v2.module-puzzles:hover {
   transform:none;
@@ -428,7 +429,7 @@ html[data-theme="dark"] .hero-atom-stage::before {
 }
 .puzzles-home-card:hover {
   transform:translateY(-3px);
-  border-color:var(--primary);
+  border-color:var(--module-accent);
   box-shadow:var(--shadow-soft);
 }
 .puzzles-home-card h4 {
@@ -464,3 +465,6 @@ html[data-theme="dark"] .hero-atom-stage::before {
 @media(max-width:1050px){.puzzles-home-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:700px){.puzzles-home-grid{grid-template-columns:minmax(0,1fr);}}
 @media(prefers-reduced-motion:reduce){.puzzles-home-card{transition:none;}.puzzles-home-card:hover{transform:none;}}
+
+.module-puzzles .life-overview-link,.module-puzzles .puzzles-home-card .card-link {color:var(--module-accent)}
+html[data-theme="dark"] .module-card-v2.module-puzzles{--module-accent:#61d1d1}
