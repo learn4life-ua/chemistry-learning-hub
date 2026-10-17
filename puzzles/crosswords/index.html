@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
+<title>Хімічні кросворди | Chemistry Learning Hub</title>
+<meta name="description" content="Заповнюйте сітку за горизонтальними та вертикальними підказками. Працюйте з перетинами слів, перевіряйте відповіді й одержуйте пояснення.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css?v=4">
+<link rel="stylesheet" href="../../css/section-hero.css?v=1">
+<link rel="stylesheet" href="../../css/footer.css?v=20261015-arrow4">
+<link rel="stylesheet" href="../puzzles.css?v=2">
+<link rel="stylesheet" href="../sections.css?v=1">
+<link rel="icon" href="../../assets/favicon.ico?v=20261014-atom" sizes="any">
+<link rel="icon" type="image/png" href="../../assets/favicon.png?v=20261014-atom" sizes="192x192">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=20261014-atom">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png?v=20261014-atom">
+</head>
+<body class="section-page puzzles-page" id="top"><header class="site-header"><div class="shell section-header-inner">
+<a class="brand" href="../../" aria-label="Chemistry Learning Hub - на головну"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>Хімічні кросворди</small></span></a>
+<div class="section-header-actions"><a class="section-back-link" href="../">← До головоломок</a><button id="themeToggle" class="theme-toggle" aria-label="Змінити тему" aria-pressed="false" type="button"><span class="theme-icon" aria-hidden="true">◐</span></button></div>
+</div></header>
+<main><section class="page-hero puzzle-hero sub-puzzle-hero"><div class="shell">
+<p class="eyebrow"><a class="puzzles-breadcrumb" href="../">Хімічні головоломки</a> / Хімічні кросворди</p><h1>Хімічні кросворди</h1><p class="puzzle-tagline">Розгадуй терміни за визначеннями</p><p class="puzzle-lead">Заповнюйте сітку за горизонтальними та вертикальними підказками. Працюйте з перетинами слів, перевіряйте відповіді й одержуйте пояснення.</p><span class="section-status">2 кросворди</span>
+</div></section><section class="puzzle-content"><div class="shell"><section class="game-panel" id="crosswordPanel" aria-labelledby="crosswordTitle">
+        <div class="game-top">
+          <div><p class="eyebrow">Режим 01</p><h2 id="crosswordTitle">Хімічний кросворд</h2><p>Оберіть запитання або клітинку й впишіть відповідь. Перетини заповнюються автоматично.</p></div>
+          <div class="game-stats"><span id="cwProgress">0 із 8 слів</span><span id="cwHints">Підказок: 0</span></div>
+        </div>
+        <div class="crossword-toolbar">
+          <label for="crosswordSelect">Тема кросворда</label>
+          <select id="crosswordSelect">
+            <option value="basics">Речовини та хімічні явища</option>
+            <option value="lab">Лабораторне обладнання</option>
+          </select>
+          <button class="puzzle-button secondary" id="cwReset" type="button">Почати заново</button>
+        </div>
+        <div class="crossword-layout">
+          <div class="crossword-board-wrap">
+            <div class="crossword-scroll"><div id="crosswordGrid" class="crossword-grid" aria-label="Поле кросворда"></div></div>
+            <p class="puzzle-note">Порада: натисніть клітинку двічі, щоб змінити напрям на перетині. Стрілки та Backspace працюють із клавіатури.</p>
+          </div>
+          <div class="crossword-clues">
+            <div class="selected-clue" id="cwSelected" aria-live="polite">Оберіть слово</div>
+            <div class="crossword-clue-columns">
+              <div><h3>По горизонталі</h3><div id="cluesAcross" class="clue-list"></div></div>
+              <div><h3>По вертикалі</h3><div id="cluesDown" class="clue-list"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="game-actions">
+          <button class="puzzle-button primary" id="cwCheckWord" type="button">Перевірити слово</button>
+          <button class="puzzle-button secondary" id="cwCheckAll" type="button">Перевірити кросворд</button>
+          <button class="puzzle-button secondary" id="cwHint" type="button">Відкрити літеру</button>
+        </div>
+        <div class="game-feedback" id="cwFeedback" role="status" aria-live="polite">Оберіть запитання і почніть розгадування.</div>
+      </section>
+<nav class="puzzle-other-games" aria-label="Інші головоломки"><h2>Спробуйте інші головоломки</h2><div><a href="../pictures/">Відгадай за малюнком<span aria-hidden="true">↗</span></a><a href="../four-pictures/">4 зображення - 1 слово<span aria-hidden="true">↗</span></a><a href="../rebuses/">Хімічні ребуси<span aria-hidden="true">↗</span></a></div></nav>
+<p class="puzzles-outro">Завдання призначені для самостійного тренування. Дані не надсилаються викладачеві.</p>
+</div></section></main><footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><div class="hub-footer-identity"><a href="../../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><a class="hub-footer-up" href="#top" aria-label="Повернутися вгору" title="Вгору">↑</a></div></footer><script src="../../js/theme.js?v=20261017-menu4" defer></script><script src="./crosswords.js?v=1" defer></script></body></html>
