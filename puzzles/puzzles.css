@@ -1,0 +1,109 @@
+/* Chemistry Learning Hub / Хімічні головоломки. Styles use shared hub tokens. */
+.puzzles-page .puzzle-hero{padding:46px 0 50px}
+.puzzle-hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:50px;align-items:center;min-height:292px}
+.puzzle-hero h1{margin:9px 0 10px;font-size:clamp(2.5rem,4.4vw,4.45rem);line-height:1.08;letter-spacing:-.048em}
+.puzzle-tagline{font-size:clamp(1.18rem,1.65vw,1.5rem);font-weight:600;color:var(--primary-strong);margin:0 0 15px}
+.puzzle-lead{max-width:730px;color:var(--muted);line-height:1.75;margin:0 0 22px;font-size:1.02rem}
+.puzzle-hero .primary-button{gap:10px}
+.hero-puzzle-art{min-width:0;display:grid;justify-content:center;justify-items:center;gap:16px}
+.mini-grid{display:grid;grid-template-columns:repeat(5,46px);grid-template-rows:repeat(4,46px);gap:6px;transform:rotate(-4deg)}
+.mini-grid span{display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--primary) 15%,var(--line));background:var(--surface);border-radius:9px;color:var(--ink);font-size:1.2rem;font-weight:800;box-shadow:var(--shadow-soft)}
+.mini-grid span:empty{opacity:.08}.mini-grid span.lit{background:color-mix(in srgb,var(--primary) 10%,var(--surface));color:var(--primary-strong)}
+.hero-art-note{color:var(--muted);font-size:.76rem;font-weight:600}
+.puzzle-content{padding:56px 0 68px;background:var(--page-content-background)}
+.puzzle-intro{margin-bottom:24px}.puzzle-intro h2{font-size:clamp(1.9rem,2.8vw,2.65rem);letter-spacing:-.04em;margin-bottom:6px}
+.puzzle-intro>p:last-child{color:var(--muted)}
+.puzzle-modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:36px}
+.puzzle-mode{appearance:none;text-align:left;display:flex;flex-direction:column;align-items:stretch;min-height:196px;gap:11px;padding:20px;border:1px solid var(--line);border-radius:19px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow-soft);transition:border-color .15s ease,transform .15s ease}
+button.puzzle-mode{cursor:pointer}
+button.puzzle-mode:hover{transform:translateY(-2px);border-color:var(--primary)}
+button.puzzle-mode.is-active{background:color-mix(in srgb,var(--primary) 6%,var(--surface));border-color:color-mix(in srgb,var(--primary) 48%,var(--line));box-shadow:0 0 0 2px color-mix(in srgb,var(--primary) 8%,transparent)}
+.puzzle-mode .mode-number{font-size:.71rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--primary)}
+.puzzle-mode strong{font-size:1.13rem;letter-spacing:-.02em;line-height:1.25}
+.puzzle-mode>span:not(.mode-number){font-size:.82rem;color:var(--muted);line-height:1.5}
+.puzzle-mode small{margin-top:auto;color:var(--primary-strong);font-weight:800;font-size:.77rem}
+.puzzle-mode.is-planned{opacity:.63;box-shadow:none;background:var(--surface-muted)}
+.puzzle-mode.is-planned .mode-number,.puzzle-mode.is-planned small{color:var(--muted)}
+.game-panel{border:1px solid var(--line);border-radius:24px;padding:clamp(18px,2.5vw,32px);background:var(--surface);box-shadow:var(--shadow-soft)}
+.game-panel[hidden]{display:none!important}
+.game-top{display:flex;justify-content:space-between;gap:25px;align-items:flex-start;margin-bottom:24px}
+.game-top h2{font-size:clamp(1.6rem,2.7vw,2.2rem);line-height:1.16;letter-spacing:-.035em;margin:0 0 7px}
+.game-top p:not(.eyebrow){color:var(--muted);margin:0;font-size:.9rem}
+.game-stats{display:flex;gap:7px;flex-wrap:wrap;justify-content:end;flex:none;max-width:260px}
+.game-stats span{border:1px solid var(--line);border-radius:999px;background:var(--surface-muted);padding:6px 10px;color:var(--muted);font-size:.72rem;font-weight:700}
+.crossword-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0 18px;border-bottom:1px solid var(--line)}
+.crossword-toolbar label{font-size:.84rem;font-weight:750}
+.crossword-toolbar select{min-height:42px;max-width:100%;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:0 12px;flex:1 1 240px}
+.crossword-layout{display:grid;grid-template-columns:minmax(0,.86fr) minmax(320px,1.14fr);gap:24px;padding:24px 0;align-items:start}
+.crossword-board-wrap{min-width:0}.crossword-scroll{overflow-x:auto;max-width:100%;padding:10px 2px 14px}
+.crossword-grid{--cell:clamp(31px,3.5vw,43px);display:grid;grid-template-columns:repeat(var(--cols),var(--cell));grid-template-rows:repeat(var(--rows),var(--cell));gap:2px;width:max-content;max-width:none;margin:auto;user-select:none}
+.crossword-cell{position:relative;min-width:0;min-height:0;border-radius:5px;overflow:hidden;background:var(--surface-muted)}
+.crossword-cell.is-empty{background:transparent;border:0;pointer-events:none}
+.crossword-cell input{display:block;width:100%;height:100%;padding:8px 0 0;text-align:center;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink);font:750 clamp(.88rem,1.65vw,1.12rem)/1 Inter,system-ui,sans-serif;text-transform:uppercase;outline-offset:-2px}
+.crossword-cell.is-word input{background:color-mix(in srgb,var(--primary) 8%,var(--surface))}
+.crossword-cell.is-selected input{border:2px solid var(--primary);background:color-mix(in srgb,var(--primary) 15%,var(--surface))}
+.crossword-cell.is-correct input{color:var(--green);background:color-mix(in srgb,var(--green) 10%,var(--surface))}
+.crossword-cell.is-error input{border-color:#c64848;background:color-mix(in srgb,#e65555 10%,var(--surface))}
+.crossword-cell input:focus-visible{outline:3px solid var(--primary);outline-offset:-3px;position:relative;z-index:1}
+.crossword-cell .cell-number{position:absolute;top:1px;left:4px;z-index:2;pointer-events:none;font-size:.5rem;font-weight:750;color:var(--muted)}
+.puzzle-note{font-size:.72rem;line-height:1.5;color:var(--muted);margin:7px 0 0}
+.crossword-clues{min-width:0}.selected-clue{padding:13px 15px;border:1px solid color-mix(in srgb,var(--primary) 28%,var(--line));border-radius:12px;background:color-mix(in srgb,var(--primary) 6%,var(--surface));font-size:.87rem;line-height:1.5;font-weight:650;margin-bottom:20px}
+.crossword-clue-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.crossword-clue-columns h3{font-size:.89rem;letter-spacing:-.01em;margin-bottom:10px}
+.clue-list{display:grid;gap:5px}
+.clue-button{display:flex;gap:9px;text-align:left;width:100%;min-height:40px;border:1px solid transparent;border-radius:10px;color:var(--ink);background:transparent;padding:9px 8px;font-size:.8rem;line-height:1.4}
+.clue-button span{min-width:20px;font-weight:800;color:var(--primary-strong)}
+.clue-button:hover{background:var(--surface-muted)}
+.clue-button.is-active{background:var(--primary-soft);border-color:color-mix(in srgb,var(--primary) 23%,var(--line))}
+.clue-button.is-solved{color:var(--green)}
+.game-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.puzzle-button{min-height:42px;border-radius:11px;padding:9px 15px;font-size:.83rem;font-weight:750;line-height:1.25}
+.puzzle-button.primary{background:var(--primary);border:1px solid var(--primary);color:#fff}
+.puzzle-button.primary:hover{background:var(--primary-strong)}
+.puzzle-button.secondary{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.puzzle-button.secondary:hover{border-color:var(--primary);color:var(--primary-strong)}
+.puzzle-button:disabled{opacity:.5;cursor:not-allowed}
+.game-feedback{min-height:50px;margin-top:17px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;color:var(--muted);background:var(--surface-muted);font-size:.85rem;line-height:1.55}
+.game-feedback.is-success{color:var(--green);border-color:color-mix(in srgb,var(--green) 30%,var(--line))}
+.game-feedback.is-error{color:#be4c45;border-color:color-mix(in srgb,#d34d4d 30%,var(--line))}
+.picture-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(330px,1fr);gap:30px;align-items:stretch}
+.picture-art-frame{border-radius:19px;min-height:340px;display:grid;place-items:center;overflow:hidden;background:color-mix(in srgb,var(--primary) 7%,var(--surface-muted));border:1px solid var(--line)}
+.picture-art-frame svg{display:block;width:100%;height:auto;max-height:380px}
+.picture-workspace{min-width:0;display:flex;flex-direction:column;align-items:flex-start}
+.picture-prompt{font-size:1.03rem;font-weight:700;margin:0 0 14px}
+.picture-slots{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px}
+.picture-slots span{display:grid;place-items:center;min-width:33px;height:42px;padding:0 4px;border-bottom:3px solid color-mix(in srgb,var(--primary) 55%,var(--line));background:var(--surface-muted);border-radius:5px 5px 1px 1px;font-size:1.12rem;font-weight:800}
+.answer-label{font-size:.8rem;font-weight:700;margin-bottom:6px}
+#pictureAnswer{width:100%;min-height:45px;max-width:500px;border:1px solid var(--line);border-radius:11px;padding:8px 12px;background:var(--surface);color:var(--ink);font-size:1rem;text-transform:uppercase}
+#pictureAnswer:focus-visible,.crossword-toolbar select:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.letter-bank{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 20px}
+.letter-bank button{width:39px;height:42px;border:1px solid var(--line);border-radius:10px;background:var(--surface-muted);color:var(--ink);font-weight:800;font-size:.98rem}
+.letter-bank button:hover{border-color:var(--primary);color:var(--primary-strong)}
+.letter-bank button:disabled{opacity:.23;cursor:not-allowed}
+.puzzles-outro{color:var(--muted);font-size:.79rem;line-height:1.65;margin:20px 0 0}
+.puzzle-mode:focus-visible,.puzzle-button:focus-visible,.letter-bank button:focus-visible,.clue-button:focus-visible{outline:3px solid var(--primary);outline-offset:3px}
+@media(max-width:1120px){
+.puzzle-modes{grid-template-columns:repeat(2,minmax(0,1fr))}
+.crossword-layout{grid-template-columns:1fr}
+.crossword-clue-columns{grid-template-columns:repeat(2,minmax(0,1fr))}
+.picture-layout{grid-template-columns:1fr 1fr;gap:17px}
+}
+@media(max-width:700px){
+.puzzles-page .puzzle-hero{padding:34px 0}
+.puzzle-hero-grid{grid-template-columns:1fr;gap:26px}
+.hero-puzzle-art{display:none}
+.puzzle-content{padding:38px 0}
+.puzzle-modes{grid-template-columns:1fr;gap:10px}
+.puzzle-mode{min-height:130px;padding:16px;gap:6px}
+.game-panel{border-radius:17px;padding:16px}
+.game-top{flex-direction:column;gap:12px}.game-stats{justify-content:start}
+.crossword-layout{padding:16px 0;gap:18px}
+.crossword-grid{--cell:34px}
+.crossword-clue-columns{grid-template-columns:1fr;gap:20px}
+.picture-layout{grid-template-columns:1fr}
+.picture-art-frame{min-height:205px}
+.picture-art-frame svg{max-height:235px}
+.picture-slots span{min-width:29px;height:37px}
+.puzzle-button{flex:1 1 auto}
+}
+@media(prefers-reduced-motion:reduce){.puzzle-mode{transition:none}.puzzle-mode:hover{transform:none}}
