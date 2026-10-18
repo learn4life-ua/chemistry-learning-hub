@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
 <title>4 зображення - 1 слово | Chemistry Learning Hub</title>
-<meta name="description" content="Порівняйте чотири ілюстрації, визначте спільне поняття та поясніть, що їх об’єднує.">
+<meta name="description" content="Порівняйте чотири фотографії, визначте спільне поняття та поясніть, що їх об’єднує.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/style.css?v=4">
@@ -19,15 +19,49 @@
 <link rel="stylesheet" href="../../css/hero-cashbrain-v1.css">
 <link rel="stylesheet" href="../puzzles-theme-v1.css">
 <link rel="stylesheet" href="../../css/breadcrumbs.css?v=20261014-3">
+<link rel="stylesheet" href="./game.css?v=20261018-photos1">
 </head>
 <body class="section-page puzzles-page" id="top"><header class="site-header"><div class="shell section-header-inner">
 <a class="brand" href="../../" aria-label="Chemistry Learning Hub - на головну"><span class="brand-mark" aria-hidden="true">⚛</span><span class="brand-copy"><strong>Chemistry Learning Hub</strong><small>4 зображення - 1 слово</small></span></a>
 <div class="section-header-actions"><a class="section-back-link" href="../">← До головоломок</a><button id="themeToggle" class="theme-toggle" aria-label="Змінити тему" aria-pressed="false" type="button"><span class="theme-icon" aria-hidden="true">◐</span></button></div>
 </div></header>
 <main><section class="page-hero puzzle-hero sub-puzzle-hero section-hero cashbrain-hero" aria-labelledby="puzzlePageTitle"><div class="shell">
-<p class="eyebrow">Хімічні головоломки</p><h1 id="puzzlePageTitle">4 зображення - 1 слово</h1><p class="puzzle-tagline section-lead">Знайди спільну хімічну ознаку</p><p class="puzzle-lead cashbrain-description">Порівняйте чотири ілюстрації, визначте спільне поняття та поясніть, що їх об’єднує</p><span class="section-status">4 завдання</span>
+<p class="eyebrow">Хімічні головоломки</p><h1 id="puzzlePageTitle">4 зображення - 1 слово</h1><p class="puzzle-tagline section-lead">Знайди спільну хімічну ознаку</p><p class="puzzle-lead cashbrain-description">Порівняйте чотири фотографії, визначте спільне поняття та поясніть, що їх об’єднує</p><span class="section-status">6 завдань</span>
 <nav class="hub-breadcrumbs" aria-label="Навігаційні крихти"><ol><li><a href="../../">Головна</a></li><li><a href="../">Хімічні головоломки</a></li><li><span aria-current="page">4 зображення - 1 слово</span></li></ol></nav>
-</div></section><section class="puzzle-content"><div class="shell"><section class="game-panel extra-game" aria-labelledby="extraTitle"><div class="game-top"><div><p class="eyebrow">Знайди спільне</p><h2 id="extraTitle">Що об’єднує зображення?</h2><p>Розгляньте всі чотири ілюстрації, введіть спільне слово та перевірте відповідь.</p></div><div class="game-stats"><span id="extraCounter">1 із 4</span><span id="extraScore">0 правильних</span></div></div><div id="extraVisual" class="extra-visual quad-visual" aria-label="Чотири ілюстрації до завдання"></div><div class="extra-answer"><label for="extraInput">Спільне поняття</label><input id="extraInput" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Введіть відповідь"></div><div class="game-actions"><button class="puzzle-button primary" id="extraCheck" type="button">Перевірити</button><button class="puzzle-button secondary" id="extraHint" type="button">Підказка</button><button class="puzzle-button secondary" id="extraNext" type="button" hidden>Наступне завдання →</button></div><div class="game-feedback" id="extraFeedback" aria-live="polite" role="status">Що спільного між чотирма малюнками?</div></section>
+</div></section><section class="puzzle-content"><div class="shell"><section class="game-panel four-game" aria-labelledby="extraTitle">
+  <div class="game-top">
+    <div><p class="eyebrow">Знайди спільне</p><h2 id="extraTitle">Що об’єднує зображення?</h2><p>Чотири фото — одне поняття. Введіть слово та перевірте себе.</p></div>
+    <div class="game-stats"><span id="extraCounter">Завдання 1 із 6</span><span id="extraScore">Розгадано 0 із 6</span></div>
+  </div>
+  <div class="picture-steps-wrap">
+    <span class="picture-steps-label">Оберіть завдання</span>
+    <nav id="fourSteps" class="picture-steps" aria-label="Шість завдань"></nav>
+    <progress id="fourProgress" class="four-progress" value="0" max="6" aria-label="Кількість розгаданих завдань">0 із 6</progress>
+  </div>
+  <div class="four-layout">
+    <div>
+      <div id="extraVisual" class="extra-visual quad-visual" role="group" aria-label="Чотири фотографії до завдання"></div>
+      <p class="four-photo-note">Натисніть на фото, щоб роздивитися ближче.</p>
+    </div>
+    <div class="four-workspace">
+      <form id="fourAnswerForm">
+        <div class="extra-answer">
+          <div class="four-answer-label"><label for="extraInput">Спільне поняття</label><span id="fourWordLength"></span></div>
+          <input id="extraInput" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="40" placeholder="Введіть відповідь" aria-describedby="extraFeedback fourWordLength">
+        </div>
+        <div class="game-actions"><button class="puzzle-button primary" id="extraCheck" type="submit">Перевірити</button><button class="puzzle-button secondary" id="extraHint" type="button">Підказка</button></div>
+      </form>
+      <div class="game-feedback" id="extraFeedback" aria-live="polite" role="status">Що спільного між цими чотирма фотографіями?</div>
+      <nav class="four-navigation" aria-label="Перехід між завданнями"><button class="puzzle-button secondary" id="extraPrev" type="button">← Попереднє</button><button class="puzzle-button secondary" id="extraNext" type="button">Наступне →</button></nav>
+    </div>
+  </div>
+  <div id="fourCompletion" class="four-completion" role="status" hidden><h3>Усі 6 завдань розгадано!</h3><p>Ви знайшли спільне поняття для кожного набору фотографій.</p><button id="fourRestart" type="button" class="puzzle-button primary">Пройти ще раз</button></div>
+  <noscript><p>Для гри потрібно увімкнути JavaScript у браузері.</p></noscript>
+</section>
+<dialog id="fourImageDialog" class="four-image-dialog" aria-labelledby="fourImageTitle" aria-describedby="fourImageCaption">
+  <div class="four-dialog-toolbar"><strong id="fourImageTitle">Розгляньте фото</strong><button id="fourCloseImage" type="button" class="puzzle-button secondary" autofocus>Закрити ×</button></div>
+  <img id="fourLargeImage" alt="" width="800" height="800"><p id="fourImageCaption"></p>
+</dialog>
 <nav class="puzzle-other-games" aria-label="Інші головоломки"><h2>Спробуйте інші головоломки</h2><div><a href="../crosswords/">Хімічні кросворди<span aria-hidden="true">↗</span></a><a href="../pictures/">Відгадай за малюнком<span aria-hidden="true">↗</span></a><a href="../rebuses/">Хімічні ребуси<span aria-hidden="true">↗</span></a></div></nav>
 <p class="puzzles-outro">Завдання призначені для самостійного тренування. Дані не надсилаються викладачеві.</p>
-</div></section></main><footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><div class="hub-footer-identity"><a href="../../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><a class="hub-footer-up" href="#top" aria-label="Повернутися вгору" title="Вгору">↑</a></div></footer><script src="../../js/theme.js?v=20261017-menu4" defer></script><script src="../extra-games.js?v=1" defer></script></body></html>
+</div></section></main><footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><div class="hub-footer-identity"><a href="../../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><a class="hub-footer-up" href="#top" aria-label="Повернутися вгору" title="Вгору">↑</a></div></footer><script src="../../js/theme.js?v=20261017-menu4" defer></script><script src="./game.js?v=20261018-photos1" defer></script></body></html>
