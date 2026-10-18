@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="../../css/footer.css?v=20261015-arrow4">
 <link rel="stylesheet" href="../puzzles.css?v=2">
 <link rel="stylesheet" href="../sections.css?v=20261018-img6">
+<link rel="stylesheet" href="./rebuses.css?v=20261018-grid1">
 <link rel="icon" href="../../assets/favicon.ico?v=20261014-atom" sizes="any">
 <link rel="icon" type="image/png" href="../../assets/favicon.png?v=20261014-atom" sizes="192x192">
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=20261014-atom">
@@ -25,9 +26,80 @@
 <div class="section-header-actions"><a class="section-back-link" href="../">← До головоломок</a><button id="themeToggle" class="theme-toggle" aria-label="Змінити тему" aria-pressed="false" type="button"><span class="theme-icon" aria-hidden="true">◐</span></button></div>
 </div></header>
 <main><section class="page-hero puzzle-hero sub-puzzle-hero section-hero cashbrain-hero" aria-labelledby="puzzlePageTitle"><div class="shell">
-<p class="eyebrow">Хімічні головоломки</p><h1 id="puzzlePageTitle">Хімічні ребуси</h1><p class="puzzle-tagline section-lead">Розшифруй слово за підказками</p><p class="puzzle-lead cashbrain-description">Виконуйте прості літерні перетворення, складайте хімічні терміни та закріплюйте їхнє значення</p><span class="section-status">6 ребусів</span>
+<p class="eyebrow">Хімічні головоломки</p><h1 id="puzzlePageTitle">Хімічні ребуси</h1><p class="puzzle-tagline section-lead">Розшифруй слово за підказками</p><p class="puzzle-lead cashbrain-description">Розгляньте всі шість ребусів, розшифруйте хімічні терміни та перевірте свої відповіді</p><span class="section-status">6 ребусів</span>
 <nav class="hub-breadcrumbs" aria-label="Навігаційні крихти"><ol><li><a href="../../">Головна</a></li><li><a href="../">Хімічні головоломки</a></li><li><span aria-current="page">Хімічні ребуси</span></li></ol></nav>
-</div></section><section class="puzzle-content"><div class="shell"><section class="game-panel extra-game" aria-labelledby="extraTitle"><div class="game-top"><div><p class="eyebrow">Хімічні ребуси</p><h2 id="extraTitle">Розшифруйте слово</h2><p>Розгляньте малюнок. Коми після предмета прибирають літери в кінці слова, перед предметом - на початку. Стрілка показує заміну літери.</p></div><div class="game-stats"><span id="extraCounter">1 із 6</span><span id="extraScore">0 правильних</span></div></div><div id="extraVisual" class="extra-visual rebus-visual" aria-label="Ілюстрований ребус"></div><div class="extra-answer"><label for="extraInput">Відгадане слово</label><input id="extraInput" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Введіть відповідь"></div><div class="game-actions"><button class="puzzle-button primary" id="extraCheck" type="button">Перевірити</button><button class="puzzle-button secondary" id="extraHint" type="button">Підказка</button><button class="puzzle-button secondary" id="extraNext" type="button" hidden>Наступний ребус →</button></div><div class="game-feedback" id="extraFeedback" aria-live="polite" role="status">Знайдіть слово, заховане в ребусі.</div></section>
+</div></section><section class="puzzle-content"><div class="shell"><section class="rebus-collection" aria-labelledby="rebusCollectionTitle">
+  <div class="rebus-collection-heading"><div><h2 id="rebusCollectionTitle">Шість ребусів</h2><p>Можна розгадувати в будь-якому порядку. Коми підказують, які літери прибрати; стрілки — які замінити.</p></div><div class="rebus-collection-progress"><span id="rebusesProgress" role="status" aria-live="polite">Розгадано: 0 із 6</span><button id="rebusesReset" class="puzzle-button secondary" type="button">Почати заново</button></div></div>
+  <p class="rebus-gallery-note">Натисніть на зображення, щоб збільшити його. Введіть відповідь і перевірте її в кожній картці.</p>
+  <div class="rebus-task-grid" id="rebusTaskGrid">
+<article class="rebus-task-card" data-rebus-index="0" aria-labelledby="rebus-heading-1">
+  <header class="rebus-task-header"><h3 id="rebus-heading-1">Ребус 01</h3><span class="rebus-task-state" data-rebus-state>Не розгадано</span></header>
+  <a class="rebus-task-image-link" href="./images/01_OSAD.png" target="_blank" rel="noopener noreferrer" aria-label="Збільшити зображення ребуса 1 в новій вкладці">
+    <img src="./images/01_OSAD.png" alt="Зображення оси, знак плюс та літера Д." width="1200" height="420" loading="eager" decoding="async">
+  </a>
+  <div class="rebus-task-entry"><label for="rebus-answer-1">Ваша відповідь</label><input id="rebus-answer-1" data-rebus-input type="text" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="4 літер" aria-describedby="rebus-feedback-1"></div>
+  <div class="rebus-task-actions"><button class="puzzle-button primary" data-action="check" type="button">Перевірити</button><button class="puzzle-button secondary" data-action="hint" type="button">Підказка</button></div>
+  <p class="rebus-task-hint" data-rebus-hint hidden></p>
+  <p class="rebus-task-feedback" id="rebus-feedback-1" data-rebus-feedback role="status" aria-live="polite">Відгадайте слово за малюнком.</p>
+</article>
+
+<article class="rebus-task-card" data-rebus-index="1" aria-labelledby="rebus-heading-2">
+  <header class="rebus-task-header"><h3 id="rebus-heading-2">Ребус 02</h3><span class="rebus-task-state" data-rebus-state>Не розгадано</span></header>
+  <a class="rebus-task-image-link" href="./images/02_SPLAV.png" target="_blank" rel="noopener noreferrer" aria-label="Збільшити зображення ребуса 2 в новій вкладці">
+    <img src="./images/02_SPLAV.png" alt="Літера С, знак плюс, плавки та дві коми після них." width="1200" height="420" loading="eager" decoding="async">
+  </a>
+  <div class="rebus-task-entry"><label for="rebus-answer-2">Ваша відповідь</label><input id="rebus-answer-2" data-rebus-input type="text" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="5 літер" aria-describedby="rebus-feedback-2"></div>
+  <div class="rebus-task-actions"><button class="puzzle-button primary" data-action="check" type="button">Перевірити</button><button class="puzzle-button secondary" data-action="hint" type="button">Підказка</button></div>
+  <p class="rebus-task-hint" data-rebus-hint hidden></p>
+  <p class="rebus-task-feedback" id="rebus-feedback-2" data-rebus-feedback role="status" aria-live="polite">Відгадайте слово за малюнком.</p>
+</article>
+
+<article class="rebus-task-card" data-rebus-index="2" aria-labelledby="rebus-heading-3">
+  <header class="rebus-task-header"><h3 id="rebus-heading-3">Ребус 03</h3><span class="rebus-task-state" data-rebus-state>Не розгадано</span></header>
+  <a class="rebus-task-image-link" href="./images/03_LAKMUS.png" target="_blank" rel="noopener noreferrer" aria-label="Збільшити зображення ребуса 3 в новій вкладці">
+    <img src="./images/03_LAKMUS.png" alt="Лак для нігтів, літера М та вуса з комами перед і після них." width="1200" height="420" loading="lazy" decoding="async">
+  </a>
+  <div class="rebus-task-entry"><label for="rebus-answer-3">Ваша відповідь</label><input id="rebus-answer-3" data-rebus-input type="text" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="6 літер" aria-describedby="rebus-feedback-3"></div>
+  <div class="rebus-task-actions"><button class="puzzle-button primary" data-action="check" type="button">Перевірити</button><button class="puzzle-button secondary" data-action="hint" type="button">Підказка</button></div>
+  <p class="rebus-task-hint" data-rebus-hint hidden></p>
+  <p class="rebus-task-feedback" id="rebus-feedback-3" data-rebus-feedback role="status" aria-live="polite">Відгадайте слово за малюнком.</p>
+</article>
+
+<article class="rebus-task-card" data-rebus-index="3" aria-labelledby="rebus-heading-4">
+  <header class="rebus-task-header"><h3 id="rebus-heading-4">Ребус 04</h3><span class="rebus-task-state" data-rebus-state>Не розгадано</span></header>
+  <a class="rebus-task-image-link" href="./images/04_MOLEKULA.png" target="_blank" rel="noopener noreferrer" aria-label="Збільшити зображення ребуса 4 в новій вкладці">
+    <img src="./images/04_MOLEKULA.png" alt="Молоток і чотири коми, літера Е, куля із заміною Я на А." width="1200" height="420" loading="lazy" decoding="async">
+  </a>
+  <div class="rebus-task-entry"><label for="rebus-answer-4">Ваша відповідь</label><input id="rebus-answer-4" data-rebus-input type="text" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="8 літер" aria-describedby="rebus-feedback-4"></div>
+  <div class="rebus-task-actions"><button class="puzzle-button primary" data-action="check" type="button">Перевірити</button><button class="puzzle-button secondary" data-action="hint" type="button">Підказка</button></div>
+  <p class="rebus-task-hint" data-rebus-hint hidden></p>
+  <p class="rebus-task-feedback" id="rebus-feedback-4" data-rebus-feedback role="status" aria-live="polite">Відгадайте слово за малюнком.</p>
+</article>
+
+<article class="rebus-task-card" data-rebus-index="4" aria-labelledby="rebus-heading-5">
+  <header class="rebus-task-header"><h3 id="rebus-heading-5">Ребус 05</h3><span class="rebus-task-state" data-rebus-state>Не розгадано</span></header>
+  <a class="rebus-task-image-link" href="./images/05_KYSLOTA.png" target="_blank" rel="noopener noreferrer" aria-label="Збільшити зображення ребуса 5 в новій вкладці">
+    <img src="./images/05_KYSLOTA.png" alt="Кит із комою після нього, літера С, лото з двома комами та літери ТА." width="1200" height="420" loading="lazy" decoding="async">
+  </a>
+  <div class="rebus-task-entry"><label for="rebus-answer-5">Ваша відповідь</label><input id="rebus-answer-5" data-rebus-input type="text" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="7 літер" aria-describedby="rebus-feedback-5"></div>
+  <div class="rebus-task-actions"><button class="puzzle-button primary" data-action="check" type="button">Перевірити</button><button class="puzzle-button secondary" data-action="hint" type="button">Підказка</button></div>
+  <p class="rebus-task-hint" data-rebus-hint hidden></p>
+  <p class="rebus-task-feedback" id="rebus-feedback-5" data-rebus-feedback role="status" aria-live="polite">Відгадайте слово за малюнком.</p>
+</article>
+
+<article class="rebus-task-card" data-rebus-index="5" aria-labelledby="rebus-heading-6">
+  <header class="rebus-task-header"><h3 id="rebus-heading-6">Ребус 06</h3><span class="rebus-task-state" data-rebus-state>Не розгадано</span></header>
+  <a class="rebus-task-image-link" href="./images/06_REAKTSIIA.png" target="_blank" rel="noopener noreferrer" aria-label="Збільшити зображення ребуса 6 в новій вкладці">
+    <img src="./images/06_REAKTSIIA.png" alt="Музична нота з написом РЕ, знак плюс та цінник з написом АКЦІЯ." width="1200" height="420" loading="lazy" decoding="async">
+  </a>
+  <div class="rebus-task-entry"><label for="rebus-answer-6">Ваша відповідь</label><input id="rebus-answer-6" data-rebus-input type="text" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="7 літер" aria-describedby="rebus-feedback-6"></div>
+  <div class="rebus-task-actions"><button class="puzzle-button primary" data-action="check" type="button">Перевірити</button><button class="puzzle-button secondary" data-action="hint" type="button">Підказка</button></div>
+  <p class="rebus-task-hint" data-rebus-hint hidden></p>
+  <p class="rebus-task-feedback" id="rebus-feedback-6" data-rebus-feedback role="status" aria-live="polite">Відгадайте слово за малюнком.</p>
+</article>
+  </div>
+  <p id="rebusesCompletion" class="rebus-completion" role="status" aria-live="polite" hidden>Усі 6 ребусів розгадано! Ви завершили добірку.</p>
+</section>
 <nav class="puzzle-other-games" aria-label="Інші головоломки"><h2>Спробуйте інші головоломки</h2><div><a href="../crosswords/">Хімічні кросворди<span aria-hidden="true">↗</span></a><a href="../pictures/">Відгадай за малюнком<span aria-hidden="true">↗</span></a><a href="../four-pictures/">4 зображення - 1 слово<span aria-hidden="true">↗</span></a></div></nav>
 <p class="puzzles-outro">Завдання призначені для самостійного тренування. Дані не надсилаються викладачеві.</p>
-</div></section></main><footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><div class="hub-footer-identity"><a href="../../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><a class="hub-footer-up" href="#top" aria-label="Повернутися вгору" title="Вгору">↑</a></div></footer><script src="../../js/theme.js?v=20261017-menu4" defer></script><script src="../extra-games.js?v=20261018-img6" defer></script></body></html>
+</div></section></main><footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><div class="hub-footer-identity"><a href="../../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><a class="hub-footer-up" href="#top" aria-label="Повернутися вгору" title="Вгору">↑</a></div></footer><script src="../../js/theme.js?v=20261017-menu4" defer></script><script src="./rebuses.js?v=20261018-grid1" defer></script></body></html>

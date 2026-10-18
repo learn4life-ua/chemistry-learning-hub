@@ -1,0 +1,32 @@
+/* Ілюстровані ребуси: усі шість завдань видно одночасно. */
+.rebus-collection{min-width:0}
+.rebus-collection-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;margin-bottom:14px}
+.rebus-collection-heading h2{margin:0 0 7px;color:var(--ink);font-size:clamp(1.5rem,2.4vw,2.05rem);line-height:1.2;letter-spacing:-.03em}
+.rebus-collection-heading p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.55;max-width:720px}
+.rebus-collection-progress{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rebus-collection-progress span{padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--primary-strong);font-size:.79rem;font-weight:750;white-space:nowrap}
+.rebus-gallery-note{margin:0 0 20px;color:var(--muted);font-size:.8rem;line-height:1.5}
+.rebus-task-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}
+.rebus-task-card{min-width:0;display:flex;flex-direction:column;gap:13px;padding:clamp(14px,2vw,22px);background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-soft)}
+.rebus-task-card.is-solved{border-color:color-mix(in srgb,var(--green) 36%,var(--line))}
+.rebus-task-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.rebus-task-header h3{margin:0;color:var(--ink);font-size:1rem;letter-spacing:-.015em}
+.rebus-task-state{color:var(--muted);font-weight:650;font-size:.74rem}
+.rebus-task-card.is-solved .rebus-task-state{color:var(--green)}
+.rebus-task-image-link{display:block;line-height:0;overflow:hidden;border-radius:13px;background:#f8f9fb;border:1px solid var(--line)}
+.rebus-task-image-link img{display:block;width:100%;height:auto;aspect-ratio:20/7;object-fit:contain}
+.rebus-task-image-link:focus-visible{outline:3px solid var(--primary);outline-offset:3px}
+.rebus-task-entry{display:grid;gap:7px}
+.rebus-task-entry label{font-size:.81rem;font-weight:750;color:var(--ink)}
+.rebus-task-entry input{width:100%;min-height:46px;box-sizing:border-box;border-radius:11px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 13px;font:650 .98rem/1.4 Inter,system-ui,sans-serif;text-transform:uppercase}
+.rebus-task-entry input:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.rebus-task-entry input:disabled{opacity:.75}
+.rebus-task-actions{display:flex;gap:9px;flex-wrap:wrap}
+.rebus-task-hint{margin:0;padding:9px 12px;border-radius:10px;background:var(--surface-muted);font-size:.83rem;color:var(--ink);line-height:1.55}
+.rebus-task-feedback{margin:auto 0 0;min-height:47px;padding:12px 13px;border-radius:11px;background:var(--surface-muted);border:1px solid var(--line);color:var(--muted);line-height:1.5;font-size:.82rem}
+.rebus-task-feedback.is-error{border-color:color-mix(in srgb,#d34d4d 30%,var(--line));color:#b44141}
+.rebus-task-feedback.is-success{border-color:color-mix(in srgb,var(--green) 30%,var(--line));color:var(--green)}
+.rebus-completion{margin:22px 0 0;padding:17px;border:1px solid var(--line);border-radius:13px;color:var(--primary-strong);background:var(--surface);font-weight:750;text-align:center}
+[hidden].rebus-task-hint,[hidden].rebus-completion{display:none!important}
+@media(max-width:900px){.rebus-task-grid{grid-template-columns:1fr}.rebus-task-image-link img{max-height:400px}}
+@media(max-width:560px){.rebus-task-grid{gap:13px}.rebus-task-card{padding:13px;border-radius:15px;gap:11px}.rebus-task-actions .puzzle-button{flex:1 1 130px}.rebus-collection-heading{gap:13px}.rebus-task-image-link{border-radius:9px}}
