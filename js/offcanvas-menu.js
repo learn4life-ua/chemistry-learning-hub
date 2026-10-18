@@ -3,7 +3,7 @@
   const root = new URL('../', script.src);
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = new URL('css/offcanvas-menu.css?v=2', root).href;
+  stylesheet.href = new URL('css/offcanvas-menu.css?v=20261018-header', root).href;
   document.head.append(stylesheet);
   const header = document.querySelector('.header-inner, .section-header-inner, .site-header .shell');
   if (!header || document.getElementById('hubMenu')) return;
@@ -13,9 +13,9 @@
     ['Хімічні розрахунки', 'calculations/', 'Σ', '#367df0'],
     ['Розчинність і йонні реакції', 'ionic-reactions/', '⇄', '#6eaa20'],
     ['Тренажери', 'trainers/', '◆', '#ca4bb3'],
-    ['Хімічні головоломки', 'puzzles/', '◇', '#7653ff'],
     ['Корисні ресурси', 'resources/', '▤', '#ba7a22'],
-    ['Від формули до життя', 'formula-to-life/', '⚛', '#7653ff']
+    ['Від формули до життя', 'formula-to-life/', '⚛', '#7653ff'],
+    ['Хімічні головоломки', 'puzzles/', '◇', '#7653ff']
   ];
   const trigger = document.createElement('button');
   trigger.type = 'button';
@@ -26,7 +26,14 @@
   trigger.innerHTML = '<span aria-hidden="true">☰</span><span>Меню</span>';
   const actions = header.querySelector('[class$="header-actions"], .header-actions');
   if (actions) actions.prepend(trigger);
-  else header.insertBefore(trigger, header.querySelector('.theme-toggle'));
+  else {
+    const controls = document.createElement('div');
+    controls.className = 'header-actions';
+    const theme = header.querySelector('.theme-toggle');
+    header.append(controls);
+    controls.append(trigger);
+    if (theme) controls.append(theme);
+  }
   const dialog = document.createElement('dialog');
   dialog.id = 'hubMenu';
   dialog.className = 'hub-menu-dialog';

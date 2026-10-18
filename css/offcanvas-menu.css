@@ -1,5 +1,5 @@
 .hub-menu-trigger{display:inline-flex;align-items:center;gap:.55rem;margin-inline-start:auto;padding:.65rem .9rem;border:1px solid #d9dcef;border-radius:.75rem;background:var(--hub-menu-bg,#fff);color:var(--hub-menu-fg,#17243d);font:600 .95rem/1.3 Inter,sans-serif;cursor:pointer;min-height:44px}
-.hub-menu-trigger+button{margin-inline-start:.6rem}
+.hub-menu-trigger+button{margin-inline-start:0}
 .hub-menu-dialog{position:fixed;inset:0 0 0 auto;margin:0;height:100dvh;max-height:none;width:min(420px,92vw);max-width:none;box-sizing:border-box;padding:1.5rem;border:0;background:var(--hub-menu-bg,#fff);color:var(--hub-menu-fg,#17243d);box-shadow:-12px 0 50px #18213c26;overflow-y:auto;font-family:Inter,sans-serif}
 .hub-menu-dialog::backdrop{background:#101b3d80;backdrop-filter:blur(3px)}
 .hub-menu-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem}
@@ -15,5 +15,16 @@ html[data-theme=dark],body[data-theme=dark],body.dark,html.dark{--hub-menu-bg:#1
 @media(prefers-reduced-motion:no-preference){.hub-menu-dialog[open]{animation:hub-menu-enter .22s ease-out}@keyframes hub-menu-enter{from{transform:translateX(100%)}to{transform:translateX(0)}}}
 @media(max-width:600px){.hub-menu-dialog{padding:1.1rem}.hub-menu-trigger{padding:.55rem .65rem}}
 
-.site-header .shell:has(> .hub-menu-trigger){display:flex;align-items:center;gap:1rem}.site-header [class$="header-actions"]:has(.hub-menu-trigger){display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}.site-header .brand{min-width:0}.hub-menu-trigger{flex-shrink:0}
+.site-header .shell:has(> .hub-menu-trigger){display:flex;align-items:center;gap:1rem}.site-header [class$="header-actions"]:has(.hub-menu-trigger){display:flex;align-items:center;gap:.6rem;flex-wrap:nowrap;flex-shrink:0;margin-inline-start:auto}.site-header .brand{min-width:0}.hub-menu-trigger{flex-shrink:0}
 @media(max-width:600px){.site-header .shell:has(.hub-menu-trigger){flex-wrap:wrap}.site-header .shell:has(> .hub-menu-trigger) .brand{flex:1 1 12rem}.site-header .brand-copy small{overflow-wrap:anywhere}}
+
+/* Parent navigation already appears in the breadcrumbs below the header. */
+.site-header :is(.back-link,.hub-back,[class$="-back-link"]){display:none}
+.site-header [class$="header-actions"] .theme-toggle{flex:0 0 44px;width:44px;height:44px;min-height:44px;padding:0;justify-content:center}
+.site-header [class$="header-actions"] .hub-menu-trigger{margin-inline-start:0}
+.site-header .brand-mark{flex-shrink:0}
+@media(max-width:600px){
+  .site-header .shell:has([class$="header-actions"]){display:flex;flex-wrap:wrap;padding-block:12px}
+  .site-header .shell:has([class$="header-actions"]) .brand{flex:1 1 100%}
+  .site-header [class$="header-actions"]{margin-inline-start:auto}
+}
