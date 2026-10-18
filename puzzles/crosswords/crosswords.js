@@ -24,10 +24,27 @@ const CROSSWORDS = {
       { w: "БЮРЕТКА", r: 8, c: 2, d: "a", q: "Градуйована трубка з краном для дозованого додавання рідини під час титрування.", e: "Бюретка дає змогу контролювати об’єм доданого розчину." }
     ]
   };
+  Object.assign(CROSSWORDS, window.CHEMISTRY_CROSSWORD_SETS || {});
   const cwGrid = $("crosswordGrid");
   const cwSelect = $("crosswordSelect");
   const cwFeedback = $("cwFeedback");
   const saved = new Map();
+  const STORAGE_KEY = "clh-crosswords-v2";
+  function persistProgress(){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(Object.fromEntries(saved))); }
+    catch (_) { /* Розгадування працює навіть без доступу до сховища. */ }
+  }
+  function loadProgress(){
+    try {
+      const snapshot=JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      for(const key of Object.keys(CROSSWORDS)){
+        const value=snapshot?.[key];
+        if(value && typeof value==="object" && value.letters && typeof value.letters==="object"){
+          saved.set(key,{letters:value.letters,hints:Math.max(0,Number(value.hints)||0)});
+        }
+      }
+    } catch (_) { /* Пошкоджені або заборонені локальні дані ігноруються. */ }
+  }
   let cwKey = "basics";
   let cwWords, cwMap, cwInputs = new Map(), cwActive = 0, cwHints = 0, cwStart = new Map();
 
@@ -63,6 +80,7 @@ const CROSSWORDS = {
   function saveCrossword() {
     if (!cwWords) return;
     saved.set(cwKey, { letters: Object.fromEntries([...cwInputs].map(([k,v]) => [k,v.value])), hints: cwHints });
+    persistProgress();
   }
   function showClues() {
     for (const [direction,target] of [["a",$("cluesAcross")],["d",$("cluesDown")]]) {
@@ -95,6 +113,7 @@ const CROSSWORDS = {
     document.querySelectorAll(".clue-button").forEach(btn => {
       const i=Number(btn.dataset.word);
       btn.classList.toggle("is-active",i===cwActive);
+      btn.setAttribute("aria-pressed",String(i===cwActive));
       btn.classList.toggle("is-solved",solved[i]);
     });
     $("cwSelected").textContent=`${word.number} ${word.d==="a" ? "по горизонталі" : "по вертикалі"}: ${word.q}`;
@@ -176,6 +195,7 @@ const CROSSWORDS = {
     input.value=normalized;
     clearErrors();
     repaint();
+    saveCrossword();
     if(normalized) navigateWithinWord(input.dataset.key,1);
   });
   cwGrid.addEventListener("keydown",event=>{
@@ -190,6 +210,7 @@ const CROSSWORDS = {
         const focused=document.activeElement;
         if(focused instanceof HTMLInputElement && focused!==input){focused.value="";clearErrors();repaint();}
       }
+      saveCrossword();
       return;
     }
     const dir={"ArrowUp":[-1,0,"d"],"ArrowDown":[1,0,"d"],"ArrowLeft":[0,-1,"a"],"ArrowRight":[0,1,"a"]}[event.key];
@@ -230,17 +251,18 @@ const CROSSWORDS = {
     const i=keys.findIndex((k,j)=>letter(k)!==w.w[j]);
     if(i<0){notify(cwFeedback,"Це слово вже розгадано правильно.","success");return;}
     const input=cwInputs.get(keys[i]);input.value=w.w[i];
-    cwHints++;clearErrors();repaint();
+    cwHints++;clearErrors();repaint();saveCrossword();
     notify(cwFeedback,`Відкрито одну літеру у слові №${w.number}. Спробуйте продовжити самостійно.`);
     input.focus();
   });
   $("cwReset").addEventListener("click",()=>{
-    saved.delete(cwKey);renderCrossword();
+    saved.delete(cwKey);persistProgress();renderCrossword();
   });
   cwSelect.addEventListener("change",()=>{
     saveCrossword();cwKey=cwSelect.value;renderCrossword();
   });
 
   
+loadProgress();
 renderCrossword();
 })();
