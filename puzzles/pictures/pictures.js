@@ -4,9 +4,8 @@ const $=id=>document.getElementById(id);
 const PICTURES=[
   {
     "word": "КОЛБА",
-    "image": "photos/01_flask.jpg",
-    "alt": "Справжня конічна скляна лабораторна посудина з вузькою шийкою на лабораторному столі.",
-    "source": "https://commons.wikimedia.org/wiki/File:Erlenmeyer_flask.jpg",
+    "image": "generated/01_flask.webp",
+    "alt": "Конічна скляна лабораторна посудина з невеликою кількістю синьої рідини на світлому тлі.",
     "extras": "РІТ",
     "prompt": "Як називається лабораторний посуд на малюнку?",
     "hint": "Скляна посудина з вузькою шийкою і широкою нижньою частиною.",
@@ -14,9 +13,8 @@ const PICTURES=[
   },
   {
     "word": "КОРОЗІЯ",
-    "image": "photos/02_corrosion.jpg",
-    "alt": "Крупний план металу з нерівними рудо-коричневими ділянками та слідами руйнування поверхні.",
-    "source": "https://commons.wikimedia.org/wiki/File:Rusty_Nail.jpg",
+    "image": "generated/02_corrosion.webp",
+    "alt": "Іржавий залізний цвях із шорсткою рудо-коричневою поверхнею на світлому тлі.",
     "extras": "МЛТ",
     "prompt": "Який процес відбувається з металом?",
     "hint": "Руйнування металу через взаємодію із середовищем.",
@@ -24,9 +22,8 @@ const PICTURES=[
   },
   {
     "word": "МІДЬ",
-    "image": "photos/03_copper.jpg",
-    "alt": "Реальна котушка намотаного тонкого червонувато-рожевого металевого дроту.",
-    "source": "https://commons.wikimedia.org/wiki/File:Kupferlackdraht_rolle.jpg",
+    "image": "generated/03_copper.webp",
+    "alt": "Моток неізольованого мідного дроту червонуватого металевого кольору.",
     "extras": "РОА",
     "prompt": "Який метал представлений на зображенні?",
     "hint": "Цей метал добре проводить електричний струм і має характерний червонуватий колір.",
@@ -34,9 +31,8 @@ const PICTURES=[
   },
   {
     "word": "КРИСТАЛ",
-    "image": "photos/04_crystal.jpg",
-    "alt": "Природні фіолетові мінеральні утворення з виразними плоскими гранями на темному тлі.",
-    "source": "https://commons.wikimedia.org/wiki/File:Amethyst_crystal.jpg",
+    "image": "generated/04_crystal.webp",
+    "alt": "Природний фіолетовий аметист із виразними гострими гранями на світлому тлі.",
     "extras": "ЕНО",
     "prompt": "Як називається тверде тіло з упорядкованою внутрішньою будовою?",
     "hint": "Його частинки утворюють періодично впорядковану структуру.",
@@ -44,9 +40,8 @@ const PICTURES=[
   },
   {
     "word": "ІНДИКАТОР",
-    "image": "photos/05_indicator.jpg",
-    "alt": "Рулон тестового паперу з круговою кольоровою шкалою кислотності від 1 до 14.",
-    "source": "https://commons.wikimedia.org/wiki/File:Universal_indicator_paper.jpg",
+    "image": "generated/05_indicator.webp",
+    "alt": "Індикаторна смужка зі зміною кольору поруч із невеликою склянкою з розчином.",
     "extras": "ЬСЛ",
     "prompt": "Як називається засіб, що змінює забарвлення залежно від кислотності розчину?",
     "hint": "Його часто використовують для визначення реакції середовища.",
@@ -54,9 +49,8 @@ const PICTURES=[
   },
   {
     "word": "ОСАД",
-    "image": "photos/06_precipitate.jpg",
-    "alt": "Реальний хімічний дослід: яскраво-жовта нерозчинна речовина утворює хмароподібні скупчення в пробірці з рідиною.",
-    "source": "https://commons.wikimedia.org/wiki/File:Lead_(II)_iodide_precipitating_out_of_solution.JPG",
+    "image": "generated/06_precipitate.webp",
+    "alt": "Пробірка з жовтою нерозчинною речовиною на дні та частинками в рідині.",
     "extras": "ТКЛ",
     "prompt": "Що утворилося на дні посудини?",
     "hint": "Тверда фаза, яка виділилася з рідкого розчину.",
@@ -64,9 +58,8 @@ const PICTURES=[
   },
   {
     "word": "ГОРІННЯ",
-    "image": "photos/07_combustion.jpg",
-    "alt": "Реальне жовто-помаранчеве полум’я з блакитною основою над лабораторним газовим пальником.",
-    "source": "https://commons.wikimedia.org/wiki/File:Burning_Bunsen_burner.jpg",
+    "image": "generated/07_combustion.webp",
+    "alt": "Лабораторний газовий пальник із полум’ям, яке має блакитну основу та теплі верхні відтінки.",
     "extras": "КСА",
     "prompt": "Який хімічний процес ілюструє полум’я?",
     "hint": "Швидкий екзотермічний процес взаємодії з окисником.",
@@ -129,9 +122,9 @@ function renderAnswer(){
 function render(){
  const item=PICTURES[index];
  art.replaceChildren();const img=document.createElement("img");
- img.src=item.image;img.alt=item.alt;img.width=1000;img.height=734;
+ img.src=item.image;img.alt=item.alt;img.width=1200;img.height=900;
  img.loading="eager";img.decoding="async";img.className="picture-art-image";
- img.addEventListener("error",()=>{if(art.firstChild!==img)return;const link=document.createElement("a");link.href=item.source;link.target="_blank";link.rel="noopener noreferrer";link.className="picture-image-fallback";link.textContent="Не вдалося завантажити фото. Переглянути оригінал у Wikimedia Commons ↗";art.replaceChildren(link);});
+ img.addEventListener("error",()=>{if(art.firstChild!==img)return;const message=document.createElement("p");message.className="picture-image-fallback";message.textContent="Не вдалося завантажити зображення. Оновіть сторінку, щоб спробувати ще раз.";art.replaceChildren(message);});
  art.append(img);
  $("picturePrompt").textContent=item.prompt;
  $("picProgress").textContent=`Завдання ${index+1} із ${PICTURES.length}`;
