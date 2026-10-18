@@ -4,8 +4,9 @@ const $=id=>document.getElementById(id);
 const PICTURES=[
   {
     "word": "КОЛБА",
-    "image": "images/01_flask.jpg",
-    "alt": "Прозора лабораторна посудина з вузькою шийкою та синьою рідиною.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Erlenmeyer_flask.jpg/960px-Erlenmeyer_flask.jpg",
+    "alt": "Справжня конічна скляна лабораторна посудина з вузькою шийкою на лабораторному столі.",
+    "source": "https://commons.wikimedia.org/wiki/File:Erlenmeyer_flask.jpg",
     "extras": "РІТ",
     "prompt": "Як називається лабораторний посуд на малюнку?",
     "hint": "Скляна посудина з вузькою шийкою і широкою нижньою частиною.",
@@ -13,8 +14,9 @@ const PICTURES=[
   },
   {
     "word": "КОРОЗІЯ",
-    "image": "images/02_corrosion.jpg",
-    "alt": "Металевий цвях із нерівним рудо-коричневим шаром на поверхні.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Rusty_Nail.jpg",
+    "alt": "Крупний план металу з нерівними рудо-коричневими ділянками та слідами руйнування поверхні.",
+    "source": "https://commons.wikimedia.org/wiki/File:Rusty_Nail.jpg",
     "extras": "МЛТ",
     "prompt": "Який процес відбувається з металом?",
     "hint": "Руйнування металу через взаємодію із середовищем.",
@@ -22,8 +24,9 @@ const PICTURES=[
   },
   {
     "word": "МІДЬ",
-    "image": "images/03_copper.jpg",
-    "alt": "Блискуча бухта дроту червонувато-мідного кольору.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Kupferlackdraht_rolle.jpg",
+    "alt": "Реальна котушка намотаного тонкого червонувато-рожевого металевого дроту.",
+    "source": "https://commons.wikimedia.org/wiki/File:Kupferlackdraht_rolle.jpg",
     "extras": "РОА",
     "prompt": "Який метал представлений на зображенні?",
     "hint": "Цей метал добре проводить електричний струм і має характерний червонуватий колір.",
@@ -31,8 +34,9 @@ const PICTURES=[
   },
   {
     "word": "КРИСТАЛ",
-    "image": "images/04_crystal.jpg",
-    "alt": "Група фіолетових кристалів із плоскими гранями та гострими вершинами.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Amethyst_crystal.jpg",
+    "alt": "Природні фіолетові мінеральні утворення з виразними плоскими гранями на темному тлі.",
+    "source": "https://commons.wikimedia.org/wiki/File:Amethyst_crystal.jpg",
     "extras": "ЕНО",
     "prompt": "Як називається тверде тіло з упорядкованою внутрішньою будовою?",
     "hint": "Його частинки утворюють періодично впорядковану структуру.",
@@ -40,8 +44,9 @@ const PICTURES=[
   },
   {
     "word": "ІНДИКАТОР",
-    "image": "images/05_indicator.jpg",
-    "alt": "Індикаторна смужка з кольоровими ділянками поряд із двома розчинами різних кольорів.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Universal_indicator_paper.jpg",
+    "alt": "Рулон тестового паперу з круговою кольоровою шкалою кислотності від 1 до 14.",
+    "source": "https://commons.wikimedia.org/wiki/File:Universal_indicator_paper.jpg",
     "extras": "ЬСЛ",
     "prompt": "Як називається засіб, що змінює забарвлення залежно від кислотності розчину?",
     "hint": "Його часто використовують для визначення реакції середовища.",
@@ -49,8 +54,9 @@ const PICTURES=[
   },
   {
     "word": "ОСАД",
-    "image": "images/06_precipitate.jpg",
-    "alt": "Посудина з рідиною та жовтими твердими частинками, що осідають на дні.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/Lead_%28II%29_iodide_precipitating_out_of_solution.JPG",
+    "alt": "Реальний хімічний дослід: яскраво-жовта нерозчинна речовина утворює хмароподібні скупчення в пробірці з рідиною.",
+    "source": "https://commons.wikimedia.org/wiki/File:Lead_(II)_iodide_precipitating_out_of_solution.JPG",
     "extras": "ТКЛ",
     "prompt": "Що утворилося на дні посудини?",
     "hint": "Тверда фаза, яка виділилася з рідкого розчину.",
@@ -58,8 +64,9 @@ const PICTURES=[
   },
   {
     "word": "ГОРІННЯ",
-    "image": "images/07_combustion.jpg",
-    "alt": "Жовто-помаранчеве полум’я з блакитною основою над лабораторним пальником.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Burning_Bunsen_burner.jpg",
+    "alt": "Реальне жовто-помаранчеве полум’я з блакитною основою над лабораторним газовим пальником.",
+    "source": "https://commons.wikimedia.org/wiki/File:Burning_Bunsen_burner.jpg",
     "extras": "КСА",
     "prompt": "Який хімічний процес ілюструє полум’я?",
     "hint": "Швидкий екзотермічний процес взаємодії з окисником.",
@@ -123,7 +130,9 @@ function render(){
  const item=PICTURES[index];
  art.replaceChildren();const img=document.createElement("img");
  img.src=item.image;img.alt=item.alt;img.width=1000;img.height=734;
- img.loading="eager";img.decoding="async";img.className="picture-art-image";art.append(img);
+ img.loading="eager";img.decoding="async";img.className="picture-art-image";
+ img.addEventListener("error",()=>{if(art.firstChild!==img)return;const link=document.createElement("a");link.href=item.source;link.target="_blank";link.rel="noopener noreferrer";link.className="picture-image-fallback";link.textContent="Не вдалося завантажити фото. Переглянути оригінал у Wikimedia Commons ↗";art.replaceChildren(link);});
+ art.append(img);
  $("picturePrompt").textContent=item.prompt;
  $("picProgress").textContent=`Завдання ${index+1} із ${PICTURES.length}`;
  $("picScore").textContent=`Розгадано: ${solved.size} із ${PICTURES.length}`;

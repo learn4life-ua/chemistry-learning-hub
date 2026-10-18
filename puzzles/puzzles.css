@@ -128,3 +128,12 @@ button.puzzle-mode.is-active{background:color-mix(in srgb,var(--primary) 6%,var(
 .picture-slots span.is-filled{background:color-mix(in srgb,var(--primary) 8%,var(--surface))}
 .letter-bank button:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 @media(max-width:700px){.picture-steps-wrap{padding:12px;gap:10px}.picture-steps{width:100%}.picture-step{flex:1 1 36px}.picture-art-frame{min-height:200px}.picture-art-frame .picture-art-image{max-height:310px}}
+
+/* Фото у вправі «Відгадай за малюнком» */
+.picture-image-fallback{display:block;padding:25px;text-align:center;max-width:360px;line-height:1.65;color:var(--primary-strong);font-weight:650;text-decoration:underline}
+.picture-credits{margin:22px 0 0;border:1px solid var(--line);border-radius:13px;background:var(--surface);padding:12px 18px;color:var(--muted);font-size:.78rem}
+.picture-credits summary{cursor:pointer;font-size:.83rem;font-weight:700;color:var(--ink);list-style-position:inside}
+.picture-credits p{margin:12px 0 8px;line-height:1.6}
+.picture-credits ol{margin:8px 0 3px;padding-left:23px;display:grid;gap:6px;line-height:1.55}
+.picture-credits a{color:var(--primary-strong);text-decoration:underline;text-underline-offset:2px}
+.picture-credits a:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
