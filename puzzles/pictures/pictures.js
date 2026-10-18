@@ -4,7 +4,7 @@ const $=id=>document.getElementById(id);
 const PICTURES=[
   {
     "word": "КОЛБА",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Erlenmeyer_flask.jpg/960px-Erlenmeyer_flask.jpg",
+    "image": "photos/01_flask.jpg",
     "alt": "Справжня конічна скляна лабораторна посудина з вузькою шийкою на лабораторному столі.",
     "source": "https://commons.wikimedia.org/wiki/File:Erlenmeyer_flask.jpg",
     "extras": "РІТ",
@@ -14,7 +14,7 @@ const PICTURES=[
   },
   {
     "word": "КОРОЗІЯ",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Rusty_Nail.jpg",
+    "image": "photos/02_corrosion.jpg",
     "alt": "Крупний план металу з нерівними рудо-коричневими ділянками та слідами руйнування поверхні.",
     "source": "https://commons.wikimedia.org/wiki/File:Rusty_Nail.jpg",
     "extras": "МЛТ",
@@ -24,7 +24,7 @@ const PICTURES=[
   },
   {
     "word": "МІДЬ",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Kupferlackdraht_rolle.jpg",
+    "image": "photos/03_copper.jpg",
     "alt": "Реальна котушка намотаного тонкого червонувато-рожевого металевого дроту.",
     "source": "https://commons.wikimedia.org/wiki/File:Kupferlackdraht_rolle.jpg",
     "extras": "РОА",
@@ -34,7 +34,7 @@ const PICTURES=[
   },
   {
     "word": "КРИСТАЛ",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Amethyst_crystal.jpg",
+    "image": "photos/04_crystal.jpg",
     "alt": "Природні фіолетові мінеральні утворення з виразними плоскими гранями на темному тлі.",
     "source": "https://commons.wikimedia.org/wiki/File:Amethyst_crystal.jpg",
     "extras": "ЕНО",
@@ -44,7 +44,7 @@ const PICTURES=[
   },
   {
     "word": "ІНДИКАТОР",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Universal_indicator_paper.jpg",
+    "image": "photos/05_indicator.jpg",
     "alt": "Рулон тестового паперу з круговою кольоровою шкалою кислотності від 1 до 14.",
     "source": "https://commons.wikimedia.org/wiki/File:Universal_indicator_paper.jpg",
     "extras": "ЬСЛ",
@@ -54,7 +54,7 @@ const PICTURES=[
   },
   {
     "word": "ОСАД",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/Lead_%28II%29_iodide_precipitating_out_of_solution.JPG",
+    "image": "photos/06_precipitate.jpg",
     "alt": "Реальний хімічний дослід: яскраво-жовта нерозчинна речовина утворює хмароподібні скупчення в пробірці з рідиною.",
     "source": "https://commons.wikimedia.org/wiki/File:Lead_(II)_iodide_precipitating_out_of_solution.JPG",
     "extras": "ТКЛ",
@@ -64,7 +64,7 @@ const PICTURES=[
   },
   {
     "word": "ГОРІННЯ",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Burning_Bunsen_burner.jpg",
+    "image": "photos/07_combustion.jpg",
     "alt": "Реальне жовто-помаранчеве полум’я з блакитною основою над лабораторним газовим пальником.",
     "source": "https://commons.wikimedia.org/wiki/File:Burning_Bunsen_burner.jpg",
     "extras": "КСА",
