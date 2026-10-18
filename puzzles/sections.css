@@ -40,3 +40,8 @@ html[data-theme="dark"] .puzzles-page{--primary:#65d0d0;--primary-strong:#86e5e3
 @media(max-width:1050px){.puzzle-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quad-visual{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.puzzles-page .puzzle-content{padding:30px 0 44px}.puzzle-catalog-grid{grid-template-columns:1fr}.puzzle-catalog-card{min-height:165px}.quad-visual{gap:8px}.quad-visual figure{padding:7px}.rebus-visual{gap:7px;padding:18px 11px}.rebus-token{min-height:54px;padding:10px 12px}.puzzle-other-games>div{display:grid;width:100%}}
 @media(prefers-reduced-motion:reduce){.puzzle-catalog-card{transition:none}.puzzle-catalog-card:hover{transform:none}}
+
+/* Ілюстровані ребуси, 2026-10-18 */
+.rebus-visual{display:grid;place-items:center;min-height:0;gap:0;padding:clamp(5px,1.4vw,14px);background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.rebus-visual img{display:block;width:100%;max-width:1100px;height:auto;aspect-ratio:20 / 7;object-fit:contain;border-radius:12px}
+@media(max-width:700px){.rebus-visual{padding:4px;border-radius:12px}.rebus-visual img{border-radius:9px}}
