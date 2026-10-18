@@ -2,19 +2,19 @@
   'use strict';
   const tasks = [
     { word: 'ВОДА', files: ['water_drop', 'water_snow', 'water_ice', 'water_lake'],
-      alts: ['Прозора крапля на світлій поверхні', 'Свіжий білий сніг', 'Прозорі кубики льоду', 'Спокійне чисте озеро'],
+      alts: ['Прозора крапля води на світлій поверхні', 'Свіжий білий сніг', 'Прозорі кубики льоду', 'Спокійне чисте озеро'],
       hint: 'Речовина з формулою H₂O.', fact: 'Крапля й озеро - рідка вода, а сніг і лід - вода у твердому стані.' },
     { word: 'ВУГЛЕЦЬ', files: ['carbon_diamond', 'carbon_graphite', 'carbon_coal', 'carbon_charcoal'],
       alts: ['Прозорий огранований алмаз', 'Темно-сірий графітовий стрижень', 'Шматки кам’яного вугілля', 'Пористі шматки деревного вугілля'],
       hint: 'Хімічний елемент із символом C.', fact: 'Алмаз і графіт - алотропні форми вуглецю. Кам’яне та деревне вугілля містять багато вуглецю, але не є чистими речовинами.' },
     { word: 'ЗАЛІЗО', files: ['iron_nail', 'iron_horseshoe', 'iron_chain', 'iron_rust'],
-      alts: ['Металевий цвях', 'Металева підкова', 'Короткий металевий ланцюг', 'Болт з оранжево-бурою іржею'],
+      alts: ['Металевий цвях', 'Металева підкова', 'Короткий металевий ланцюг', 'Металевий болт, укритий іржею'],
       hint: 'Метал із символом Fe.', fact: 'Цвяхи, підкови й ланцюги часто виготовляють зі сталі - сплаву на основі заліза. Іржа утворюється під час корозії заліза за участю води та кисню.' },
     { word: 'СКЛО', files: ['glass_window', 'glass_flask', 'glass_bottle', 'glass_beaker'],
-      alts: ['Віконна шибка з відблисками', 'Прозора лабораторна колба', 'Порожня прозора пляшка', 'Порожня прозора склянка'],
+      alts: ['Віконна шибка з відблисками', 'Прозора скляна лабораторна колба', 'Порожня прозора скляна пляшка', 'Порожня прозора склянка'],
       hint: 'Прозорий крихкий матеріал, із якого виготовляють ці предмети.', fact: 'Віконні шибки, колби, пляшки й склянки виготовляють зі скла. Звичайне скло - неорганічний аморфний матеріал.' },
     { word: 'СІЛЬ', files: ['salt_crystals', 'salt_shaker', 'salt_sea_salt', 'salt_rock_salt'],
-      alts: ['Купка білих кристалів', 'Сільничка з білими кристалами', 'Великі білі кристали в мисочці', 'Світлі шматки мінералу галіту'],
+      alts: ['Купка білих кристалів солі', 'Сільничка з білими кристалами', 'Великі білі кристали морської солі в мисочці', 'Світлі шматки мінералу галіту'],
       hint: 'У побуті так називають хлорид натрію, NaCl.', fact: 'Кухонна, морська й кам’яна сіль складаються переважно із хлориду натрію. Природний мінерал NaCl називають галітом.' },
     { word: 'РОЗЧИН', files: ['solution_sugar_water', 'solution_salt_water', 'solution_blue_lab', 'solution_effervescent'],
       alts: ['Цукор розчиняють у воді, перемішуючи ложкою', 'Безбарвна рідина в лабораторній склянці', 'Однорідна синя рідина в лабораторній склянці', 'Шипуча таблетка у воді з бульбашками газу'],
@@ -49,7 +49,7 @@
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'four-photo';
-      button.setAttribute('aria-label', `Збільшити фото ${pictureIndex + 1}: ${task.alts[pictureIndex]}`);
+      button.setAttribute('aria-label', `Збільшити зображення ${pictureIndex + 1}: ${task.alts[pictureIndex]}`);
       const img = document.createElement('img');
       img.src = `./images/${file}.webp`;
       img.alt = task.alts[pictureIndex];
@@ -75,7 +75,7 @@
     });
     if (state.solved) message(`Правильно: ${task.word}. ${task.fact}`, 'success');
     else if (state.hinted) message(`Підказка: ${task.hint}`);
-    else message('Що спільного між цими чотирма фотографіями?');
+    else message('Що спільного між цими чотирма зображеннями?');
     $('fourCompletion').hidden = score() !== tasks.length;
     if (focus) {
       if (!state.solved) input.focus({ preventScroll: true });
@@ -107,7 +107,7 @@
       if (score() === tasks.length) $('fourRestart').focus({ preventScroll: true });
       else $('extraNext').disabled ? $('fourSteps').children[states.findIndex(state => !state.solved)].focus({ preventScroll: true }) : $('extraNext').focus({ preventScroll: true });
     } else {
-      message('Спробуйте ще раз. Подумайте про речовину, матеріал або тип суміші, що об’єднує фото.', 'error');
+      message('Спробуйте ще раз. Подумайте про речовину, матеріал або тип суміші, що об’єднує зображення.', 'error');
       input.setAttribute('aria-invalid', 'true'); input.focus();
     }
   });
