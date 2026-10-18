@@ -1,0 +1,13 @@
+/* Spacious cards follow the Trainers catalog, with a playful puzzle accent. */
+.puzzles-page .puzzle-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.puzzles-page .puzzle-catalog-card{position:relative;isolation:isolate;overflow:hidden;min-height:264px;padding:28px;border-radius:22px;background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 4%,var(--surface)),var(--surface) 65%);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.puzzles-page .puzzle-catalog-card:hover{border-color:color-mix(in srgb,var(--primary) 45%,var(--line));box-shadow:0 16px 38px rgb(48 33 100 / .12)}
+.puzzles-page .puzzle-catalog-number{position:absolute;z-index:-1;right:18px;bottom:-22px;margin:0;font-size:8rem;font-weight:800;line-height:1;letter-spacing:-.07em;color:color-mix(in srgb,var(--primary) 8%,transparent);pointer-events:none;user-select:none}
+.puzzle-card-kicker{order:0;display:inline-flex;align-items:center;min-height:28px;padding:5px 10px;margin-bottom:22px;border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--primary-soft) 50%,var(--surface));color:var(--primary-strong);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.puzzles-page .puzzle-catalog-card h3{order:1;max-width:90%;font-size:clamp(1.25rem,2vw,1.55rem);line-height:1.25;margin:0 0 10px}
+.puzzles-page .puzzle-catalog-card p{order:2;max-width:88%;margin:0;color:var(--muted);font-size:.95rem;line-height:1.65}
+.puzzle-card-example{order:3;display:block;margin-top:18px;padding-left:12px;border-left:2px solid color-mix(in srgb,var(--primary) 35%,var(--line));color:var(--muted);font-size:.79rem;line-height:1.5}
+.puzzles-page .puzzle-catalog-card .card-link{order:4;display:flex;align-items:center;gap:12px;padding-top:24px;font-size:.85rem;font-weight:750}
+@media(max-width:760px){.puzzles-page .puzzle-catalog-grid{grid-template-columns:minmax(0,1fr)}.puzzles-page .puzzle-catalog-card{min-height:244px;padding:24px}}
+@media(max-width:480px){.puzzles-page .puzzle-catalog-card{min-height:0;padding:22px}.puzzles-page .puzzle-catalog-card h3,.puzzles-page .puzzle-catalog-card p{max-width:100%}.puzzles-page .puzzle-catalog-number{font-size:6rem;bottom:-14px;right:12px}.puzzle-card-kicker{margin-bottom:18px}}
+@media(prefers-reduced-motion:reduce){.puzzles-page .puzzle-catalog-card{transition:none}.puzzles-page .puzzle-catalog-card:hover{transform:none}}
