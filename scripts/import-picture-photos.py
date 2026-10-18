@@ -36,12 +36,12 @@ updated=PAGE.read_text(encoding='utf-8')
 for term,source,filename in PHOTOS:
  api='https://commons.wikimedia.org/w/api.php?'+urllib.parse.urlencode({
   'action':'query','format':'json','formatversion':2,
-  'titles':'File:'+source,'prop':'imageinfo','iiprop':'url'})
+  'titles':'File:'+source,'prop':'imageinfo','iiprop':'url','iiurlwidth':800})
  info=json.loads(fetch(api))
  pages=info['query']['pages']
  if not pages or 'imageinfo' not in pages[0]:
   raise RuntimeError('No image found: '+source)
- direct=pages[0]['imageinfo'][0]['url']
+ direct=pages[0]['imageinfo'][0].get('thumburl') or pages[0]['imageinfo'][0]['url']
  print('Downloading',term,source,flush=True)
  raw=fetch(direct)
  with Image.open(io.BytesIO(raw)) as im:
@@ -54,5 +54,6 @@ for term,source,filename in PHOTOS:
  updated,count=pattern.subn(lambda m:m.group(1)+'photos/'+filename+m.group(2),updated)
  if count!=1:raise RuntimeError('Missing quiz item: '+term)
  print('Saved',filename,(DEST/filename).stat().st_size,flush=True)
+ time.sleep(6)
 PAGE.write_text(updated,encoding='utf-8')
 print('OK: 7 photographs copied locally. No runtime Wikimedia dependency.',flush=True)
