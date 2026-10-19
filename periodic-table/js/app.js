@@ -1,4 +1,6 @@
-import { applyFilters, clearSelection } from './table.js?v=11';
+import { applyFilters, clearSelection } from './table.js?v=12';
+import { initExplore } from './explore.js?v=1';
+import { initTrainer } from './trainer.js?v=1';
 
 const modeButtons = [...document.querySelectorAll('.mode-button')];
 const viewPanels = [...document.querySelectorAll('[data-view-panel]')];
@@ -37,7 +39,9 @@ function refreshFilters() {
 }
 
 function openView(view) {
+  if (!viewPanels.some(panel => panel.dataset.viewPanel === view)) return;
   modeButtons.forEach(item => item.classList.toggle('is-active', item.dataset.view === view));
+  modeButtons.forEach(item => item.setAttribute('aria-pressed', String(item.dataset.view === view)));
   viewPanels.forEach(panel => panel.classList.toggle('is-hidden', panel.dataset.viewPanel !== view));
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -96,3 +100,6 @@ document.querySelector('[data-jump-filter="block"]')?.addEventListener('click', 
 
 resetControls();
 refreshFilters();
+modeButtons.forEach(item => item.setAttribute('aria-pressed', String(item.classList.contains('is-active'))));
+initExplore();
+initTrainer();
