@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/guide-v10.css?v=10">
   <link rel="stylesheet" href="../css/theme.css?v=1">
   <link rel="stylesheet" href="css/hub.css?v=1">
+  <link rel="stylesheet" href="css/learning.css?v=1">
   <link rel="icon" href="../assets/favicon.ico?v=20261014-atom" sizes="any">
   <link rel="icon" type="image/png" href="../assets/favicon.png?v=20261014-atom" sizes="192x192">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20261014-atom">
@@ -138,12 +139,14 @@
 
     <section class="workspace shell is-hidden" data-view-panel="explore">
       <div class="section-heading"><div><p class="eyebrow">Режим дослідження</p><h1 class="table-title">Досліджуй Періодичну систему</h1></div></div>
-      <div class="explore-card"><p>Тут додамо підсвічування груп, періодів, родин елементів, електронних блоків і закономірностей зміни властивостей.</p></div>
+      <p class="learning-lead">Знаходьте спільне, порівнюйте елементи та відкривайте закономірності крок за кроком.</p>
+      <div id="exploreApp"></div>
     </section>
 
     <section class="workspace shell is-hidden" data-view-panel="trainer">
       <div class="section-heading"><div><p class="eyebrow">Тренажер</p><h1 class="table-title">Тренуйтеся без оцінок і реєстрації</h1></div></div>
-      <div id="trainerApp" class="trainer-card"><p>Наступним етапом тут з’являться випадкові навчальні завдання з миттєвим поясненням відповіді.</p></div>
+      <div id="trainerApp" class="trainer-card"></div>
+      <noscript>Для інтерактивних досліджень і тренування потрібен JavaScript.</noscript>
     </section>
 
     <section class="workspace shell guide-workspace is-hidden" data-view-panel="guide">
@@ -262,6 +265,6 @@
 
   <footer class="site-footer hub-footer-minimal"><div class="shell hub-footer-minimal-inner"><div class="hub-footer-identity"><a href="../">Chemistry Learning Hub</a><span>ВСП «Аграрно-економічний фаховий коледж ПДАУ»</span></div><a class="hub-footer-up" href="#" aria-label="Повернутися вгору сторінки" title="Вгору"><span aria-hidden="true">↑</span></a></div></footer>
   <script src="../js/theme.js?v=20261014-menu3" defer></script>
-  <script type="module" src="js/app.js?v=9"></script>
+  <script type="module" src="js/app.js?v=10"></script>
 </body>
 </html>

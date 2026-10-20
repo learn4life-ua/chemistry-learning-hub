@@ -1,23 +1,4 @@
-import { elements, categoryLabels } from '../data/elements.js?v=8';
-import { elementDetails } from '../data/details.js?v=8';
-
-const detailsByNumber = new Map(elementDetails.map(item => [item.n, item]));
-
-const elementCorrections = new Map([
-  [28, { name: 'Нікол' }],
-  [40, { mass: '91,222' }],
-  [64, { mass: '157,249' }]
-]);
-
-function normalizeMass(mass) {
-  return /^\(\d+\)$/.test(mass) ? `[${mass.slice(1, -1)}]` : mass;
-}
-
-function normalizeElement(element) {
-  const correction = elementCorrections.get(element.number) || {};
-  const merged = { ...element, ...correction };
-  return { ...merged, mass: normalizeMass(merged.mass) };
-}
+import { elements, categoryLabels, detailsByNumber, normalizeElement } from './learning-data.js?v=1';
 
 const table = document.querySelector('#periodicTable');
 const panel = document.querySelector('#elementPanel');
