@@ -73,3 +73,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .mode-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; }
   .periodic-scroll { margin-inline: 0; padding-inline: 4px; }
 }
+
+/* Navigation cells identify the detached rows without looking selected. */
+.series-jump {
+  background: var(--surface-soft);
+  color: var(--muted);
+  border: 1px dashed var(--line);
+}
+.series-jump .element-symbol { font-size: 1rem; }
+.series-jump .series-jump-name {
+  font-size: .45rem;
+  line-height: 1.15;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  overflow: visible;
+}

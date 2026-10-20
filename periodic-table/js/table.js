@@ -63,11 +63,13 @@ function createElementButton(element, position) {
 function createSeriesPlaceholder(text, period, category) {
   const button = document.createElement('button');
   button.type = 'button';
-  button.className = `element series-jump cat-${category}`;
+  button.className = 'element series-jump';
+  const name = categoryLabels[category];
   button.style.gridColumn = '4';
   button.style.gridRow = String(period + 1);
-  button.innerHTML = `<span class="element-number">${text}</span><span class="element-symbol">↘</span><span class="element-name">див. нижче</span>`;
-  button.setAttribute('aria-label', `${text}, ряд елементів винесено нижче`);
+  button.innerHTML = `<span class="element-number">${text}</span><span class="element-symbol" aria-hidden="true">↘</span><span class="element-name series-jump-name">${name}</span>`;
+  button.setAttribute('aria-label', `${name}, елементи ${text}. Перейти до ряду нижче`);
+  button.title = `${name} (${text}). Перейти до ряду нижче`;
   button.addEventListener('click', () => {
     const target = table.querySelector(`.element[data-number="${period === 6 ? 57 : 89}"]`);
     target?.focus();
