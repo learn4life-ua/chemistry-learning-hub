@@ -67,7 +67,7 @@ function createSeriesPlaceholder(text, period, category) {
   const name = categoryLabels[category];
   button.style.gridColumn = '4';
   button.style.gridRow = String(period + 1);
-  button.innerHTML = `<span class="element-number">${text}</span><span class="element-symbol" aria-hidden="true">↘</span><span class="element-name series-jump-name">${name}</span>`;
+  button.innerHTML = `<span class="element-number">${text}</span><span class="element-symbol" aria-hidden="true">↘</span><span class="element-name series-jump-name">${name.replace('ноїди', '&shy;ноїди')}</span>`;
   button.setAttribute('aria-label', `${name}, елементи ${text}. Перейти до ряду нижче`);
   button.title = `${name} (${text}). Перейти до ряду нижче`;
   button.addEventListener('click', () => {

@@ -1,4 +1,4 @@
-import { applyFilters, clearSelection } from './table.js?v=13';
+import { applyFilters, clearSelection } from './table.js?v=14';
 import { initExplore } from './explore.js?v=1';
 import { initTrainer } from './trainer.js?v=1';
 
