@@ -63,7 +63,7 @@ function createElementButton(element, position) {
 function createSeriesPlaceholder(text, period, category) {
   const button = document.createElement('button');
   button.type = 'button';
-  button.className = 'element series-jump';
+  button.className = `element series-jump cat-${category}`;
   const name = categoryLabels[category];
   button.style.gridColumn = '4';
   button.style.gridRow = String(period + 1);
@@ -349,7 +349,9 @@ export function applyFilters({ query = '', type = 'all', group = '', period = ''
       || (type === 'metals' && metalCategories.has(category))
       || (type === 'nonmetals' && nonmetalCategories.has(category));
 
-    const groupMatch = !group || button.dataset.group === group;
+    // The detached f-series use a placeholder group in the source data.
+    // Match the main-table columns, consistently with Explore mode.
+    const groupMatch = !group || (button.dataset.block !== 'f' && button.dataset.group === group);
     const periodMatch = !period || button.dataset.period === period;
     const blockMatch = !block || button.dataset.block === block;
     const match = queryMatch && typeMatch && groupMatch && periodMatch && blockMatch;

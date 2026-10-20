@@ -74,11 +74,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .periodic-scroll { margin-inline: 0; padding-inline: 4px; }
 }
 
-/* Navigation cells identify the detached rows without looking selected. */
+/* Navigation cells keep their series colours and named jump labels. */
 .series-jump {
-  background: var(--surface-soft);
-  color: var(--muted);
-  border: 1px dashed var(--line);
+  color: #171a32;
+  border: 1px dashed rgba(31,35,66,.24);
 }
 .series-jump .element-symbol { font-size: 1rem; }
 .series-jump .series-jump-name {
@@ -89,3 +88,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   overflow-wrap: anywhere;
   overflow: visible;
 }
+
+/* A filtered-out previous selection must not retain a selection outline. */
+.element.is-selected.is-dimmed:not(:focus-visible) { outline: none; }
